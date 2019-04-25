@@ -54,8 +54,6 @@ public class CharacterController : MonoBehaviour
         animator = GetComponent<Animator>();
         rigidBody = GetComponent<Rigidbody2D>();
         sliderHP = mySliderHP.GetComponent<Slider>();
-        //tilemapD = GameObject.FindGameObjectWithTag("Reve");
-        //tilemapN = GameObject.FindGameObjectWithTag("Reve");
     }
 
     private void Update()

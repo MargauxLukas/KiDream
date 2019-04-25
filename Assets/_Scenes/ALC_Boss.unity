@@ -152,6 +152,65 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 8195094279567715612, guid: e8921dce1ad7ec747b7ea74dad0d7aa8,
+        type: 2}
+      propertyPath: m_Tiles.Array.data[72].second.m_TileSpriteIndex
+      value: 48
+      objectReference: {fileID: 0}
+    - target: {fileID: 8195094279567715612, guid: e8921dce1ad7ec747b7ea74dad0d7aa8,
+        type: 2}
+      propertyPath: m_Tiles.Array.data[83].second.m_TileSpriteIndex
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 8195094279567715612, guid: e8921dce1ad7ec747b7ea74dad0d7aa8,
+        type: 2}
+      propertyPath: m_Tiles.Array.data[97].second.m_TileSpriteIndex
+      value: 38
+      objectReference: {fileID: 0}
+    - target: {fileID: 8195094279567715612, guid: e8921dce1ad7ec747b7ea74dad0d7aa8,
+        type: 2}
+      propertyPath: m_Tiles.Array.data[221].second.m_TileSpriteIndex
+      value: 36
+      objectReference: {fileID: 0}
+    - target: {fileID: 8195094279567715612, guid: e8921dce1ad7ec747b7ea74dad0d7aa8,
+        type: 2}
+      propertyPath: m_TileSpriteArray.Array.data[6].m_RefCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8195094279567715612, guid: e8921dce1ad7ec747b7ea74dad0d7aa8,
+        type: 2}
+      propertyPath: m_TileSpriteArray.Array.data[6].m_Data
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8195094279567715612, guid: e8921dce1ad7ec747b7ea74dad0d7aa8,
+        type: 2}
+      propertyPath: m_TileSpriteArray.Array.data[36].m_Data
+      value: 
+      objectReference: {fileID: 21300080, guid: 253df428d3b160941a24051b59ff3e3f,
+        type: 3}
+    - target: {fileID: 8195094279567715612, guid: e8921dce1ad7ec747b7ea74dad0d7aa8,
+        type: 2}
+      propertyPath: m_TileSpriteArray.Array.data[38].m_Data
+      value: 
+      objectReference: {fileID: 21300142, guid: 253df428d3b160941a24051b59ff3e3f,
+        type: 3}
+    - target: {fileID: 8195094279567715612, guid: e8921dce1ad7ec747b7ea74dad0d7aa8,
+        type: 2}
+      propertyPath: m_TileSpriteArray.Array.data[40].m_Data
+      value: 
+      objectReference: {fileID: 21300160, guid: 253df428d3b160941a24051b59ff3e3f,
+        type: 3}
+    - target: {fileID: 8195094279567715612, guid: e8921dce1ad7ec747b7ea74dad0d7aa8,
+        type: 2}
+      propertyPath: m_TileSpriteArray.Array.data[48].m_RefCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8195094279567715612, guid: e8921dce1ad7ec747b7ea74dad0d7aa8,
+        type: 2}
+      propertyPath: m_TileSpriteArray.Array.data[48].m_Data
+      value: 
+      objectReference: {fileID: 21300178, guid: 253df428d3b160941a24051b59ff3e3f,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e8921dce1ad7ec747b7ea74dad0d7aa8, type: 2}
   m_IsPrefabAsset: 0
@@ -165,7 +224,7 @@ GameObject:
   - component: {fileID: 210095767}
   - component: {fileID: 210095766}
   m_Layer: 0
-  m_Name: MAD_clockDream0000 (1)
+  m_Name: N_Clock
   m_TagString: CeQuiApparaitEnCauchemar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -223,12 +282,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 210095765}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.12, y: -2.231, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -2.5021129, y: 0.45448065, z: 3.9056637}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_Father: {fileID: 560232130}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &291454697
 Prefab:
@@ -334,6 +393,89 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1993376276403988, guid: 8745f26ee6ab73f47bc2420f16b57b46,
     type: 2}
   m_PrefabInternal: {fileID: 366024658}
+--- !u!61 &461252107
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 461252106}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.0022468865, y: -0.047184885}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.24, y: 0.24}
+    newSize: {x: 0.24, y: 0.24}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.15461797, y: 0.14563024}
+  m_EdgeRadius: 0
+--- !u!1 &560232129
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 560232130}
+  m_Layer: 0
+  m_Name: Nightmare_Object
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &560232130
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 560232129}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.382113, y: -2.6854806, z: -3.9056637}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 210095767}
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &769162774
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 769162775}
+  m_Layer: 0
+  m_Name: Dream_Object
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &769162775
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 769162774}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.601, y: -2.213, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1823169990}
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1337214829 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1647944158722904, guid: e8921dce1ad7ec747b7ea74dad0d7aa8,
@@ -349,7 +491,7 @@ GameObject:
   - component: {fileID: 1823169990}
   - component: {fileID: 1823169989}
   m_Layer: 0
-  m_Name: MAD_clockDream0000
+  m_Name: D_Clock
   m_TagString: CeQuiApparaitEnReve
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -407,12 +549,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1823169988}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.601, y: -2.213, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_Father: {fileID: 769162775}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1872742843 stripped
 GameObject:
