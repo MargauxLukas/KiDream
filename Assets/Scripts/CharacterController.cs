@@ -40,10 +40,6 @@ public class CharacterController : MonoBehaviour
 
     private Collider2D[] hitResult = new Collider2D[10];
 
-    //Lié a Ability1
-    public GameObject seeAbility;
-    public ParticleSystem notSeeAbility;
-
     //Liste des objets qu'il y'a en Cauchemar et Reve
     private GameObject[] cauchemarObjects;
     private GameObject[] reveObjects;
@@ -90,7 +86,6 @@ public class CharacterController : MonoBehaviour
 
         IsMoving();
         IsAttacking();
-        Ability1();
         isDead(hp);
         
         if(nightmare != 0)
@@ -266,14 +261,4 @@ public class CharacterController : MonoBehaviour
             Destroy(gameObject,0.2f); //Enlever le delai lorsque que y'aura l'animation
         }
     }*/
-
-
-    /***************************
-     * Abilité du monde "Vue"  *
-     ***************************/
-    void Ability1()
-    {
-        //if (Input.GetKeyDown("joystick 1 button 1") && !reve) { Instantiate(seeAbility,    transform.position, Quaternion.identity);} //Place une zone écartant les particules 
-        //if (Input.GetKeyDown("joystick 1 button 1") && reve)  { Instantiate(notSeeAbility, transform.position, Quaternion.identity);} //Place une zone qui garde les particules à l'intérieur (A travailler)       
-    }
 }
