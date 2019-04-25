@@ -10,19 +10,20 @@ public class CharacterController : MonoBehaviour
 {
     [SerializeField] float maxSpeed = 2f;
 
-    private float moveX = 0f;
-    private float moveY = 0f;
+    private float moveX     = 0f;
+    private float moveY     = 0f;
     private float nightmare = 0f;
     private float dream = 0f;
 
-    public int hp = 3;
-    public int damage = 1;
+    public int hp     = 3;
+    //public int damage = 1;
+
     public bool dialogueHasStarted = false;
-    public bool reve = true;
-    public bool isKilled = false;
+    public bool reve               = true;
+    public bool isKilled           = false;
 
     public int pushPower = 2;
-    public int weight = 6;
+    public int weight    = 6;
 
     private Rigidbody2D rigidBody;
     private GameMaster gameMaster;
@@ -40,10 +41,6 @@ public class CharacterController : MonoBehaviour
 
     private Collider2D[] hitResult = new Collider2D[10];
 
-    //Lié a Ability1
-    public GameObject seeAbility;
-    public ParticleSystem notSeeAbility;
-
     //Liste des objets qu'il y'a en Cauchemar et Reve
     private GameObject[] cauchemarObjects;
     private GameObject[] reveObjects;
@@ -58,8 +55,6 @@ public class CharacterController : MonoBehaviour
         animator = GetComponent<Animator>();
         rigidBody = GetComponent<Rigidbody2D>();
         sliderHP = mySliderHP.GetComponent<Slider>();
-        //tilemapD = GameObject.FindGameObjectWithTag("Reve");
-        //tilemapN = GameObject.FindGameObjectWithTag("Reve");
     }
 
     private void Update()
@@ -89,8 +84,7 @@ public class CharacterController : MonoBehaviour
         rigidBody.velocity = new Vector2(maxSpeed * moveX, maxSpeed * moveY);
 
         IsMoving();
-        IsAttacking();
-        Ability1();
+        //IsAttacking();
         isDead(hp);
         
         if(nightmare != 0)
@@ -121,7 +115,7 @@ public class CharacterController : MonoBehaviour
     /**************************************
      * Attaque Simple (A Retravailler)    *
      **************************************/
-    void IsAttacking()
+    /*void IsAttacking()
     {
         if (Input.GetKeyDown("joystick 1 button 0") || Input.GetKeyDown(KeyCode.E))
         {
@@ -138,7 +132,7 @@ public class CharacterController : MonoBehaviour
                 }
             }
         }
-    }
+    }*/
 
     /**************************************
      * Permet d'aller en mode Cauchemar   *
@@ -163,7 +157,7 @@ public class CharacterController : MonoBehaviour
             {
                 reveObject.GetComponent<ParticleSystem>().Stop();
             }
-            if (reveObject.GetComponent<BoxCollider2D>() != null && reveObject.name != "CubeD" && reveObject.name.Contains("KEY") == false) // Faire une liste pour les exceptions (optimisation)
+            if (reveObject.GetComponent<BoxCollider2D>() != null  && reveObject.name.Contains("KEY") == false) // Faire une liste pour les exceptions (optimisation)
             {
                 reveObject.GetComponent<BoxCollider2D>().enabled = false;
             }
@@ -180,7 +174,7 @@ public class CharacterController : MonoBehaviour
             {
                 cauchemarObject.GetComponent<ParticleSystem>().Play();
             }
-            if (cauchemarObject.GetComponent<BoxCollider2D>() != null && cauchemarObject.name != "CubeN")
+            if (cauchemarObject.GetComponent<BoxCollider2D>() != null)
             {
                 cauchemarObject.GetComponent<BoxCollider2D>().enabled = true;
             }
@@ -212,7 +206,7 @@ public class CharacterController : MonoBehaviour
             {
                 cauchemarObject.GetComponent<ParticleSystem>().Stop();
             }
-            if (cauchemarObject.GetComponent<BoxCollider2D>() != null && cauchemarObject.name != "CubeN")
+            if (cauchemarObject.GetComponent<BoxCollider2D>() != null)
             {
                 cauchemarObject.GetComponent<BoxCollider2D>().enabled = false;
             }
@@ -229,7 +223,7 @@ public class CharacterController : MonoBehaviour
             {
                 reveObject.GetComponent<ParticleSystem>().Play();
             }
-            if (reveObject.GetComponent<BoxCollider2D>() != null && reveObject.name != "CubeD")
+            if (reveObject.GetComponent<BoxCollider2D>() != null )
             {
                 reveObject.GetComponent<BoxCollider2D>().enabled = true;
             }
@@ -266,14 +260,4 @@ public class CharacterController : MonoBehaviour
             Destroy(gameObject,0.2f); //Enlever le delai lorsque que y'aura l'animation
         }
     }*/
-
-
-    /***************************
-     * Abilité du monde "Vue"  *
-     ***************************/
-    void Ability1()
-    {
-        //if (Input.GetKeyDown("joystick 1 button 1") && !reve) { Instantiate(seeAbility,    transform.position, Quaternion.identity);} //Place une zone écartant les particules 
-        //if (Input.GetKeyDown("joystick 1 button 1") && reve)  { Instantiate(notSeeAbility, transform.position, Quaternion.identity);} //Place une zone qui garde les particules à l'intérieur (A travailler)       
-    }
 }
