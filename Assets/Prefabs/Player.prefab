@@ -120,7 +120,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxSpeed: 2
   hp: 3
-  damage: 1
   dialogueHasStarted: 0
   reve: 1
   isKilled: 0
