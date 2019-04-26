@@ -197,11 +197,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4168953033220662, guid: c21050a2c2bf6314cbeef1c0a013de56, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0.66
+      value: 0.84
       objectReference: {fileID: 0}
     - target: {fileID: 4168953033220662, guid: c21050a2c2bf6314cbeef1c0a013de56, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -2.21
+      value: -0.39
       objectReference: {fileID: 0}
     - target: {fileID: 4168953033220662, guid: c21050a2c2bf6314cbeef1c0a013de56, type: 2}
       propertyPath: m_LocalPosition.z
@@ -284,11 +284,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4066924330750290, guid: 8745f26ee6ab73f47bc2420f16b57b46, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0.698
+      value: 2.06
       objectReference: {fileID: 0}
     - target: {fileID: 4066924330750290, guid: 8745f26ee6ab73f47bc2420f16b57b46, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -2.223
+      value: -0.2
       objectReference: {fileID: 0}
     - target: {fileID: 4066924330750290, guid: 8745f26ee6ab73f47bc2420f16b57b46, type: 2}
       propertyPath: m_LocalPosition.z
@@ -372,6 +372,7 @@ GameObject:
   - component: {fileID: 587806236}
   - component: {fileID: 587806238}
   - component: {fileID: 587806239}
+  - component: {fileID: 587806240}
   m_Layer: 0
   m_Name: Boss
   m_TagString: Untagged
@@ -476,6 +477,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &587806240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 587806235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7ddc9c9edcf8a242b45e1b433656108, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bomb: {fileID: 0}
+  speed: 0.2
+  hp: 3
 --- !u!1 &629968764
 GameObject:
   m_ObjectHideFlags: 0
