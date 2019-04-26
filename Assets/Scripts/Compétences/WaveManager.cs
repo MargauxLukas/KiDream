@@ -7,31 +7,48 @@ public class WaveManager : MonoBehaviour {
     public DreamWaveType dreamSelection;
     public NightmareWaveType nightmareSelection;
 
-    public int selectionIndex = 0;
+    public List<ParticleSystem> WaveShooters = new List<ParticleSystem>();
+    public List<Transform> WaveShootersTransform = new List<Transform>();
 
-	// Start
-	void Start () {
-		
-	}
+    public int selectionIndex = 0;
+    private int count;
+
+    // Start
+    void Start ()
+    {
+        count = System.Enum.GetValues(typeof(DreamWaveType)).Length - 1;
+    }
 	
 	// Update
 	void Update ()
     {
+
         WaveTypeSelector();
+
+        foreach(ParticleSystem ps in WaveShooters)
+        {
+            if(ps == WaveShooters[selectionIndex])
+            {
+                ps.gameObject.SetActive(true);
+            }
+            else
+            {
+                ps.gameObject.SetActive(false);
+            }
+        }
 	}
 
     public void WaveTypeSelector()
     {
         if (Input.GetKeyDown(KeyCode.Joystick1Button1))
         {
-            if (selectionIndex == 2)
+            if (selectionIndex == count)
             {
                 selectionIndex = 0;
             }
             else
             {
                 selectionIndex++;
-                selectionIndex = Mathf.Clamp(selectionIndex, 0, 2);
             }
         }
 
@@ -40,6 +57,7 @@ public class WaveManager : MonoBehaviour {
             case 0:
                 dreamSelection = DreamWaveType.Push;
                 nightmareSelection = NightmareWaveType.PushCorruption;
+
                 break;
             case 1:
                 dreamSelection = DreamWaveType.Pull;
@@ -55,6 +73,12 @@ public class WaveManager : MonoBehaviour {
         Debug.Log(dreamSelection);
         Debug.Log(nightmareSelection);
         */
+    }
+
+    public void Push()
+    {
+
+
     }
 
 }

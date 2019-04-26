@@ -10,6 +10,8 @@ public class CharacterController : MonoBehaviour
 {
     [SerializeField] float maxSpeed = 2f;
 
+    public WaveManager waveManager;
+
     private float moveX     = 0f;
     private float moveY     = 0f;
     private float nightmare = 0f;
@@ -66,7 +68,13 @@ public class CharacterController : MonoBehaviour
     }
 
     private void Update()
-    {
+    {   
+        if(myShooter != waveManager.WaveShooters[waveManager.selectionIndex])
+        {
+            myShooter = waveManager.WaveShooters[waveManager.selectionIndex];
+            myShooterTransform = waveManager.WaveShootersTransform[waveManager.selectionIndex];
+        }
+
         moveX = Input.GetAxis("Horizontal");
         moveY = Input.GetAxis("Vertical");
         nightmare = Input.GetAxis("GoToNightmare");
