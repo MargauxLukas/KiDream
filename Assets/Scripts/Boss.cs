@@ -12,20 +12,47 @@ public class Boss : MonoBehaviour
     private Rigidbody2D   rb;
 
     public  float speed = 0.2f;
+    public float  timer;
 
-    public int       hp =    3;
+    public int    hp   = 3;
+    public int phase   = 0;
+    public int seconds = 0;
 
 	void Start ()
     {
-        animator = GetComponent<Animator>();
-        target = GameObject.FindGameObjectWithTag("Player").transform;
-
-        rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>()                            ;
+        target   = GameObject.FindGameObjectWithTag("Player").transform;
+        rb       = GetComponent<Rigidbody2D>()                         ;
 	}
 	
 	void Update ()
-    {
-        Move();
+    { 
+        if(Time.time > timer + 1)
+        {
+            timer = Time.time;
+            seconds++;
+            Debug.Log(seconds);
+        }
+
+        if(seconds == 1) // Fight commence à 1 seconde pour pas que le boss bouge direct apres la cinematique
+        {
+            phase = 1;
+        }
+        if(seconds == 6)
+        {
+            phase = 2;
+        }
+        if(seconds == 8)
+        {
+            seconds = 0;
+        }
+        /*if(numberOfPhase2 == 2)  //Lorsqu'il a fait deux dois la phase 2, il saute.
+        {
+            Jump();
+        }*/
+
+        if(phase == 1)       {       Move(); }
+        else if (phase == 2) { LaunchBomb(); }
 	}
 
     void LookAt()
@@ -55,18 +82,24 @@ public class Boss : MonoBehaviour
 
     void Move()
     {
+        animator.SetBool("isMoving", true);
         LookAt();
         transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
     }
 
     void Jump()
     {
-        //Le boss saute et atteri détruisant les murs 
+        //Le boss saute et atteri détruisant les piliers autours.
     }
 
-    void LauchBomb()
+    void Rage()
     {
-        //Le boss lance ses clochettes, elles explosent au contact du joueur.
+        //Détruit tout les murs autours de la salle
+    }
+
+    void LaunchBomb()
+    {
+        Debug.Log("Je lance des bombes ! ");
     }
 
     void MobInvoking()
@@ -79,8 +112,23 @@ public class Boss : MonoBehaviour
         //Push Player/IA/Bombe
     }
 
+    void Damages()
+    {
+        hp--;
+
+        if(hp == 1)
+        {
+            Rage();
+        }
+
+        if(hp == 0)
+        {
+            isDead();
+        }
+    }
+
     void isDead()
     {
-
+        //Play Death of Mister Cloclo
     }
 }
