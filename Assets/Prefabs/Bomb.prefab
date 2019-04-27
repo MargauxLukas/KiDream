@@ -38,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1756383030712992}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.37, y: -0.15, z: 0}
+  m_LocalPosition: {x: -1.475, y: -0.266, z: 0}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
@@ -73,7 +73,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -114,15 +114,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myPSList: []
-  waveManager: {fileID: 0}
+  waveManager: {fileID: 114296563941989752, guid: b5128d70401ffa24cba9fa4d3e19e364,
+    type: 2}
   canBePushed: 1
   canBePulled: 0
   canBeActivated: 0
   canBePushCorrupted: 0
   canBePullCorrupted: 0
   canBeActivateCorrupted: 0
-  VerticalPush: 1.18
-  HorizontalPush: 1
+  VerticalPush: 50
+  HorizontalPush: 50
   VerticalPull: 1
   HorizontalPull: 1
   connectedGameObject: {fileID: 0}

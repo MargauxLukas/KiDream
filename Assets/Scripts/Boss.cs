@@ -18,35 +18,45 @@ public class Boss : MonoBehaviour
     private Rigidbody2D   rb;
 
     public float speed = 0.2f;
-    public float  timer;
+    public float timer       ;
 
-    public int    hp   = 3;
-    public int phase   = 0; // 0 = Nothing, 1 = Move, 2 = Throw Bomb
-    public int seconds = 0;
+    public int        hp = 3;
+    public int     phase = 0; // 0 = Nothing, 1 = Move, 2 = Throw Bomb
+    public int   seconds = 0;
     public int lookingAt = 0; // 1 = Droite, 2 = Down, 3 = Left, 4 = Up
 
-    private int direction = 0;
-    private float distanceDeltaHV;
+    private int       direction = 0;
+    private float   distanceDeltaHV;
     private float distanceDeltaDiag;
+
+    private bool needToMove1 = false;
+    private bool needToMove2 = false;
 
     void Start ()
     {
-        distanceDeltaHV = Time.deltaTime * 1f;
+        distanceDeltaHV   = Time.deltaTime *   1f;
         distanceDeltaDiag = Time.deltaTime * 0.5f;
-        animator = GetComponent<Animator>()                            ;
+        animator = GetComponent<Animator>();
         target   = GameObject.FindGameObjectWithTag("Player").transform;
-        rb       = GetComponent<Rigidbody2D>()                         ;
+        rb       = GetComponent<Rigidbody2D>();
 	}
 	
 	void Update ()
     {
-        MovingBomb();
+        if (needToMove1==true || needToMove2==true)
+        {
+            MovingBomb();
+        }
+        else
+        {
 
+        }
+
+        
         if (Time.time > timer + 1)
         {
             timer = Time.time;
             seconds++;
-            Debug.Log(seconds);
         }
     
         if (seconds < 0)
@@ -145,21 +155,29 @@ public class Boss : MonoBehaviour
                 bombe1 = Instantiate(bomb, new Vector3(bombLauncher.transform.position.x, bombLauncher.transform.position.y, bombLauncher.transform.position.z), Quaternion.identity);
                 bombe2 = Instantiate(bomb, new Vector3(bombLauncher.transform.position.x, bombLauncher.transform.position.y, bombLauncher.transform.position.z), Quaternion.identity);
                 bombe3 = Instantiate(bomb, new Vector3(bombLauncher.transform.position.x, bombLauncher.transform.position.y, bombLauncher.transform.position.z), Quaternion.identity);
+                needToMove1 = true;
+                needToMove2 = true;
                 return 1;
             case 2:
                 bombe1 = Instantiate(bomb, new Vector3(bombLauncher.transform.position.x, bombLauncher.transform.position.y, bombLauncher.transform.position.z), Quaternion.identity);
                 bombe2 = Instantiate(bomb, new Vector3(bombLauncher.transform.position.x, bombLauncher.transform.position.y, bombLauncher.transform.position.z), Quaternion.identity);
                 bombe3 = Instantiate(bomb, new Vector3(bombLauncher.transform.position.x, bombLauncher.transform.position.y, bombLauncher.transform.position.z), Quaternion.identity);
+                needToMove1 = true;
+                needToMove2 = true;
                 return 2;
             case 3:
                 bombe1 = Instantiate(bomb, new Vector3(bombLauncher.transform.position.x, bombLauncher.transform.position.y, bombLauncher.transform.position.z), Quaternion.identity);
                 bombe2 = Instantiate(bomb, new Vector3(bombLauncher.transform.position.x, bombLauncher.transform.position.y, bombLauncher.transform.position.z), Quaternion.identity);
                 bombe3 = Instantiate(bomb, new Vector3(bombLauncher.transform.position.x, bombLauncher.transform.position.y, bombLauncher.transform.position.z), Quaternion.identity);
+                needToMove1 = true;
+                needToMove2 = true;
                 return 3;
             case 4:
                 bombe1 = Instantiate(bomb, new Vector3(bombLauncher.transform.position.x, bombLauncher.transform.position.y, bombLauncher.transform.position.z), Quaternion.identity);
                 bombe2 = Instantiate(bomb, new Vector3(bombLauncher.transform.position.x, bombLauncher.transform.position.y, bombLauncher.transform.position.z), Quaternion.identity);
                 bombe3 = Instantiate(bomb, new Vector3(bombLauncher.transform.position.x, bombLauncher.transform.position.y, bombLauncher.transform.position.z), Quaternion.identity);
+                needToMove1 = true;
+                needToMove2 = true;
                 return 4;
             default:
                 return 0;
@@ -183,8 +201,7 @@ public class Boss : MonoBehaviour
                 }
                 else
                 {
-                    bombe1.transform.Translate(0, 0, 0);
-                    bombe3.transform.Translate(0, 0, 0);
+                    needToMove1 = false;
                 }
 
                 if (xDiffBomb2 < 1.5f)
@@ -193,7 +210,7 @@ public class Boss : MonoBehaviour
                 }
                 else
                 {
-                    bombe2.transform.Translate(0, 0, 0);
+                    needToMove2 = false;
                 }
             }
             else if (direction == 2)
@@ -203,9 +220,6 @@ public class Boss : MonoBehaviour
                 float yDiffBomb1 = Mathf.Abs(transform.position.y - bombe1.transform.position.y);
                 float yDiffBomb2 = Mathf.Abs(transform.position.y - bombe2.transform.position.y);
 
-                Debug.Log("1 " + yDiffBomb1);
-                Debug.Log("2 " + yDiffBomb2);
-
                 if (yDiffBomb1 < 1f)
                 {
                     bombe1.transform.Translate(-transform.up * distanceDeltaDiag + transform.right * distanceDeltaDiag);
@@ -213,8 +227,7 @@ public class Boss : MonoBehaviour
                 }
                 else
                 {
-                    bombe1.transform.Translate(0, 0, 0);
-                    bombe3.transform.Translate(0, 0, 0);
+                    needToMove1 = false;
                 }
 
                 if (yDiffBomb2 < 2f)
@@ -223,7 +236,7 @@ public class Boss : MonoBehaviour
                 }
                 else
                 {
-                    bombe2.transform.Translate(0, 0, 0);
+                    needToMove2 = false;
                 }
             }
             else if (direction == 3)
@@ -240,8 +253,7 @@ public class Boss : MonoBehaviour
                 }
                 else
                 {
-                    bombe1.transform.Translate(0, 0, 0);
-                    bombe3.transform.Translate(0, 0, 0);
+                    needToMove1 = false;
                 }
 
                 if (xDiffBomb2 < 2f)
@@ -250,7 +262,7 @@ public class Boss : MonoBehaviour
                 }
                 else
                 {
-                    bombe2.transform.Translate(0, 0, 0);
+                    needToMove2 = false;
                 }
             }
             else if (direction == 4)
@@ -267,8 +279,7 @@ public class Boss : MonoBehaviour
                 }
                 else
                 {
-                    bombe1.transform.Translate(0, 0, 0);
-                    bombe3.transform.Translate(0, 0, 0);
+                    needToMove1 = false;
                 }
 
                 if (yDiffBomb2 < 2f)
@@ -277,7 +288,7 @@ public class Boss : MonoBehaviour
                 }
                 else
                 {
-                    bombe2.transform.Translate(0, 0, 0);
+                    needToMove2 = false;
                 }
             }
         }
@@ -293,13 +304,14 @@ public class Boss : MonoBehaviour
         //Push Player/IA/Bombe
     }
 
-    void Damages()
+    public void Damages()
     {
         hp--;
 
         if(hp == 1)
         {
             Rage();
+            Debug.Log("Grr Grr je rentre en rage");
         }
 
         if(hp == 0)
