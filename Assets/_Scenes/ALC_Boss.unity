@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 41499999}
   m_Layer: 0
   m_Name: "Ar\xE8ne_Boss_Sol_N"
-  m_TagString: Untagged
+  m_TagString: CeQuiApparaitEnCauchemar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1049,7 +1049,7 @@ GameObject:
   - component: {fileID: 1827115952}
   m_Layer: 0
   m_Name: "Ar\xE8ne_Boss_Sol_D"
-  m_TagString: Untagged
+  m_TagString: CeQuiApparaitEnReve
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
