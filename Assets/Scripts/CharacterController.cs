@@ -18,7 +18,7 @@ public class CharacterController : MonoBehaviour
     private float dream = 0f;
 
     public Transform myShooterTransform;
-    public ParticleSystem myShooter;
+    
     public Transform target;
     public Transform targetRotator;
 
@@ -37,7 +37,7 @@ public class CharacterController : MonoBehaviour
 
     private Rigidbody2D rigidBody;
     private GameMaster gameMaster;
-
+    public ParticleSystem myShooter;
     Animator animator;
     DialogueManager dialogueManager;
     DialogueTrigger dialogueTrigger;
@@ -219,10 +219,6 @@ public class CharacterController : MonoBehaviour
             {
                 cauchemarObject.GetComponent<SpriteRenderer>().enabled = false;
             }
-            else if (cauchemarObject.GetComponent<ParticleSystem>().isPlaying == true)
-            {
-                cauchemarObject.GetComponent<ParticleSystem>().Stop();
-            }
             if (cauchemarObject.GetComponent<BoxCollider2D>() != null)
             {
                 cauchemarObject.GetComponent<BoxCollider2D>().enabled = false;
@@ -235,10 +231,6 @@ public class CharacterController : MonoBehaviour
             if (reveObject.GetComponent<SpriteRenderer>() != null)
             {
                 reveObject.GetComponent<SpriteRenderer>().enabled = true;
-            }
-            else if (reveObject.GetComponent<ParticleSystem>().isPlaying == false)
-            {
-                reveObject.GetComponent<ParticleSystem>().Play();
             }
             if (reveObject.GetComponent<BoxCollider2D>() != null )
             {
@@ -302,12 +294,11 @@ public class CharacterController : MonoBehaviour
 
     public void UseWave()
     {
-        
         Vector2 rotationVector = new Vector2(target.position.x - myShooterTransform.position.x, target.position.y - myShooterTransform.position.y);
         float angleValue = Mathf.Atan2(rotationVector.normalized.y, rotationVector.normalized.x) * Mathf.Rad2Deg;
 
         ParticleSystem.ShapeModule wpshape = myShooter.shape;
-        wpshape.rotation = new Vector3(0, 0, angleValue);        
+        wpshape.rotation = new Vector3(0, 0, angleValue);
 
         myShooter.Emit(1);
     }
