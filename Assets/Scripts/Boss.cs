@@ -52,7 +52,6 @@ public class Boss : MonoBehaviour
 
         }
 
-        
         if (Time.time > timer + 1)
         {
             timer = Time.time;
@@ -143,6 +142,11 @@ public class Boss : MonoBehaviour
     void Rage()
     {
         //Détruit tout les murs autours de la salle
+    }
+
+    void PushPlayer()
+    {
+        //Push Player if is very trop pret
     }
 
     int ThrowBomb(int lookingAt)
