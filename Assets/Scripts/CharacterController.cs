@@ -10,6 +10,8 @@ public class CharacterController : MonoBehaviour
 {
     [SerializeField] float maxSpeed = 2f;
 
+    public WaveManager waveManager;
+
     private float moveX     = 0f;
     private float moveY     = 0f;
     private float nightmare = 0f;
@@ -18,8 +20,8 @@ public class CharacterController : MonoBehaviour
     public Transform myShooterTransform;
     public ParticleSystem myShooter;
     public Transform target;
-    public float angle;
     public Transform targetRotator;
+
     [Range(0, 0.62f), SerializeField]
     private float joystickTolerance = 0f;
 
@@ -66,7 +68,13 @@ public class CharacterController : MonoBehaviour
     }
 
     private void Update()
-    {
+    {   
+        if(myShooter != waveManager.WaveShooters[waveManager.selectionIndex])
+        {
+            myShooter = waveManager.WaveShooters[waveManager.selectionIndex];
+            myShooterTransform = waveManager.WaveShootersTransform[waveManager.selectionIndex];
+        }
+
         moveX = Input.GetAxis("Horizontal");
         moveY = Input.GetAxis("Vertical");
         nightmare = Input.GetAxis("GoToNightmare");
@@ -87,6 +95,7 @@ public class CharacterController : MonoBehaviour
         }
 
         Twist();
+        RotationUpdater();
 
         if (Input.GetKeyDown(KeyCode.Joystick1Button2))
         {
@@ -301,6 +310,11 @@ public class CharacterController : MonoBehaviour
             }
             targetRotator.transform.localEulerAngles = Vector3.Slerp(curRot, homeRot, Time.deltaTime * 2);
         }
+    }
+
+    private void RotationUpdater()
+    {
+        waveManager.WaveShooters[waveManager.selectionIndex].startRotation = -targetRotator.localRotation.ToEulerAngles().z;
     }
     /*private void OnTriggerEnter2D(Collider2D collision)
     {
