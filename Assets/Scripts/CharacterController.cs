@@ -172,10 +172,6 @@ public class CharacterController : MonoBehaviour
             {
                 reveObject.GetComponent<SpriteRenderer>().enabled = false;
             }
-            else if (reveObject.GetComponent<ParticleSystem>().isPlaying == true)
-            {
-                reveObject.GetComponent<ParticleSystem>().Stop();
-            }
             if (reveObject.GetComponent<BoxCollider2D>() != null  && reveObject.name.Contains("KEY") == false) // Faire une liste pour les exceptions (optimisation)
             {
                 reveObject.GetComponent<BoxCollider2D>().enabled = false;
@@ -187,10 +183,6 @@ public class CharacterController : MonoBehaviour
             if (cauchemarObject.GetComponent<SpriteRenderer>() != null)
             {
                 cauchemarObject.GetComponent<SpriteRenderer>().enabled = true;
-            }
-            else if (cauchemarObject.GetComponent<ParticleSystem>().isPlaying == false)
-            {
-                cauchemarObject.GetComponent<ParticleSystem>().Play();
             }
             if (cauchemarObject.GetComponent<BoxCollider2D>() != null)
             {
