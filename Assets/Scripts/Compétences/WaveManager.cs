@@ -12,12 +12,12 @@ public class WaveManager : MonoBehaviour {
     public CharacterController myPlayer;
 
     public int selectionIndex = 0;
-    private int count;
+    private int enumCount;
 
     // Start
     void Start ()
     {
-        count = System.Enum.GetValues(typeof(WaveType)).Length - 1;
+        enumCount = System.Enum.GetValues(typeof(WaveType)).Length - 1;
     }
 	
 	// Update
@@ -48,7 +48,7 @@ public class WaveManager : MonoBehaviour {
 
                 if (Input.GetKeyDown(KeyCode.Joystick1Button1))
                 {
-                    if (selectionIndex == count / 2)
+                    if (selectionIndex == enumCount / 2)
                     {
                         selectionIndex = 0;
                     }
@@ -58,7 +58,7 @@ public class WaveManager : MonoBehaviour {
                     }
                 }
 
-                if (selectionIndex > WaveShooters.Count / 2)
+                if (selectionIndex >= WaveShooters.Count / 2)
                 {
                     selectionIndex = selectionIndex - WaveShooters.Count / 2;
                 }
@@ -68,7 +68,7 @@ public class WaveManager : MonoBehaviour {
 
                 if (Input.GetKeyDown(KeyCode.Joystick1Button1))
                 {
-                    if (selectionIndex == count)
+                    if (selectionIndex == enumCount)
                     {
                         selectionIndex = 0;
                     }
@@ -85,26 +85,37 @@ public class WaveManager : MonoBehaviour {
                 break;
         }
 
-        switch (selectionIndex)
+        if (Input.GetKeyDown(KeyCode.Joystick1Button2))
         {
-            case 0:
-                waveSelection = WaveType.Push;
-                break;
-            case 1:
-                waveSelection = WaveType.Pull;
-                break;
-            case 2:
-                waveSelection = WaveType.Activate;
-                break;
-            case 3:
-                waveSelection = WaveType.PushCorruption;
-                break;
-            case 4:
-                waveSelection = WaveType.PullCorruption;
-                break;
-            case 5:
-                waveSelection = WaveType.ActivateCorruption;
-                break;
+            switch (selectionIndex)
+            {
+                case 0:
+                    waveSelection = WaveType.Push;
+                    Push();
+                    break;
+                case 1:
+                    waveSelection = WaveType.Pull;
+                    Pull();
+                    break;
+                case 2:
+                    waveSelection = WaveType.Activate;
+                    Activate();
+                    break;
+                case 3:
+                    waveSelection = WaveType.PushCorruption;
+                    CorruptedPush();
+                    break;
+                case 4:
+                    waveSelection = WaveType.PullCorruption;
+                    CorruptedPull();
+                    break;
+                case 5:
+                    waveSelection = WaveType.ActivateCorruption;
+                    CorruptedActivate();
+                    break;
+            }
+
+            myPlayer.UseWave();
         }
 
         /*
@@ -115,6 +126,41 @@ public class WaveManager : MonoBehaviour {
 
     public void Push()
     {
+
+
+    }
+
+    public void Pull()
+    {
+
+
+
+    }
+
+    public void Activate()
+    {
+
+
+
+    }
+
+    public void CorruptedPush()
+    {
+
+
+
+    }
+
+    public void CorruptedPull()
+    {
+
+
+
+    }
+
+    public void CorruptedActivate()
+    {
+
 
 
     }
