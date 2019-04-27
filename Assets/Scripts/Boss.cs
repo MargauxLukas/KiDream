@@ -41,32 +41,113 @@ public class Boss : MonoBehaviour
             if (direction == 1)
             {
                 Debug.Log("Est");
-                bombe1.transform.Translate(transform.up * distanceDeltaDiag + transform.right * distanceDeltaDiag);
-                bombe2.transform.position += transform.right*distanceDeltaHV;
-                bombe3.transform.Translate(-transform.up * distanceDeltaDiag + transform.right * distanceDeltaDiag);
+                float xDiffBomb1 = Mathf.Abs(transform.position.x - bombe1.transform.position.x);
+                float xDiffBomb2 = Mathf.Abs(transform.position.x - bombe2.transform.position.x);
+
+                if (xDiffBomb1 < 0.60f)
+                {
+                    bombe1.transform.Translate(transform.up * distanceDeltaDiag + transform.right * distanceDeltaDiag);
+                    bombe3.transform.Translate(-transform.up * distanceDeltaDiag + transform.right * distanceDeltaDiag);
+                }
+                else
+                {
+                    bombe1.transform.Translate(0,0,0);
+                    bombe3.transform.Translate(0,0,0);
+                }
+
+                if (xDiffBomb2 < 1.5f)
+                {
+                    bombe2.transform.position += transform.right * distanceDeltaHV;
+                }
+                else
+                {
+                    bombe2.transform.Translate(0, 0, 0);
+                }
             }
             else if (direction == 2)
             {
                 Debug.Log("Sud");
-                bombe1.transform.Translate(-transform.up * distanceDeltaDiag + transform.right * distanceDeltaDiag);
-                bombe2.transform.position += -transform.up * distanceDeltaHV;
-                bombe3.transform.Translate(-transform.up * distanceDeltaDiag + -transform.right * distanceDeltaDiag);
+            
+                float yDiffBomb1 = Mathf.Abs(transform.position.y - bombe1.transform.position.y);
+                float yDiffBomb2 = Mathf.Abs(transform.position.y - bombe2.transform.position.y);
+
+                Debug.Log("1 " + yDiffBomb1);
+                Debug.Log("2 " + yDiffBomb2);
+
+                if (yDiffBomb1 < 1f)
+                {
+                    bombe1.transform.Translate(-transform.up * distanceDeltaDiag + transform.right * distanceDeltaDiag);
+                    bombe3.transform.Translate(-transform.up * distanceDeltaDiag + -transform.right * distanceDeltaDiag);
+                }
+                else
+                {
+                    bombe1.transform.Translate(0, 0, 0);
+                    bombe3.transform.Translate(0, 0, 0);
+                }
+
+                if (yDiffBomb2 < 2f)
+                {
+                    bombe2.transform.position += -transform.up * distanceDeltaHV;
+                }
+                else
+                {
+                    bombe2.transform.Translate(0, 0, 0);
+                }
             }
             else if (direction == 3)
             {
                 Debug.Log("Ouest");
-                bombe1.transform.Translate(transform.up * distanceDeltaDiag + -transform.right * distanceDeltaDiag);
-                bombe2.transform.position += -transform.right * distanceDeltaHV;
-                bombe3.transform.Translate(-transform.up * distanceDeltaDiag + -transform.right * distanceDeltaDiag);
+
+                float xDiffBomb1 = Mathf.Abs(transform.position.x - bombe1.transform.position.x);
+                float xDiffBomb2 = Mathf.Abs(transform.position.x - bombe2.transform.position.x);
+
+                if (xDiffBomb1 < 1f)
+                {
+                    bombe1.transform.Translate(transform.up * distanceDeltaDiag + -transform.right * distanceDeltaDiag);
+                    bombe3.transform.Translate(-transform.up * distanceDeltaDiag + -transform.right * distanceDeltaDiag);
+                }
+                else
+                {
+                    bombe1.transform.Translate(0, 0, 0);
+                    bombe3.transform.Translate(0, 0, 0);
+                }
+
+                if (xDiffBomb2 < 2f)
+                {
+                    bombe2.transform.position += -transform.right * distanceDeltaHV;
+                }
+                else
+                {
+                    bombe2.transform.Translate(0, 0, 0);
+                }
             }
             else if (direction == 4)
             {
                 Debug.Log("Nord");
-                bombe1.transform.Translate(transform.up * distanceDeltaDiag + transform.right * distanceDeltaDiag);
-                bombe2.transform.position += transform.up * distanceDeltaHV;
-                bombe3.transform.Translate(transform.up * distanceDeltaDiag + -transform.right * distanceDeltaDiag);
+
+                float yDiffBomb1 = Mathf.Abs(transform.position.y - bombe1.transform.position.y);
+                float yDiffBomb2 = Mathf.Abs(transform.position.y - bombe2.transform.position.y);
+
+                if (yDiffBomb1 < 1f)
+                {
+                    bombe1.transform.Translate(transform.up * distanceDeltaDiag + transform.right * distanceDeltaDiag);
+                    bombe3.transform.Translate(transform.up * distanceDeltaDiag + -transform.right * distanceDeltaDiag);
+                }
+                else
+                {
+                    bombe1.transform.Translate(0, 0, 0);
+                    bombe3.transform.Translate(0, 0, 0);
+                }
+
+                if (yDiffBomb2 < 2f)
+                {
+                    bombe2.transform.position += transform.up * distanceDeltaHV;
+                }
+                else
+                {
+                    bombe2.transform.Translate(0, 0, 0);
+                }
             }
-            
         }
 
         if(Time.time > timer + 1)
