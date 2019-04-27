@@ -2,20 +2,52 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bomn : MonoBehaviour
+public class Bomb : MonoBehaviour
 {
+    [SerializeField] float explosionTime;
+    [SerializeField] float timer;
+
+    BoxCollider2D collider;
+
 	void Start ()
     {
-		
+        collider = gameObject.GetComponent<BoxCollider2D>();
 	}
 	
 	void Update ()
     {
-		
+        timer += Time.deltaTime;
+
+        if (timer >= explosionTime)
+        {
+            Explode();
+        }
 	}
 
-    void Explode()
+    public bool Explode()
     {
-        //Bomb explose apres un certain temps
+        Collider2D intersecting = Physics2D.OverlapCircle(new Vector2(transform.position.x, transform.position.y), 0.1f);
+        if (intersecting != null)
+        {
+            if (intersecting.tag == "Player")
+            {
+                Destroy(gameObject);
+                Destroy(intersecting.gameObject);
+            }
+            return true;
+        }
+        else
+        {
+            Destroy(gameObject);
+            return false;
+        }
+
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Explode();
+    }
+
+
 }
