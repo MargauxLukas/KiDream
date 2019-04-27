@@ -10,10 +10,20 @@ public class CharacterController : MonoBehaviour
 {
     [SerializeField] float maxSpeed = 2f;
 
+    public WaveManager waveManager;
+
     private float moveX     = 0f;
     private float moveY     = 0f;
     private float nightmare = 0f;
     private float dream = 0f;
+
+    public Transform myShooterTransform;
+    public ParticleSystem myShooter;
+    public Transform target;
+    public Transform targetRotator;
+
+    [Range(0, 0.62f), SerializeField]
+    private float joystickTolerance = 0f;
 
     public int hp     = 3;
     //public int damage = 1;
@@ -31,13 +41,13 @@ public class CharacterController : MonoBehaviour
     Animator animator;
     DialogueManager dialogueManager;
     DialogueTrigger dialogueTrigger;
-    Slider sliderHP;
+    //Slider sliderHP;
 
     public GameObject tilemapD;
     public GameObject tilemapN;
     public GameObject dialogueManagerObject;
     public GameObject dialogueTriggerObject;
-    public GameObject mySliderHP;
+    //public GameObject mySliderHP;
 
     private Collider2D[] hitResult = new Collider2D[10];
 
@@ -54,11 +64,17 @@ public class CharacterController : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         rigidBody = GetComponent<Rigidbody2D>();
-        sliderHP = mySliderHP.GetComponent<Slider>();
+        //sliderHP = mySliderHP.GetComponent<Slider>();
     }
 
     private void Update()
-    {
+    {   
+        if(myShooter != waveManager.WaveShooters[waveManager.selectionIndex])
+        {
+            myShooter = waveManager.WaveShooters[waveManager.selectionIndex];
+            myShooterTransform = waveManager.WaveShootersTransform[waveManager.selectionIndex];
+        }
+
         moveX = Input.GetAxis("Horizontal");
         moveY =   Input.GetAxis("Vertical");
         nightmare = Input.GetAxis("GoToNightmare");
@@ -76,6 +92,20 @@ public class CharacterController : MonoBehaviour
         {
             dialogueManager = dialogueManagerObject.GetComponent<DialogueManager>();
             dialogueManager.DisplayNextSentence();
+        }
+
+        Twist();
+        RotationUpdater();
+
+        if (Input.GetKeyDown(KeyCode.Joystick1Button2))
+        {
+            Vector2 rotationVector = new Vector2(target.position.x - myShooterTransform.position.x, target.position.y - myShooterTransform.position.y);
+            float angleValue = Mathf.Atan2(rotationVector.normalized.y, rotationVector.normalized.x) * Mathf.Rad2Deg;
+
+            ParticleSystem.ShapeModule wpshape = myShooter.shape;
+            wpshape.rotation = new Vector3(0, 0, angleValue);
+
+            myShooter.Emit(1);
         }
     }
 
@@ -251,6 +281,39 @@ public class CharacterController : MonoBehaviour
         }
     }
 
+      void Twist()
+    {
+        float h1 = Input.GetAxis("HorizontalRight"); // set as your inputs 
+        float v1 = Input.GetAxis("VerticalRight");
+
+        Debug.Log("y = " + v1 + " et x = " + h1);
+
+        if (h1 > joystickTolerance || h1 < -joystickTolerance || v1 > joystickTolerance || v1 < -joystickTolerance)
+        {
+            targetRotator.transform.localEulerAngles = new Vector3(0f, 0f, -(Mathf.Atan2(h1, v1) * 180 / Mathf.PI)); // this does the actual rotaion according to inputs
+        }
+        else
+        {
+            // this statement allows it to recenter once the inputs are at zero 
+            Vector3 curRot = targetRotator.transform.localEulerAngles; // the object you are rotating
+            Vector3 homeRot;
+            if (curRot.z > 180f)
+            { // this section determines the direction it returns home 
+                Debug.Log(curRot.z);
+                homeRot = new Vector3(0f, 0f, 359.999f); //it doesnt return to perfect zero 
+            }
+            else
+            {                                                                      // otherwise it rotates wrong direction 
+                homeRot = Vector3.zero;
+            }
+            targetRotator.transform.localEulerAngles = Vector3.Slerp(curRot, homeRot, Time.deltaTime * 2);
+        }
+    }
+
+    private void RotationUpdater()
+    {
+        waveManager.WaveShooters[waveManager.selectionIndex].startRotation = -targetRotator.localRotation.ToEulerAngles().z;
+    }
     /*private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "DeathZone")
