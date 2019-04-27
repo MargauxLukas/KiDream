@@ -18,7 +18,7 @@ public class CharacterController : MonoBehaviour
     private float dream = 0f;
 
     public Transform myShooterTransform;
-    public ParticleSystem myShooter;
+    
     public Transform target;
     public Transform targetRotator;
 
@@ -37,7 +37,7 @@ public class CharacterController : MonoBehaviour
 
     private Rigidbody2D rigidBody;
     private GameMaster gameMaster;
-
+    public ParticleSystem myShooter;
     Animator animator;
     DialogueManager dialogueManager;
     DialogueTrigger dialogueTrigger;
@@ -96,17 +96,6 @@ public class CharacterController : MonoBehaviour
 
         Twist();
         RotationUpdater();
-
-        if (Input.GetKeyDown(KeyCode.Joystick1Button2))
-        {
-            Vector2 rotationVector = new Vector2(target.position.x - myShooterTransform.position.x, target.position.y - myShooterTransform.position.y);
-            float angleValue = Mathf.Atan2(rotationVector.normalized.y, rotationVector.normalized.x) * Mathf.Rad2Deg;
-
-            ParticleSystem.ShapeModule wpshape = myShooter.shape;
-            wpshape.rotation = new Vector3(0, 0, angleValue);
-
-            myShooter.Emit(1);
-        }
     }
 
     private void FixedUpdate()
@@ -183,10 +172,6 @@ public class CharacterController : MonoBehaviour
             {
                 reveObject.GetComponent<SpriteRenderer>().enabled = false;
             }
-            else if (reveObject.GetComponent<ParticleSystem>().isPlaying == true)
-            {
-                reveObject.GetComponent<ParticleSystem>().Stop();
-            }
             if (reveObject.GetComponent<BoxCollider2D>() != null  && reveObject.name.Contains("KEY") == false) // Faire une liste pour les exceptions (optimisation)
             {
                 reveObject.GetComponent<BoxCollider2D>().enabled = false;
@@ -198,10 +183,6 @@ public class CharacterController : MonoBehaviour
             if (cauchemarObject.GetComponent<SpriteRenderer>() != null)
             {
                 cauchemarObject.GetComponent<SpriteRenderer>().enabled = true;
-            }
-            else if (cauchemarObject.GetComponent<ParticleSystem>().isPlaying == false)
-            {
-                cauchemarObject.GetComponent<ParticleSystem>().Play();
             }
             if (cauchemarObject.GetComponent<BoxCollider2D>() != null)
             {
@@ -230,10 +211,6 @@ public class CharacterController : MonoBehaviour
             {
                 cauchemarObject.GetComponent<SpriteRenderer>().enabled = false;
             }
-            else if (cauchemarObject.GetComponent<ParticleSystem>().isPlaying == true)
-            {
-                cauchemarObject.GetComponent<ParticleSystem>().Stop();
-            }
             if (cauchemarObject.GetComponent<BoxCollider2D>() != null)
             {
                 cauchemarObject.GetComponent<BoxCollider2D>().enabled = false;
@@ -246,10 +223,6 @@ public class CharacterController : MonoBehaviour
             if (reveObject.GetComponent<SpriteRenderer>() != null)
             {
                 reveObject.GetComponent<SpriteRenderer>().enabled = true;
-            }
-            else if (reveObject.GetComponent<ParticleSystem>().isPlaying == false)
-            {
-                reveObject.GetComponent<ParticleSystem>().Play();
             }
             if (reveObject.GetComponent<BoxCollider2D>() != null )
             {
@@ -283,37 +256,51 @@ public class CharacterController : MonoBehaviour
 
       void Twist()
     {
-        float h1 = Input.GetAxis("HorizontalRight"); // set as your inputs 
+        float h1 = Input.GetAxis("HorizontalRight");
         float v1 = Input.GetAxis("VerticalRight");
 
-        Debug.Log("y = " + v1 + " et x = " + h1);
+        //Debug.Log("y = " + v1 + " et x = " + h1);
 
         if (h1 > joystickTolerance || h1 < -joystickTolerance || v1 > joystickTolerance || v1 < -joystickTolerance)
         {
             targetRotator.transform.localEulerAngles = new Vector3(0f, 0f, -(Mathf.Atan2(h1, v1) * 180 / Mathf.PI)); // this does the actual rotaion according to inputs
         }
-        else
+
+        ////////////// NE PAS SUPPRIMER - Permet de rotate back à la position initiale;
+        /*else
         {
-            // this statement allows it to recenter once the inputs are at zero 
-            Vector3 curRot = targetRotator.transform.localEulerAngles; // the object you are rotating
+            Vector3 curRot = targetRotator.transform.localEulerAngles;
             Vector3 homeRot;
             if (curRot.z > 180f)
-            { // this section determines the direction it returns home 
-                Debug.Log(curRot.z);
-                homeRot = new Vector3(0f, 0f, 359.999f); //it doesnt return to perfect zero 
+            {
+                homeRot = new Vector3(0f, 0f, 359.999f);
             }
             else
-            {                                                                      // otherwise it rotates wrong direction 
+            {
                 homeRot = Vector3.zero;
             }
             targetRotator.transform.localEulerAngles = Vector3.Slerp(curRot, homeRot, Time.deltaTime * 2);
-        }
+        }*/
+        //////////////
     }
+
+    public void UseWave()
+    {
+        Vector2 rotationVector = new Vector2(target.position.x - myShooterTransform.position.x, target.position.y - myShooterTransform.position.y);
+        float angleValue = Mathf.Atan2(rotationVector.normalized.y, rotationVector.normalized.x) * Mathf.Rad2Deg;
+
+        ParticleSystem.ShapeModule wpshape = myShooter.shape;
+        wpshape.rotation = new Vector3(0, 0, angleValue);
+
+        myShooter.Emit(1);
+    }
+
 
     private void RotationUpdater()
     {
         waveManager.WaveShooters[waveManager.selectionIndex].startRotation = -targetRotator.localRotation.ToEulerAngles().z;
     }
+
     /*private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "DeathZone")
