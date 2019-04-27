@@ -40,7 +40,9 @@ public class Boss : MonoBehaviour
 	
 	void Update ()
     {
-        if(Time.time > timer + 1)
+        MovingBomb();
+
+        if (Time.time > timer + 1)
         {
             timer = Time.time;
             seconds++;
