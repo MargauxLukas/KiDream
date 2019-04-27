@@ -8,9 +8,6 @@ using UnityEngine.UI;
 
 public class CharacterController : MonoBehaviour
 {
-    private float h1;
-    private float v1;
-
     [SerializeField] float maxSpeed = 2f;
 
     public WaveManager waveManager;
@@ -23,8 +20,8 @@ public class CharacterController : MonoBehaviour
     public Transform myShooterTransform;
     public ParticleSystem myShooter;
     public Transform target;
-    public float angle;
     public Transform targetRotator;
+
     [Range(0, 0.62f), SerializeField]
     private float joystickTolerance = 0f;
 
@@ -288,8 +285,8 @@ public class CharacterController : MonoBehaviour
 
       void Twist()
     {
-        h1 = Input.GetAxis("HorizontalRight"); // set as your inputs 
-        v1 = Input.GetAxis("VerticalRight");
+        float h1 = Input.GetAxis("HorizontalRight"); // set as your inputs 
+        float v1 = Input.GetAxis("VerticalRight");
 
         Debug.Log("y = " + v1 + " et x = " + h1);
 

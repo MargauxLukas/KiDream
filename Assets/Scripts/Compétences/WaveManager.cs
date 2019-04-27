@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class WaveManager : MonoBehaviour {
 
-    public DreamWaveType dreamSelection;
-    public NightmareWaveType nightmareSelection;
+    public WaveType waveSelection;
 
     public List<ParticleSystem> WaveShooters = new List<ParticleSystem>();
     public List<Transform> WaveShootersTransform = new List<Transform>();
+
+    public CharacterController myPlayer;
 
     public int selectionIndex = 0;
     private int count;
@@ -16,7 +17,7 @@ public class WaveManager : MonoBehaviour {
     // Start
     void Start ()
     {
-        count = System.Enum.GetValues(typeof(DreamWaveType)).Length - 1;
+        count = System.Enum.GetValues(typeof(WaveType)).Length - 1;
     }
 	
 	// Update
@@ -40,31 +41,69 @@ public class WaveManager : MonoBehaviour {
 
     public void WaveTypeSelector()
     {
-        if (Input.GetKeyDown(KeyCode.Joystick1Button1))
+
+        switch(myPlayer.reve)
         {
-            if (selectionIndex == count)
-            {
-                selectionIndex = 0;
-            }
-            else
-            {
-                selectionIndex++;
-            }
+            case true:
+
+                if (Input.GetKeyDown(KeyCode.Joystick1Button1))
+                {
+                    if (selectionIndex == count / 2)
+                    {
+                        selectionIndex = 0;
+                    }
+                    else
+                    {
+                        selectionIndex++;
+                    }
+                }
+
+                if (selectionIndex > WaveShooters.Count / 2)
+                {
+                    selectionIndex = selectionIndex - WaveShooters.Count / 2;
+                }
+                break;
+
+            case false:
+
+                if (Input.GetKeyDown(KeyCode.Joystick1Button1))
+                {
+                    if (selectionIndex == count)
+                    {
+                        selectionIndex = 0;
+                    }
+                    else
+                    {
+                        selectionIndex++;
+                    }
+                }
+
+                if (selectionIndex < WaveShooters.Count / 2)
+                {
+                    selectionIndex = selectionIndex + WaveShooters.Count / 2;
+                }
+                break;
         }
 
         switch (selectionIndex)
         {
             case 0:
-                dreamSelection = DreamWaveType.Push;
-                nightmareSelection = NightmareWaveType.PushCorruption;
+                waveSelection = WaveType.Push;
                 break;
             case 1:
-                dreamSelection = DreamWaveType.Pull;
-                nightmareSelection = NightmareWaveType.PullCorruption;
+                waveSelection = WaveType.Pull;
                 break;
             case 2:
-                dreamSelection = DreamWaveType.Activate;
-                nightmareSelection = NightmareWaveType.ActivateCorruption;
+                waveSelection = WaveType.Activate;
+                break;
+            case 3:
+                waveSelection = WaveType.PushCorruption;
+                break;
+            case 4:
+                waveSelection = WaveType.PullCorruption;
+                break;
+            case 5:
+                waveSelection = WaveType.ActivateCorruption;
                 break;
         }
 
@@ -82,5 +121,7 @@ public class WaveManager : MonoBehaviour {
 
 }
 
-public enum DreamWaveType {Push, Pull, Activate}
-public enum NightmareWaveType {PushCorruption, PullCorruption, ActivateCorruption}
+//selection = selection + listcount/2;
+// - pour l'autre sens
+
+public enum WaveType {Push, Pull, Activate, PushCorruption, PullCorruption, ActivateCorruption}
