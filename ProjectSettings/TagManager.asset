@@ -8,6 +8,7 @@ TagManager:
   - Reve
   - CeQuiApparaitEnReve
   - CeQuiApparaitEnCauchemar
+  - Bombe
   layers:
   - Default
   - TransparentFX
