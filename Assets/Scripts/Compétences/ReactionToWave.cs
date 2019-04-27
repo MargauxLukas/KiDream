@@ -4,7 +4,20 @@ using UnityEngine;
 
 public class ReactionToWave : MonoBehaviour
 {
-    public ParticleSystem shooter;
+
+    public List<ParticleSystem> myPSList = new List<ParticleSystem>();
+
+    private ParticleSystem shooter;
+
+    public WaveManager waveManager;
+
+    [Header("Propriétés")]
+    public bool canBePushed = false;
+    public bool canBePulled = false;
+    public bool canBeActivated = false;
+    public bool canBePushCorrupted = false;
+    public bool canBePullCorrupted = false;
+    public bool canBeActivateCorrupted = false;
 
     [Header("Push force")]
     [Range(0, 50), SerializeField]
@@ -18,19 +31,8 @@ public class ReactionToWave : MonoBehaviour
     [Range(0, 50), SerializeField]
     private float HorizontalPull = 1f;
 
+    [Header("Activate options")]
     public GameObject connectedGameObject;
-
-    [Header("Propriétés")]
-    public bool canBePushed = false;
-    public bool canBePulled= false;
-    public bool canBeActivated = false;
-    public bool canBePushCorrupted = false;
-    public bool canBePullCorrupted = false;
-    public bool canBeActivateCorrupted = false;
-
-    [HideInInspector]
-    public WaveManager waveManager;
-
     public ActivateBehaviour activateBehaviour;
 
 	// Use this for initialization
@@ -72,15 +74,17 @@ public class ReactionToWave : MonoBehaviour
                         switch (activateBehaviour)
                         {
 
-                        case ActivateBehaviour.Transform:
+                        case ActivateBehaviour._Transform:
                             Debug.Log("Transform");
                             break;
 
-                        case ActivateBehaviour.Destroy:
+                        case ActivateBehaviour._Destroy:
                             Destroy(connectedGameObject);
                             break;
-                            
 
+                        case ActivateBehaviour._SetActive:
+                            connectedGameObject.SetActive(true);
+                            break;
 
                         }
                     }
@@ -89,27 +93,36 @@ public class ReactionToWave : MonoBehaviour
                 case WaveType.PushCorruption:
                     if (canBePushCorrupted == true)
                     {
+                        ParticleSystem ps = this.GetComponent<ParticleSystem>();
+                        ps = myPSList[0];
 
+                        ps.Play();
                     }
-                break;
+                    break;
 
                 case WaveType.PullCorruption:
                     if (canBePullCorrupted == true)
                     {
+                        ParticleSystem ps = this.GetComponent<ParticleSystem>();
+                        ps = myPSList[1];
 
+                        ps.Play();
                     }
-                break;
+                    break;
 
                 case WaveType.ActivateCorruption:
                     if (canBeActivateCorrupted == true)
                     {
+                        ParticleSystem ps = this.GetComponent<ParticleSystem>();
+                        ps = myPSList[2];
 
+                        ps.Play();
                     }
-                break;
+                    break;
             }
 
     }
 
 }
 
-public enum ActivateBehaviour {Transform, Destroy}
+public enum ActivateBehaviour {_Transform, _Destroy, _SetActive}

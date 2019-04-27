@@ -312,7 +312,6 @@ public class CharacterController : MonoBehaviour
         wpshape.rotation = new Vector3(0, 0, angleValue);        
 
         myShooter.Emit(1);
-
     }
 
 
