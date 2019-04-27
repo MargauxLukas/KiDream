@@ -8,6 +8,9 @@ using UnityEngine.UI;
 
 public class CharacterController : MonoBehaviour
 {
+    private float h1;
+    private float v1;
+
     [SerializeField] float maxSpeed = 2f;
 
     public WaveManager waveManager;
@@ -95,6 +98,7 @@ public class CharacterController : MonoBehaviour
         }
 
         Twist();
+        RotationUpdater();
 
         if (Input.GetKeyDown(KeyCode.Joystick1Button2))
         {
@@ -284,8 +288,8 @@ public class CharacterController : MonoBehaviour
 
       void Twist()
     {
-        float h1 = Input.GetAxis("HorizontalRight"); // set as your inputs 
-        float v1 = Input.GetAxis("VerticalRight");
+        h1 = Input.GetAxis("HorizontalRight"); // set as your inputs 
+        v1 = Input.GetAxis("VerticalRight");
 
         Debug.Log("y = " + v1 + " et x = " + h1);
 
@@ -309,6 +313,11 @@ public class CharacterController : MonoBehaviour
             }
             targetRotator.transform.localEulerAngles = Vector3.Slerp(curRot, homeRot, Time.deltaTime * 2);
         }
+    }
+
+    private void RotationUpdater()
+    {
+        waveManager.WaveShooters[waveManager.selectionIndex].startRotation = -targetRotator.localRotation.ToEulerAngles().z;
     }
     /*private void OnTriggerEnter2D(Collider2D collision)
     {

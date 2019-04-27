@@ -57,7 +57,6 @@ public class WaveManager : MonoBehaviour {
             case 0:
                 dreamSelection = DreamWaveType.Push;
                 nightmareSelection = NightmareWaveType.PushCorruption;
-
                 break;
             case 1:
                 dreamSelection = DreamWaveType.Pull;
