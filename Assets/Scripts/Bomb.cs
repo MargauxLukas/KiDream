@@ -34,20 +34,17 @@ public class Bomb : MonoBehaviour
                 Destroy(gameObject);
                 Destroy(intersecting.gameObject);
             }
-            return true;
+            if (timer >= explosionTime)
+            {
+                Destroy(gameObject);
+                return true;
+            }
         }
-        else
-        {
-            Destroy(gameObject);
-            return false;
-        }
-
+        return true;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Explode();
     }
-
-
 }

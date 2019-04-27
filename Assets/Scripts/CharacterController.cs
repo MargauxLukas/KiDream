@@ -60,9 +60,9 @@ public class CharacterController : MonoBehaviour
     private void Update()
     {
         moveX = Input.GetAxis("Horizontal");
-        moveY = Input.GetAxis("Vertical");
+        moveY =   Input.GetAxis("Vertical");
         nightmare = Input.GetAxis("GoToNightmare");
-        dream = Input.GetAxis("GoToDream");
+        dream     =     Input.GetAxis("GoToDream");
 
         //sliderHP.value = hp;
 
@@ -161,7 +161,6 @@ public class CharacterController : MonoBehaviour
             {
                 reveObject.GetComponent<BoxCollider2D>().enabled = false;
             }
-
         }
 
         foreach (GameObject cauchemarObject in cauchemarObjects) // Pour chaque object avec le tag "CeQuiApparaitEnCauchemar", j'active le spriteRenderer et desactive le isTrigger
@@ -178,7 +177,6 @@ public class CharacterController : MonoBehaviour
             {
                 cauchemarObject.GetComponent<BoxCollider2D>().enabled = true;
             }
-
         }
     }
 
