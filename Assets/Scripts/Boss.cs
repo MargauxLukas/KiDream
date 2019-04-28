@@ -13,12 +13,13 @@ public class Boss : MonoBehaviour
     private GameObject bombe2;
     private GameObject bombe3;
 
-
     private Transform target;
     private Rigidbody2D   rb;
 
     public float speed = 0.2f;
     public float timer       ;
+
+    public bool isRage = false;
 
     public int        hp = 3;
     public int     phase = 0; // 0 = Nothing, 1 = Move, 2 = Throw Bomb
@@ -123,11 +124,6 @@ public class Boss : MonoBehaviour
         }
     }
 
-    void Sleep()
-    {
-        //Pas sur encore si c'est fait en cinematique
-    }
-
     void Move()
     {
         LookAt();
@@ -142,6 +138,7 @@ public class Boss : MonoBehaviour
     void Rage()
     {
         //Détruit tout les murs autours de la salle
+        isRage = true;
     }
 
     void PushPlayer()

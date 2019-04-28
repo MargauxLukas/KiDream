@@ -577,6 +577,7 @@ MonoBehaviour:
   bombLauncher: {fileID: 125624848}
   speed: 0.2
   timer: 0
+  isRage: 0
   hp: 3
   phase: 0
   seconds: 0
@@ -701,6 +702,7 @@ GameObject:
   - component: {fileID: 726350999}
   - component: {fileID: 726350998}
   - component: {fileID: 726351000}
+  - component: {fileID: 726351001}
   m_Layer: 0
   m_Name: "Chute_Mur_Arri\xE8re_D00"
   m_TagString: CeQuiApparaitEnReve
@@ -785,6 +787,17 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &726351001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 726350997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c1ee716d5a71d341b6b777f92248e6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &769162774
 GameObject:
   m_ObjectHideFlags: 0
@@ -1466,6 +1479,7 @@ GameObject:
   - component: {fileID: 1851292324}
   - component: {fileID: 1851292323}
   - component: {fileID: 1851292325}
+  - component: {fileID: 1851292326}
   m_Layer: 0
   m_Name: "Chute_Mur_Arri\xE8re_N00"
   m_TagString: CeQuiApparaitEnCauchemar
@@ -1550,6 +1564,17 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1851292326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1851292322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c1ee716d5a71d341b6b777f92248e6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2080584256
 GameObject:
   m_ObjectHideFlags: 0
