@@ -15,7 +15,6 @@ public class DestroyWalls : MonoBehaviour
     }
     void Update ()
     {
-        Debug.Log(isRage);
         isRage = boss.GetComponent<Boss>().isRage;
 
         if (isRage)

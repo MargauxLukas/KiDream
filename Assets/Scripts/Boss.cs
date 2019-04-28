@@ -7,7 +7,9 @@ public class Boss : MonoBehaviour
     Animator animator;
 
     public  GameObject         bomb;
+    public  GameObject        ombre;
     public  GameObject bombLauncher;
+    public GameObject   ombreObject;
 
     private GameObject bombe1;
     private GameObject bombe2;
@@ -127,9 +129,29 @@ public class Boss : MonoBehaviour
 
     void Jump()
     {
-
+        StartCoroutine(WaitJump());
         //Le boss saute et atteri détruisant les piliers autours.
     }
+
+    IEnumerator WaitJump()
+    {
+        Debug.Log("Je passe par là ? ");
+        yield return new WaitForSeconds(0.9f);
+        gameObject.transform.position = Vector2.MoveTowards(transform.position, new Vector2(transform.position.x, 4.5f), 0.1f);
+        yield return new WaitForSeconds(0.9f);
+        Shadow();
+    }
+
+    void Shadow()
+    {
+        if (ombreObject == null)
+        {
+            ombreObject = Instantiate(ombre, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y - 3.50f, 0), Quaternion.identity);
+        }
+
+        ombreObject.transform.position = Vector2.MoveTowards(ombreObject.transform.position, target.position, 1f * Time.deltaTime);
+    }
+
 
     void Rage()
     {
