@@ -58,35 +58,31 @@ public class Boss : MonoBehaviour
             timer = Time.time;
             seconds++;
         }
-    
-        if (seconds < 0)
+        Debug.Log(seconds);
+        if (hp == 3)
         {
-            phase = 0;
+            if (seconds >= 1) // Fight commence à 1 seconde pour pas que le boss bouge direct apres la cinematique
+            {
+                animator.SetBool("isMoving", true);
+                Move();
+            }
+            if (seconds == 6)
+            {
+                animator.SetBool("isMoving", false);
+                animator.SetBool("isLaunching", true);
+                phase = 2;
+                direction = ThrowBomb(lookingAt);
+                seconds = -5;
+                animator.SetBool("isLaunching", false);
+            }
         }
-        if(seconds == 1) // Fight commence à 1 seconde pour pas que le boss bouge direct apres la cinematique
-        {
-            animator.SetBool("isMoving", true);
-            phase = 1;
-        }
-        if(seconds == 6)
-        {
-            animator.SetBool("isMoving", false);
-            animator.SetBool("isLaunching", true);
-            phase = 2;
-        }
-        /*if(numberOfPhase2 == 2)  //Lorsqu'il a fait deux dois la phase 2, il saute.
-        {
-            Jump();
-        }*/
 
-        if      (phase == 1){ Move(); }
-        else if (phase == 2)
+        if (hp == 2)
         {
-            direction = ThrowBomb(lookingAt);
-            seconds = -5;
-            animator.SetBool("isLaunching", false);
+            animator.SetBool("isJumping", true);
+            Jump();
         }
-	}
+    }
 
     void LookAt()
     {
@@ -106,7 +102,6 @@ public class Boss : MonoBehaviour
                 animator.SetFloat("moveX", -1f);
                 lookingAt = 3;
             }
-
         }
         else if (xDifference < yDifference)
         {
@@ -132,6 +127,7 @@ public class Boss : MonoBehaviour
 
     void Jump()
     {
+
         //Le boss saute et atteri détruisant les piliers autours.
     }
 
@@ -308,6 +304,7 @@ public class Boss : MonoBehaviour
     public void Damages()
     {
         hp--;
+        seconds = 0;
 
         if(hp == 1)
         {
