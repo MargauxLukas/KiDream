@@ -23,9 +23,9 @@ public class Boss : MonoBehaviour
 
     public bool isRage = false;
     public bool bossFallDown = false;
+    public bool isStartingPhase = true;
 
     public int        hp = 3;
-    public int     phase = 0; // 0 = Nothing, 1 = Move, 2 = Throw Bomb
     public int   seconds = 0;
     public int lookingAt = 0; // 1 = Droite, 2 = Down, 3 = Left, 4 = Up
 
@@ -72,7 +72,6 @@ public class Boss : MonoBehaviour
             {
                 animator.SetBool("isMoving", false);
                 animator.SetBool("isLaunching", true);
-                phase = 2;
                 direction = ThrowBomb(lookingAt);
                 seconds = -5;
                 animator.SetBool("isLaunching", false);
@@ -81,15 +80,37 @@ public class Boss : MonoBehaviour
 
         if(hp == 2)
         {
-            if (!bossFallDown)
+            if (isStartingPhase)
             {
-                animator.SetBool("isJumping", true);
-                Jump();
-            }
+                if (!bossFallDown)
+                {
+                    animator.SetBool("isJumping", true);
+                    Jump();
+                }
 
-            if(bossFallDown)
+                if (bossFallDown)
+                {
+                    animator.SetBool("isJumping", false);
+                    BossLanding();
+                }
+            }
+            else
             {
-                gameObject.transform.position = Vector2.MoveTowards(transform.position, new Vector2(transform.position.x, ombreObject.transform.position.y), 0.1f);
+                seconds = 0;
+
+                if (seconds >= 1)
+                {
+                    animator.SetBool("isMoving", true);
+                    Move();
+                }
+                if (seconds == 6)
+                {
+                    animator.SetBool("isMoving", false);
+                    animator.SetBool("isLaunching", true);
+                    direction = ThrowBomb(lookingAt);
+                    seconds = -5;
+                    animator.SetBool("isLaunching", false);
+                }
             }
         }
     }
@@ -166,6 +187,18 @@ public class Boss : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
         bossFallDown = true;
+    }
+
+    void BossLanding()
+    {
+        gameObject.transform.position = Vector2.MoveTowards(transform.position, new Vector2(transform.position.x, ombreObject.transform.position.y), 0.1f);
+        StartCoroutine(WaitLanding());
+    }
+
+    IEnumerator WaitLanding()
+    {
+        yield return new WaitForSeconds(1.5f);
+        animator.SetBool("isLanding", true);
     }
 
     void Rage()
