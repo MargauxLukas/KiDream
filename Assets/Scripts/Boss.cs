@@ -7,87 +7,114 @@ public class Boss : MonoBehaviour
     Animator animator;
 
     public  GameObject         bomb;
-    public  GameObject bombLauncher;
+    public  GameObject        ombre; //Ombre sur le sol quand le boss est en l'air
+    public  GameObject bombLauncher; //Zone ou les bombes spawnent
 
-    private GameObject bombe1;
-    private GameObject bombe2;
-    private GameObject bombe3;
+    private GameObject ombreObject;  
+    private GameObject      bombe1;
+    private GameObject      bombe2;
+    private GameObject      bombe3;
 
     private Transform target;
-    private Rigidbody2D   rb;
+
+    private Rigidbody2D rb;
 
     public float speed = 0.2f;
-    public float timer       ;
+
+    private float timer;
+
+    private float distanceDeltaHV  ;
+    private float distanceDeltaDiag;
 
     public bool isRage = false;
 
-    public int        hp = 3;
-    public int     phase = 0; // 0 = Nothing, 1 = Move, 2 = Throw Bomb
-    public int   seconds = 0;
+    private bool bossFallDown    = false;
+    private bool needToMove1     = false;
+    private bool needToMove2     = false;
+    private bool isStartingPhase =  true;
+
+    public int hp        = 3;
+    public int seconds   = 0;
     public int lookingAt = 0; // 1 = Droite, 2 = Down, 3 = Left, 4 = Up
 
-    private int       direction = 0;
-    private float   distanceDeltaHV;
-    private float distanceDeltaDiag;
-
-    private bool needToMove1 = false;
-    private bool needToMove2 = false;
+    private int direction = 0;
 
     void Start ()
     {
+        animator = GetComponent<Animator   >();
+        rb       = GetComponent<Rigidbody2D>();
+        target   = GameObject.FindGameObjectWithTag("Player").transform;
+
         distanceDeltaHV   = Time.deltaTime *   1f;
         distanceDeltaDiag = Time.deltaTime * 0.5f;
-        animator = GetComponent<Animator>();
-        target   = GameObject.FindGameObjectWithTag("Player").transform;
-        rb       = GetComponent<Rigidbody2D>();
-	}
+    }
 	
 	void Update ()
     {
-        if (needToMove1==true || needToMove2==true)
-        {
-            MovingBomb();
-        }
-        else
-        {
+        if (needToMove1 || needToMove2){MovingBomb();} //Tant que bombe n'a pas atteint sa destination
 
-        }
-
-        if (Time.time > timer + 1)
+        if (Time.time > timer + 1) //Timer
         {
             timer = Time.time;
             seconds++;
         }
-    
-        if (seconds < 0)
-        {
-            phase = 0;
-        }
-        if(seconds == 1) // Fight commence à 1 seconde pour pas que le boss bouge direct apres la cinematique
-        {
-            animator.SetBool("isMoving", true);
-            phase = 1;
-        }
-        if(seconds == 6)
-        {
-            animator.SetBool("isMoving", false);
-            animator.SetBool("isLaunching", true);
-            phase = 2;
-        }
-        /*if(numberOfPhase2 == 2)  //Lorsqu'il a fait deux dois la phase 2, il saute.
-        {
-            Jump();
-        }*/
 
-        if      (phase == 1){ Move(); }
-        else if (phase == 2)
+        if (hp == 3) //Phase 1 
         {
-            direction = ThrowBomb(lookingAt);
-            seconds = -5;
-            animator.SetBool("isLaunching", false);
+            if (seconds >= 1) // Fight commence à 1 seconde pour pas que le boss bouge direct apres la cinematique
+            {
+                animator.SetBool("isMoving", true);
+                Move();
+            }
+            if (seconds == 6)
+            {
+                animator.SetBool(   "isMoving", false);
+                animator.SetBool("isLaunching",  true);
+                direction = ThrowBomb(lookingAt)      ;
+                seconds   = -5                        ;
+                animator.SetBool("isLaunching", false);
+            }
         }
-	}
 
+        if(hp == 2) //Phase 2
+        {
+            if (isStartingPhase)
+            {
+                if (!bossFallDown)
+                {
+                    animator.SetBool("isJumping", true);
+                    Jump();
+                }
+                else
+                {
+                    animator.SetBool("isJumping", false);
+                    BossLanding();
+                }
+            }
+            else
+            {
+                seconds = 0;
+
+                if (seconds >= 1)
+                {
+                    animator.SetBool("isMoving", true);
+                    Move();
+                }
+                if (seconds == 6)
+                {
+                    animator.SetBool(   "isMoving", false);
+                    animator.SetBool("isLaunching",  true);
+                    direction = ThrowBomb(lookingAt)      ;
+                    seconds   = -5                        ;
+                    animator.SetBool("isLaunching", false);
+                }
+            }
+        }
+    }
+
+   /*******************************************************************************
+   * Function : Le boss suit du regard le joueur et sauvegarde vers ou il regarde *
+   ********************************************************************************/
     void LookAt()
     {
         float xDifference = Mathf.Abs(transform.position.x - target.position.x);
@@ -96,108 +123,175 @@ public class Boss : MonoBehaviour
         if (xDifference > yDifference)
         {
             animator.SetFloat("moveY", 0f);
+
             if (target.position.x > transform.position.x)
             {
                 animator.SetFloat("moveX",  1f);
-                lookingAt = 1;
+                lookingAt = 1                  ; //Droite
             }
             if (target.position.x < transform.position.x)
             {
                 animator.SetFloat("moveX", -1f);
-                lookingAt = 3;
+                lookingAt = 3                  ; //Gauche
             }
-
         }
         else if (xDifference < yDifference)
         {
             animator.SetFloat("moveX", 0f);
-            if (target.position.y > transform.position.y)
-            {
-                animator.SetFloat("moveY",  1f);
-                lookingAt = 4;
-            }
             if (target.position.y < transform.position.y)
             {
                 animator.SetFloat("moveY", -1f);
-                lookingAt = 2;
+                lookingAt = 2                  ; //Bas
+            }
+            if (target.position.y > transform.position.y)
+            {
+                animator.SetFloat("moveY",  1f);
+                lookingAt = 4                  ; //Haut
             }
         }
     }
 
+    /***********************************************
+    * Function : Le boss se déplace vers le joueur *
+    ************************************************/
     void Move()
     {
         LookAt();
         transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
     }
 
+    /****************************
+    * Function : Le boss saute  *
+    *****************************/
     void Jump()
     {
+        StartCoroutine(WaitJump());
         //Le boss saute et atteri détruisant les piliers autours.
     }
 
+    IEnumerator WaitJump()
+    {
+        yield return new WaitForSeconds(0.9f);
+        gameObject.transform.position = Vector2.MoveTowards(transform.position, new Vector2(transform.position.x, 4.5f), 0.1f);
+        yield return new WaitForSeconds(0.9f);
+        Shadow();
+    }
+
+    /**************************************************************************************
+    * Function : L'ombre du boss apparait lorsqu'il est hors de l'écran et suit le joueur *
+    ***************************************************************************************/
+    void Shadow()
+    {
+        if (ombreObject == null){ombreObject = Instantiate(ombre, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y - 3.50f, 0), Quaternion.identity);}
+
+        ombreObject.transform.position = Vector2.MoveTowards(ombreObject.transform.position, target.position                                                    , 1f * Time.deltaTime);
+        transform.position             = Vector2.MoveTowards(transform.position            , new Vector2(ombreObject.transform.position.x, transform.position.y), 1f * Time.deltaTime);
+
+        StartCoroutine(WaitShadow());
+    }
+
+    IEnumerator WaitShadow()
+    {
+        yield return new WaitForSeconds(2f);
+        bossFallDown = true;
+    }
+
+
+    /*************************************************************************************************************
+    * Function : Le boss retombe apres avoir sauté et détruit les pilliers et tue le joueur si il est en dessous *
+    **************************************************************************************************************/
+    void BossLanding()
+    {
+        gameObject.transform.position = Vector2.MoveTowards(transform.position, new Vector2(transform.position.x, ombreObject.transform.position.y), 0.1f);
+        StartCoroutine(WaitLanding());
+    }
+
+    IEnumerator WaitLanding()
+    {
+        yield return new WaitForSeconds(1.5f);
+        animator.SetBool("isLanding", true);
+        //Detruit pillier
+    }
+
+    /********************************************************************************************
+    * Function : Le boss passe en rage, il saute et en atterissant détruit les murs de la salle *
+    *********************************************************************************************/
     void Rage()
     {
         //Détruit tout les murs autours de la salle
         isRage = true;
     }
 
+    /****************************************************************
+    * Function : Si le joueur est trop prêt du boss, il le repousse *
+    *****************************************************************/
     void PushPlayer()
     {
         //Push Player if is very trop pret
     }
 
+    /***************************************************
+    * Function : Le boss balance les bombes devant lui *
+    ****************************************************/
     int ThrowBomb(int lookingAt)
     {
-        Debug.Log("Je lance des bombes vers " + lookingAt);
-
         switch(lookingAt)
         {
-            case 1:
+            case 1: //Est
                 bombe1 = Instantiate(bomb, new Vector3(bombLauncher.transform.position.x, bombLauncher.transform.position.y, bombLauncher.transform.position.z), Quaternion.identity);
                 bombe2 = Instantiate(bomb, new Vector3(bombLauncher.transform.position.x, bombLauncher.transform.position.y, bombLauncher.transform.position.z), Quaternion.identity);
                 bombe3 = Instantiate(bomb, new Vector3(bombLauncher.transform.position.x, bombLauncher.transform.position.y, bombLauncher.transform.position.z), Quaternion.identity);
                 needToMove1 = true;
                 needToMove2 = true;
                 return 1;
-            case 2:
+
+            case 2: //Sud
                 bombe1 = Instantiate(bomb, new Vector3(bombLauncher.transform.position.x, bombLauncher.transform.position.y, bombLauncher.transform.position.z), Quaternion.identity);
                 bombe2 = Instantiate(bomb, new Vector3(bombLauncher.transform.position.x, bombLauncher.transform.position.y, bombLauncher.transform.position.z), Quaternion.identity);
                 bombe3 = Instantiate(bomb, new Vector3(bombLauncher.transform.position.x, bombLauncher.transform.position.y, bombLauncher.transform.position.z), Quaternion.identity);
                 needToMove1 = true;
                 needToMove2 = true;
                 return 2;
-            case 3:
+
+            case 3: //Ouest
                 bombe1 = Instantiate(bomb, new Vector3(bombLauncher.transform.position.x, bombLauncher.transform.position.y, bombLauncher.transform.position.z), Quaternion.identity);
                 bombe2 = Instantiate(bomb, new Vector3(bombLauncher.transform.position.x, bombLauncher.transform.position.y, bombLauncher.transform.position.z), Quaternion.identity);
                 bombe3 = Instantiate(bomb, new Vector3(bombLauncher.transform.position.x, bombLauncher.transform.position.y, bombLauncher.transform.position.z), Quaternion.identity);
                 needToMove1 = true;
                 needToMove2 = true;
                 return 3;
-            case 4:
+
+            case 4: //Nord
                 bombe1 = Instantiate(bomb, new Vector3(bombLauncher.transform.position.x, bombLauncher.transform.position.y, bombLauncher.transform.position.z), Quaternion.identity);
                 bombe2 = Instantiate(bomb, new Vector3(bombLauncher.transform.position.x, bombLauncher.transform.position.y, bombLauncher.transform.position.z), Quaternion.identity);
                 bombe3 = Instantiate(bomb, new Vector3(bombLauncher.transform.position.x, bombLauncher.transform.position.y, bombLauncher.transform.position.z), Quaternion.identity);
                 needToMove1 = true;
                 needToMove2 = true;
                 return 4;
+
             default:
                 return 0;
         }
     }
 
-    void MovingBomb()
+    /********************************************************************************
+     * Function : Si Bombe, bouger la bombe jusqu'à qu'elle atteigne sa destination *
+     ********************************************************************************/
+    void MovingBomb() //Il faudrait rajouter une condition si la bombe est touché par particule avant d'atteindre sa destination et moyen de faire un switch case
     {
-        if (direction != 0 && bombe1 != null && bombe2 != null && bombe3 != null)
+        if (direction != 0 && bombe1 != null 
+                           && bombe2 != null 
+                           && bombe3 != null)
         {
-            if (direction == 1)
+            if (direction == 1) //EST
             {
-                Debug.Log("Est");
-                float xDiffBomb1 = Mathf.Abs(transform.position.x - bombe1.transform.position.x);
-                float xDiffBomb2 = Mathf.Abs(transform.position.x - bombe2.transform.position.x);
+                //Debug.Log("Bombe en Est");
+                float xDiffBomb1 = Mathf.Abs(transform.position.x - bombe1.transform.position.x); //Bombe sur les côtés
+                float xDiffBomb2 = Mathf.Abs(transform.position.x - bombe2.transform.position.x); //Bombe du millieu
 
-                if (xDiffBomb1 < 0.60f)
+                if (xDiffBomb1 < 0.60f) //Diagonale
                 {
-                    bombe1.transform.Translate(transform.up * distanceDeltaDiag + transform.right * distanceDeltaDiag);
+                    bombe1.transform.Translate(transform.up *  distanceDeltaDiag + transform.right * distanceDeltaDiag);
                     bombe3.transform.Translate(-transform.up * distanceDeltaDiag + transform.right * distanceDeltaDiag);
                 }
                 else
@@ -205,7 +299,7 @@ public class Boss : MonoBehaviour
                     needToMove1 = false;
                 }
 
-                if (xDiffBomb2 < 1.5f)
+                if (xDiffBomb2 < 1.5f) //Horizontale
                 {
                     bombe2.transform.position += transform.right * distanceDeltaHV;
                 }
@@ -214,16 +308,16 @@ public class Boss : MonoBehaviour
                     needToMove2 = false;
                 }
             }
-            else if (direction == 2)
+            else if (direction == 2) //SUD
             {
-                Debug.Log("Sud");
+                //Debug.Log("Bombe en Sud");
 
-                float yDiffBomb1 = Mathf.Abs(transform.position.y - bombe1.transform.position.y);
-                float yDiffBomb2 = Mathf.Abs(transform.position.y - bombe2.transform.position.y);
+                float yDiffBomb1 = Mathf.Abs(transform.position.y - bombe1.transform.position.y); //Bombe sur les côtés
+                float yDiffBomb2 = Mathf.Abs(transform.position.y - bombe2.transform.position.y); //Bombe du millieu
 
-                if (yDiffBomb1 < 1f)
+                if (yDiffBomb1 < 1f) //Diagonale
                 {
-                    bombe1.transform.Translate(-transform.up * distanceDeltaDiag + transform.right * distanceDeltaDiag);
+                    bombe1.transform.Translate(-transform.up * distanceDeltaDiag +  transform.right * distanceDeltaDiag);
                     bombe3.transform.Translate(-transform.up * distanceDeltaDiag + -transform.right * distanceDeltaDiag);
                 }
                 else
@@ -231,7 +325,7 @@ public class Boss : MonoBehaviour
                     needToMove1 = false;
                 }
 
-                if (yDiffBomb2 < 2f)
+                if (yDiffBomb2 < 2f) //Vertical
                 {
                     bombe2.transform.position += -transform.up * distanceDeltaHV;
                 }
@@ -240,16 +334,16 @@ public class Boss : MonoBehaviour
                     needToMove2 = false;
                 }
             }
-            else if (direction == 3)
+            else if (direction == 3) //OUEST
             {
-                Debug.Log("Ouest");
+                //Debug.Log("Bombe en Ouest");
 
-                float xDiffBomb1 = Mathf.Abs(transform.position.x - bombe1.transform.position.x);
-                float xDiffBomb2 = Mathf.Abs(transform.position.x - bombe2.transform.position.x);
+                float xDiffBomb1 = Mathf.Abs(transform.position.x - bombe1.transform.position.x); //Bombe sur les côtés
+                float xDiffBomb2 = Mathf.Abs(transform.position.x - bombe2.transform.position.x); //Bombe du millieu
 
-                if (xDiffBomb1 < 1f)
+                if (xDiffBomb1 < 1f) //Diagonale
                 {
-                    bombe1.transform.Translate(transform.up * distanceDeltaDiag + -transform.right * distanceDeltaDiag);
+                    bombe1.transform.Translate( transform.up * distanceDeltaDiag + -transform.right * distanceDeltaDiag);
                     bombe3.transform.Translate(-transform.up * distanceDeltaDiag + -transform.right * distanceDeltaDiag);
                 }
                 else
@@ -257,7 +351,7 @@ public class Boss : MonoBehaviour
                     needToMove1 = false;
                 }
 
-                if (xDiffBomb2 < 2f)
+                if (xDiffBomb2 < 2f) //Horizontale
                 {
                     bombe2.transform.position += -transform.right * distanceDeltaHV;
                 }
@@ -266,16 +360,16 @@ public class Boss : MonoBehaviour
                     needToMove2 = false;
                 }
             }
-            else if (direction == 4)
+            else if (direction == 4) //NORD
             {
-                Debug.Log("Nord");
+                //Debug.Log("Bombe en Nord");
 
-                float yDiffBomb1 = Mathf.Abs(transform.position.y - bombe1.transform.position.y);
-                float yDiffBomb2 = Mathf.Abs(transform.position.y - bombe2.transform.position.y);
+                float yDiffBomb1 = Mathf.Abs(transform.position.y - bombe1.transform.position.y); //Bombe sur les côtés
+                float yDiffBomb2 = Mathf.Abs(transform.position.y - bombe2.transform.position.y); //Bombe du millieu
 
-                if (yDiffBomb1 < 1f)
+                if (yDiffBomb1 < 1f) //Diagonale
                 {
-                    bombe1.transform.Translate(transform.up * distanceDeltaDiag + transform.right * distanceDeltaDiag);
+                    bombe1.transform.Translate(transform.up * distanceDeltaDiag +  transform.right * distanceDeltaDiag);
                     bombe3.transform.Translate(transform.up * distanceDeltaDiag + -transform.right * distanceDeltaDiag);
                 }
                 else
@@ -283,7 +377,7 @@ public class Boss : MonoBehaviour
                     needToMove1 = false;
                 }
 
-                if (yDiffBomb2 < 2f)
+                if (yDiffBomb2 < 2f) //Vertical
                 {
                     bombe2.transform.position += transform.up * distanceDeltaHV;
                 }
@@ -295,19 +389,29 @@ public class Boss : MonoBehaviour
         }
     }
 
+    /***********************************************************************************************
+     * Function : Le boss fait apparaitre des mob clochettes, ils se déplacent et peuvent exploser *
+     ***********************************************************************************************/
     void MobInvoking()
     {
         //Invoque les petits mobs clochettes "Grelottins".
     }
 
+    /****************************************************************
+     * Function : Onde qui repousse le joueur, les IA et les objets *
+     ****************************************************************/
     void PushWave()
     {
         //Push Player/IA/Bombe
     }
 
+    /**************************************************************
+     * Function : Le boss prend un dégat quand touché par bombes  *
+     **************************************************************/
     public void Damages()
     {
         hp--;
+        //seconds = 0;
 
         if(hp == 1)
         {
@@ -315,12 +419,12 @@ public class Boss : MonoBehaviour
             Debug.Log("Grr Grr je rentre en rage");
         }
 
-        if(hp == 0)
-        {
-            isDead();
-        }
+        if(hp == 0){isDead();}
     }
 
+    /*****************************
+     * Function : Le boss meurt  *
+     *****************************/
     void isDead()
     {
         //Play Death of Mister Cloclo
