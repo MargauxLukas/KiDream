@@ -10,6 +10,7 @@ TagManager:
   - CeQuiApparaitEnCauchemar
   - Bombe
   - ActionObject
+  - Boss
   layers:
   - Default
   - TransparentFX

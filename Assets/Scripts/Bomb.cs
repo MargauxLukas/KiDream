@@ -7,10 +7,16 @@ public class Bomb : MonoBehaviour
     [SerializeField] float explosionTime;
     [SerializeField] float timer;
 
+    bool canHurtBoss = false;
+
     BoxCollider2D collider;
+    GameObject        Boss;
+
+
 
 	void Start ()
     {
+        Boss = GameObject.Find("Boss");
         collider = gameObject.GetComponent<BoxCollider2D>();
 	}
 	
@@ -24,27 +30,40 @@ public class Bomb : MonoBehaviour
         }
 	}
 
-    public bool Explode()
+    void Explode(Collider2D collision)
     {
-        Collider2D intersecting = Physics2D.OverlapCircle(new Vector2(transform.position.x, transform.position.y), 0.1f);
-        if (intersecting != null)
+        if (collision.tag == "Player")
         {
-            if (intersecting.tag == "Player")
-            {
-                Destroy(gameObject);
-                Destroy(intersecting.gameObject);
-            }
-            if (timer >= explosionTime)
-            {
-                Destroy(gameObject);
-                return true;
-            }
+            Destroy(gameObject);
+            Destroy(collision.gameObject);
         }
-        return true;
+        if (collision.tag == "Boss" && canHurtBoss)
+        {
+            Destroy(gameObject);
+            Boss.GetComponent<Boss>().Damages();
+        }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    void Explode()
     {
-        Explode();
+        if (timer >= explosionTime)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        Explode(collision);
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        collider.isTrigger = false;
+    }
+
+    private void OnParticleCollision(GameObject other)
+    {
+        canHurtBoss = true;
     }
 }

@@ -66,5 +66,5 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  myPlayer: {fileID: 114433678382917000, guid: 8745f26ee6ab73f47bc2420f16b57b46, type: 2}
+  myPlayer: {fileID: 0}
   selectionIndex: 0
