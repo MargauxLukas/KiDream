@@ -22,6 +22,8 @@ GameObject:
   - component: {fileID: 212643537248209316}
   - component: {fileID: 114821888469050712}
   - component: {fileID: 61847087571765444}
+  - component: {fileID: 114943634689890884}
+  - component: {fileID: 50110495259964812}
   m_Layer: 0
   m_Name: Bomb
   m_TagString: Bombe
@@ -36,12 +38,32 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1756383030712992}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.8948096, y: -1.6014934, z: 0}
+  m_LocalPosition: {x: -1.475, y: -0.266, z: 0}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &50110495259964812
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1756383030712992}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 0.5
+  m_LinearDrag: 1
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!61 &61847087571765444
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -80,6 +102,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosionTime: 6
   timer: 0
+--- !u!114 &114943634689890884
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1756383030712992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72e6f736707c2e842a00536803a91d7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myPSList: []
+  waveManager: {fileID: 114296563941989752, guid: b5128d70401ffa24cba9fa4d3e19e364,
+    type: 2}
+  canBePushed: 1
+  canBePulled: 0
+  canBeActivated: 0
+  canBePushCorrupted: 0
+  canBePullCorrupted: 0
+  canBeActivateCorrupted: 0
+  VerticalPush: 50
+  HorizontalPush: 50
+  VerticalPull: 1
+  HorizontalPull: 1
+  connectedGameObject: {fileID: 0}
+  activateBehaviour: 0
 --- !u!212 &212643537248209316
 SpriteRenderer:
   m_ObjectHideFlags: 1
