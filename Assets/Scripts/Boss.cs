@@ -6,6 +6,7 @@ public class Boss : MonoBehaviour
 {
     Animator animator;
 
+    [Header("GameObject to attached")]
     public  GameObject         bomb;
     public  GameObject        ombre; //Ombre sur le sol quand le boss est en l'air
     public  GameObject bombLauncher; //Zone ou les bombes spawnent
@@ -21,8 +22,7 @@ public class Boss : MonoBehaviour
 
     public float speed = 0.2f;
 
-    private float timer;
-
+    private float timer            ;
     private float distanceDeltaHV  ;
     private float distanceDeltaDiag;
 
@@ -33,11 +33,10 @@ public class Boss : MonoBehaviour
     private bool needToMove2     = false;
     private bool isStartingPhase =  true;
 
-    public int hp        = 3;
-    public int seconds   = 0;
-    public int lookingAt = 0; // 1 = Droite, 2 = Down, 3 = Left, 4 = Up
-
+    private int seconds   = 0;
+    private int lookingAt = 0; // 1 = Droite, 2 = Down, 3 = Left, 4 = Up
     private int direction = 0;
+    private int hp        = 3;
 
     void Start ()
     {
