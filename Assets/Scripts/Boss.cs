@@ -9,7 +9,7 @@ public class Boss : MonoBehaviour
     public  GameObject         bomb;
     public  GameObject        ombre;
     public  GameObject bombLauncher;
-    public GameObject   ombreObject;
+    public  GameObject  ombreObject;
 
     private GameObject bombe1;
     private GameObject bombe2;
@@ -22,6 +22,7 @@ public class Boss : MonoBehaviour
     public float timer       ;
 
     public bool isRage = false;
+    public bool bossFallDown = false;
 
     public int        hp = 3;
     public int     phase = 0; // 0 = Nothing, 1 = Move, 2 = Throw Bomb
@@ -60,7 +61,6 @@ public class Boss : MonoBehaviour
             timer = Time.time;
             seconds++;
         }
-        Debug.Log(seconds);
         if (hp == 3)
         {
             if (seconds >= 1) // Fight commence à 1 seconde pour pas que le boss bouge direct apres la cinematique
@@ -79,10 +79,18 @@ public class Boss : MonoBehaviour
             }
         }
 
-        if (hp == 2)
+        if(hp == 2)
         {
-            animator.SetBool("isJumping", true);
-            Jump();
+            if (!bossFallDown)
+            {
+                animator.SetBool("isJumping", true);
+                Jump();
+            }
+
+            if(bossFallDown)
+            {
+                gameObject.transform.position = Vector2.MoveTowards(transform.position, new Vector2(transform.position.x, ombreObject.transform.position.y), 0.1f);
+            }
         }
     }
 
@@ -148,10 +156,17 @@ public class Boss : MonoBehaviour
         {
             ombreObject = Instantiate(ombre, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y - 3.50f, 0), Quaternion.identity);
         }
-
+        Debug.Log("Je passe là");
         ombreObject.transform.position = Vector2.MoveTowards(ombreObject.transform.position, target.position, 1f * Time.deltaTime);
+        transform.position = Vector2.MoveTowards(transform.position, new Vector2(ombreObject.transform.position.x, transform.position.y), 1f * Time.deltaTime);
+        StartCoroutine(WaitShadow());
     }
 
+    IEnumerator WaitShadow()
+    {
+        yield return new WaitForSeconds(2f);
+        bossFallDown = true;
+    }
 
     void Rage()
     {
