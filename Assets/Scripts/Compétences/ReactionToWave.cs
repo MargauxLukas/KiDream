@@ -8,6 +8,9 @@ public class ReactionToWave : MonoBehaviour
     public List<ParticleSystem> myPSList = new List<ParticleSystem>();
 
     private ParticleSystem shooter;
+    private int localCounter;
+
+    private ParticleSystem ps;
 
     public WaveManager waveManager;
 
@@ -27,12 +30,13 @@ public class ReactionToWave : MonoBehaviour
 
     [Header("Pull force")]
     [Range(0, 50), SerializeField]
-    private float VerticalPull = 1f;
+    public float VerticalPull = 1f;
     [Range(0, 50), SerializeField]
-    private float HorizontalPull = 1f;
+    public float HorizontalPull = 1f;
 
     [Header("Activate options")]
     public GameObject connectedGameObject;
+    public bool isActivated = false;
     public ActivateBehaviour activateBehaviour;
 
 	// Use this for initialization
@@ -91,36 +95,44 @@ public class ReactionToWave : MonoBehaviour
                     break;
 
                 case WaveType.PushCorruption:
-                    if (canBePushCorrupted == true)
-                    {
-                        ParticleSystem ps = this.GetComponent<ParticleSystem>();
-                        ps = myPSList[0];
 
-                        ps.Play();
-                    }
+                    localCounter = 0;
+                    SetupChosenParticleSystem();                    
                     break;
 
                 case WaveType.PullCorruption:
-                    if (canBePullCorrupted == true)
-                    {
-                        ParticleSystem ps = this.GetComponent<ParticleSystem>();
-                        ps = myPSList[1];
 
-                        ps.Play();
-                    }
+                    localCounter = 1;
+                    SetupChosenParticleSystem();
                     break;
 
                 case WaveType.ActivateCorruption:
-                    if (canBeActivateCorrupted == true)
-                    {
-                        ParticleSystem ps = this.GetComponent<ParticleSystem>();
-                        ps = myPSList[2];
 
-                        ps.Play();
-                    }
+                    localCounter = 2;
+                    SetupChosenParticleSystem();
                     break;
             }
 
+    }
+
+    public void SetupChosenParticleSystem()
+    {
+        if (canBePushCorrupted == true && this.transform.childCount == 0)
+        {
+            ps = Instantiate(myPSList[localCounter]);
+            ps.transform.position = this.transform.position;
+            ps.gameObject.SetActive(true);
+            ps.transform.SetParent(this.transform);
+            ps.Play();
+        }
+        else if (canBeActivateCorrupted == true && this.transform.childCount != 0)
+        {
+            Transform child = this.transform.GetChild(0);
+            Destroy(child.gameObject);
+            this.transform.DetachChildren();
+            Debug.Log(this.transform.childCount);
+            SetupChosenParticleSystem();
+        }
     }
 
 }
