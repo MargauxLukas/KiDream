@@ -14,19 +14,18 @@ public class CharacterController : MonoBehaviour
 
     private float moveX     = 0f;
     private float moveY     = 0f;
-    private float nightmare = 0f;
-    private float dream = 0f;
+    private bool nightmare = false;
+    private bool dream = true;
 
+    [Header("Shooting System")]
     public Transform myShooterTransform;
-    
+    public ParticleSystem myShooter;
     public Transform target;
     public Transform targetRotator;
-
     [Range(0, 0.62f), SerializeField]
     private float joystickTolerance = 0f;
 
     public int hp     = 3;
-    //public int damage = 1;
 
     public bool dialogueHasStarted = false;
     public bool reve               = true;
@@ -37,17 +36,18 @@ public class CharacterController : MonoBehaviour
 
     private Rigidbody2D rigidBody;
     private GameMaster gameMaster;
-    public ParticleSystem myShooter;
+
     Animator animator;
     DialogueManager dialogueManager;
     DialogueTrigger dialogueTrigger;
-    //Slider sliderHP;
 
+    [Header ("Tilemaps")]
     public GameObject tilemapD;
     public GameObject tilemapN;
+
+    [Header("Dialogue System")]
     public GameObject dialogueManagerObject;
     public GameObject dialogueTriggerObject;
-    //public GameObject mySliderHP;
 
     private Collider2D[] hitResult = new Collider2D[10];
 
@@ -64,7 +64,6 @@ public class CharacterController : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         rigidBody = GetComponent<Rigidbody2D>();
-        //sliderHP = mySliderHP.GetComponent<Slider>();
     }
 
     private void Update()
@@ -77,10 +76,19 @@ public class CharacterController : MonoBehaviour
 
         moveX = Input.GetAxis("Horizontal");
         moveY =   Input.GetAxis("Vertical");
-        nightmare = Input.GetAxis("GoToNightmare");
-        dream     =     Input.GetAxis("GoToDream");
 
-        //sliderHP.value = hp;
+        if(Input.GetKeyDown(KeyCode.Joystick1Button3) && nightmare == false)
+        {
+            GoToNightmare();
+            nightmare = true;
+        }
+        else if(Input.GetKeyDown(KeyCode.Joystick1Button3) && nightmare == true)
+        {
+            GoToDream();
+            nightmare = false;
+        }
+
+
 
         if(Input.GetKeyDown(KeyCode.Joystick1Button0) && dialogueHasStarted == false)
         {
@@ -104,16 +112,7 @@ public class CharacterController : MonoBehaviour
 
         IsMoving();
         //IsAttacking();
-        isDead(hp);
-        
-        if(nightmare != 0)
-        {
-            GoToNightmare();
-        }
-        else if (dream != 0)
-        {
-            GoToDream();
-        }
+        Dead(hp);       
     }
 
     void IsMoving()
@@ -130,28 +129,6 @@ public class CharacterController : MonoBehaviour
             animator.SetBool("isMoving", false);
         }
     }
-
-    /**************************************
-     * Attaque Simple (A Retravailler)    *
-     **************************************/
-    /*void IsAttacking()
-    {
-        if (Input.GetKeyDown("joystick 1 button 0") || Input.GetKeyDown(KeyCode.E))
-        {
-            animator.SetTrigger("isAttacking");
-            int nbHitObjects = Physics2D.OverlapCircleNonAlloc(transform.position , 1.0f, hitResult);
-
-            foreach (Collider2D hitObject in hitResult)
-            {
-                Debug.Log(hitObject);
-                if (hitObject.gameObject.tag == "Enemy")
-                {
-                    Debug.Log(hitObject + " > Life : " + hitObject.gameObject.GetComponent<Ennemy>().hpEnemy);
-                    hitObject.gameObject.GetComponent<Ennemy>().hpEnemy = hitObject.gameObject.GetComponent<Ennemy>().hpEnemy - damage;
-                }
-            }
-        }
-    }*/
 
     /**************************************
      * Permet d'aller en mode Cauchemar   *
@@ -245,7 +222,7 @@ public class CharacterController : MonoBehaviour
         }
     }
 
-    void isDead(int hp)
+    void Dead(int hp)
     {
         if(hp <= 0)
         {

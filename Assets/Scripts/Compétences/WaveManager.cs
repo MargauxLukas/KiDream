@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WaveManager : MonoBehaviour {
+public class WaveManager : MonoBehaviour
+{
 
     public WaveType waveSelection;
 
@@ -10,9 +11,31 @@ public class WaveManager : MonoBehaviour {
     public List<Transform> WaveShootersTransform = new List<Transform>();
 
     public CharacterController myPlayer;
+    public UIManager uiManager;
 
     public int selectionIndex = 0;
+
+    [Header("Abilities Cost")]
+    public int regenerationValue;
+    public float regenerationRate;
+    [Range(0,100)]
+    public int pushCost;
+    [Range(0, 100)]
+    public int pullCost;
+    [Range(0, 100)]
+    public int activateCost;
+    [Range(0, 100)]
+    public int corruptedPushCost;
+    [Range(0, 100)]
+    public int corruptedPullCost;
+    [Range(0, 100)]
+    public int corruptedActivateCost;
+
     private int enumCount;
+    public bool isRegenerating;
+
+    private bool axisInUse = false;
+
 
     // Start
     void Start ()
@@ -23,6 +46,16 @@ public class WaveManager : MonoBehaviour {
 	// Update
 	void Update ()
     {
+        if(uiManager.manaBar.value < uiManager.manaBar.maxValue && isRegenerating == false)
+        {
+            StartCoroutine("ManaRegenCoroutine");
+        }
+        else if(uiManager.manaBar.value >= uiManager.manaBar.maxValue)
+        {
+            CancelInvoke();
+            isRegenerating = false;
+        }
+
 
         WaveTypeSelector();
 
@@ -85,86 +118,79 @@ public class WaveManager : MonoBehaviour {
                 break;
         }
 
-        if (Input.GetKeyDown(KeyCode.Joystick1Button2))
-        {
-            switch (selectionIndex)
-            {
-                case 0:
-                    waveSelection = WaveType.Push;
-                    Push();
-                    break;
-                case 1:
-                    waveSelection = WaveType.Pull;
-                    Pull();
-                    break;
-                case 2:
-                    waveSelection = WaveType.Activate;
-                    Activate();
-                    break;
-                case 3:
-                    waveSelection = WaveType.PushCorruption;
-                    CorruptedPush();
-                    break;
-                case 4:
-                    waveSelection = WaveType.PullCorruption;
-                    CorruptedPull();
-                    break;
-                case 5:
-                    waveSelection = WaveType.ActivateCorruption;
-                    CorruptedActivate();
-                    break;
-            }
-
-            myPlayer.UseWave();
+        if (Input.GetAxisRaw("ShootParticles") != 0 && uiManager.manaBar.value != 0 && axisInUse == false)
+        {          
+                switch (selectionIndex)
+                {
+                    case 0:
+                        waveSelection = WaveType.Push;
+                        if (uiManager.manaBar.value >= pushCost)
+                        {
+                            uiManager.manaBar.value = uiManager.manaBar.value - pushCost;
+                            myPlayer.UseWave();
+                        }
+                        break;
+                    case 1:
+                        waveSelection = WaveType.Pull;
+                        if (uiManager.manaBar.value >= pullCost)
+                        {
+                            uiManager.manaBar.value = uiManager.manaBar.value - pullCost;
+                            myPlayer.UseWave();
+                        }
+                        break;
+                    case 2:
+                        waveSelection = WaveType.Activate;
+                        if (uiManager.manaBar.value >= activateCost)
+                        {
+                            uiManager.manaBar.value = uiManager.manaBar.value - activateCost;
+                            myPlayer.UseWave();
+                        }
+                        break;
+                    case 3:
+                        waveSelection = WaveType.PushCorruption;
+                        if (uiManager.manaBar.value >= corruptedPushCost)
+                        {
+                            uiManager.manaBar.value = uiManager.manaBar.value - corruptedPushCost;
+                            myPlayer.UseWave();
+                        }
+                        break;
+                    case 4:
+                        waveSelection = WaveType.PullCorruption;
+                        if (uiManager.manaBar.value >= corruptedPullCost)
+                        {
+                            uiManager.manaBar.value = uiManager.manaBar.value - corruptedPullCost;
+                            myPlayer.UseWave();
+                        }
+                        break;
+                    case 5:
+                        waveSelection = WaveType.ActivateCorruption;
+                        if (uiManager.manaBar.value >= corruptedActivateCost)
+                        {
+                            uiManager.manaBar.value = uiManager.manaBar.value - corruptedActivateCost;
+                            myPlayer.UseWave();
+                        }
+                        break;
+                }
+                axisInUse = true;            
         }
-
-        /*
-        Debug.Log(dreamSelection);
-        Debug.Log(nightmareSelection);
-        */
+        if (Input.GetAxisRaw("ShootParticles") == 0)
+        {
+            axisInUse = false;
+        }
     }
 
-    public void Push()
+    IEnumerator ManaRegenCoroutine()
     {
-
+        isRegenerating = true;
+        yield return new WaitForSeconds(1);
+        InvokeRepeating("ManaRegen", 0, regenerationRate);
 
     }
 
-    public void Pull()
+    public void ManaRegen()
     {
-
-
-
+        uiManager.manaBar.value = uiManager.manaBar.value + regenerationValue;
     }
-
-    public void Activate()
-    {
-
-
-
-    }
-
-    public void CorruptedPush()
-    {
-
-
-
-    }
-
-    public void CorruptedPull()
-    {
-
-
-
-    }
-
-    public void CorruptedActivate()
-    {
-
-
-
-    }
-
 }
 
 //selection = selection + listcount/2;

@@ -6,6 +6,7 @@ public class ReactionToWave : MonoBehaviour
 {
 
     public List<ParticleSystem> myPSList = new List<ParticleSystem>();
+    public Animator myAnim;
 
     private ParticleSystem shooter;
     private int localCounter;
@@ -36,20 +37,22 @@ public class ReactionToWave : MonoBehaviour
 
     [Header("Activate options")]
     public GameObject connectedGameObject;
-    public bool isActivated = false;
+    public bool isActivated;
     public ActivateBehaviour activateBehaviour;
 
-	// Use this for initialization
+    private bool doubleLock = false;
+
+	// Start
 	void Start()
     {
 
 	}
 	
-	// Update is called once per frame
+	// Update
 	void Update ()
     {
-		
-	}
+        ActivationDesactivationAnimation();
+    }
 
     private void OnParticleCollision(GameObject other)
     {
@@ -75,6 +78,16 @@ public class ReactionToWave : MonoBehaviour
                 case WaveType.Activate:
                     if(canBeActivated == true && connectedGameObject != null)
                     {
+
+                    if (isActivated == true)
+                    {
+                        isActivated = false;
+                    }
+                    else
+                    {
+                        isActivated = true;
+                    }
+                        
                         switch (activateBehaviour)
                         {
 
@@ -132,6 +145,20 @@ public class ReactionToWave : MonoBehaviour
             this.transform.DetachChildren();
             Debug.Log(this.transform.childCount);
             SetupChosenParticleSystem();
+        }
+    }
+
+    public void ActivationDesactivationAnimation()
+    {
+        if (isActivated == true && doubleLock == false)
+        {
+            myAnim.SetBool("isActivated", true);
+            doubleLock = true;
+        }
+        else if (isActivated == false && doubleLock == true)
+        {
+            myAnim.SetBool("isActivated", false);
+            doubleLock = false;
         }
     }
 
