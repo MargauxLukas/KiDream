@@ -9,6 +9,7 @@ TagManager:
   - CeQuiApparaitEnReve
   - CeQuiApparaitEnCauchemar
   - Bombe
+  - ActionObject
   layers:
   - Default
   - TransparentFX

@@ -483,7 +483,7 @@ Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1993376276403988}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -558,10 +558,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSpeed: 2
-  waveManager: {fileID: 114296563941989752, guid: b5128d70401ffa24cba9fa4d3e19e364,
-    type: 2}
+  waveManager: {fileID: 0}
   myShooterTransform: {fileID: 4903194668397444}
-  myShooter: {fileID: 198746778216410500}
   target: {fileID: 4925269727885090}
   targetRotator: {fileID: 4594361801521864}
   joystickTolerance: 0.62
@@ -571,6 +569,7 @@ MonoBehaviour:
   isKilled: 0
   pushPower: 2
   weight: 6
+  myShooter: {fileID: 198746778216410500}
   tilemapD: {fileID: 0}
   tilemapN: {fileID: 0}
   dialogueManagerObject: {fileID: 0}
@@ -707,7 +706,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 2
+      scalar: 5
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -5240,7 +5239,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 2
+      scalar: 5
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -9773,7 +9772,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 2
+      scalar: 5
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -14306,7 +14305,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 2
+      scalar: 5
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -15064,21 +15063,21 @@ ParticleSystem:
         m_Curve:
         - serializedVersion: 3
           time: 0
-          value: 0
-          inSlope: 1
-          outSlope: 1
+          value: 0.21621704
+          inSlope: 1.5170133
+          outSlope: 1.5170133
           tangentMode: 34
           weightedMode: 0
           inWeight: 0
-          outWeight: 0
+          outWeight: 0.33333334
         - serializedVersion: 3
-          time: 1
+          time: 0.5166619
           value: 1
-          inSlope: 1
-          outSlope: 1
+          inSlope: 1.5170133
+          outSlope: 1.5170133
           tangentMode: 34
           weightedMode: 0
-          inWeight: 0
+          inWeight: 0.33333334
           outWeight: 0
         m_PreInfinity: 2
         m_PostInfinity: 2
@@ -17749,7 +17748,7 @@ ParticleSystem:
         m_RotationOrder: 4
     minKillSpeed: 0
     maxKillSpeed: 10000
-    radiusScale: 0.15
+    radiusScale: 0.25
     collidesWith:
       serializedVersion: 2
       m_Bits: 55
@@ -18839,7 +18838,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 2
+      scalar: 5
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -23372,7 +23371,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 2
+      scalar: 5
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -28149,7 +28148,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 073fce0209d365149992d0820ab20529, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
