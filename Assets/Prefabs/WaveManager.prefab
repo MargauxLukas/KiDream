@@ -67,4 +67,14 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   myPlayer: {fileID: 0}
+  uiManager: {fileID: 0}
   selectionIndex: 0
+  regenerationValue: 3
+  regenerationRate: 1
+  pushCost: 6
+  pullCost: 0
+  activateCost: 0
+  corruptedPushCost: 0
+  corruptedPullCost: 0
+  corruptedActivateCost: 0
+  isRegenerating: 0
