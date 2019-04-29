@@ -20,6 +20,7 @@ public class Boss : MonoBehaviour
 
     private Rigidbody2D rb;
 
+    [Header("Boss Characteristics")]
     public float speed = 0.2f;
 
     private float timer            ;

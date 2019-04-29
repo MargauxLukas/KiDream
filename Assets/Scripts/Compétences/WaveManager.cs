@@ -75,7 +75,7 @@ public class WaveManager : MonoBehaviour
     public void WaveTypeSelector()
     {
 
-        switch(myPlayer.reve)
+        switch(myPlayer.isDream)
         {
             case true:
 

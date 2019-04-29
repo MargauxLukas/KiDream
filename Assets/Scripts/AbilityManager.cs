@@ -45,12 +45,12 @@ public class AbilityManager : MonoBehaviour
 
     public void UIAbilityIndicator()
     {
-        if (myPlayer.reve == true)
+        if (myPlayer.isDream == true)
         {
             nightmareAbilitySelector.enabled = false;
             dreamAbilitySelector.enabled = true;
         }
-        else if (myPlayer.reve == false)
+        else if (myPlayer.isDream == false)
         {
             dreamAbilitySelector.enabled = false;
             nightmareAbilitySelector.enabled = true;
