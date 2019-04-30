@@ -11,6 +11,8 @@ TagManager:
   - Bombe
   - ActionObject
   - Boss
+  - Light
+  - UIDetectionTag
   layers:
   - Default
   - TransparentFX
@@ -21,8 +23,8 @@ TagManager:
   - 
   - 
   - Player
-  - 
-  - 
+  - ActionObjectLayer
+  - CollisionLayer
   - 
   - 
   - 

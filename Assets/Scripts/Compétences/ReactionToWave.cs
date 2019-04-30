@@ -6,14 +6,17 @@ public class ReactionToWave : MonoBehaviour
 {
 
     public List<ParticleSystem> myPSList = new List<ParticleSystem>();
-    public Animator myAnim;
 
     private ParticleSystem shooter;
     private int localCounter;
-
+    private Rigidbody2D thisRb;
     private ParticleSystem ps;
 
     public WaveManager waveManager;
+
+    [Header("Physics")]
+    [Range(0,10), SerializeField]
+    private int linearDrag;
 
     [Header("Propriétés")]
     public bool canBePushed = false;
@@ -37,19 +40,26 @@ public class ReactionToWave : MonoBehaviour
 
     [Header("Activate options")]
     public GameObject connectedGameObject;
+    public bool playAnimation;
     public bool isActivated;
     public ActivateBehaviour activateBehaviour;
 
+    [Header("Enfants")]
+    public int childNumberTolerance;
+
     private bool doubleLock = false;
+
+
 
 	// Start
 	void Start()
     {
-
+        thisRb = this.GetComponent<Rigidbody2D>();
+        thisRb.drag = linearDrag;
 	}
 	
 	// Update
-	void Update ()
+	void Update()
     {
         ActivationDesactivationAnimation();
     }
@@ -76,18 +86,19 @@ public class ReactionToWave : MonoBehaviour
                     break;
 
                 case WaveType.Activate:
-                    if(canBeActivated == true && connectedGameObject != null)
+                    if(canBeActivated == true)
                     {
 
-                    if (isActivated == true)
-                    {
-                        isActivated = false;
-                    }
-                    else
-                    {
-                        isActivated = true;
-                    }
+                        /*if (isActivated == true)
+                        {
+                            isActivated = false;
+                        }
+                        else
+                        {
+                            isActivated = true;
+                        }*/
                         
+
                         switch (activateBehaviour)
                         {
 
@@ -102,7 +113,6 @@ public class ReactionToWave : MonoBehaviour
                         case ActivateBehaviour._SetActive:
                             connectedGameObject.SetActive(true);
                             break;
-
                         }
                     }
                     break;
@@ -110,27 +120,37 @@ public class ReactionToWave : MonoBehaviour
                 case WaveType.PushCorruption:
 
                     localCounter = 0;
-                    SetupChosenParticleSystem();                    
+                    if(canBePushCorrupted == true)
+                    {
+                        SetupChosenParticleSystem();
+                    }
                     break;
 
                 case WaveType.PullCorruption:
 
                     localCounter = 1;
-                    SetupChosenParticleSystem();
+                    if(canBePullCorrupted == true)
+                    {
+                        SetupChosenParticleSystem();
+                    }
                     break;
 
                 case WaveType.ActivateCorruption:
 
                     localCounter = 2;
-                    SetupChosenParticleSystem();
+                    if(canBeActivateCorrupted == true)
+                    {
+                        SetupChosenParticleSystem();
+                    }
                     break;
             }
 
     }
 
     public void SetupChosenParticleSystem()
-    {
-        if (canBePushCorrupted == true && this.transform.childCount == 0)
+    {    
+
+        if (this.transform.childCount == childNumberTolerance)
         {
             ps = Instantiate(myPSList[localCounter]);
             ps.transform.position = this.transform.position;
@@ -138,27 +158,31 @@ public class ReactionToWave : MonoBehaviour
             ps.transform.SetParent(this.transform);
             ps.Play();
         }
-        else if (canBeActivateCorrupted == true && this.transform.childCount != 0)
+        else if (this.transform.childCount > childNumberTolerance)
         {
-            Transform child = this.transform.GetChild(0);
+            Transform child = this.transform.GetChild(childNumberTolerance);
             Destroy(child.gameObject);
-            this.transform.DetachChildren();
-            Debug.Log(this.transform.childCount);
+            child.parent = null;
             SetupChosenParticleSystem();
         }
     }
 
     public void ActivationDesactivationAnimation()
     {
-        if (isActivated == true && doubleLock == false)
+        if(playAnimation == true)
         {
-            myAnim.SetBool("isActivated", true);
-            doubleLock = true;
-        }
-        else if (isActivated == false && doubleLock == true)
-        {
-            myAnim.SetBool("isActivated", false);
-            doubleLock = false;
+            if (isActivated == true && doubleLock == false)
+            {
+                Animator myAnim = this.GetComponent<Animator>();
+                myAnim.SetBool("isActivated", true);
+                doubleLock = true;
+            }
+            else if (isActivated == false && doubleLock == true)
+            {
+                Animator myAnim = this.GetComponent<Animator>();
+                myAnim.SetBool("isActivated", false);
+                doubleLock = false;
+            }
         }
     }
 
