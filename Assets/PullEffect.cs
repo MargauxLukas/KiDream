@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class PullEffect : MonoBehaviour
 {
-    //CircleCollider2D bColRadius;
+    CircleCollider2D colRadius;
+    ReactionToWave parentBehaviour;
+    ParticleSystem corruptedPullPS;
+
     public Rigidbody2D rb;
 
     ReactionToWave behaviour;
@@ -26,20 +29,19 @@ public class PullEffect : MonoBehaviour
     private float strongWaveDuration;
 
 
-
-    //private float radiusValue;
-
-
     void Start()
     {
         InvokeRepeating("AttractionBonus", 0, timeBeforeNewStrongWave + strongWaveDuration);
 
-        //bColRadius = this.GetComponent<CircleCollider2D>();
+        colRadius = this.GetComponent<CircleCollider2D>();
+        parentBehaviour = this.GetComponentInParent<ReactionToWave>();
+        corruptedPullPS = this.GetComponent<ParticleSystem>();
+        colRadius.radius = parentBehaviour.corruptedPullRadius;
+        corruptedPullPS.startSize = 2.76131f * colRadius.radius + 0.063143f;
     }
 
     void Update()
     {
-        //bColRadius.radius = radiusValue;
         if (yEqualX == true)
         {
             forceY = forceX;

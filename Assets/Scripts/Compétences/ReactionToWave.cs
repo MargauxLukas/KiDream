@@ -45,16 +45,16 @@ public class ReactionToWave : MonoBehaviour
     public ActivateBehaviour activateBehaviour;
 
     [Header("Corrupted Push options")]
-    [Range(0, 50), SerializeField]
-    public float cPushRadius;
+    [Range(0, 2), SerializeField]
+    public float corruptedPushRadius;
 
     [Header("Corrupted Pull options")]
-    [Range(0, 50), SerializeField]
-    public float cPullRadius;
+    [Range(0, 2), SerializeField]
+    public float corruptedPullRadius;
 
     [Header("Corrupted Activate options")]
-    [Range(0, 50), SerializeField]
-    public float cActivateRadius;
+    [Range(0, 2), SerializeField]
+    public float corruptedActivateRadius;
 
     [Header("Enfants")]
     public int childNumberTolerance;
@@ -156,7 +156,6 @@ public class ReactionToWave : MonoBehaviour
                     }
                     break;
             }
-
     }
 
     public void SetupChosenParticleSystem()
@@ -181,10 +180,13 @@ public class ReactionToWave : MonoBehaviour
 
     public void ActivationDesactivationAnimation()
     {
+
         if(playAnimation == true)
         {
             if (isActivated == true && doubleLock == false)
             {
+                Debug.Log("Activation");
+
                 Animator myAnim = this.GetComponent<Animator>();
                 myAnim.SetBool("isActivated", true);
                 doubleLock = true;
