@@ -4,19 +4,22 @@ using UnityEngine;
 
 public class ActivateEffect : MonoBehaviour
 {
+    ReactionToWave parentBehaviour;
+    CircleCollider2D colRadius;
+    ParticleSystem corruptedActivatePS;
 
     public ReactionToWave behaviour;
     public Rigidbody2D rb;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+	// Start
+	void Start ()
+    {
+        colRadius = this.GetComponent<CircleCollider2D>();
+        parentBehaviour = this.GetComponentInParent<ReactionToWave>();
+        corruptedActivatePS = this.GetComponent<ParticleSystem>();
+        colRadius.radius = parentBehaviour.corruptedActivateRadius;
+        corruptedActivatePS.startSize = 2.76131f * colRadius.radius + 0.063143f;
+    }
 
     private void OnTriggerStay2D(Collider2D collision)
     {

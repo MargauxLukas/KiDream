@@ -6,6 +6,7 @@ public class PushEffect : MonoBehaviour
 {
     CircleCollider2D colRadius;
     ParticleSystem corruptedPushPS;
+    ReactionToWave parentBehaviour;
 
     public Rigidbody2D rb;
 
@@ -16,18 +17,19 @@ public class PushEffect : MonoBehaviour
     private float forceY;
     public bool yEqualX = false;
 
-    //private float radiusValue;
-
 
     void Start()
     {
         colRadius = this.GetComponent<CircleCollider2D>();
+        parentBehaviour = this.GetComponentInParent<ReactionToWave>();
         corruptedPushPS = this.GetComponent<ParticleSystem>();
+        colRadius.radius = parentBehaviour.corruptedPushRadius;
+        corruptedPushPS.startSize = 2.76131f*colRadius.radius + 0.063143f;
     }
+
 
     void Update()
     {
-        //bColRadius.radius = radiusValue;
 
         if (yEqualX == true)
         {
@@ -55,9 +57,8 @@ public class PushEffect : MonoBehaviour
         {
             ReactionToWave behaviour = collision.GetComponent<ReactionToWave>();
 
-            if(behaviour.canBePushed == true)
+            if (behaviour.canBePushed == true)
             {
-                colRadius.radius = behaviour.cPushRadius;
                 rb = collision.gameObject.GetComponent<Rigidbody2D>();
                 rb.AddForce(new Vector2(-(this.transform.position.x - collision.transform.position.x) * forceX, -(this.transform.position.y - collision.transform.position.y) * forceY));
             }
