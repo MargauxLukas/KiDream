@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class PushEffect : MonoBehaviour
 {
-    CircleCollider2D bColRadius;
+    CircleCollider2D colRadius;
+    ParticleSystem corruptedPushPS;
+
     public Rigidbody2D rb;
 
     [Header("Forces horizontales et verticales")]
@@ -19,7 +21,8 @@ public class PushEffect : MonoBehaviour
 
     void Start()
     {
-        bColRadius = this.GetComponent<CircleCollider2D>();
+        colRadius = this.GetComponent<CircleCollider2D>();
+        corruptedPushPS = this.GetComponent<ParticleSystem>();
     }
 
     void Update()
@@ -54,6 +57,7 @@ public class PushEffect : MonoBehaviour
 
             if(behaviour.canBePushed == true)
             {
+                colRadius.radius = behaviour.cPushRadius;
                 rb = collision.gameObject.GetComponent<Rigidbody2D>();
                 rb.AddForce(new Vector2(-(this.transform.position.x - collision.transform.position.x) * forceX, -(this.transform.position.y - collision.transform.position.y) * forceY));
             }

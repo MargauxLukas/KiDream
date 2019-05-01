@@ -2382,14 +2382,17 @@ MonoBehaviour:
   canBePushCorrupted: 0
   canBePullCorrupted: 0
   canBeActivateCorrupted: 0
-  VerticalPush: 1
-  HorizontalPush: 1
-  VerticalPull: 1
-  HorizontalPull: 1
+  verticalPushForce: 1
+  horizontalPushForce: 1
+  verticalPullForce: 1
+  horizontalPullForce: 1
   connectedGameObject: {fileID: 0}
   playAnimation: 1
   isActivated: 0
   activateBehaviour: 0
+  cPushRadius: 0
+  cPullRadius: 0
+  cActivateRadius: 0
   childNumberTolerance: 1
 --- !u!50 &222800005
 Rigidbody2D:
@@ -4748,14 +4751,17 @@ MonoBehaviour:
   canBePushCorrupted: 1
   canBePullCorrupted: 0
   canBeActivateCorrupted: 0
-  VerticalPush: 1
-  HorizontalPush: 1
-  VerticalPull: 1
-  HorizontalPull: 1
+  verticalPushForce: 1
+  horizontalPushForce: 1
+  verticalPullForce: 1
+  horizontalPullForce: 1
   connectedGameObject: {fileID: 0}
   playAnimation: 1
   isActivated: 0
   activateBehaviour: 0
+  cPushRadius: 0
+  cPullRadius: 0
+  cActivateRadius: 0
   childNumberTolerance: 1
 --- !u!50 &482048080
 Rigidbody2D:
@@ -4864,7 +4870,7 @@ Transform:
   m_Children:
   - {fileID: 1652704736}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &522407835
 GameObject:
@@ -5257,14 +5263,17 @@ MonoBehaviour:
   canBePushCorrupted: 0
   canBePullCorrupted: 0
   canBeActivateCorrupted: 1
-  VerticalPush: 8.5
-  HorizontalPush: 8.5
-  VerticalPull: 1
-  HorizontalPull: 1
+  verticalPushForce: 1
+  horizontalPushForce: 1
+  verticalPullForce: 1
+  horizontalPullForce: 1
   connectedGameObject: {fileID: 0}
   playAnimation: 1
   isActivated: 0
   activateBehaviour: 0
+  cPushRadius: 50
+  cPullRadius: 0
+  cActivateRadius: 0
   childNumberTolerance: 1
 --- !u!114 &736757499
 MonoBehaviour:
@@ -10502,7 +10511,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &962906290
 GameObject:
@@ -15415,7 +15424,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1095854294
 GameObject:
@@ -20066,8 +20075,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1124108156}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.181, z: 0}
-  m_LocalScale: {x: 0.02, y: 0.02, z: 1}
+  m_LocalPosition: {x: 0, y: 0.394, z: 0}
+  m_LocalScale: {x: 0.1, y: 5, z: 1}
   m_Children: []
   m_Father: {fileID: 2086586581}
   m_RootOrder: 1
@@ -20108,7 +20117,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: 073fce0209d365149992d0820ab20529, type: 3}
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
