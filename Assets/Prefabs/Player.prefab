@@ -258,7 +258,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1993376276403988}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.558, y: -2.698, z: 0}
+  m_LocalPosition: {x: -0.02, y: -0.17, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4817872512510168}
@@ -435,7 +435,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.0022468865, y: -0.047184885}
@@ -493,23 +493,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c5ac09ff2ecbc14a9ec52c9faac3886, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 2
   waveManager: {fileID: 0}
-  myShooterTransform: {fileID: 4903194668397444}
   myShooter: {fileID: 198746778216410500}
+  myShooterTransform: {fileID: 4903194668397444}
   target: {fileID: 4925269727885090}
   targetRotator: {fileID: 4594361801521864}
   joystickTolerance: 0.62
-  hp: 3
-  dialogueHasStarted: 0
-  reve: 1
-  isKilled: 0
-  pushPower: 2
-  weight: 6
   tilemapD: {fileID: 0}
   tilemapN: {fileID: 0}
   dialogueManagerObject: {fileID: 0}
   dialogueTriggerObject: {fileID: 0}
+  dialogueHasStarted: 0
+  maxSpeed: 2
+  hp: 3
+  isDream: 1
 --- !u!198 &198095089112579650
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -28130,7 +28127,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: b2992447e30a72d419eace68871154eb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
