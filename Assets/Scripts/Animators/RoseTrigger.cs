@@ -6,8 +6,14 @@ public class RoseTrigger : MonoBehaviour
 {
     Animator roseAnim;
 
+    void Start()
+    {
+        roseAnim = GetComponentInParent<Animator>();
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        Debug.Log(roseAnim);
         if (collision.tag == "Player")
         {
             roseAnim.SetBool("isTouched", true);
