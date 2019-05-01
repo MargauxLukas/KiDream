@@ -59,11 +59,7 @@ public class WaveManager : MonoBehaviour
         {
             CancelInvoke();
             isRegenerating = false;
-        }
-
-        
-
-
+        }      
 
         WaveTypeSelector();
 
@@ -82,7 +78,6 @@ public class WaveManager : MonoBehaviour
 
     public void WaveTypeSelector()
     {
-
         if (Input.GetAxisRaw("ShootParticles") == 0)
         {
             rightAxisInUse = false;
