@@ -9,6 +9,8 @@ public class Boss : MonoBehaviour
     Animator bombAnimator2;
     Animator bombAnimator3;
 
+    GameObject player;
+
     [Header("GameObject to attached")]
     public  GameObject         bomb;
     public  GameObject        ombre; //Ombre sur le sol quand le boss est en l'air
@@ -36,6 +38,7 @@ public class Boss : MonoBehaviour
     private bool needToMove1     = false;
     private bool needToMove2     = false;
     private bool isStartingPhase =  true;
+    private bool isDream = true;
 
     private int seconds   = 0;
     private int lookingAt = 0; // 1 = Droite, 2 = Down, 3 = Left, 4 = Up
@@ -47,6 +50,7 @@ public class Boss : MonoBehaviour
         animator = GetComponent<Animator   >();
         rb       = GetComponent<Rigidbody2D>();
         target   = GameObject.FindGameObjectWithTag("Player").transform;
+        player = GameObject.Find("Player");
 
         bombAnimator1 = null;
         bombAnimator1 = null;
@@ -58,6 +62,10 @@ public class Boss : MonoBehaviour
 	
 	void Update ()
     {
+        isDream = player.GetComponent<CharacterController>().isDream;
+        if (isDream) { animator.SetBool("isDream",  true);}
+        else         { animator.SetBool("isDream", false);}
+
         if (needToMove1 || needToMove2)
         {
             MovingBomb();
