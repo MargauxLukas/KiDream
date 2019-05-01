@@ -5,8 +5,8 @@ using UnityEngine;
 public class ActivateEffect : MonoBehaviour
 {
 
-    ReactionToWave behaviour;
-    Rigidbody2D rb;
+    public ReactionToWave behaviour;
+    public Rigidbody2D rb;
 
 	// Use this for initialization
 	void Start () {
@@ -22,10 +22,29 @@ public class ActivateEffect : MonoBehaviour
     {
         if (collision.tag == "ActionObject") //Tous les objets ayant ce tag doivent avoir un BoxCollider2D (Normal), un RigidBody2D (Dynamic + GravityScale à 0) et le script ReactionToWave.
         {
-            behaviour = collision.GetComponent<ReactionToWave>();
+
+            if (collision.GetComponent<ReactionToWave>() == null)
+            {
+                return;
+            }
+            else if(collision.GetComponent<ReactionToWave>() != null)
+            {
+                behaviour = collision.GetComponent<ReactionToWave>();
+            }
+
+            if (collision.GetComponentInParent<ReactionToWave>() == null)
+            {
+                return;
+            }
+            else if (collision.GetComponentInParent<ReactionToWave>() != null)
+            {
+                behaviour = collision.GetComponentInParent<ReactionToWave>();
+            }
+
 
             if (behaviour.canBeActivated == true)
             {
+
                 behaviour.isActivated = true;
             }
         }
@@ -35,6 +54,11 @@ public class ActivateEffect : MonoBehaviour
     {
         if (collision.tag == "ActionObject") //Tous les objets ayant ce tag doivent avoir un BoxCollider2D (Normal), un RigidBody2D (Dynamic + GravityScale à 0) et le script ReactionToWave.
         {
+            if (collision.GetComponent<ReactionToWave>() == null)
+            {
+                return;
+            }
+
             behaviour = collision.GetComponent<ReactionToWave>();
 
             if (behaviour.canBeActivated == true)
