@@ -55,7 +55,7 @@ public class PushEffect : MonoBehaviour
             if(behaviour.canBePushed == true)
             {
                 rb = collision.gameObject.GetComponent<Rigidbody2D>();
-                rb.AddForce(new Vector2((this.transform.position.x - collision.transform.position.x) * forceX, (this.transform.position.y - collision.transform.position.y) * forceY));
+                rb.AddForce(new Vector2(-(this.transform.position.x - collision.transform.position.x) * forceX, -(this.transform.position.y - collision.transform.position.y) * forceY));
             }
         }
                     

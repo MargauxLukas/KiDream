@@ -2061,7 +2061,7 @@ Transform:
   - {fileID: 85492639}
   - {fileID: 296987988}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &127874279
 GameObject:
@@ -9246,7 +9246,7 @@ Transform:
   m_Children:
   - {fileID: 1014972497}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &736757496
 Rigidbody2D:
@@ -9299,7 +9299,7 @@ MonoBehaviour:
   - {fileID: 1718340477}
   - {fileID: 746697684}
   waveManager: {fileID: 393122064}
-  linearDrag: 1
+  linearDrag: 8
   canBePushed: 1
   canBePulled: 1
   canBeActivated: 1
@@ -13961,7 +13961,7 @@ GameObject:
   - component: {fileID: 1014972498}
   - component: {fileID: 1014972499}
   m_Layer: 10
-  m_Name: ParticleCollisionLayer
+  m_Name: PlayerCollisionLayer
   m_TagString: UIDetectionTag
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14584,6 +14584,10 @@ Prefab:
       propertyPath: uiManager
       value: 
       objectReference: {fileID: 1379818773}
+    - target: {fileID: 4537929801177306, guid: b5128d70401ffa24cba9fa4d3e19e364, type: 2}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b5128d70401ffa24cba9fa4d3e19e364, type: 2}
   m_IsPrefabAsset: 0
@@ -19416,7 +19420,7 @@ RectTransform:
   - {fileID: 1064610660}
   - {fileID: 1483114645}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -19627,7 +19631,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4852622800394162, guid: 60366363fe72d65459bfdef3c9620a36, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 198761761117299648, guid: 60366363fe72d65459bfdef3c9620a36,
         type: 2}
@@ -19664,7 +19668,7 @@ Transform:
   - {fileID: 1202376576}
   - {fileID: 1988546172}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!198 &1460366645
 ParticleSystem:
@@ -29199,6 +29203,10 @@ Prefab:
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 1202316766394236, guid: f8b11d2fb26f2e54b8003320b3e4f4dd, type: 2}
+      propertyPath: m_Name
+      value: PlayerCollisionLayer
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 61303846250283904, guid: f8b11d2fb26f2e54b8003320b3e4f4dd, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: f8b11d2fb26f2e54b8003320b3e4f4dd, type: 2}
@@ -29302,7 +29310,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1666218368
 MonoBehaviour:
@@ -29456,7 +29464,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1963559488
 GameObject:

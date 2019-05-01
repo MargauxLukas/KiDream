@@ -108,7 +108,7 @@ public class ActionDetection : MonoBehaviour {
     {
         indicatorList = collision.GetComponentInChildren<IndicatorList>();
 
-        if(collision.name.Contains("ParticleCollisionLayer"))
+        if(collision.name.Contains("PlayerCollisionLayer"))
         {
             foreach (GameObject go in indicatorList.iconList)
             {

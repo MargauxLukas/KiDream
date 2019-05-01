@@ -565,8 +565,9 @@ MonoBehaviour:
   - {fileID: 114391447950119704}
   - {fileID: 114567801690116576}
   - {fileID: 114471616559239450}
-  myPlayer: {fileID: 0}
-  waveManager: {fileID: 0}
+  myPlayer: {fileID: 114282332162607794, guid: 8745f26ee6ab73f47bc2420f16b57b46, type: 2}
+  waveManager: {fileID: 114333430753740258, guid: b5128d70401ffa24cba9fa4d3e19e364,
+    type: 2}
   selectionIndicator: {fileID: 224066265404190210}
   manaBar: {fileID: 114490519381836354}
 --- !u!114 &114567801690116576

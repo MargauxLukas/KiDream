@@ -53,21 +53,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waveSelection: 0
   WaveShooters:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 198701715626898382, guid: 2bdc7fa7c037fe54196b06d32f339ebb, type: 2}
+  - {fileID: 198504380996386464, guid: 2bdc7fa7c037fe54196b06d32f339ebb, type: 2}
+  - {fileID: 198411225124120010, guid: 2bdc7fa7c037fe54196b06d32f339ebb, type: 2}
+  - {fileID: 198945979647136934, guid: eaade52f1329edb45b51069702084e84, type: 2}
+  - {fileID: 198546393862741230, guid: eaade52f1329edb45b51069702084e84, type: 2}
+  - {fileID: 198719576545747582, guid: eaade52f1329edb45b51069702084e84, type: 2}
   WaveShootersTransform:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  myPlayer: {fileID: 0}
-  uiManager: {fileID: 0}
+  - {fileID: 4824999661242082, guid: 2bdc7fa7c037fe54196b06d32f339ebb, type: 2}
+  - {fileID: 4482167515108800, guid: 2bdc7fa7c037fe54196b06d32f339ebb, type: 2}
+  - {fileID: 4418095187197816, guid: 2bdc7fa7c037fe54196b06d32f339ebb, type: 2}
+  - {fileID: 4962960541137702, guid: eaade52f1329edb45b51069702084e84, type: 2}
+  - {fileID: 4623105899361012, guid: eaade52f1329edb45b51069702084e84, type: 2}
+  - {fileID: 4485494204420538, guid: eaade52f1329edb45b51069702084e84, type: 2}
+  myPlayer: {fileID: 114282332162607794, guid: 8745f26ee6ab73f47bc2420f16b57b46, type: 2}
+  uiManager: {fileID: 114505946204922070, guid: 542ad7921fda66140976ed7e1a44c0e3,
+    type: 2}
   selectionIndex: 0
   regenerationValue: 2
   regenerationRate: 1
