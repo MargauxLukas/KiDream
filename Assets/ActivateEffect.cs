@@ -23,31 +23,35 @@ public class ActivateEffect : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
+        Debug.Log(collision.gameObject.name);
         if (collision.tag == "ActionObject") //Tous les objets ayant ce tag doivent avoir un BoxCollider2D (Normal), un RigidBody2D (Dynamic + GravityScale à 0) et le script ReactionToWave.
         {
 
+
             if (collision.GetComponent<ReactionToWave>() == null)
             {
-                return;
+                
             }
             else if(collision.GetComponent<ReactionToWave>() != null)
             {
+                Debug.Log("Okaay");
                 behaviour = collision.GetComponent<ReactionToWave>();
             }
 
             if (collision.GetComponentInParent<ReactionToWave>() == null)
             {
-                return;
+                
             }
             else if (collision.GetComponentInParent<ReactionToWave>() != null)
             {
+                Debug.Log("Okaay");
                 behaviour = collision.GetComponentInParent<ReactionToWave>();
             }
 
 
             if (behaviour.canBeActivated == true)
             {
-
+                Debug.Log("Okaay");
                 behaviour.isActivated = true;
             }
         }

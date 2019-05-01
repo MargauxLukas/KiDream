@@ -101,14 +101,14 @@ public class ReactionToWave : MonoBehaviour
                     if(canBeActivated == true)
                     {
 
-                        if (isActivated == true)
+                        /*if (isActivated == true)
                         {
                             isActivated = false;
                         }
                         else
                         {
                             isActivated = true;
-                        }
+                        }*/
                         
 
                         switch (activateBehaviour)
@@ -180,10 +180,13 @@ public class ReactionToWave : MonoBehaviour
 
     public void ActivationDesactivationAnimation()
     {
+
         if(playAnimation == true)
         {
             if (isActivated == true && doubleLock == false)
             {
+                Debug.Log("Activation");
+
                 Animator myAnim = this.GetComponent<Animator>();
                 myAnim.SetBool("isActivated", true);
                 doubleLock = true;
