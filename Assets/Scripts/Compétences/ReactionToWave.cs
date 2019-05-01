@@ -49,11 +49,11 @@ public class ReactionToWave : MonoBehaviour
 
     private bool doubleLock = false;
 
-
-
 	// Start
 	void Start()
     {
+        CrashAvoider();
+
         thisRb = this.GetComponent<Rigidbody2D>();
         thisRb.drag = linearDrag;
 	}
@@ -183,6 +183,14 @@ public class ReactionToWave : MonoBehaviour
                 myAnim.SetBool("isActivated", false);
                 doubleLock = false;
             }
+        }
+    }
+
+    public void CrashAvoider()
+    {
+        if(this.GetComponent<Animator>() == null)
+        {
+            playAnimation = false;
         }
     }
 

@@ -14,7 +14,7 @@ public class ActionDetection : MonoBehaviour {
             indicatorList = collision.GetComponentInChildren<IndicatorList>();
             ReactionToWave rtw = collision.GetComponentInParent<ReactionToWave>();
 
-            if (myPlayer.reve == true)
+            if (myPlayer.isDream == true)
             {
                 foreach(GameObject go in indicatorList.iconList)
                 {
