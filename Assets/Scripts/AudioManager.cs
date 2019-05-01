@@ -39,13 +39,13 @@ public class AudioManager : MonoBehaviour
 	void Update ()
     {
 		
-        if(Input.GetKeyDown(KeyCode.T) && myPlayer.reve == false)
+        if(Input.GetKeyDown(KeyCode.T) && myPlayer.isDream == false)
         {
             CancelInvoke();
             InvokeRepeating("SwitchToNightmareSong", 0.25f, 0.25f);
             StartCoroutine(DelayToStopInvoke());
         }
-        else if (Input.GetKeyDown(KeyCode.T) && myPlayer.reve == true)
+        else if (Input.GetKeyDown(KeyCode.T) && myPlayer.isDream == true)
         {
             CancelInvoke();
             InvokeRepeating("SwitchToDreamSong", 0.25f, 0.25f);

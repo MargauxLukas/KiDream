@@ -12,8 +12,6 @@ public class Bomb : MonoBehaviour
     BoxCollider2D collider;
     GameObject        Boss;
 
-
-
 	void Start ()
     {
         Boss = GameObject.Find("Boss");

@@ -22,7 +22,7 @@ public class UIManager : MonoBehaviour
 	// Update
 	void Update ()
     {
-		if(myPlayer.reve == true)
+		if(myPlayer.isDream == true)
         {
             foreach(Image im in imageList)
             {
@@ -36,7 +36,7 @@ public class UIManager : MonoBehaviour
                 }
             }
         }
-        else if(myPlayer.reve == false)
+        else if(myPlayer.isDream == false)
         {
             foreach (Image im in imageList)
             {

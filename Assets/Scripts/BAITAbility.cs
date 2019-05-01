@@ -35,7 +35,7 @@ public class BAITAbility : MonoBehaviour
             return;
         }
 
-        if (Input.GetKeyDown("joystick 1 button 1") && characterController.reve == false && baitIsLaunched == false)
+        if (Input.GetKeyDown("joystick 1 button 1") && characterController.isDream == false && baitIsLaunched == false)
         {
             LaunchBait();
         }

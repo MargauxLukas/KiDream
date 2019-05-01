@@ -330,6 +330,11 @@ Prefab:
       propertyPath: InitialModule.startSpeed.scalar
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 212791511509088146, guid: 8745f26ee6ab73f47bc2420f16b57b46,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8745f26ee6ab73f47bc2420f16b57b46, type: 2}
   m_IsPrefabAsset: 0
@@ -606,15 +611,8 @@ MonoBehaviour:
   bomb: {fileID: 1756383030712992, guid: 2f0d17941f406a44fa7780f8814f8e42, type: 2}
   ombre: {fileID: 1908040382968368, guid: c8744feb0bc6a8d44b0017af0f74614b, type: 2}
   bombLauncher: {fileID: 125624848}
-  ombreObject: {fileID: 0}
   speed: 0.2
-  timer: 0
   isRage: 0
-  bossFallDown: 0
-  isStartingPhase: 1
-  hp: 3
-  seconds: 0
-  lookingAt: 0
 --- !u!61 &587806241
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1113,7 +1111,7 @@ Animator:
   m_GameObject: {fileID: 1271118936}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: c1121d83620275047a72b5de6ed884ef, type: 2}
+  m_Controller: {fileID: 9100000, guid: e3527fbaa2c2c164eb57b4725a5a1d2f, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 61847087571765444}
   - component: {fileID: 114943634689890884}
   - component: {fileID: 50110495259964812}
+  - component: {fileID: 95501335032836888}
   m_Layer: 0
   m_Name: Bomb
   m_TagString: Bombe
@@ -38,8 +39,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1756383030712992}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.475, y: -0.266, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0}
+  m_LocalPosition: {x: -4.6128306, y: 1.0378996, z: 0}
+  m_LocalScale: {x: 1.7425575, y: 1.7425575, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -76,19 +77,37 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.0021315068, y: 0.0021315143}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.56, y: 2.56}
+    oldSize: {x: 0.16, y: 0.16}
     newSize: {x: 2.56, y: 2.56}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.56, y: 2.56}
+  m_Size: {x: 0.1769177, y: 0.17691801}
   m_EdgeRadius: 0
+--- !u!95 &95501335032836888
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1756383030712992}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e3527fbaa2c2c164eb57b4725a5a1d2f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &114821888469050712
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -114,6 +133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myPSList: []
+  myAnim: {fileID: 0}
   waveManager: {fileID: 114296563941989752, guid: b5128d70401ffa24cba9fa4d3e19e364,
     type: 2}
   canBePushed: 1
@@ -127,6 +147,7 @@ MonoBehaviour:
   VerticalPull: 1
   HorizontalPull: 1
   connectedGameObject: {fileID: 0}
+  isActivated: 0
   activateBehaviour: 0
 --- !u!212 &212643537248209316
 SpriteRenderer:
@@ -163,7 +184,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 74c24bb2e8f9e04428449bf25f94d6a3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5a38aae54887bea458f5c4c38f9a4f24, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
