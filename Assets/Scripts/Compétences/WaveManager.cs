@@ -93,7 +93,7 @@ public class WaveManager : MonoBehaviour
             leftAxisInUse = false;
         }
 
-        switch (myPlayer.reve)
+        switch (myPlayer.isDream)
         {
             case true:
 

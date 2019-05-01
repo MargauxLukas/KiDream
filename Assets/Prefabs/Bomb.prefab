@@ -25,9 +25,9 @@ GameObject:
   - component: {fileID: 114943634689890884}
   - component: {fileID: 50110495259964812}
   - component: {fileID: 95501335032836888}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bomb
-  m_TagString: Bombe
+  m_TagString: ActionObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -39,7 +39,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1756383030712992}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.6128306, y: 1.0378996, z: 0}
+  m_LocalPosition: {x: -3.3647957, y: -1.2881429, z: 0}
   m_LocalScale: {x: 1.7425575, y: 1.7425575, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
@@ -133,9 +133,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myPSList: []
-  myAnim: {fileID: 0}
-  waveManager: {fileID: 114296563941989752, guid: b5128d70401ffa24cba9fa4d3e19e364,
-    type: 2}
+  waveManager: {fileID: 0}
+  linearDrag: 1
   canBePushed: 1
   canBePulled: 0
   canBeActivated: 0
@@ -147,8 +146,10 @@ MonoBehaviour:
   VerticalPull: 1
   HorizontalPull: 1
   connectedGameObject: {fileID: 0}
+  playAnimation: 0
   isActivated: 0
   activateBehaviour: 0
+  childNumberTolerance: 0
 --- !u!212 &212643537248209316
 SpriteRenderer:
   m_ObjectHideFlags: 1
