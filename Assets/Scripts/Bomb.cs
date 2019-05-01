@@ -58,7 +58,7 @@ public class Bomb : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        collider.isTrigger = true;
+        collider.isTrigger = false;
     }
 
     private void OnParticleCollision(GameObject other)
