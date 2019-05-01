@@ -9,13 +9,13 @@ public class Bomb : MonoBehaviour
 
     bool canHurtBoss = false;
 
-    BoxCollider2D collider;
+    CircleCollider2D collider;
     GameObject        Boss;
 
 	void Start ()
     {
         Boss = GameObject.Find("Boss");
-        collider = gameObject.GetComponent<BoxCollider2D>();
+        collider = gameObject.GetComponent<CircleCollider2D>();
 	}
 	
 	void Update ()
@@ -30,6 +30,7 @@ public class Bomb : MonoBehaviour
 
     void Explode(Collider2D collision)
     {
+        //Debug.Log(collision);
         if (collision.tag == "Player")
         {
             Destroy(gameObject);
