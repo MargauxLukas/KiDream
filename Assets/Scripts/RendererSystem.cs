@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class RendererSystem : MonoBehaviour
-{
+{    
+
     [Range(-10,10), SerializeField]
     private float offsetValue = 0;
 
@@ -18,8 +19,13 @@ public class RendererSystem : MonoBehaviour
 
     public void OrderingLayers()
     {
-
         this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y, (transform.position.y + offsetValue));
+
+        if(this.gameObject.tag == "Light")
+        {
+            Light myLight = this.GetComponent<Light>();
+            offsetValue = -(myLight.range / 2);
+        }
 
         if(runOnlyOnceForStaticObjects == true)
         {

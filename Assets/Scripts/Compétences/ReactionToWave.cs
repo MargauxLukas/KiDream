@@ -6,14 +6,17 @@ public class ReactionToWave : MonoBehaviour
 {
 
     public List<ParticleSystem> myPSList = new List<ParticleSystem>();
-    public Animator myAnim;
 
     private ParticleSystem shooter;
     private int localCounter;
-
+    private Rigidbody2D thisRb;
     private ParticleSystem ps;
 
     public WaveManager waveManager;
+
+    [Header("Physics")]
+    [Range(0,10), SerializeField]
+    private int linearDrag;
 
     [Header("Propriétés")]
     public bool canBePushed = false;
@@ -23,33 +26,52 @@ public class ReactionToWave : MonoBehaviour
     public bool canBePullCorrupted = false;
     public bool canBeActivateCorrupted = false;
 
-    [Header("Push force")]
+    [Header("Push options")]
     [Range(0, 50), SerializeField]
-    private float VerticalPush = 1f;
+    private float verticalPushForce = 1f;
     [Range(0, 50), SerializeField]
-    private float HorizontalPush = 1f;
+    private float horizontalPushForce = 1f;
 
-    [Header("Pull force")]
+    [Header("Pull options")]
     [Range(0, 50), SerializeField]
-    public float VerticalPull = 1f;
+    public float verticalPullForce = 1f;
     [Range(0, 50), SerializeField]
-    public float HorizontalPull = 1f;
+    public float horizontalPullForce = 1f;
 
     [Header("Activate options")]
     public GameObject connectedGameObject;
+    public bool playAnimation;
     public bool isActivated;
     public ActivateBehaviour activateBehaviour;
+
+    [Header("Corrupted Push options")]
+    [Range(0, 50), SerializeField]
+    public float cPushRadius;
+
+    [Header("Corrupted Pull options")]
+    [Range(0, 50), SerializeField]
+    public float cPullRadius;
+
+    [Header("Corrupted Activate options")]
+    [Range(0, 50), SerializeField]
+    public float cActivateRadius;
+
+    [Header("Enfants")]
+    public int childNumberTolerance;
 
     private bool doubleLock = false;
 
 	// Start
 	void Start()
     {
+        CrashAvoider();
 
+        thisRb = this.GetComponent<Rigidbody2D>();
+        thisRb.drag = linearDrag;
 	}
 	
 	// Update
-	void Update ()
+	void Update()
     {
         ActivationDesactivationAnimation();
     }
@@ -64,30 +86,31 @@ public class ReactionToWave : MonoBehaviour
                 case WaveType.Push:
                     if(canBePushed == true)
                     {
-                        rb.AddForce(new Vector2(-(shooter.transform.position.x - this.transform.position.x) * HorizontalPush, -(shooter.transform.position.y - this.transform.position.y) * VerticalPush));
+                        rb.AddForce(new Vector2(-(shooter.transform.position.x - this.transform.position.x) * horizontalPushForce, -(shooter.transform.position.y - this.transform.position.y) * verticalPushForce));
                     }
                     break;
 
                 case WaveType.Pull:
                     if(canBePulled == true)
                     {
-                        rb.AddForce(new Vector2((shooter.transform.position.x - this.transform.position.x) * HorizontalPull, (shooter.transform.position.y - this.transform.position.y) * VerticalPull));
+                        rb.AddForce(new Vector2((shooter.transform.position.x - this.transform.position.x) * horizontalPullForce, (shooter.transform.position.y - this.transform.position.y) * verticalPullForce));
                     }
                     break;
 
                 case WaveType.Activate:
-                    if(canBeActivated == true && connectedGameObject != null)
+                    if(canBeActivated == true)
                     {
 
-                    if (isActivated == true)
-                    {
-                        isActivated = false;
-                    }
-                    else
-                    {
-                        isActivated = true;
-                    }
+                        /*if (isActivated == true)
+                        {
+                            isActivated = false;
+                        }
+                        else
+                        {
+                            isActivated = true;
+                        }*/
                         
+
                         switch (activateBehaviour)
                         {
 
@@ -102,7 +125,6 @@ public class ReactionToWave : MonoBehaviour
                         case ActivateBehaviour._SetActive:
                             connectedGameObject.SetActive(true);
                             break;
-
                         }
                     }
                     break;
@@ -110,27 +132,37 @@ public class ReactionToWave : MonoBehaviour
                 case WaveType.PushCorruption:
 
                     localCounter = 0;
-                    SetupChosenParticleSystem();                    
+                    if(canBePushCorrupted == true)
+                    {
+                        SetupChosenParticleSystem();
+                    }
                     break;
 
                 case WaveType.PullCorruption:
 
                     localCounter = 1;
-                    SetupChosenParticleSystem();
+                    if(canBePullCorrupted == true)
+                    {
+                        SetupChosenParticleSystem();
+                    }
                     break;
 
                 case WaveType.ActivateCorruption:
 
                     localCounter = 2;
-                    SetupChosenParticleSystem();
+                    if(canBeActivateCorrupted == true)
+                    {
+                        SetupChosenParticleSystem();
+                    }
                     break;
             }
 
     }
 
     public void SetupChosenParticleSystem()
-    {
-        if (canBePushCorrupted == true && this.transform.childCount == 0)
+    {    
+
+        if (this.transform.childCount == childNumberTolerance)
         {
             ps = Instantiate(myPSList[localCounter]);
             ps.transform.position = this.transform.position;
@@ -138,27 +170,39 @@ public class ReactionToWave : MonoBehaviour
             ps.transform.SetParent(this.transform);
             ps.Play();
         }
-        else if (canBeActivateCorrupted == true && this.transform.childCount != 0)
+        else if (this.transform.childCount > childNumberTolerance)
         {
-            Transform child = this.transform.GetChild(0);
+            Transform child = this.transform.GetChild(childNumberTolerance);
             Destroy(child.gameObject);
-            this.transform.DetachChildren();
-            Debug.Log(this.transform.childCount);
+            child.parent = null;
             SetupChosenParticleSystem();
         }
     }
 
     public void ActivationDesactivationAnimation()
     {
-        if (isActivated == true && doubleLock == false)
+        if(playAnimation == true)
         {
-            myAnim.SetBool("isActivated", true);
-            doubleLock = true;
+            if (isActivated == true && doubleLock == false)
+            {
+                Animator myAnim = this.GetComponent<Animator>();
+                myAnim.SetBool("isActivated", true);
+                doubleLock = true;
+            }
+            else if (isActivated == false && doubleLock == true)
+            {
+                Animator myAnim = this.GetComponent<Animator>();
+                myAnim.SetBool("isActivated", false);
+                doubleLock = false;
+            }
         }
-        else if (isActivated == false && doubleLock == true)
+    }
+
+    public void CrashAvoider()
+    {
+        if(this.GetComponent<Animator>() == null)
         {
-            myAnim.SetBool("isActivated", false);
-            doubleLock = false;
+            playAnimation = false;
         }
     }
 

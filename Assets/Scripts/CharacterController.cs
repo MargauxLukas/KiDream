@@ -8,40 +8,28 @@ using UnityEngine.UI;
 
 public class CharacterController : MonoBehaviour
 {
-    [SerializeField] float maxSpeed = 2f;
+    Animator    animator  ;
+    Rigidbody2D rigidBody ;
+    GameMaster  gameMaster;
+
+    //Collider2D[] hitResult = new Collider2D[10]; //Sert à l'attaque
+
+    //Liste des objets qu'il y'a en Cauchemar et Reve
+    GameObject[] cauchemarObjects;
+    GameObject[] reveObjects     ;
 
     public WaveManager waveManager;
 
-    private float moveX     = 0f;
-    private float moveY     = 0f;
-    private bool nightmare = false;
-    private bool dream = true;
-
     [Header("Shooting System")]
-    public Transform myShooterTransform;
-    public ParticleSystem myShooter;
-    public Transform target;
-    public Transform targetRotator;
+    public ParticleSystem myShooter         ;
+    public Transform      myShooterTransform;
+    public Transform      target            ;
+    public Transform      targetRotator     ;
+
     [Range(0, 0.62f), SerializeField]
     private float joystickTolerance = 0f;
 
-    public int hp     = 3;
-
-    public bool dialogueHasStarted = false;
-    public bool reve               = true;
-    public bool isKilled           = false;
-
-    public int pushPower = 2;
-    public int weight    = 6;
-
-    private Rigidbody2D rigidBody;
-    private GameMaster gameMaster;
-
-    Animator animator;
-    DialogueManager dialogueManager;
-    DialogueTrigger dialogueTrigger;
-
-    [Header ("Tilemaps")]
+    [Header("Tilemaps")]
     public GameObject tilemapD;
     public GameObject tilemapN;
 
@@ -49,11 +37,21 @@ public class CharacterController : MonoBehaviour
     public GameObject dialogueManagerObject;
     public GameObject dialogueTriggerObject;
 
-    private Collider2D[] hitResult = new Collider2D[10];
+    DialogueManager dialogueManager;
+    DialogueTrigger dialogueTrigger;
 
-    //Liste des objets qu'il y'a en Cauchemar et Reve
-    private GameObject[] cauchemarObjects;
-    private GameObject[] reveObjects;
+    public bool dialogueHasStarted = false;
+
+    [Header("Player Characteristics")]
+    [SerializeField] float maxSpeed = 2f;
+             private float moveX    = 0f;
+             private float moveY    = 0f;
+
+    public int hp = 3;
+
+    private bool isKilled  = false;
+    //private bool nightmare = false;  //Useless donc je l'ai viré
+    public  bool isDream     =  true;
 
     private void Awake()
     {
@@ -62,7 +60,7 @@ public class CharacterController : MonoBehaviour
 
     void Start()
     {
-        animator = GetComponent<Animator>();
+        animator  = GetComponent<Animator   >();
         rigidBody = GetComponent<Rigidbody2D>();
     }
 
@@ -70,33 +68,31 @@ public class CharacterController : MonoBehaviour
     {   
         if(myShooter != waveManager.WaveShooters[waveManager.selectionIndex])
         {
-            myShooter = waveManager.WaveShooters[waveManager.selectionIndex];
+            myShooter          = waveManager.WaveShooters         [waveManager.selectionIndex];
             myShooterTransform = waveManager.WaveShootersTransform[waveManager.selectionIndex];
         }
 
         moveX = Input.GetAxis("Horizontal");
-        moveY =   Input.GetAxis("Vertical");
+        moveY = Input.GetAxis("Vertical"  );
 
-        if(Input.GetKeyDown(KeyCode.Joystick1Button3) && nightmare == false)
+        if(Input.GetKeyDown(KeyCode.Joystick1Button3) && isDream)
         {
             GoToNightmare();
-            nightmare = true;
+            isDream = false;
         }
-        else if(Input.GetKeyDown(KeyCode.Joystick1Button3) && nightmare == true)
+        else if(Input.GetKeyDown(KeyCode.Joystick1Button3) && !isDream)
         {
             GoToDream();
-            nightmare = false;
+            isDream = true;
         }
 
-
-
-        if(Input.GetKeyDown(KeyCode.Joystick1Button0) && dialogueHasStarted == false)
+        if(Input.GetKeyDown(KeyCode.Joystick1Button0) && !dialogueHasStarted)
         {
             dialogueTrigger = dialogueTriggerObject.GetComponent<DialogueTrigger>();
             dialogueTrigger.TriggerDialogue();
             dialogueHasStarted = true;
         }
-        else if (Input.GetKeyDown(KeyCode.Joystick1Button0) && dialogueHasStarted == true)
+        else if (Input.GetKeyDown(KeyCode.Joystick1Button0) && dialogueHasStarted)
         {
             dialogueManager = dialogueManagerObject.GetComponent<DialogueManager>();
             dialogueManager.DisplayNextSentence();
@@ -117,17 +113,15 @@ public class CharacterController : MonoBehaviour
 
     void IsMoving()
     {
-        if ((moveX > 0 || moveX < 0) || (moveY > 0 || moveY < 0))
+        if ((moveX > 0 || moveX < 0) || 
+            (moveY > 0 || moveY < 0))
         {
             animator.SetFloat("moveX", moveX);
             animator.SetFloat("moveY", moveY);
 
             animator.SetBool("isMoving", true);
         }
-        else
-        {
-            animator.SetBool("isMoving", false);
-        }
+        else{animator.SetBool("isMoving", false);}
     }
 
     /**************************************
@@ -136,9 +130,9 @@ public class CharacterController : MonoBehaviour
     void GoToNightmare()
     {
         //GameObject.Find("Main Camera").GetComponent<Rippleeffect>().RippleEff(transform, 10f, 1f);
-        tilemapD.GetComponent<TilemapRenderer>().enabled=false;
-        tilemapN.GetComponent<TilemapRenderer>().enabled = true;
-        reve = false;
+        tilemapD.GetComponent<TilemapRenderer>().enabled = false;
+        tilemapN.GetComponent<TilemapRenderer>().enabled =  true;
+        isDream = false;
 
         reveObjects = GameObject.FindGameObjectsWithTag("CeQuiApparaitEnReve");
         cauchemarObjects = GameObject.FindGameObjectsWithTag("CeQuiApparaitEnCauchemar");
@@ -176,7 +170,7 @@ public class CharacterController : MonoBehaviour
         //GameObject.Find("Main Camera").GetComponent<Rippleeffect>().RippleEff(transform, 10f, 1f);
         tilemapD.GetComponent<TilemapRenderer>().enabled = true;
         tilemapN.GetComponent<TilemapRenderer>().enabled = false;
-        reve = true;
+        isDream = true;
 
         reveObjects = GameObject.FindGameObjectsWithTag("CeQuiApparaitEnReve");
         cauchemarObjects = GameObject.FindGameObjectsWithTag("CeQuiApparaitEnCauchemar");

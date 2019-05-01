@@ -28,7 +28,7 @@ public class Ennemy : MonoBehaviour
 
     private void Update()
     {
-        isReve = GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterController>().reve;
+        isReve = GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterController>().isDream;
         isDead(hpEnemy);
 
         //transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);

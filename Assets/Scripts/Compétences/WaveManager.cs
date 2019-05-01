@@ -32,9 +32,14 @@ public class WaveManager : MonoBehaviour
     public int corruptedActivateCost;
 
     private int enumCount;
+
+    private bool canDisable;
+    private bool isPlayingCoroutine;
+
     public bool isRegenerating;
 
-    private bool axisInUse = false;
+    private bool rightAxisInUse = false;
+    private bool leftAxisInUse = false;
 
 
     // Start
@@ -54,8 +59,7 @@ public class WaveManager : MonoBehaviour
         {
             CancelInvoke();
             isRegenerating = false;
-        }
-
+        }      
 
         WaveTypeSelector();
 
@@ -65,7 +69,7 @@ public class WaveManager : MonoBehaviour
             {
                 ps.gameObject.SetActive(true);
             }
-            else
+            else if(ps != WaveShooters[selectionIndex] && canDisable == true)
             {
                 ps.gameObject.SetActive(false);
             }
@@ -74,12 +78,21 @@ public class WaveManager : MonoBehaviour
 
     public void WaveTypeSelector()
     {
+        if (Input.GetAxisRaw("ShootParticles") == 0)
+        {
+            rightAxisInUse = false;
+        }
 
-        switch(myPlayer.reve)
+        if (Input.GetAxisRaw("ChangeParticles") == 0)
+        {
+            leftAxisInUse = false;
+        }
+
+        switch (myPlayer.isDream)
         {
             case true:
 
-                if (Input.GetKeyDown(KeyCode.Joystick1Button1))
+                if (Input.GetAxisRaw("ChangeParticles") != 0 && leftAxisInUse == false)
                 {
                     if (selectionIndex == enumCount / 2)
                     {
@@ -89,17 +102,20 @@ public class WaveManager : MonoBehaviour
                     {
                         selectionIndex++;
                     }
+
+                    leftAxisInUse = true;
                 }
 
                 if (selectionIndex >= WaveShooters.Count / 2)
                 {
                     selectionIndex = selectionIndex - WaveShooters.Count / 2;
                 }
+
                 break;
 
             case false:
 
-                if (Input.GetKeyDown(KeyCode.Joystick1Button1))
+                if (Input.GetAxisRaw("ChangeParticles") != 0 && leftAxisInUse == false)
                 {
                     if (selectionIndex == enumCount)
                     {
@@ -109,16 +125,19 @@ public class WaveManager : MonoBehaviour
                     {
                         selectionIndex++;
                     }
+
+                    leftAxisInUse = true;
                 }
 
                 if (selectionIndex < WaveShooters.Count / 2)
                 {
                     selectionIndex = selectionIndex + WaveShooters.Count / 2;
                 }
+
                 break;
         }
 
-        if (Input.GetAxisRaw("ShootParticles") != 0 && uiManager.manaBar.value != 0 && axisInUse == false)
+        if (Input.GetAxisRaw("ShootParticles") != 0 && uiManager.manaBar.value != 0 && rightAxisInUse == false)
         {          
                 switch (selectionIndex)
                 {
@@ -171,11 +190,9 @@ public class WaveManager : MonoBehaviour
                         }
                         break;
                 }
-                axisInUse = true;            
-        }
-        if (Input.GetAxisRaw("ShootParticles") == 0)
-        {
-            axisInUse = false;
+                StopCoroutine("ChangingAbilityDisableDelay");
+                StartCoroutine("ChangingAbilityDisableDelay");
+                rightAxisInUse = true;
         }
     }
 
@@ -190,6 +207,14 @@ public class WaveManager : MonoBehaviour
     public void ManaRegen()
     {
         uiManager.manaBar.value = uiManager.manaBar.value + regenerationValue;
+    }
+
+    IEnumerator ChangingAbilityDisableDelay()
+    {
+        canDisable = false;
+        yield return new WaitForSeconds(WaveShooters[selectionIndex].startLifetime);
+        canDisable = true;
+
     }
 }
 

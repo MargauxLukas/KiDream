@@ -9,15 +9,13 @@ public class Bomb : MonoBehaviour
 
     bool canHurtBoss = false;
 
-    BoxCollider2D collider;
+    CircleCollider2D collider;
     GameObject        Boss;
-
-
 
 	void Start ()
     {
         Boss = GameObject.Find("Boss");
-        collider = gameObject.GetComponent<BoxCollider2D>();
+        collider = gameObject.GetComponent<CircleCollider2D>();
 	}
 	
 	void Update ()
@@ -30,14 +28,15 @@ public class Bomb : MonoBehaviour
         }
 	}
 
-    void Explode(Collider2D collision)
+    void Explode(Collision2D collision)
     {
-        if (collision.tag == "Player")
+        //Debug.Log(collision);
+        if (collision.gameObject.tag == "Player")
         {
             Destroy(gameObject);
             Destroy(collision.gameObject);
         }
-        if (collision.tag == "Boss" && canHurtBoss)
+        if (collision.gameObject.tag == "Boss" && canHurtBoss)
         {
             Destroy(gameObject);
             Boss.GetComponent<Boss>().Damages();
@@ -52,14 +51,14 @@ public class Bomb : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         Explode(collision);
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        collider.isTrigger = false;
+        collider.isTrigger = true;
     }
 
     private void OnParticleCollision(GameObject other)

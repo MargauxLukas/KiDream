@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class PushEffect : MonoBehaviour
 {
-    CircleCollider2D bColRadius;
+    CircleCollider2D colRadius;
+    ParticleSystem corruptedPushPS;
+
     public Rigidbody2D rb;
 
     [Header("Forces horizontales et verticales")]
@@ -19,7 +21,8 @@ public class PushEffect : MonoBehaviour
 
     void Start()
     {
-        bColRadius = this.GetComponent<CircleCollider2D>();
+        colRadius = this.GetComponent<CircleCollider2D>();
+        corruptedPushPS = this.GetComponent<ParticleSystem>();
     }
 
     void Update()
@@ -42,14 +45,11 @@ public class PushEffect : MonoBehaviour
             Vector2 rotationVector = new Vector2(collision.transform.position.x - xInitial, collision.transform.position.y - yInitial);
             float angleValue = Mathf.Atan2(rotationVector.normalized.y, rotationVector.normalized.x) * Mathf.Rad2Deg;
 
-            //Debug.Log(angleValue);
-
-            float x = xInitial + bColRadius.radius * Mathf.Cos(angleValue);
-            float y = yInitial + bColRadius.radius * Mathf.Sin(angleValue);
+            /*float x = xInitial + bColRadius.radius * Mathf.Cos(angleValue);
+            float y = yInitial + bColRadius.radius * Mathf.Sin(angleValue);*/
 
             rb = collision.gameObject.GetComponent<Rigidbody2D>();
             rb.AddForce((collision.transform.position - transform.position)*forceX);
-            Debug.Log(new Vector2(x, y));
         }
         else if(collision.tag == "ActionObject") //Tous les objets ayant ce tag doivent avoir un BoxCollider2D (Normal), un RigidBody2D (Dynamic + GravityScale à 0) et le script ReactionToWave.
         {
@@ -57,12 +57,12 @@ public class PushEffect : MonoBehaviour
 
             if(behaviour.canBePushed == true)
             {
-                Debug.Log("Yoooo");
+                colRadius.radius = behaviour.cPushRadius;
                 rb = collision.gameObject.GetComponent<Rigidbody2D>();
-                rb.AddForce(new Vector2((this.transform.position.x - collision.transform.position.x) * forceX, (this.transform.position.y - collision.transform.position.y) * forceY));
+                rb.AddForce(new Vector2(-(this.transform.position.x - collision.transform.position.x) * forceX, -(this.transform.position.y - collision.transform.position.y) * forceY));
             }
         }
-                    //où(x0, y0) sont les coord du centre, r est le rayon, et t l'angle.
+                    
     }
 
 

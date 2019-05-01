@@ -16,7 +16,7 @@ public class ParticleScript : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        isReve = GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterController>().reve;
+        isReve = GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterController>().isDream;
         ParticlePlay(isReve);
         
 	}

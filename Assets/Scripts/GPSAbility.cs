@@ -47,7 +47,7 @@ public class GPSAbility : MonoBehaviour
 
     public void LaunchGPS()
     {
-        if (Input.GetKeyDown("joystick 1 button 1") && characterController.reve == true && isLaunching == false)
+        if (Input.GetKeyDown("joystick 1 button 1") && characterController.isDream == true && isLaunching == false)
         {
             isLaunching = true;
             myParticles.SetActive(true);

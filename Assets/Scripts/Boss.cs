@@ -5,7 +5,13 @@ using UnityEngine;
 public class Boss : MonoBehaviour
 {
     Animator animator;
+    Animator bombAnimator1;
+    Animator bombAnimator2;
+    Animator bombAnimator3;
 
+    GameObject player;
+
+    [Header("GameObject to attached")]
     public  GameObject         bomb;
     public  GameObject        ombre; //Ombre sur le sol quand le boss est en l'air
     public  GameObject bombLauncher; //Zone ou les bombes spawnent
@@ -19,10 +25,10 @@ public class Boss : MonoBehaviour
 
     private Rigidbody2D rb;
 
+    [Header("Boss Characteristics")]
     public float speed = 0.2f;
 
-    private float timer;
-
+    private float timer            ;
     private float distanceDeltaHV  ;
     private float distanceDeltaDiag;
 
@@ -32,18 +38,23 @@ public class Boss : MonoBehaviour
     private bool needToMove1     = false;
     private bool needToMove2     = false;
     private bool isStartingPhase =  true;
+    private bool isDream = true;
 
-    public int hp        = 3;
-    public int seconds   = 0;
-    public int lookingAt = 0; // 1 = Droite, 2 = Down, 3 = Left, 4 = Up
-
+    private int seconds   = 0;
+    private int lookingAt = 0; // 1 = Droite, 2 = Down, 3 = Left, 4 = Up
     private int direction = 0;
+    private int hp        = 3;
 
     void Start ()
     {
         animator = GetComponent<Animator   >();
         rb       = GetComponent<Rigidbody2D>();
         target   = GameObject.FindGameObjectWithTag("Player").transform;
+        player = GameObject.Find("Player");
+
+        bombAnimator1 = null;
+        bombAnimator1 = null;
+        bombAnimator1 = null;
 
         distanceDeltaHV   = Time.deltaTime *   1f;
         distanceDeltaDiag = Time.deltaTime * 0.5f;
@@ -51,7 +62,23 @@ public class Boss : MonoBehaviour
 	
 	void Update ()
     {
-        if (needToMove1 || needToMove2){MovingBomb();} //Tant que bombe n'a pas atteint sa destination
+        isDream = player.GetComponent<CharacterController>().isDream;
+        if (isDream) { animator.SetBool("isDream",  true);}
+        else         { animator.SetBool("isDream", false);}
+
+        if (needToMove1 || needToMove2)
+        {
+            MovingBomb();
+            bombAnimator1.SetBool("isMoving", true);
+            bombAnimator2.SetBool("isMoving", true);
+            bombAnimator3.SetBool("isMoving", true);
+        } //Tant que bombe n'a pas atteint sa destination
+        else if (!needToMove1 && !needToMove2 && (bombe1 != null || bombe2 != null || bombe3 != null))
+        {
+            bombAnimator1.SetBool("isMoving", false);
+            bombAnimator2.SetBool("isMoving", false);
+            bombAnimator3.SetBool("isMoving", false);
+        }
 
         if (Time.time > timer + 1) //Timer
         {
@@ -241,6 +268,9 @@ public class Boss : MonoBehaviour
                 bombe1 = Instantiate(bomb, new Vector3(bombLauncher.transform.position.x, bombLauncher.transform.position.y, bombLauncher.transform.position.z), Quaternion.identity);
                 bombe2 = Instantiate(bomb, new Vector3(bombLauncher.transform.position.x, bombLauncher.transform.position.y, bombLauncher.transform.position.z), Quaternion.identity);
                 bombe3 = Instantiate(bomb, new Vector3(bombLauncher.transform.position.x, bombLauncher.transform.position.y, bombLauncher.transform.position.z), Quaternion.identity);
+                bombAnimator1 = bombe1.GetComponent<Animator>();
+                bombAnimator2 = bombe2.GetComponent<Animator>();
+                bombAnimator3 = bombe3.GetComponent<Animator>();
                 needToMove1 = true;
                 needToMove2 = true;
                 return 1;
@@ -249,6 +279,9 @@ public class Boss : MonoBehaviour
                 bombe1 = Instantiate(bomb, new Vector3(bombLauncher.transform.position.x, bombLauncher.transform.position.y, bombLauncher.transform.position.z), Quaternion.identity);
                 bombe2 = Instantiate(bomb, new Vector3(bombLauncher.transform.position.x, bombLauncher.transform.position.y, bombLauncher.transform.position.z), Quaternion.identity);
                 bombe3 = Instantiate(bomb, new Vector3(bombLauncher.transform.position.x, bombLauncher.transform.position.y, bombLauncher.transform.position.z), Quaternion.identity);
+                bombAnimator1 = bombe1.GetComponent<Animator>();
+                bombAnimator2 = bombe2.GetComponent<Animator>();
+                bombAnimator3 = bombe3.GetComponent<Animator>();
                 needToMove1 = true;
                 needToMove2 = true;
                 return 2;
@@ -257,6 +290,9 @@ public class Boss : MonoBehaviour
                 bombe1 = Instantiate(bomb, new Vector3(bombLauncher.transform.position.x, bombLauncher.transform.position.y, bombLauncher.transform.position.z), Quaternion.identity);
                 bombe2 = Instantiate(bomb, new Vector3(bombLauncher.transform.position.x, bombLauncher.transform.position.y, bombLauncher.transform.position.z), Quaternion.identity);
                 bombe3 = Instantiate(bomb, new Vector3(bombLauncher.transform.position.x, bombLauncher.transform.position.y, bombLauncher.transform.position.z), Quaternion.identity);
+                bombAnimator1 = bombe1.GetComponent<Animator>();
+                bombAnimator2 = bombe2.GetComponent<Animator>();
+                bombAnimator3 = bombe3.GetComponent<Animator>();
                 needToMove1 = true;
                 needToMove2 = true;
                 return 3;
@@ -265,6 +301,9 @@ public class Boss : MonoBehaviour
                 bombe1 = Instantiate(bomb, new Vector3(bombLauncher.transform.position.x, bombLauncher.transform.position.y, bombLauncher.transform.position.z), Quaternion.identity);
                 bombe2 = Instantiate(bomb, new Vector3(bombLauncher.transform.position.x, bombLauncher.transform.position.y, bombLauncher.transform.position.z), Quaternion.identity);
                 bombe3 = Instantiate(bomb, new Vector3(bombLauncher.transform.position.x, bombLauncher.transform.position.y, bombLauncher.transform.position.z), Quaternion.identity);
+                bombAnimator1 = bombe1.GetComponent<Animator>();
+                bombAnimator2 = bombe2.GetComponent<Animator>();
+                bombAnimator3 = bombe3.GetComponent<Animator>();
                 needToMove1 = true;
                 needToMove2 = true;
                 return 4;
@@ -386,6 +425,9 @@ public class Boss : MonoBehaviour
                     needToMove2 = false;
                 }
             }
+            bombAnimator1.SetInteger("direction", direction);
+            bombAnimator2.SetInteger("direction", direction);
+            bombAnimator3.SetInteger("direction", direction);
         }
     }
 

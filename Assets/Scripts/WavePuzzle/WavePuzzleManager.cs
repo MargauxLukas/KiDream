@@ -141,7 +141,7 @@ public class WavePuzzleManager : MonoBehaviour
     {
 
         // Musique de fin Reve
-        if (wavePuzzleComplete == true && myPlayer.reve == true)
+        if (wavePuzzleComplete == true && myPlayer.isDream == true)
         {
             myMixer.SetFloat("MyPitch", 1f);
 
@@ -159,7 +159,7 @@ public class WavePuzzleManager : MonoBehaviour
         }
 
         //Musique de fin Cauchermar
-        else if (wavePuzzleComplete == true && myPlayer.reve == false)
+        else if (wavePuzzleComplete == true && myPlayer.isDream == false)
         {
             myMixer.SetFloat("MyPitch", 1.60f);
 
@@ -180,7 +180,7 @@ public class WavePuzzleManager : MonoBehaviour
     IEnumerator WaitForNewNote2()
     {
         //Musique décalée Reve
-        if (isPlayingWinningSong == true && myPlayer.reve == true)
+        if (isPlayingWinningSong == true && myPlayer.isDream == true)
         {
             myMixer.SetFloat("MyPitch", 1f);
 
@@ -198,7 +198,7 @@ public class WavePuzzleManager : MonoBehaviour
         }
 
         //Musique décalée Cauchemar
-        else if (isPlayingWinningSong == true && myPlayer.reve == false)
+        else if (isPlayingWinningSong == true && myPlayer.isDream == false)
         {
             myMixer.SetFloat("MyPitch", 1.60f);
 
@@ -218,11 +218,11 @@ public class WavePuzzleManager : MonoBehaviour
 
     public void PitchTweaker()
     {
-        if (myPlayer.reve == true)
+        if (myPlayer.isDream == true)
         {
             myMixer.SetFloat("MyPitch", 1f);
         }
-        else if (myPlayer.reve == false)
+        else if (myPlayer.isDream == false)
         {
             myMixer.SetFloat("MyPitch", 1.60f);
         }
