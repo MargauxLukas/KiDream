@@ -26,17 +26,17 @@ public class ReactionToWave : MonoBehaviour
     public bool canBePullCorrupted = false;
     public bool canBeActivateCorrupted = false;
 
-    [Header("Push force")]
+    [Header("Push options")]
     [Range(0, 50), SerializeField]
-    private float VerticalPush = 1f;
+    private float verticalPushForce = 1f;
     [Range(0, 50), SerializeField]
-    private float HorizontalPush = 1f;
+    private float horizontalPushForce = 1f;
 
-    [Header("Pull force")]
+    [Header("Pull options")]
     [Range(0, 50), SerializeField]
-    public float VerticalPull = 1f;
+    public float verticalPullForce = 1f;
     [Range(0, 50), SerializeField]
-    public float HorizontalPull = 1f;
+    public float horizontalPullForce = 1f;
 
     [Header("Activate options")]
     public GameObject connectedGameObject;
@@ -44,16 +44,28 @@ public class ReactionToWave : MonoBehaviour
     public bool isActivated;
     public ActivateBehaviour activateBehaviour;
 
+    [Header("Corrupted Push options")]
+    [Range(0, 50), SerializeField]
+    public float cPushRadius;
+
+    [Header("Corrupted Pull options")]
+    [Range(0, 50), SerializeField]
+    public float cPullRadius;
+
+    [Header("Corrupted Activate options")]
+    [Range(0, 50), SerializeField]
+    public float cActivateRadius;
+
     [Header("Enfants")]
     public int childNumberTolerance;
 
     private bool doubleLock = false;
 
-
-
 	// Start
 	void Start()
     {
+        CrashAvoider();
+
         thisRb = this.GetComponent<Rigidbody2D>();
         thisRb.drag = linearDrag;
 	}
@@ -74,14 +86,14 @@ public class ReactionToWave : MonoBehaviour
                 case WaveType.Push:
                     if(canBePushed == true)
                     {
-                        rb.AddForce(new Vector2(-(shooter.transform.position.x - this.transform.position.x) * HorizontalPush, -(shooter.transform.position.y - this.transform.position.y) * VerticalPush));
+                        rb.AddForce(new Vector2(-(shooter.transform.position.x - this.transform.position.x) * horizontalPushForce, -(shooter.transform.position.y - this.transform.position.y) * verticalPushForce));
                     }
                     break;
 
                 case WaveType.Pull:
                     if(canBePulled == true)
                     {
-                        rb.AddForce(new Vector2((shooter.transform.position.x - this.transform.position.x) * HorizontalPull, (shooter.transform.position.y - this.transform.position.y) * VerticalPull));
+                        rb.AddForce(new Vector2((shooter.transform.position.x - this.transform.position.x) * horizontalPullForce, (shooter.transform.position.y - this.transform.position.y) * verticalPullForce));
                     }
                     break;
 
@@ -183,6 +195,14 @@ public class ReactionToWave : MonoBehaviour
                 myAnim.SetBool("isActivated", false);
                 doubleLock = false;
             }
+        }
+    }
+
+    public void CrashAvoider()
+    {
+        if(this.GetComponent<Animator>() == null)
+        {
+            playAnimation = false;
         }
     }
 
