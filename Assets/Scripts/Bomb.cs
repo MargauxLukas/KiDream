@@ -10,18 +10,27 @@ public class Bomb : MonoBehaviour
 
     bool canHurtBoss = false;
 
-    CircleCollider2D      collider;
-    GameObject                Boss;
+    private bool isDream = true;
+
+    CircleCollider2D collider;
+
+    GameObject boss;
+    GameObject player;
 
 	void Start ()
     {
         animator = GetComponent<Animator>();
-        Boss = GameObject.Find("Boss");
+        boss     = GameObject.Find("Boss");
+        player   = GameObject.Find("Player");
         collider = gameObject.GetComponent<CircleCollider2D>();
 	}
 	
 	void Update ()
     {
+        isDream = player.GetComponent<CharacterController>().isDream;
+        if (isDream) { animator.SetBool("isDream",  true);}
+        else         { animator.SetBool("isDream", false);}
+
         timer += Time.deltaTime;
 
         if (timer >= explosionTime)
@@ -42,7 +51,7 @@ public class Bomb : MonoBehaviour
         if (collision.gameObject.tag == "Boss" && canHurtBoss)
         {
             animator.SetBool("isExplode", true);
-            Boss.GetComponent<Boss>().Damages();
+            boss.GetComponent<Boss>().Damages();
             Destroy(gameObject,0.55f);
         }
         if(collision.gameObject.name == "WallCollider")

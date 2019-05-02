@@ -123,12 +123,12 @@ public class Boss : MonoBehaviour
             else
             {
                 speed = 0.4f;
-                if (seconds < 3)
+                if (seconds < 4)
                 {
                     animator.SetBool("isMoving", true);
                     Move();
                 }
-                if (seconds == 3)
+                if (seconds == 4)
                 {
                     animator.SetBool(   "isMoving", false);
                     animator.SetBool("isLaunching",  true);
