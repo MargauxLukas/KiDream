@@ -73,7 +73,7 @@ public class Boss : MonoBehaviour
             bombAnimator2.SetBool("isMoving", true);
             bombAnimator3.SetBool("isMoving", true);
         } //Tant que bombe n'a pas atteint sa destination
-        else if (!needToMove1 && !needToMove2 && (bombe1 != null || bombe2 != null || bombe3 != null))
+        else if (!needToMove1 && !needToMove2 && (bombe1 != null && bombe2 != null && bombe3 != null))
         {
             bombAnimator1.SetBool("isMoving", false);
             bombAnimator2.SetBool("isMoving", false);
@@ -122,7 +122,7 @@ public class Boss : MonoBehaviour
             {
                 seconds = 0;
 
-                if (seconds >= 1)
+                if (seconds == 1)
                 {
                     animator.SetBool("isMoving", true);
                     Move();
@@ -230,13 +230,16 @@ public class Boss : MonoBehaviour
     void BossLanding()
     {
         gameObject.transform.position = Vector2.MoveTowards(transform.position, new Vector2(transform.position.x, ombreObject.transform.position.y), 0.1f);
+        animator.SetBool("isLanding", true);
         StartCoroutine(WaitLanding());
     }
 
     IEnumerator WaitLanding()
     {
-        yield return new WaitForSeconds(1.5f);
-        animator.SetBool("isLanding", true);
+        yield return new WaitForSeconds(2f);
+        animator.SetBool("isLanding", false);
+        Destroy(ombreObject);
+        isStartingPhase = false;
         //Detruit pillier
     }
 

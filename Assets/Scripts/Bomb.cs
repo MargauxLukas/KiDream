@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Bomb : MonoBehaviour
 {
+    Animator animator;
     [SerializeField] float explosionTime;
     [SerializeField] float timer;
 
@@ -14,6 +15,7 @@ public class Bomb : MonoBehaviour
 
 	void Start ()
     {
+        animator = GetComponent<Animator>();
         Boss = GameObject.Find("Boss");
         collider = gameObject.GetComponent<CircleCollider2D>();
 	}
@@ -33,13 +35,16 @@ public class Bomb : MonoBehaviour
         //Debug.Log(collision);
         if (collision.gameObject.tag == "Player")
         {
-            Destroy(gameObject);
+            animator.SetBool("isExplode", true);
             Destroy(collision.gameObject);
+            Destroy(gameObject,0.6f);
         }
         if (collision.gameObject.tag == "Boss" && canHurtBoss)
         {
-            Destroy(gameObject);
+            animator.SetBool("isExplode", true);
             Boss.GetComponent<Boss>().Damages();
+            //Wait
+            Destroy(gameObject,0.6f);
         }
     }
 
@@ -53,7 +58,6 @@ public class Bomb : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("FISLDSQF");
         Explode(collision);
     }
 
