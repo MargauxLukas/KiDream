@@ -2440,11 +2440,10 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!61 &222800002
-BoxCollider2D:
+--- !u!58 &222800002
+CircleCollider2D:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 61303846250283904, guid: f8b11d2fb26f2e54b8003320b3e4f4dd,
-    type: 2}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 222800001}
   m_Enabled: 1
@@ -2454,18 +2453,8 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.16, y: 0.16}
-    newSize: {x: 0.16, y: 0.16}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.2, y: 0.2}
-  m_EdgeRadius: 0
+  m_Radius: 0.08
 --- !u!114 &222800003
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10368,7 +10357,7 @@ ParticleSystem:
   m_GameObject: {fileID: 869338573}
   serializedVersion: 5
   lengthInSec: 5
-  simulationSpeed: 0.18
+  simulationSpeed: 1
   stopAction: 0
   looping: 1
   prewarm: 0
@@ -10439,7 +10428,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.5
+      scalar: 2
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -10492,7 +10481,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 5
+      scalar: 1
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -13935,7 +13924,7 @@ ParticleSystem:
         m_RotationOrder: 4
     minKillSpeed: 0
     maxKillSpeed: 10000
-    radiusScale: 0.15
+    radiusScale: 0.81
     collidesWith:
       serializedVersion: 2
       m_Bits: 822
@@ -15284,7 +15273,7 @@ ParticleSystem:
   m_GameObject: {fileID: 969112331}
   serializedVersion: 5
   lengthInSec: 5
-  simulationSpeed: 0.18
+  simulationSpeed: 1
   stopAction: 0
   looping: 1
   prewarm: 0
@@ -15355,7 +15344,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.5
+      scalar: 2
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -15408,7 +15397,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 5
+      scalar: 1
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -18851,7 +18840,7 @@ ParticleSystem:
         m_RotationOrder: 4
     minKillSpeed: 0
     maxKillSpeed: 10000
-    radiusScale: 0.15
+    radiusScale: 0.81
     collidesWith:
       serializedVersion: 2
       m_Bits: 822
@@ -20180,7 +20169,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1095854294}
   serializedVersion: 5
   lengthInSec: 5
-  simulationSpeed: 0.18
+  simulationSpeed: 1
   stopAction: 0
   looping: 1
   prewarm: 0
@@ -20251,7 +20240,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.5
+      scalar: 2
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -20304,7 +20293,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 5
+      scalar: 1
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -23747,7 +23736,7 @@ ParticleSystem:
         m_RotationOrder: 4
     minKillSpeed: 0
     maxKillSpeed: 10000
-    radiusScale: 0.15
+    radiusScale: 0.81
     collidesWith:
       serializedVersion: 2
       m_Bits: 822
@@ -25582,7 +25571,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1603859361}
   serializedVersion: 5
   lengthInSec: 5
-  simulationSpeed: 0.18
+  simulationSpeed: 1
   stopAction: 0
   looping: 1
   prewarm: 0
@@ -25653,7 +25642,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.5
+      scalar: 2
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -25706,7 +25695,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 5
+      scalar: 1
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -29149,7 +29138,7 @@ ParticleSystem:
         m_RotationOrder: 4
     minKillSpeed: 0
     maxKillSpeed: 10000
-    radiusScale: 0.15
+    radiusScale: 0.81
     collidesWith:
       serializedVersion: 2
       m_Bits: 822
@@ -39951,7 +39940,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1949126483}
   serializedVersion: 5
   lengthInSec: 5
-  simulationSpeed: 0.18
+  simulationSpeed: 1
   stopAction: 0
   looping: 1
   prewarm: 0
@@ -40022,7 +40011,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.5
+      scalar: 2
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -40075,7 +40064,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 5
+      scalar: 1
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -43518,7 +43507,7 @@ ParticleSystem:
         m_RotationOrder: 4
     minKillSpeed: 0
     maxKillSpeed: 10000
-    radiusScale: 0.15
+    radiusScale: 0.81
     collidesWith:
       serializedVersion: 2
       m_Bits: 822
@@ -44949,7 +44938,7 @@ ParticleSystem:
   m_GameObject: {fileID: 2052438612}
   serializedVersion: 5
   lengthInSec: 5
-  simulationSpeed: 0.18
+  simulationSpeed: 1
   stopAction: 0
   looping: 1
   prewarm: 0
@@ -45020,7 +45009,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.5
+      scalar: 2
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -45073,7 +45062,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 5
+      scalar: 1
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -48516,7 +48505,7 @@ ParticleSystem:
         m_RotationOrder: 4
     minKillSpeed: 0
     maxKillSpeed: 10000
-    radiusScale: 0.25
+    radiusScale: 0.81
     collidesWith:
       serializedVersion: 2
       m_Bits: 822

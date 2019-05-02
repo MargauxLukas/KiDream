@@ -78,6 +78,7 @@ public class ReactionToWave : MonoBehaviour
 
     private void OnParticleCollision(GameObject other)
     {
+
         Rigidbody2D rb = this.GetComponent<Rigidbody2D>();
         shooter = other.GetComponent<ParticleSystem>();
 
