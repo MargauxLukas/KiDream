@@ -200,7 +200,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1756383030712992}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.224279, y: -1.6231859, z: 0}
+  m_LocalPosition: {x: -1.622, y: 0.361, z: 0}
   m_LocalScale: {x: 1.7425575, y: 1.7425575, z: 0}
   m_Children:
   - {fileID: 4741644589298806}
@@ -416,7 +416,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72e6f736707c2e842a00536803a91d7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myPSList: []
+  myPSList:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   waveManager: {fileID: 114874006852601004, guid: b5128d70401ffa24cba9fa4d3e19e364,
     type: 2}
   linearDrag: 1
@@ -434,9 +437,9 @@ MonoBehaviour:
   playAnimation: 0
   isActivated: 0
   activateBehaviour: 0
-  cPushRadius: 0
-  cPullRadius: 0
-  cActivateRadius: 0
+  corruptedPushRadius: 0
+  corruptedPullRadius: 0
+  corruptedActivateRadius: 0
   childNumberTolerance: 0
 --- !u!212 &212167677763294528
 SpriteRenderer:
