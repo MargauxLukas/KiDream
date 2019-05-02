@@ -25,8 +25,8 @@ TagManager:
   - Player
   - ActionObjectLayer
   - CollisionLayer
-  - 
-  - 
+  - Tilemaps
+  - Parallax
   - 
   - 
   - 
