@@ -139,7 +139,7 @@ public class WaveManager : MonoBehaviour
 
         if (Input.GetAxisRaw("ShootParticles") != 0 && uiManager.manaBar.value != 0 && rightAxisInUse == false)
         {
-            StopAllCoroutines();
+            StopCoroutine("ChangingAbilityDisableDelay");
             StartCoroutine("ChangingAbilityDisableDelay");
 
             switch (selectionIndex)

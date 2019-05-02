@@ -19,6 +19,7 @@ public class ReactionToWave : MonoBehaviour
     private int linearDrag;
 
     [Header("Propriétés")]
+    public List<GameObject> whoCanShootMe = new List<GameObject>();
     public bool canBePushed = false;
     public bool canBePulled = false;
     public bool canBeActivated = false;
@@ -56,9 +57,8 @@ public class ReactionToWave : MonoBehaviour
     [Range(0, 2), SerializeField]
     public float corruptedActivateRadius;
 
-    [Header("Général")]
+    [Header("Enfants")]
     public int childNumberTolerance;
-    public List<GameObject> whoCanShootMe = new List<GameObject>();
 
     private bool doubleLock = false;
 
@@ -80,7 +80,6 @@ public class ReactionToWave : MonoBehaviour
 
     private void OnParticleCollision(GameObject other)
     {
-        Debug.Log(other.transform.parent);
         foreach(GameObject go in whoCanShootMe)
         {
             if (other == go || (other.transform.parent != null && other.transform.parent.gameObject == go))

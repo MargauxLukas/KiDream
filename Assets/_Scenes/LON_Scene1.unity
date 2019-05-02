@@ -2487,6 +2487,8 @@ MonoBehaviour:
   - {fileID: 746697684}
   waveManager: {fileID: 434495914}
   linearDrag: 1
+  whoCanShootMe:
+  - {fileID: 403456683}
   canBePushed: 1
   canBePulled: 1
   canBeActivated: 1
@@ -2505,8 +2507,6 @@ MonoBehaviour:
   corruptedPullRadius: 0.6
   corruptedActivateRadius: 0.6
   childNumberTolerance: 1
-  whoCanShootMe:
-  - {fileID: 403456683}
 --- !u!50 &222800005
 Rigidbody2D:
   serializedVersion: 4
@@ -4876,6 +4876,7 @@ MonoBehaviour:
   - {fileID: 746697684}
   waveManager: {fileID: 434495914}
   linearDrag: 1
+  whoCanShootMe: []
   canBePushed: 1
   canBePulled: 1
   canBeActivated: 0
@@ -4894,7 +4895,6 @@ MonoBehaviour:
   corruptedPullRadius: 0.23
   corruptedActivateRadius: 0.23
   childNumberTolerance: 1
-  whoCanShootMe: []
 --- !u!50 &482048080
 Rigidbody2D:
   serializedVersion: 4
@@ -10013,6 +10013,8 @@ MonoBehaviour:
   - {fileID: 746697684}
   waveManager: {fileID: 434495914}
   linearDrag: 1
+  whoCanShootMe:
+  - {fileID: 403456683}
   canBePushed: 1
   canBePulled: 1
   canBeActivated: 1
@@ -10031,8 +10033,6 @@ MonoBehaviour:
   corruptedPullRadius: 0.23
   corruptedActivateRadius: 0.23
   childNumberTolerance: 1
-  whoCanShootMe:
-  - {fileID: 403456683}
 --- !u!114 &736757499
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24730,7 +24730,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myPSList: []
   waveManager: {fileID: 434495914}
-  linearDrag: 1
+  linearDrag: 0.15
+  whoCanShootMe:
+  - {fileID: 403456683}
   canBePushed: 1
   canBePulled: 1
   canBeActivated: 0
@@ -24749,8 +24751,6 @@ MonoBehaviour:
   corruptedPullRadius: 0
   corruptedActivateRadius: 0
   childNumberTolerance: 0
-  whoCanShootMe:
-  - {fileID: 403456683}
 --- !u!212 &1038734726
 SpriteRenderer:
   m_ObjectHideFlags: 0
