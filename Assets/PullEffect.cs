@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class PullEffect : MonoBehaviour
 {
-    //CircleCollider2D bColRadius;
+    CircleCollider2D colRadius;
+    ReactionToWave parentBehaviour;
+    ParticleSystem corruptedPullPS;
+
     public Rigidbody2D rb;
 
     ReactionToWave behaviour;
@@ -26,29 +29,22 @@ public class PullEffect : MonoBehaviour
     private float strongWaveDuration;
 
 
-
-    //private float radiusValue;
-
-
     void Start()
     {
         InvokeRepeating("AttractionBonus", 0, timeBeforeNewStrongWave + strongWaveDuration);
 
-        //bColRadius = this.GetComponent<CircleCollider2D>();
+        colRadius = this.GetComponent<CircleCollider2D>();
+        parentBehaviour = this.GetComponentInParent<ReactionToWave>();
+        corruptedPullPS = this.GetComponent<ParticleSystem>();
+        colRadius.radius = parentBehaviour.corruptedPullRadius;
     }
 
     void Update()
     {
-        //bColRadius.radius = radiusValue;
         if (yEqualX == true)
         {
             forceY = forceX;
         }
-    }
-
-    private void AttractionBonus()
-    {
-        StartCoroutine("StrongWaves");
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -68,6 +64,11 @@ public class PullEffect : MonoBehaviour
                 rb.AddForce(new Vector2((this.transform.position.x - collision.transform.position.x) * forceX * behaviour.horizontalPullForce, (this.transform.position.y - collision.transform.position.y) * forceY * behaviour.verticalPullForce));
             }
         }
+    }
+
+    private void AttractionBonus()
+    {
+        StartCoroutine("StrongWaves");
     }
 
     IEnumerator StrongWaves()
