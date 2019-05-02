@@ -202,7 +202,6 @@ public class WaveManager : MonoBehaviour
         isRegenerating = true;
         yield return new WaitForSeconds(1);
         InvokeRepeating("ManaRegen", 0, regenerationRate);
-
     }
 
     public void ManaRegen()
@@ -213,14 +212,9 @@ public class WaveManager : MonoBehaviour
     IEnumerator ChangingAbilityDisableDelay()
     {
         canDisable = false;
-        Debug.Log(WaveShooters[selectionIndex].startLifetime);
         yield return new WaitForSeconds(WaveShooters[selectionIndex].startLifetime);
         canDisable = true;
-
     }
 }
-
-//selection = selection + listcount/2;
-// - pour l'autre sens
 
 public enum WaveType {Push, Pull, Activate, PushCorruption, PullCorruption, ActivateCorruption}
