@@ -39,6 +39,7 @@ public class Boss : MonoBehaviour
     private bool needToMove2     = false;
     private bool isStartingPhase =  true;
     private bool isDream = true;
+    private bool isInvincible = false;
 
     private int seconds   = 0;
     private int lookingAt = 0; // 1 = Droite, 2 = Down, 3 = Left, 4 = Up
@@ -50,7 +51,7 @@ public class Boss : MonoBehaviour
         animator = GetComponent<Animator   >();
         rb       = GetComponent<Rigidbody2D>();
         target   = GameObject.FindGameObjectWithTag("Player").transform;
-        player = GameObject.Find("Player");
+        player   = GameObject.Find("Player");
 
         bombAnimator1 = null;
         bombAnimator1 = null;
@@ -120,9 +121,8 @@ public class Boss : MonoBehaviour
             }
             else
             {
-                seconds = 0;
-
-                if (seconds == 1)
+                Debug.Log("Phase 2");
+                if (seconds < 6)
                 {
                     animator.SetBool("isMoving", true);
                     Move();
@@ -132,7 +132,7 @@ public class Boss : MonoBehaviour
                     animator.SetBool(   "isMoving", false);
                     animator.SetBool("isLaunching",  true);
                     direction = ThrowBomb(lookingAt)      ;
-                    seconds   = -5                        ;
+                    seconds   = 0                         ;
                     animator.SetBool("isLaunching", false);
                 }
             }
@@ -239,6 +239,7 @@ public class Boss : MonoBehaviour
         yield return new WaitForSeconds(2f);
         animator.SetBool("isLanding", false);
         Destroy(ombreObject);
+        seconds = 0;
         isStartingPhase = false;
         //Detruit pillier
     }
@@ -455,16 +456,28 @@ public class Boss : MonoBehaviour
      **************************************************************/
     public void Damages()
     {
-        hp--;
+        if(!isInvincible)
+        {
+            hp--;
+            isInvincible = true;
+        }
+
+        StartCoroutine(Invincible());
         //seconds = 0;
 
-        if(hp == 1)
+        if (hp == 1)
         {
             Rage();
             Debug.Log("Grr Grr je rentre en rage");
         }
 
         if(hp == 0){isDead();}
+    }
+
+    IEnumerator Invincible()
+    {
+        yield return new WaitForSeconds(2f);
+        isInvincible = false;
     }
 
     /*****************************
