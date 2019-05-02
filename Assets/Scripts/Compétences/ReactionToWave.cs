@@ -101,14 +101,14 @@ public class ReactionToWave : MonoBehaviour
                     if(canBeActivated == true)
                     {
 
-                        /*if (isActivated == true)
+                        if (isActivated == true)
                         {
                             isActivated = false;
                         }
                         else
                         {
                             isActivated = true;
-                        }*/
+                        }
                         
 
                         switch (activateBehaviour)
@@ -167,6 +167,24 @@ public class ReactionToWave : MonoBehaviour
             ps.transform.position = this.transform.position;
             ps.gameObject.SetActive(true);
             ps.transform.SetParent(this.transform);
+
+            switch(localCounter)
+            {
+                case 0:
+                    ps.startSize = 2.76131f * corruptedPushRadius + 0.063143f;
+                    break;
+
+                case 1:
+                    ps.startSize = 2.76131f * corruptedPullRadius + 0.063143f;
+                    break;
+
+                case 2:
+                    ps.startSize = 2.76131f * corruptedActivateRadius + 0.063143f;
+                    break;
+            }
+
+            ps.Play();
+            ps.Stop();
             ps.Play();
         }
         else if (this.transform.childCount > childNumberTolerance)
@@ -185,8 +203,6 @@ public class ReactionToWave : MonoBehaviour
         {
             if (isActivated == true && doubleLock == false)
             {
-                Debug.Log("Activation");
-
                 Animator myAnim = this.GetComponent<Animator>();
                 myAnim.SetBool("isActivated", true);
                 doubleLock = true;
