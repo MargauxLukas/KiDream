@@ -84,7 +84,6 @@ public class ReactionToWave : MonoBehaviour
         {
             if (other == go || (other.transform.parent != null && other.transform.parent.gameObject == go))
             {
-                Debug.Log("ohohoh");
                 Rigidbody2D rb = this.GetComponent<Rigidbody2D>();
                 shooter = other.GetComponent<ParticleSystem>();
 
