@@ -236,7 +236,7 @@ public class Boss : MonoBehaviour
     {
         yield return new WaitForSeconds(0.9f);
         gameObject.transform.position = Vector2.MoveTowards(transform.position, new Vector2(transform.position.x, 4.5f), 0.1f);
-        yield return new WaitForSeconds(0.9f);
+        yield return new WaitForSeconds(0.2f);
         Shadow();
     }
 
