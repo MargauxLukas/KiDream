@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Boss : MonoBehaviour
 {
-    Animator animator;
+    Animator      animator;
     Animator bombAnimator1;
     Animator bombAnimator2;
     Animator bombAnimator3;
@@ -70,15 +70,16 @@ public class Boss : MonoBehaviour
         if (needToMove1 || needToMove2)
         {
             MovingBomb();
-            bombAnimator1.SetBool("isMoving", true);
-            bombAnimator2.SetBool("isMoving", true);
-            bombAnimator3.SetBool("isMoving", true);
+            if (bombAnimator1 != null) { bombAnimator1.SetBool("isMoving", true);}
+            if (bombAnimator2 != null) { bombAnimator2.SetBool("isMoving", true);}
+            if (bombAnimator3 != null) { bombAnimator3.SetBool("isMoving", true);}
+
         } //Tant que bombe n'a pas atteint sa destination
-        else if (!needToMove1 && !needToMove2 && (bombe1 != null && bombe2 != null && bombe3 != null))
+        else if (!needToMove1 && !needToMove2)
         {
-            bombAnimator1.SetBool("isMoving", false);
-            bombAnimator2.SetBool("isMoving", false);
-            bombAnimator3.SetBool("isMoving", false);
+            if (bombAnimator1 != null) { bombAnimator1.SetBool("isMoving", false); }
+            if (bombAnimator2 != null) { bombAnimator2.SetBool("isMoving", false); }
+            if (bombAnimator3 != null) { bombAnimator3.SetBool("isMoving", false); }
         }
 
         if (Time.time > timer + 1) //Timer
@@ -110,6 +111,41 @@ public class Boss : MonoBehaviour
             {
                 if (!bossFallDown)
                 {
+                    animator.SetBool("isJumping",  true);
+                    Jump();
+                }
+                else
+                {
+                    animator.SetBool("isJumping", false);
+                    BossLanding();
+                }
+            }
+            else
+            {
+                speed = 0.4f;
+                if (seconds < 3)
+                {
+                    animator.SetBool("isMoving", true);
+                    Move();
+                }
+                if (seconds == 3)
+                {
+                    animator.SetBool(   "isMoving", false);
+                    animator.SetBool("isLaunching",  true);
+                    direction = ThrowBomb(lookingAt)      ;
+                    seconds   = 0                         ;
+                    animator.SetBool("isLaunching", false);
+                }
+            }
+        }
+
+        if (hp == 1) //Phase 3
+        {
+            Debug.Log("Phase 3 " + isStartingPhase);
+            if (isStartingPhase)
+            {
+                if (!bossFallDown)
+                {
                     animator.SetBool("isJumping", true);
                     Jump();
                 }
@@ -121,18 +157,18 @@ public class Boss : MonoBehaviour
             }
             else
             {
-                Debug.Log("Phase 2");
-                if (seconds < 6)
+                speed = 0.6f;
+                if (seconds < 3)
                 {
                     animator.SetBool("isMoving", true);
                     Move();
                 }
-                if (seconds == 6)
+                if (seconds == 3)
                 {
-                    animator.SetBool(   "isMoving", false);
-                    animator.SetBool("isLaunching",  true);
-                    direction = ThrowBomb(lookingAt)      ;
-                    seconds   = 0                         ;
+                    animator.SetBool("isMoving", false);
+                    animator.SetBool("isLaunching", true);
+                    direction = ThrowBomb(lookingAt);
+                    seconds = 0;
                     animator.SetBool("isLaunching", false);
                 }
             }
@@ -241,6 +277,7 @@ public class Boss : MonoBehaviour
         Destroy(ombreObject);
         seconds = 0;
         isStartingPhase = false;
+        bossFallDown    = false;
         //Detruit pillier
     }
 
@@ -459,17 +496,12 @@ public class Boss : MonoBehaviour
         if(!isInvincible)
         {
             hp--;
+            isStartingPhase = true;
             isInvincible = true;
         }
 
         StartCoroutine(Invincible());
         //seconds = 0;
-
-        if (hp == 1)
-        {
-            Rage();
-            Debug.Log("Grr Grr je rentre en rage");
-        }
 
         if(hp == 0){isDead();}
     }

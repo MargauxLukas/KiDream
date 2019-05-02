@@ -10,8 +10,8 @@ public class Bomb : MonoBehaviour
 
     bool canHurtBoss = false;
 
-    CircleCollider2D collider;
-    GameObject        Boss;
+    CircleCollider2D      collider;
+    GameObject                Boss;
 
 	void Start ()
     {
@@ -43,8 +43,12 @@ public class Bomb : MonoBehaviour
         {
             animator.SetBool("isExplode", true);
             Boss.GetComponent<Boss>().Damages();
-            //Wait
-            Destroy(gameObject,0.6f);
+            Destroy(gameObject,0.55f);
+        }
+        if(collision.gameObject.name == "WallCollider")
+        {
+            animator.SetBool("isExplode", true);
+            Destroy(gameObject, 0.55f);
         }
     }
 
