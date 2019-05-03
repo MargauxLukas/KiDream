@@ -26,6 +26,7 @@ public class ReactionToWave : MonoBehaviour
     public bool canBePushCorrupted = false;
     public bool canBePullCorrupted = false;
     public bool canBeActivateCorrupted = false;
+    public float particleLifetimeAfterCollision = 0f;
 
     [Header("Push options")]
     [Range(0, 50), SerializeField]
@@ -62,7 +63,6 @@ public class ReactionToWave : MonoBehaviour
 
     private bool doubleLock = false;
 
-
     // Start
     void Start()
     {
@@ -79,93 +79,113 @@ public class ReactionToWave : MonoBehaviour
     }
 
     private void OnParticleCollision(GameObject other)
-    {
-        foreach(GameObject go in whoCanShootMe)
-        {
-            if (other == go || (other.transform.parent != null && other.transform.parent.gameObject == go))
-            {
+    {    
+         foreach (GameObject go in whoCanShootMe)
+         {
+             if (other == go || (other.transform.parent != null && other.transform.parent.gameObject == go))
+             {
                 Rigidbody2D rb = this.GetComponent<Rigidbody2D>();
                 shooter = other.GetComponent<ParticleSystem>();
 
-                switch (waveManager.waveSelection)
+                ParticleSystem.Particle[] ParticleList = new ParticleSystem.Particle[shooter.particleCount];
+                shooter.GetParticles(ParticleList);
+
+                float dist = float.PositiveInfinity;
+
+                int indexParticle = 0;
+
+                for (int i = 0; i < ParticleList.Length; ++i)
                 {
-                    case WaveType.Push:
-                        if(canBePushed == true)
-                        {
-                            rb.AddForce(new Vector2(-(shooter.transform.position.x - this.transform.position.x) * horizontalPushForce, -(shooter.transform.position.y - this.transform.position.y) * verticalPushForce));
-                        }
-                        break;
-
-                    case WaveType.Pull:
-                        if(canBePulled == true)
-                        {
-                            rb.AddForce(new Vector2((shooter.transform.position.x - this.transform.position.x) * horizontalPullForce, (shooter.transform.position.y - this.transform.position.y) * verticalPullForce));
-                        }
-                        break;
-
-                    case WaveType.Activate:
-                        if(canBeActivated == true)
-                        {
-
-                            if (isActivated == true)
-                            {
-                                isActivated = false;
-                            }
-                            else
-                            {
-                                isActivated = true;
-                            }
-                        
-
-                            switch (activateBehaviour)
-                            {
-
-                            case ActivateBehaviour._Transform:
-                                Debug.Log("Transform");
-                                break;
-
-                            case ActivateBehaviour._Destroy:
-                                Destroy(connectedGameObject);
-                                break;
-
-                            case ActivateBehaviour._SetActive:
-                                connectedGameObject.SetActive(true);
-                                break;
-                            }
-                        }
-                        break;
-
-                    case WaveType.PushCorruption:
-
-                        localCounter = 0;
-                        if(canBePushCorrupted == true)
-                        {
-                            SetupChosenParticleSystem();
-                        }
-                        break;
-
-                    case WaveType.PullCorruption:
-
-                        localCounter = 1;
-                        if(canBePullCorrupted == true)
-                        {
-                            SetupChosenParticleSystem();
-                        }
-                        break;
-
-                    case WaveType.ActivateCorruption:
-
-                        localCounter = 2;
-                        if(canBeActivateCorrupted == true)
-                        {
-                            SetupChosenParticleSystem();
-                        }
-                        break;
+                    if ((ParticleList[i].position - transform.position).magnitude < dist)
+                    {
+                        dist = (ParticleList[i].position - transform.position).magnitude;
+                        indexParticle = i;
+                    }
                 }
 
-            }
 
-        }
+                ParticleList[indexParticle].startLifetime = 0f;
+
+                shooter.SetParticles(ParticleList, shooter.particleCount);
+                switch (waveManager.waveSelection)
+                 {
+                     case WaveType.Push:
+                         if(canBePushed == true)
+                         {
+                             rb.AddForce(new Vector2(-(this.shooter.transform.position.x - this.transform.position.x) * horizontalPushForce, -(this.shooter.transform.position.y - this.transform.position.y) * verticalPushForce));
+                         }
+                         break;
+
+                     case WaveType.Pull:
+                         if(canBePulled == true)
+                         {
+                             rb.AddForce(new Vector2((this.shooter.transform.position.x - this.transform.position.x) * horizontalPullForce, (this.shooter.transform.position.y - this.transform.position.y) * verticalPullForce));
+                         }
+                         break;
+
+                     case WaveType.Activate:
+                         if(canBeActivated == true)
+                         {
+
+                             if (isActivated == true)
+                             {
+                                 isActivated = false;
+                             }
+                             else
+                             {
+                                 isActivated = true;
+                             }
+
+
+                             switch (activateBehaviour)
+                             {
+
+                             case ActivateBehaviour._Transform:
+                                 Debug.Log("Transform");
+                                 break;
+
+                             case ActivateBehaviour._Destroy:
+                                 Destroy(connectedGameObject);
+                                 break;
+
+                             case ActivateBehaviour._SetActive:
+                                 connectedGameObject.SetActive(true);
+                                 break;
+                             }
+                         }
+                         break;
+
+                     case WaveType.PushCorruption:
+
+                         localCounter = 0;
+                         if(canBePushCorrupted == true)
+                         {
+                             SetupChosenParticleSystem();
+                         }
+                         break;
+
+                     case WaveType.PullCorruption:
+
+                         localCounter = 1;
+                         if(canBePullCorrupted == true)
+                         {
+                             SetupChosenParticleSystem();
+                         }
+                         break;
+
+                     case WaveType.ActivateCorruption:
+
+                         localCounter = 2;
+                         if(canBeActivateCorrupted == true)
+                         {
+                             SetupChosenParticleSystem();
+                         }
+                         break;
+                 }
+
+             }
+          
+         }                
     }
 
     public void SetupChosenParticleSystem()
@@ -178,7 +198,7 @@ public class ReactionToWave : MonoBehaviour
             ps.gameObject.SetActive(true);
             ps.transform.SetParent(this.transform);
 
-            switch(localCounter)
+            switch (localCounter)
             {
                 case 0:
                     ps.startSize = 2.76131f * corruptedPushRadius + 0.063143f;

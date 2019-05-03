@@ -29,7 +29,6 @@ public class PushEffect : MonoBehaviour
 
     void Update()
     {
-
         if (yEqualX == true)
         {
             forceY = forceX;

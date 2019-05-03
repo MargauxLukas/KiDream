@@ -9,7 +9,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8e6292b2c06870d4495f009f912b9600, type: 3}
-  m_Name: MainPostProcess
+  m_Name: NightmarePP
   m_EditorClassIdentifier: 
   settings:
   - {fileID: 114027691790143402}
@@ -37,7 +37,7 @@ MonoBehaviour:
     value: 1
   intensity:
     overrideState: 1
-    value: 69.5
+    value: 55
   threshold:
     overrideState: 1
     value: 12.43
@@ -107,13 +107,13 @@ MonoBehaviour:
     value: 0
   color:
     overrideState: 1
-    value: {r: 0, g: 0, b: 0, a: 1}
+    value: {r: 0, g: 0, b: 0, a: 0.3019608}
   center:
     overrideState: 1
     value: {x: 0.5, y: 0.5}
   intensity:
     overrideState: 1
-    value: 0.223
+    value: 0.206
   smoothness:
     overrideState: 1
     value: 1
@@ -177,13 +177,13 @@ MonoBehaviour:
     value: {x: 36.47693, y: 95}
   minLuminance:
     overrideState: 0
-    value: 0
+    value: -4
   maxLuminance:
     overrideState: 0
-    value: 0
+    value: -0.7
   keyValue:
     overrideState: 1
-    value: 0.96
+    value: 1.08
   eyeAdaptation:
     overrideState: 0
     value: 0
@@ -244,7 +244,7 @@ MonoBehaviour:
     overrideState: 0
     value: 1
   temperature:
-    overrideState: 0
+    overrideState: 1
     value: 0
   tint:
     overrideState: 0
@@ -296,13 +296,13 @@ MonoBehaviour:
     value: 100
   lift:
     overrideState: 1
-    value: {x: 0.3982724, y: 0.5097623, z: 1, w: -0.20815265}
+    value: {x: 0.3800403, y: 0.5609775, z: 1, w: -0.20815265}
   gamma:
     overrideState: 0
-    value: {x: 0.9740574, y: 1, z: 0.9707414, w: 0}
+    value: {x: 0.8264346, y: 0.98530734, z: 1, w: 0}
   gain:
     overrideState: 0
-    value: {x: 0.9865538, y: 1, z: 0.97310644, w: 0}
+    value: {x: 1, y: 0.9760656, z: 0.9570477, w: 0}
   masterCurve:
     overrideState: 0
     value:
@@ -1523,10 +1523,10 @@ MonoBehaviour:
     value: {fileID: 0}
     defaultState: 1
   intensity:
-    overrideState: 1
-    value: 0.35
+    overrideState: 0
+    value: 0.469
   fastMode:
-    overrideState: 1
+    overrideState: 0
     value: 1
 --- !u!114 &114790968021176038
 MonoBehaviour:
@@ -1545,7 +1545,7 @@ MonoBehaviour:
     value: 1
   focusDistance:
     overrideState: 1
-    value: 4
+    value: 5
   aperture:
     overrideState: 1
     value: 8.1
