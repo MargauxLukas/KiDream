@@ -33,6 +33,7 @@ public class WaveManager : MonoBehaviour
 
     private int enumCount;
 
+    [HideInInspector]
     public bool canDisable;
     private bool isPlayingCoroutine;
 

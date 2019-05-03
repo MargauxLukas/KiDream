@@ -29,9 +29,9 @@ public class ReactionToWave : MonoBehaviour
     
     [Header("Push options")]
     [Range(0, 50), SerializeField]
-    private float verticalPushForce = 1f;
+    public float verticalPushForce = 1f;
     [Range(0, 50), SerializeField]
-    private float horizontalPushForce = 1f;
+    public float horizontalPushForce = 1f;
 
     [Header("Pull options")]
     [Range(0, 50), SerializeField]
@@ -165,7 +165,32 @@ public class ReactionToWave : MonoBehaviour
                  }
 
              }
-          
+            else if (other != go || (other.transform.parent == null && other.transform.parent.gameObject != go))
+            {
+                shooter = other.GetComponent<ParticleSystem>();
+
+                ParticleSystem.Particle[] ParticleList = new ParticleSystem.Particle[shooter.particleCount];
+                shooter.GetParticles(ParticleList);
+
+                float dist = float.PositiveInfinity;
+
+                int indexParticle = 0;
+
+                for (int i = 0; i < ParticleList.Length; ++i)
+                {
+                    if ((ParticleList[i].position - transform.position).magnitude < dist)
+                    {
+                        dist = (ParticleList[i].position - transform.position).magnitude;
+                        indexParticle = i;
+                    }
+                }
+
+                ParticleList[indexParticle].remainingLifetime = ParticleList[indexParticle].remainingLifetime +1f;
+
+                shooter.SetParticles(ParticleList, shooter.particleCount);
+            }
+
+
          }                
     }
 
@@ -267,10 +292,8 @@ public class ReactionToWave : MonoBehaviour
                     connectedGameObject.SetActive(setActiveSetting);
                     break;
             }
-
         }
     }
-
 }
 
 public enum ActivateBehaviour {_Debug, _Destroy, _SetActive}
