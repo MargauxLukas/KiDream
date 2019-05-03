@@ -18,7 +18,7 @@ public class ReactionToWave : MonoBehaviour
     [Range(0,10), SerializeField]
     private int linearDrag;
 
-    [Header("Propriétés")]
+    [Header("Properties")]
     public List<GameObject> whoCanShootMe = new List<GameObject>();
     public bool canBePushed = false;
     public bool canBePulled = false;
@@ -26,8 +26,7 @@ public class ReactionToWave : MonoBehaviour
     public bool canBePushCorrupted = false;
     public bool canBePullCorrupted = false;
     public bool canBeActivateCorrupted = false;
-    public float particleLifetimeAfterCollision = 0f;
-
+    
     [Header("Push options")]
     [Range(0, 50), SerializeField]
     private float verticalPushForce = 1f;
@@ -43,8 +42,10 @@ public class ReactionToWave : MonoBehaviour
     [Header("Activate options")]
     public GameObject connectedGameObject;
     public bool playAnimation;
+    public bool launchAgainToDisable;
     public bool isActivated;
     public ActivateBehaviour activateBehaviour;
+    public bool setActiveSetting;
 
     [Header("Corrupted Push options")]
     [Range(0, 2), SerializeField]
@@ -58,8 +59,11 @@ public class ReactionToWave : MonoBehaviour
     [Range(0, 2), SerializeField]
     public float corruptedActivateRadius;
 
-    [Header("Enfants")]
+    [Header("Child")]
     public int childNumberTolerance;
+
+    [Header("Bypass")]
+    public bool bypassActivateRules;
 
     private bool doubleLock = false;
 
@@ -103,10 +107,12 @@ public class ReactionToWave : MonoBehaviour
                     }
                 }
 
-
                 ParticleList[indexParticle].startLifetime = 0f;
 
                 shooter.SetParticles(ParticleList, shooter.particleCount);
+
+                BypassActivationRules();
+
                 switch (waveManager.waveSelection)
                  {
                      case WaveType.Push:
@@ -126,32 +132,7 @@ public class ReactionToWave : MonoBehaviour
                      case WaveType.Activate:
                          if(canBeActivated == true)
                          {
-
-                             if (isActivated == true)
-                             {
-                                 isActivated = false;
-                             }
-                             else
-                             {
-                                 isActivated = true;
-                             }
-
-
-                             switch (activateBehaviour)
-                             {
-
-                             case ActivateBehaviour._Transform:
-                                 Debug.Log("Transform");
-                                 break;
-
-                             case ActivateBehaviour._Destroy:
-                                 Destroy(connectedGameObject);
-                                 break;
-
-                             case ActivateBehaviour._SetActive:
-                                 connectedGameObject.SetActive(true);
-                                 break;
-                             }
+                             Activate();
                          }
                          break;
 
@@ -190,7 +171,6 @@ public class ReactionToWave : MonoBehaviour
 
     public void SetupChosenParticleSystem()
     {    
-
         if (this.transform.childCount == childNumberTolerance)
         {
             ps = Instantiate(myPSList[localCounter]);
@@ -228,7 +208,6 @@ public class ReactionToWave : MonoBehaviour
 
     public void ActivationDesactivationAnimation()
     {
-
         if(playAnimation == true)
         {
             if (isActivated == true && doubleLock == false)
@@ -254,6 +233,44 @@ public class ReactionToWave : MonoBehaviour
         }
     }
 
+    public void BypassActivationRules()
+    {
+        if(bypassActivateRules == true)
+        {
+            Activate();
+            return;
+        }
+    }
+
+    public void Activate()
+    {
+        if (isActivated == true && launchAgainToDisable == true)
+        {
+            isActivated = false;
+        }
+        else if (isActivated != true)
+        {
+            Debug.Log("isActivated = true");
+            isActivated = true;
+
+            switch (activateBehaviour)
+            {
+                case ActivateBehaviour._Debug:
+                    Debug.Log("Debug Message");
+                    break;
+
+                case ActivateBehaviour._Destroy:
+                    Destroy(connectedGameObject);
+                    break;
+
+                case ActivateBehaviour._SetActive:
+                    connectedGameObject.SetActive(setActiveSetting);
+                    break;
+            }
+
+        }
+    }
+
 }
 
-public enum ActivateBehaviour {_Transform, _Destroy, _SetActive}
+public enum ActivateBehaviour {_Debug, _Destroy, _SetActive}
