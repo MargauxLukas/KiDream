@@ -7,7 +7,7 @@ public class BombAOE : MonoBehaviour
     Animator animator;
     public GameObject bomb;
     public GameObject fallingBomb;
-    public GameObject ombreBomb;
+    public GameObject shadowBomb;
 
     Vector2[,] bombTab = new Vector2[7, 4];
 
@@ -140,10 +140,10 @@ public class BombAOE : MonoBehaviour
                 else
                 {
                     GameObject fBomb = Instantiate(fallingBomb, new Vector2(positionX, positionY + 5f), Quaternion.identity);
-                    GameObject shadowBomb = Instantiate(ombreBomb, bombTab[coll , ligne], Quaternion.identity);
+                    GameObject shadow = Instantiate(shadowBomb, bombTab[coll , ligne], Quaternion.identity);
                     fBomb.GetComponent<BombFalling>().target = bombTab[coll, ligne];
                     fBomb.GetComponent<BombFalling>().positionX = positionX;
-
+                    fBomb.GetComponent<BombFalling>().shadowBomb = shadow;
                 }
                 positionY--;
             }
@@ -179,9 +179,10 @@ public class BombAOE : MonoBehaviour
                 else
                 {
                     GameObject fBomb = Instantiate(fallingBomb, new Vector2(positionX, positionY + 5f), Quaternion.identity);
-                    GameObject shadowBomb = Instantiate(ombreBomb, bombTab[coll, ligne], Quaternion.identity);
+                    GameObject shadow = Instantiate(shadowBomb, bombTab[coll, ligne], Quaternion.identity);
                     fBomb.GetComponent<BombFalling>().target = bombTab[coll, ligne];
                     fBomb.GetComponent<BombFalling>().positionX = positionX;
+                    fBomb.GetComponent<BombFalling>().shadowBomb = shadow;
 
                 }
                 positionY--;

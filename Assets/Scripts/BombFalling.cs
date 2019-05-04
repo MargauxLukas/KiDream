@@ -11,11 +11,12 @@ public class BombFalling : MonoBehaviour
     [SerializeField] float explosionTime;
     [SerializeField] float timer;
 
-    private bool isDream;
-    Animator   animator;
-    GameObject boss;
-    GameObject player;
+    private bool isDream ;
+    Animator   animator  ;
 
+    GameObject boss  ;
+    GameObject player;
+    public GameObject shadowBomb;
     public Collider2D collider;
 
     private void Start()
@@ -47,12 +48,13 @@ public class BombFalling : MonoBehaviour
         if (transform.position.y > target.y)
         {
             animator.SetBool("isFalling", true);
-            transform.Translate(-transform.up * 0.02f);
+            transform.Translate(-transform.up * 0.03f);
         }
         if (transform.position.y < target.y)
         {
             animator.SetBool("isFalling", false);
             transform.Translate(0,0,0);
+            Destroy(shadowBomb);
         }
 
         if (transform.position.y > 2.05f || transform.position.y < -0.8f)
@@ -64,7 +66,6 @@ public class BombFalling : MonoBehaviour
             collider.isTrigger = false;
         }
     }
-
 
     void Explode(Collision2D collision)
     {

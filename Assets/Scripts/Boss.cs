@@ -294,7 +294,7 @@ public class Boss : MonoBehaviour
     void InstantiateBomb()
     {
         //GetComponent<BombAOE>().BombArea();
-        if (player.transform.position.x < 0) { GetComponent<BombAOE>(). BombAreaLeftToRight(); }
+        if (player.transform.position.x < 0) { GetComponent<BombAOE>().BombAreaLeftToRight(); }
         if (player.transform.position.x > 0) { GetComponent<BombAOE>().BombAreaRightToLeft(); }
         StartCoroutine(WaitBomb());
         bossFallDown = true;
