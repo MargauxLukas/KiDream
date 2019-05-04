@@ -4,25 +4,24 @@ using UnityEngine;
 
 public class Boss : MonoBehaviour
 {
-    Animator      animator;
-    Animator bombAnimator1;
-    Animator bombAnimator2;
-    Animator bombAnimator3;
-    Animator cameraAnimator;
-
-    GameObject player;
+    Animator       animator;
+    Animator  bombAnimator1;
+    Animator  bombAnimator2;
+    Animator  bombAnimator3;
+    Animator cameraAnimator; //Pour lancer le screenShake
 
     [Header("GameObject to attached")]
     public  GameObject         bomb;
-    public  GameObject        ombre; //Ombre sur le sol quand le boss est en l'air
+    public  GameObject        ombre; //Ombre Prefab
     public  GameObject bombLauncher; //Zone ou les bombes spawnent
 
-    private GameObject ombreObject;  
+    private GameObject ombreObject;  //GameObject apres l'instantiate de l'ombre
     private GameObject      bombe1;
     private GameObject      bombe2;
     private GameObject      bombe3;
+    private GameObject      player;
 
-    private Transform target;
+    private Transform       target;
 
     private Rigidbody2D rb;
 
@@ -49,16 +48,15 @@ public class Boss : MonoBehaviour
 
     void Start ()
     {
-        animator = GetComponent<Animator   >();
-        rb       = GetComponent<Rigidbody2D>();
-        target   = GameObject.FindGameObjectWithTag("Player").transform;
-        player   = GameObject.Find("Player");
-
-        bombAnimator1 = null;
-        bombAnimator1 = null;
-        bombAnimator1 = null;
-
+              animator =                                GetComponent<Animator>();
         cameraAnimator = GameObject.Find("Main Camera").GetComponent<Animator>();
+         bombAnimator1 = null;
+         bombAnimator1 = null;
+         bombAnimator1 = null;
+
+        rb       = GetComponent<Rigidbody2D>();
+        player   = GameObject.Find("Player")  ;
+        target   = player.transform           ;
 
         distanceDeltaHV   = Time.deltaTime *   1f;
         distanceDeltaDiag = Time.deltaTime * 0.5f;
@@ -70,19 +68,18 @@ public class Boss : MonoBehaviour
         if (isDream) { animator.SetBool("isDream",  true);}
         else         { animator.SetBool("isDream", false);}
 
-        if (needToMove1 || needToMove2)
+        if (needToMove1 || needToMove2)                                            //Verification si bombe a atteint destination (1 variable pour bombes sur les côtés, 1 variable pour la bombe au centre)
         {
             MovingBomb();
-            if (bombAnimator1 != null) { bombAnimator1.SetBool("isMoving", true);}
-            if (bombAnimator2 != null) { bombAnimator2.SetBool("isMoving", true);}
-            if (bombAnimator3 != null) { bombAnimator3.SetBool("isMoving", true);}
-
-        } //Tant que bombe n'a pas atteint sa destination
+            if (bombAnimator1 != null) {bombAnimator1.SetBool("isMoving", true);}
+            if (bombAnimator2 != null) {bombAnimator2.SetBool("isMoving", true);}
+            if (bombAnimator3 != null) {bombAnimator3.SetBool("isMoving", true);}
+        }
         else if (!needToMove1 && !needToMove2)
         {
-            if (bombAnimator1 != null) { bombAnimator1.SetBool("isMoving", false); }
-            if (bombAnimator2 != null) { bombAnimator2.SetBool("isMoving", false); }
-            if (bombAnimator3 != null) { bombAnimator3.SetBool("isMoving", false); }
+            if (bombAnimator1 != null) {bombAnimator1.SetBool("isMoving", false);}
+            if (bombAnimator2 != null) {bombAnimator2.SetBool("isMoving", false);}
+            if (bombAnimator3 != null) {bombAnimator3.SetBool("isMoving", false);}
         }
 
         if (Time.time > timer + 1) //Timer
@@ -91,6 +88,11 @@ public class Boss : MonoBehaviour
             seconds++;
         }
 
+        /*******************************************
+         *          DEROULEMENT DES PHASES         *
+         *  HP du boss lié au changement de phase  *
+         *   A augmenter si on veut plus de phase  *
+         *******************************************/
         if (hp == 3) //Phase 1 
         {
             if (seconds >= 1) // Fight commence à 1 seconde pour pas que le boss bouge direct apres la cinematique
@@ -103,21 +105,21 @@ public class Boss : MonoBehaviour
                 animator.SetBool(   "isMoving", false);
                 animator.SetBool("isLaunching",  true);
                 direction = ThrowBomb(lookingAt)      ;
-                seconds   = -5                        ;
+                seconds   = -5                        ;       //A augmenter si on veut que le boss bouge plus rapidement après avoir balancé ses bombes
                 animator.SetBool("isLaunching", false);
             }
         }
 
-        if(hp == 2) //Phase 2
+        if(hp == 2)                                           //Phase 2
         {
-            if (isStartingPhase)
+            if (isStartingPhase)                              //Changement de phase
             {
-                if (!bossFallDown)
+                if (!bossFallDown)                            // Sauter
                 {
                     animator.SetBool("isJumping",  true);
                     Jump(2);
                 }
-                else
+                else                                          //Atterir
                 {
                     animator.SetBool("isJumping", false);
                     BossLanding();
@@ -125,7 +127,7 @@ public class Boss : MonoBehaviour
             }
             else
             {
-                speed = 0.4f;
+                speed = 0.4f;                                 //Vitesse du boss augmenté
                 if (seconds < 4)
                 {
                     animator.SetBool("isMoving", true);
@@ -142,17 +144,16 @@ public class Boss : MonoBehaviour
             }
         }
 
-        if (hp == 1) //Phase 3
+        if (hp == 1)                                          //Phase 3
         {
-            Debug.Log("Phase 3 " + isStartingPhase);
             if (isStartingPhase)
             {
-                if (!bossFallDown)
+                if (!bossFallDown)                            //Sauter
                 {
                     animator.SetBool("isJumping", true);
                     Jump(3);
                 }
-                else
+                else                                          //Atterir
                 {
                     animator.SetBool("isJumping", false);
                     BossLanding();
@@ -160,7 +161,7 @@ public class Boss : MonoBehaviour
             }
             else
             {
-                speed = 0.6f;
+                speed = 0.6f;                                 //Vitesse du boss augmenté
                 if (seconds < 3)
                 {
                     animator.SetBool("isMoving", true);
@@ -168,7 +169,7 @@ public class Boss : MonoBehaviour
                 }
                 if (seconds == 3)
                 {
-                    animator.SetBool("isMoving", false);
+                    animator.SetBool(  "isMoving", false);
                     animator.SetBool("isLaunching", true);
                     direction = ThrowBomb(lookingAt);
                     seconds = 0;
@@ -193,26 +194,27 @@ public class Boss : MonoBehaviour
             if (target.position.x > transform.position.x)
             {
                 animator.SetFloat("moveX",  1f);
-                lookingAt = 1                  ; //Droite
+                lookingAt = 1                  ;                 //Droite
             }
             if (target.position.x < transform.position.x)
             {
                 animator.SetFloat("moveX", -1f);
-                lookingAt = 3                  ; //Gauche
+                lookingAt = 3                  ;                 //Gauche
             }
         }
         else if (xDifference < yDifference)
         {
             animator.SetFloat("moveX", 0f);
+
             if (target.position.y < transform.position.y)
             {
                 animator.SetFloat("moveY", -1f);
-                lookingAt = 2                  ; //Bas
+                lookingAt = 2                  ;                 //Bas
             }
             if (target.position.y > transform.position.y)
             {
                 animator.SetFloat("moveY",  1f);
-                lookingAt = 4                  ; //Haut
+                lookingAt = 4                  ;                 //Haut
             }
         }
     }
@@ -232,7 +234,6 @@ public class Boss : MonoBehaviour
     void Jump(int phase)
     {
         StartCoroutine(WaitJump(phase));
-        //Le boss saute et atteri détruisant les piliers autours.
     }
 
     IEnumerator WaitJump(int phase)
@@ -242,14 +243,14 @@ public class Boss : MonoBehaviour
             yield return new WaitForSeconds(0.9f);
             gameObject.transform.position = Vector2.MoveTowards(transform.position, new Vector2(transform.position.x, 4.5f), 0.1f);
             yield return new WaitForSeconds(0.2f);
-            Shadow();
+            Shadow(); //Ombre à Instantiate
         }
         else if(phase == 3)
         {
             yield return new WaitForSeconds(0.9f);
             gameObject.transform.position = Vector2.MoveTowards(transform.position, new Vector2(transform.position.x, 4.5f), 0.1f);
             yield return new WaitForSeconds(0.2f);
-            InstantiateBomb();
+            InstantiateBomb();  // Bombe qu'il lâche en l'air
         }
     }
 
@@ -258,7 +259,7 @@ public class Boss : MonoBehaviour
     ***************************************************************************************/
     void Shadow()
     {
-        if (ombreObject == null){ombreObject = Instantiate(ombre, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y - 3.50f, 0), Quaternion.identity);}
+        if (ombreObject == null) { ombreObject = Instantiate(ombre, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y - 3.50f, 0), Quaternion.identity); }    //Instantiate Ombre 
 
         ombreObject.transform.position = Vector2.MoveTowards(ombreObject.transform.position, target.position                                                    , 1f * Time.deltaTime);
         transform.position             = Vector2.MoveTowards(transform.position            , new Vector2(ombreObject.transform.position.x, transform.position.y), 1f * Time.deltaTime);
@@ -272,46 +273,43 @@ public class Boss : MonoBehaviour
         bossFallDown = true;
     }
 
-
     /*************************************************************************************************************
     * Function : Le boss retombe apres avoir sauté et détruit les pilliers et tue le joueur si il est en dessous *
     **************************************************************************************************************/
     void BossLanding()
     {
-        if (ombreObject != null)
-        {
-            gameObject.transform.position = Vector2.MoveTowards(transform.position, new Vector2(transform.position.x, ombreObject.transform.position.y), 0.1f);
-        }
-        else {}
+        if (ombreObject != null) { gameObject.transform.position = Vector2.MoveTowards(transform.position, new Vector2(transform.position.x, ombreObject.transform.position.y), 0.1f); }
         animator.SetBool("isLanding", true);
+
         StartCoroutine(WaitLanding());
     }
 
     IEnumerator WaitLanding()
     {
         yield return new WaitForSeconds(1.15f);
-        cameraAnimator.SetTrigger("shake");
-        Destroy(ombreObject);
+        cameraAnimator.SetTrigger("shake")    ;
+        Destroy(ombreObject)                  ;
+        //Detruit pillier et repousse bombe
+
         yield return new WaitForSeconds(0.5f);
-        animator.SetBool("isLanding", false);
-        seconds = 0;
-        isStartingPhase = false;
-        bossFallDown    = false;
-        //Detruit pillier
+        animator.SetBool("isLanding", false) ;
+        seconds = 0                          ;
+        isStartingPhase = false              ;
+        bossFallDown    = false              ;
     }
 
     void InstantiateBomb()
     {
         //GetComponent<BombAOE>().BombArea();
-        if (player.transform.position.x < 0) { GetComponent<BombAOE>().BombAreaLeftToRight(); }
-        if (player.transform.position.x > 0) { GetComponent<BombAOE>().BombAreaRightToLeft(); }
+        if (player.transform.position.x < 0) { GetComponent<BombAOE>().BombAreaLeftToRight(); }  //Bombe laché de la gauche vers la droite
+        if (player.transform.position.x > 0) { GetComponent<BombAOE>().BombAreaRightToLeft(); }  //Bombe laché de la droite vers la gauche
         StartCoroutine(WaitBomb());
         bossFallDown = true;
     }
 
     IEnumerator WaitBomb()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(2f); //Temps avant que le boss retombe
     }
 
     /********************************************************************************************
@@ -319,7 +317,6 @@ public class Boss : MonoBehaviour
     *********************************************************************************************/
     void Rage()
     {
-        //Détruit tout les murs autours de la salle
         isRage = true;
     }
 
@@ -339,47 +336,47 @@ public class Boss : MonoBehaviour
         switch(lookingAt)
         {
             case 1: //Est
-                bombe1 = Instantiate(bomb, new Vector3(bombLauncher.transform.position.x, bombLauncher.transform.position.y, bombLauncher.transform.position.z), Quaternion.identity);
-                bombe2 = Instantiate(bomb, new Vector3(bombLauncher.transform.position.x, bombLauncher.transform.position.y, bombLauncher.transform.position.z), Quaternion.identity);
-                bombe3 = Instantiate(bomb, new Vector3(bombLauncher.transform.position.x, bombLauncher.transform.position.y, bombLauncher.transform.position.z), Quaternion.identity);
+                bombe1        = Instantiate(bomb, new Vector3(bombLauncher.transform.position.x, bombLauncher.transform.position.y), Quaternion.identity);
+                bombe2        = Instantiate(bomb, new Vector3(bombLauncher.transform.position.x, bombLauncher.transform.position.y), Quaternion.identity);
+                bombe3        = Instantiate(bomb, new Vector3(bombLauncher.transform.position.x, bombLauncher.transform.position.y), Quaternion.identity);
                 bombAnimator1 = bombe1.GetComponent<Animator>();
                 bombAnimator2 = bombe2.GetComponent<Animator>();
                 bombAnimator3 = bombe3.GetComponent<Animator>();
-                needToMove1 = true;
-                needToMove2 = true;
+                needToMove1   = true;
+                needToMove2   = true;
                 return 1;
 
             case 2: //Sud
-                bombe1 = Instantiate(bomb, new Vector3(bombLauncher.transform.position.x, bombLauncher.transform.position.y, bombLauncher.transform.position.z), Quaternion.identity);
-                bombe2 = Instantiate(bomb, new Vector3(bombLauncher.transform.position.x, bombLauncher.transform.position.y, bombLauncher.transform.position.z), Quaternion.identity);
-                bombe3 = Instantiate(bomb, new Vector3(bombLauncher.transform.position.x, bombLauncher.transform.position.y, bombLauncher.transform.position.z), Quaternion.identity);
+                bombe1        = Instantiate(bomb, new Vector3(bombLauncher.transform.position.x, bombLauncher.transform.position.y), Quaternion.identity);
+                bombe2        = Instantiate(bomb, new Vector3(bombLauncher.transform.position.x, bombLauncher.transform.position.y), Quaternion.identity);
+                bombe3        = Instantiate(bomb, new Vector3(bombLauncher.transform.position.x, bombLauncher.transform.position.y), Quaternion.identity);
                 bombAnimator1 = bombe1.GetComponent<Animator>();
                 bombAnimator2 = bombe2.GetComponent<Animator>();
                 bombAnimator3 = bombe3.GetComponent<Animator>();
-                needToMove1 = true;
-                needToMove2 = true;
+                needToMove1   = true;
+                needToMove2   = true;
                 return 2;
 
             case 3: //Ouest
-                bombe1 = Instantiate(bomb, new Vector3(bombLauncher.transform.position.x, bombLauncher.transform.position.y, bombLauncher.transform.position.z), Quaternion.identity);
-                bombe2 = Instantiate(bomb, new Vector3(bombLauncher.transform.position.x, bombLauncher.transform.position.y, bombLauncher.transform.position.z), Quaternion.identity);
-                bombe3 = Instantiate(bomb, new Vector3(bombLauncher.transform.position.x, bombLauncher.transform.position.y, bombLauncher.transform.position.z), Quaternion.identity);
+                bombe1        = Instantiate(bomb, new Vector3(bombLauncher.transform.position.x, bombLauncher.transform.position.y), Quaternion.identity);
+                bombe2        = Instantiate(bomb, new Vector3(bombLauncher.transform.position.x, bombLauncher.transform.position.y), Quaternion.identity);
+                bombe3        = Instantiate(bomb, new Vector3(bombLauncher.transform.position.x, bombLauncher.transform.position.y), Quaternion.identity);
                 bombAnimator1 = bombe1.GetComponent<Animator>();
                 bombAnimator2 = bombe2.GetComponent<Animator>();
                 bombAnimator3 = bombe3.GetComponent<Animator>();
-                needToMove1 = true;
-                needToMove2 = true;
+                needToMove1   = true;
+                needToMove2   = true;
                 return 3;
 
             case 4: //Nord
-                bombe1 = Instantiate(bomb, new Vector3(bombLauncher.transform.position.x, bombLauncher.transform.position.y, bombLauncher.transform.position.z), Quaternion.identity);
-                bombe2 = Instantiate(bomb, new Vector3(bombLauncher.transform.position.x, bombLauncher.transform.position.y, bombLauncher.transform.position.z), Quaternion.identity);
-                bombe3 = Instantiate(bomb, new Vector3(bombLauncher.transform.position.x, bombLauncher.transform.position.y, bombLauncher.transform.position.z), Quaternion.identity);
+                bombe1        = Instantiate(bomb, new Vector3(bombLauncher.transform.position.x, bombLauncher.transform.position.y), Quaternion.identity);
+                bombe2        = Instantiate(bomb, new Vector3(bombLauncher.transform.position.x, bombLauncher.transform.position.y), Quaternion.identity);
+                bombe3        = Instantiate(bomb, new Vector3(bombLauncher.transform.position.x, bombLauncher.transform.position.y), Quaternion.identity);
                 bombAnimator1 = bombe1.GetComponent<Animator>();
                 bombAnimator2 = bombe2.GetComponent<Animator>();
                 bombAnimator3 = bombe3.GetComponent<Animator>();
-                needToMove1 = true;
-                needToMove2 = true;
+                needToMove1   = true;
+                needToMove2   = true;
                 return 4;
 
             default:
@@ -407,19 +404,10 @@ public class Boss : MonoBehaviour
                     bombe1.transform.Translate(transform.up *  distanceDeltaDiag + transform.right * distanceDeltaDiag);
                     bombe3.transform.Translate(-transform.up * distanceDeltaDiag + transform.right * distanceDeltaDiag);
                 }
-                else
-                {
-                    needToMove1 = false;
-                }
+                else {needToMove1 = false;}
 
-                if (xDiffBomb2 < 1.5f) //Horizontale
-                {
-                    bombe2.transform.position += transform.right * distanceDeltaHV;
-                }
-                else
-                {
-                    needToMove2 = false;
-                }
+                if (xDiffBomb2 < 1.5f) {bombe2.transform.position += transform.right * distanceDeltaHV;}
+                else                   {needToMove2 = false                                           ;}
             }
             else if (direction == 2) //SUD
             {
@@ -433,19 +421,10 @@ public class Boss : MonoBehaviour
                     bombe1.transform.Translate(-transform.up * distanceDeltaDiag +  transform.right * distanceDeltaDiag);
                     bombe3.transform.Translate(-transform.up * distanceDeltaDiag + -transform.right * distanceDeltaDiag);
                 }
-                else
-                {
-                    needToMove1 = false;
-                }
+                else{needToMove1 = false;}
 
-                if (yDiffBomb2 < 2f) //Vertical
-                {
-                    bombe2.transform.position += -transform.up * distanceDeltaHV;
-                }
-                else
-                {
-                    needToMove2 = false;
-                }
+                if (yDiffBomb2 < 2f) {bombe2.transform.position += -transform.up * distanceDeltaHV;}
+                else                 {needToMove2 = false                                         ;}
             }
             else if (direction == 3) //OUEST
             {
@@ -459,19 +438,10 @@ public class Boss : MonoBehaviour
                     bombe1.transform.Translate( transform.up * distanceDeltaDiag + -transform.right * distanceDeltaDiag);
                     bombe3.transform.Translate(-transform.up * distanceDeltaDiag + -transform.right * distanceDeltaDiag);
                 }
-                else
-                {
-                    needToMove1 = false;
-                }
+                else{needToMove1 = false;}
 
-                if (xDiffBomb2 < 2f) //Horizontale
-                {
-                    bombe2.transform.position += -transform.right * distanceDeltaHV;
-                }
-                else
-                {
-                    needToMove2 = false;
-                }
+                if (xDiffBomb2 < 2f) {bombe2.transform.position += -transform.right * distanceDeltaHV;}
+                else                 {needToMove2 = false                                            ;}
             }
             else if (direction == 4) //NORD
             {
@@ -485,19 +455,10 @@ public class Boss : MonoBehaviour
                     bombe1.transform.Translate(transform.up * distanceDeltaDiag +  transform.right * distanceDeltaDiag);
                     bombe3.transform.Translate(transform.up * distanceDeltaDiag + -transform.right * distanceDeltaDiag);
                 }
-                else
-                {
-                    needToMove1 = false;
-                }
+                else{needToMove1 = false;}
 
-                if (yDiffBomb2 < 2f) //Vertical
-                {
-                    bombe2.transform.position += transform.up * distanceDeltaHV;
-                }
-                else
-                {
-                    needToMove2 = false;
-                }
+                if (yDiffBomb2 < 2f) {bombe2.transform.position += transform.up * distanceDeltaHV;}
+                else                 {needToMove2 = false                                        ;}
             }
             bombAnimator1.SetInteger("direction", direction);
             bombAnimator2.SetInteger("direction", direction);
@@ -530,15 +491,17 @@ public class Boss : MonoBehaviour
         {
             hp--;
             isStartingPhase = true;
-            isInvincible = true;
+            isInvincible    = true;
         }
 
         StartCoroutine(Invincible());
-        //seconds = 0;
 
         if(hp == 0){isDead();}
     }
 
+     /**************************************************************
+     * Function : Boss invincible un temps après l'avoir touché    *
+     **************************************************************/
     IEnumerator Invincible()
     {
         yield return new WaitForSeconds(2f);
