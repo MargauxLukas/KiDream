@@ -33,6 +33,9 @@ public class BombAOE : MonoBehaviour
         }
     }
 
+    /*******************************************
+    * Function : Bombe partout / Sert de test  *
+    ********************************************/
     public void BombArea()
     {
         if (!isPlayed)
@@ -57,6 +60,9 @@ public class BombAOE : MonoBehaviour
         isPlayed = true;
     }
 
+    /****************************************************
+    * Function : Bombe sur la partie droite de la salle *
+    *****************************************************/
     public void BombAreaRight()
     {
         if (!isPlayed)
@@ -78,6 +84,9 @@ public class BombAOE : MonoBehaviour
         isPlayed = true;
     }
 
+    /****************************************************
+    * Function : Bombe sur la partie gauche de la salle *
+    *****************************************************/
     public void BombAreaLeft() //Test tableau Left
     {
         float positionX = -3f;
@@ -105,6 +114,9 @@ public class BombAOE : MonoBehaviour
         isPlayed = true;
     }
 
+    /*************************************************************
+    * Function : Bombe tombe de gauche à droite jusqu'au millieu *
+    **************************************************************/
     public void BombAreaLeftToRight()
     {
         if (!isPlayed)
@@ -141,6 +153,9 @@ public class BombAOE : MonoBehaviour
         }
     }
 
+    /*************************************************************
+    * Function : Bombe tombe de droite à gauche jusqu'au millieu *
+    **************************************************************/
     public void BombAreaRightToLeft()
     {
         if (!isPlayed)
