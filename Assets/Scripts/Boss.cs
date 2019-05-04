@@ -112,7 +112,7 @@ public class Boss : MonoBehaviour
                 if (!bossFallDown)
                 {
                     animator.SetBool("isJumping",  true);
-                    Jump();
+                    Jump(2);
                 }
                 else
                 {
@@ -147,7 +147,7 @@ public class Boss : MonoBehaviour
                 if (!bossFallDown)
                 {
                     animator.SetBool("isJumping", true);
-                    Jump();
+                    Jump(3);
                 }
                 else
                 {
@@ -226,18 +226,28 @@ public class Boss : MonoBehaviour
     /****************************
     * Function : Le boss saute  *
     *****************************/
-    void Jump()
+    void Jump(int phase)
     {
-        StartCoroutine(WaitJump());
+        StartCoroutine(WaitJump(phase));
         //Le boss saute et atteri détruisant les piliers autours.
     }
 
-    IEnumerator WaitJump()
+    IEnumerator WaitJump(int phase)
     {
-        yield return new WaitForSeconds(0.9f);
-        gameObject.transform.position = Vector2.MoveTowards(transform.position, new Vector2(transform.position.x, 4.5f), 0.1f);
-        yield return new WaitForSeconds(0.2f);
-        Shadow();
+        if (phase == 2)
+        {
+            yield return new WaitForSeconds(0.9f);
+            gameObject.transform.position = Vector2.MoveTowards(transform.position, new Vector2(transform.position.x, 4.5f), 0.1f);
+            yield return new WaitForSeconds(0.2f);
+            Shadow();
+        }
+        else if(phase == 3)
+        {
+            yield return new WaitForSeconds(0.9f);
+            gameObject.transform.position = Vector2.MoveTowards(transform.position, new Vector2(transform.position.x, 4.5f), 0.1f);
+            yield return new WaitForSeconds(0.2f);
+            InstantiateBomb();
+        }
     }
 
     /**************************************************************************************
@@ -279,6 +289,20 @@ public class Boss : MonoBehaviour
         isStartingPhase = false;
         bossFallDown    = false;
         //Detruit pillier
+    }
+
+    void InstantiateBomb()
+    {
+        //GetComponent<BombAOE>().BombArea();
+        if (player.transform.position.x < 0) { GetComponent<BombAOE>(). BombAreaLeftToRight(); }
+        if (player.transform.position.x > 0) { GetComponent<BombAOE>().BombAreaRight(); }
+        StartCoroutine(WaitBomb());
+        bossFallDown = true;
+    }
+
+    IEnumerator WaitBomb()
+    {
+        yield return new WaitForSeconds(2f);
     }
 
     /********************************************************************************************

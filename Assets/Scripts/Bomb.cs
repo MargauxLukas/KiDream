@@ -30,9 +30,12 @@ public class Bomb : MonoBehaviour
         isDream = player.GetComponent<CharacterController>().isDream;
         if (isDream) { animator.SetBool("isDream",  true);}
         else         { animator.SetBool("isDream", false);}
-
         timer += Time.deltaTime;
 
+        if (timer >= explosionTime - 4.380f)
+        {
+            animator.SetBool("isTimer",true);
+        }
         if (timer >= explosionTime)
         {
             Explode();
@@ -63,10 +66,7 @@ public class Bomb : MonoBehaviour
 
     void Explode()
     {
-        if (timer >= explosionTime)
-        {
-            Destroy(gameObject);
-        }
+        Destroy(gameObject);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
