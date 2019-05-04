@@ -156,6 +156,40 @@ public class BombAOE : MonoBehaviour
 
     public void BombAreaRightToLeft()
     {
+        if (!isPlayed)
+        {
+            StartCoroutine(WaitAreaRTL());
+        }
+        isPlayed = true;
+    }
 
+    IEnumerator WaitAreaRTL()
+    {
+        float positionX = 3f;
+        float positionY = 2f;
+        for (int coll = 6; coll >= 3; coll--)
+        {
+            for (int ligne = 0; ligne <= 3; ligne++)
+            {
+                if ((coll == 0 && ligne == 0) || (coll == 6 && ligne == 0)
+                                              || (coll == 0 && ligne == 3)
+                                              || (coll == 6 && ligne == 3)
+                                              || (coll == 5 && ligne == 3)
+                                              || (coll == 1 && ligne == 3)) { }
+                else
+                {
+                    GameObject fBomb = Instantiate(fallingBomb, new Vector2(positionX, positionY + 5f), Quaternion.identity);
+                    GameObject shadowBomb = Instantiate(ombreBomb, bombTab[coll, ligne], Quaternion.identity);
+                    fBomb.GetComponent<BombFalling>().target = bombTab[coll, ligne];
+                    fBomb.GetComponent<BombFalling>().positionX = positionX;
+
+                }
+                positionY--;
+            }
+            yield return new WaitForSeconds(1f);
+
+            positionY = 2f;
+            positionX--;
+        }
     }
 }
