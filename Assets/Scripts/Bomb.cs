@@ -5,12 +5,13 @@ using UnityEngine;
 public class Bomb : MonoBehaviour
 {
     Animator animator;
+
+    [Header("Timer")]
     [SerializeField] float explosionTime;
     [SerializeField] float timer;
 
-    bool canHurtBoss = false;
-
-    private bool isDream = true;
+    private bool canHurtBoss = false;
+    private bool isDream     =  true;
 
     CircleCollider2D collider;
 
@@ -19,8 +20,8 @@ public class Bomb : MonoBehaviour
 
 	void Start ()
     {
-        animator = GetComponent<Animator>();
-        boss     = GameObject.Find("Boss");
+        animator = GetComponent<Animator>() ;
+        boss     = GameObject.Find("Boss"  );
         player   = GameObject.Find("Player");
         collider = gameObject.GetComponent<CircleCollider2D>();
 	}
@@ -30,34 +31,27 @@ public class Bomb : MonoBehaviour
         isDream = player.GetComponent<CharacterController>().isDream;
         if (isDream) { animator.SetBool("isDream",  true);}
         else         { animator.SetBool("isDream", false);}
-        timer += Time.deltaTime;
 
-        if (timer >= explosionTime - 4.380f)
-        {
-            animator.SetBool("isTimer",true);
-        }
-        if (timer >= explosionTime)
-        {
-            Explode();
-        }
+        timer += Time.deltaTime;
+        if (timer >= explosionTime - 4.380f) {animator.SetBool("isTimer",true);}
+        if (timer >= explosionTime         ) {Explode()                       ;}
 	}
 
     void Explode(Collision2D collision)
     {
-        //Debug.Log(collision);
         if (collision.gameObject.tag == "Player")
         {
             animator.SetBool("isExplode", true);
             Destroy(collision.gameObject);
-            Destroy(gameObject,0.6f);
+            Destroy(gameObject, 0.6f    );
         }
-        if (collision.gameObject.tag == "Boss" && canHurtBoss)
+        else if (collision.gameObject.tag == "Boss" && canHurtBoss)
         {
             animator.SetBool("isExplode", true);
             boss.GetComponent<Boss>().Damages();
-            Destroy(gameObject,0.55f);
+            Destroy(gameObject, 0.55f);
         }
-        if(collision.gameObject.name == "WallCollider")
+        else if(collision.gameObject.name == "WallCollider")
         {
             animator.SetBool("isExplode", true);
             Destroy(gameObject, 0.55f);

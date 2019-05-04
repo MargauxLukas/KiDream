@@ -4,20 +4,23 @@ using UnityEngine;
 
 public class BombFalling : MonoBehaviour
 {
-    public Vector2  target;
-    public float positionX;
-    public float positionY;
+    private Animator   animator;
 
+    private GameObject boss    ;
+    private GameObject player  ;
+
+    private Collider2D collider;
+
+    public Vector2 target;
+
+    private bool isDream;
+
+    [Header("Timer")]
     [SerializeField] float explosionTime;
-    [SerializeField] float timer;
+    [SerializeField] float timer        ;
 
-    private bool isDream ;
-    Animator   animator  ;
-
-    GameObject boss  ;
-    GameObject player;
+    [Header("Bombe Object")]
     public GameObject shadowBomb;
-    public Collider2D collider;
 
     private void Start()
     {
@@ -31,19 +34,13 @@ public class BombFalling : MonoBehaviour
     {
         timer += Time.deltaTime;
 
-        if (timer >= explosionTime - 4.380f)
-        {
-            animator.SetBool("isTimer", true);
-        }
-        if (timer >= explosionTime)
-        {
-            Explode();
-        }
+        if (timer >= explosionTime - 4.380f){animator.SetBool("isTimer", true);}
+        if (timer >= explosionTime         ){Explode()                        ;}
 
         isDream = player.GetComponent<CharacterController>().isDream;
+
         if (isDream) { animator.SetBool("isDream", true ); }
         else         { animator.SetBool("isDream", false); }
-        //transform.position = Vector2.MoveTowards(new Vector2(positionX, 4f),target, 1 * Time.deltaTime);
 
         if (transform.position.y > target.y)
         {
@@ -73,7 +70,7 @@ public class BombFalling : MonoBehaviour
         {
             animator.SetBool("isExplode", true);
             Destroy(collision.gameObject);
-            Destroy(gameObject, 0.6f);
+            Destroy(gameObject, 0.6f    );
         }
     }
 

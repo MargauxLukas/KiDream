@@ -5,11 +5,13 @@ using UnityEngine;
 public class BombAOE : MonoBehaviour
 {
     Animator animator;
-    public GameObject bomb;
-    public GameObject fallingBomb;
-    public GameObject shadowBomb;
 
-    Vector2[,] bombTab = new Vector2[7, 4];
+    [Header("GameObject to attached")]
+    public GameObject bomb       ;
+    public GameObject fallingBomb;
+    public GameObject shadowBomb ;
+
+    Vector2[,] bombTab = new Vector2[7, 4];  //Tableau des positions des bombes
 
     bool isPlayed = false;
 
@@ -19,11 +21,11 @@ public class BombAOE : MonoBehaviour
 
         float x = -3f;
         float y =  2f;
-        for (int coll=0; coll<=3; coll++)
+        for (int ligne=0; ligne<=3; ligne++)
         {
-            for (int ligne = 0; ligne <= 6; ligne++)
+            for (int coll = 0; coll <= 6; coll++)
             {
-                bombTab[ligne,coll] = new Vector2(x,y);
+                bombTab[coll,ligne] = new Vector2(x,y);
                 x++;
             }
             y--;
@@ -31,7 +33,7 @@ public class BombAOE : MonoBehaviour
         }
     }
 
-    public void BombArea() //Test de tableau 
+    public void BombArea()
     {
         if (!isPlayed)
         {
@@ -43,7 +45,7 @@ public class BombAOE : MonoBehaviour
                                                   || (coll == 0 && ligne == 3)
                                                   || (coll == 6 && ligne == 3)
                                                   || (coll == 5 && ligne == 3)
-                                                  || (coll == 1 && ligne == 3)) { }
+                                                  || (coll == 1 && ligne == 3)) {}
                     else
                     {
                         Instantiate(bomb, bombTab[coll, ligne], Quaternion.identity);
@@ -55,7 +57,7 @@ public class BombAOE : MonoBehaviour
         isPlayed = true;
     }
 
-    public void BombAreaRight() //Test tableau Right
+    public void BombAreaRight()
     {
         if (!isPlayed)
         {
@@ -63,14 +65,10 @@ public class BombAOE : MonoBehaviour
             {
                 for (int coll = 3; coll <= 6; coll++)
                 {
-                    if ((coll == 0 && ligne == 0) || (coll == 6 && ligne == 0)
-                                                  || (coll == 0 && ligne == 3)
-                                                  || (coll == 6 && ligne == 3)
-                                                  || (coll == 5 && ligne == 3)
-                                                  || (coll == 1 && ligne == 3)) {}
+                    if ((coll == 6 && ligne == 0) || (coll == 6 && ligne == 3)
+                                                  || (coll == 5 && ligne == 3)){}
                     else
                     {
-                        Instantiate(bomb, bombTab[coll, ligne], Quaternion.identity);
                         Instantiate(bomb, bombTab[coll, ligne], Quaternion.identity);
                         animator.SetBool("isMoving", false);
                     }
@@ -83,31 +81,23 @@ public class BombAOE : MonoBehaviour
     public void BombAreaLeft() //Test tableau Left
     {
         float positionX = -3f;
-        float positionY = 2f;
+        float positionY =  2f;
+
         if (!isPlayed)
         {
             for (int ligne = 0; ligne <= 3; ligne++)
             {
                 for (int coll = 0; coll <= 3; coll++)
                 {
-                    if ((coll == 0 && ligne == 0) || (coll == 6 && ligne == 0)
-                                                  || (coll == 0 && ligne == 3)
-                                                  || (coll == 6 && ligne == 3)
-                                                  || (coll == 5 && ligne == 3)
+                    if ((coll == 0 && ligne == 0) || (coll == 0 && ligne == 3)
                                                   || (coll == 1 && ligne == 3)) {}
                     else
                     {
                         GameObject fBomb = Instantiate(fallingBomb, new Vector2(positionX, positionY+5f), Quaternion.identity);
-                        fBomb.GetComponent<BombFalling>().target    = bombTab[coll, ligne];
-                        fBomb.GetComponent<BombFalling>().positionX = positionX           ;
-                        //fBomb.GetComponent<BombFalling>().positionY = positionY+5f;
-
-                        //Instantiate(bomb, bombTab[ligne, coll], Quaternion.identity);
-
+                        fBomb.GetComponent<BombFalling>().target = bombTab[coll, ligne];
                         animator.SetBool("isMoving", false);
                     }
                 }
-
                 positionX++;
                 positionY--;
             }
@@ -127,30 +117,27 @@ public class BombAOE : MonoBehaviour
     IEnumerator WaitAreaLTR()
     {
         float positionX = -3f;
-        float positionY = 2f;
+        float positionY =  2f;
+
         for (int coll = 0; coll <= 3; coll++)
         {
             for (int ligne = 0; ligne <= 3; ligne++)
             {
-                if ((coll == 0 && ligne == 0) || (coll == 6 && ligne == 0)
-                                              || (coll == 0 && ligne == 3)
-                                              || (coll == 6 && ligne == 3)
-                                              || (coll == 5 && ligne == 3)
-                                              || (coll == 1 && ligne == 3)) { }
+                if ((coll == 0 && ligne == 0) || (coll == 0 && ligne == 3)
+                                              || (coll == 1 && ligne == 3)) {}
                 else
                 {
-                    GameObject fBomb = Instantiate(fallingBomb, new Vector2(positionX, positionY + 5f), Quaternion.identity);
-                    GameObject shadow = Instantiate(shadowBomb, bombTab[coll , ligne], Quaternion.identity);
-                    fBomb.GetComponent<BombFalling>().target = bombTab[coll, ligne];
-                    fBomb.GetComponent<BombFalling>().positionX = positionX;
-                    fBomb.GetComponent<BombFalling>().shadowBomb = shadow;
+                    GameObject fBomb  = Instantiate(fallingBomb, new Vector2(positionX, positionY + 5f), Quaternion.identity);
+                    GameObject shadow = Instantiate(shadowBomb , bombTab[coll , ligne]                 , Quaternion.identity);
+                    fBomb.GetComponent<BombFalling>().target     = bombTab[coll, ligne];
+                    fBomb.GetComponent<BombFalling>().shadowBomb = shadow              ;
                 }
                 positionY--;
             }
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(1f); // Temps entre chaque colonne de bombe //A réduire si on veut que se soit plus rapide
 
             positionY = 2f;
-            positionX++;
+            positionX++   ;
         }
     }
 
@@ -171,26 +158,22 @@ public class BombAOE : MonoBehaviour
         {
             for (int ligne = 0; ligne <= 3; ligne++)
             {
-                if ((coll == 0 && ligne == 0) || (coll == 6 && ligne == 0)
-                                              || (coll == 0 && ligne == 3)
-                                              || (coll == 6 && ligne == 3)
-                                              || (coll == 5 && ligne == 3)
-                                              || (coll == 1 && ligne == 3)) { }
+                if ((coll == 6 && ligne == 0) || (coll == 6 && ligne == 3)
+                                              || (coll == 5 && ligne == 3)) {}
                 else
                 {
-                    GameObject fBomb = Instantiate(fallingBomb, new Vector2(positionX, positionY + 5f), Quaternion.identity);
-                    GameObject shadow = Instantiate(shadowBomb, bombTab[coll, ligne], Quaternion.identity);
-                    fBomb.GetComponent<BombFalling>().target = bombTab[coll, ligne];
-                    fBomb.GetComponent<BombFalling>().positionX = positionX;
-                    fBomb.GetComponent<BombFalling>().shadowBomb = shadow;
+                    GameObject fBomb  = Instantiate(fallingBomb, new Vector2(positionX, positionY + 5f), Quaternion.identity);
+                    GameObject shadow = Instantiate(shadowBomb , bombTab[coll, ligne]                  , Quaternion.identity);
+                    fBomb.GetComponent<BombFalling>().target     = bombTab[coll, ligne];
+                    fBomb.GetComponent<BombFalling>().shadowBomb = shadow              ;
 
                 }
                 positionY--;
             }
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(1f); // Temps entre chaque colonne de bombe //A réduire si on veut que se soit plus rapide
 
             positionY = 2f;
-            positionX--;
+            positionX--   ;
         }
     }
 }
