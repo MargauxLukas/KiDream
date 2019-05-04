@@ -282,9 +282,10 @@ public class Boss : MonoBehaviour
 
     IEnumerator WaitLanding()
     {
-        yield return new WaitForSeconds(2f);
-        animator.SetBool("isLanding", false);
+        yield return new WaitForSeconds(1.5f);
         Destroy(ombreObject);
+        yield return new WaitForSeconds(0.5f);
+        animator.SetBool("isLanding", false);
         seconds = 0;
         isStartingPhase = false;
         bossFallDown    = false;
