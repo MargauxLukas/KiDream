@@ -8,6 +8,7 @@ public class Boss : MonoBehaviour
     Animator bombAnimator1;
     Animator bombAnimator2;
     Animator bombAnimator3;
+    Animator cameraAnimator;
 
     GameObject player;
 
@@ -56,6 +57,8 @@ public class Boss : MonoBehaviour
         bombAnimator1 = null;
         bombAnimator1 = null;
         bombAnimator1 = null;
+
+        cameraAnimator = GameObject.Find("Main Camera").GetComponent<Animator>();
 
         distanceDeltaHV   = Time.deltaTime *   1f;
         distanceDeltaDiag = Time.deltaTime * 0.5f;
@@ -275,14 +278,19 @@ public class Boss : MonoBehaviour
     **************************************************************************************************************/
     void BossLanding()
     {
-        gameObject.transform.position = Vector2.MoveTowards(transform.position, new Vector2(transform.position.x, ombreObject.transform.position.y), 0.1f);
+        if (ombreObject != null)
+        {
+            gameObject.transform.position = Vector2.MoveTowards(transform.position, new Vector2(transform.position.x, ombreObject.transform.position.y), 0.1f);
+        }
+        else {}
         animator.SetBool("isLanding", true);
         StartCoroutine(WaitLanding());
     }
 
     IEnumerator WaitLanding()
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1.15f);
+        cameraAnimator.SetTrigger("shake");
         Destroy(ombreObject);
         yield return new WaitForSeconds(0.5f);
         animator.SetBool("isLanding", false);

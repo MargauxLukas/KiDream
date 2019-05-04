@@ -2524,6 +2524,7 @@ GameObject:
   - component: {fileID: 1621266056}
   - component: {fileID: 1621266058}
   - component: {fileID: 1621266057}
+  - component: {fileID: 1621266059}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2591,6 +2592,24 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!95 &1621266059
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1621266055}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 25365668adb479e4eaa25888b1d151b2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1734766280
 GameObject:
   m_ObjectHideFlags: 0
