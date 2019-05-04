@@ -10624,8 +10624,8 @@ MonoBehaviour:
   canBePushCorrupted: 1
   canBePullCorrupted: 1
   canBeActivateCorrupted: 1
-  verticalPushForce: 1
-  horizontalPushForce: 1
+  verticalPushForce: 15
+  horizontalPushForce: 15
   verticalPullForce: 1
   horizontalPullForce: 1
   connectedGameObject: {fileID: 0}
@@ -10635,7 +10635,7 @@ MonoBehaviour:
   activateBehaviour: 0
   setActiveSetting: 0
   corruptedPushRadius: 0.6
-  corruptedPullRadius: 0.6
+  corruptedPullRadius: 0.4
   corruptedActivateRadius: 0.6
   childNumberTolerance: 1
   bypassActivateRules: 0
@@ -10647,7 +10647,7 @@ Rigidbody2D:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 222800001}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -13019,7 +13019,7 @@ MonoBehaviour:
   corruptedPullRadius: 0
   corruptedActivateRadius: 0
   childNumberTolerance: 2
-  bypassActivateRules: 1
+  bypassActivateRules: 0
 --- !u!212 &376058380
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -14481,7 +14481,7 @@ MonoBehaviour:
   corruptedPullRadius: 0
   corruptedActivateRadius: 0
   childNumberTolerance: 2
-  bypassActivateRules: 1
+  bypassActivateRules: 0
 --- !u!212 &688262326
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -30161,7 +30161,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myPSList: []
   waveManager: {fileID: 434495914}
-  linearDrag: 7
+  linearDrag: 1
   whoCanShootMe:
   - {fileID: 403456683}
   - {fileID: 222800001}
@@ -30185,7 +30185,7 @@ MonoBehaviour:
   corruptedPullRadius: 0
   corruptedActivateRadius: 0
   childNumberTolerance: 2
-  bypassActivateRules: 1
+  bypassActivateRules: 0
 --- !u!61 &1038734725
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -30281,7 +30281,7 @@ Rigidbody2D:
   m_GameObject: {fileID: 1038734723}
   m_BodyType: 0
   m_Simulated: 1
-  m_UseFullKinematicContacts: 0
+  m_UseFullKinematicContacts: 1
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
@@ -40548,7 +40548,7 @@ Rigidbody2D:
   m_GameObject: {fileID: 1454825854}
   m_BodyType: 0
   m_Simulated: 1
-  m_UseFullKinematicContacts: 0
+  m_UseFullKinematicContacts: 1
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
@@ -40570,21 +40570,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72e6f736707c2e842a00536803a91d7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myPSList: []
+  myPSList:
+  - {fileID: 1819298714}
+  - {fileID: 1718340477}
+  - {fileID: 746697684}
   waveManager: {fileID: 434495914}
-  linearDrag: 2
+  linearDrag: 1
   whoCanShootMe:
   - {fileID: 403456683}
   canBePushed: 1
   canBePulled: 1
   canBeActivated: 0
   canBePushCorrupted: 0
-  canBePullCorrupted: 0
-  canBeActivateCorrupted: 0
-  verticalPushForce: 0
-  horizontalPushForce: 0
-  verticalPullForce: 0
-  horizontalPullForce: 0
+  canBePullCorrupted: 1
+  canBeActivateCorrupted: 1
+  verticalPushForce: 1
+  horizontalPushForce: 1
+  verticalPullForce: 1
+  horizontalPullForce: 1
   connectedGameObject: {fileID: 0}
   playAnimation: 0
   launchAgainToDisable: 0
@@ -40592,10 +40595,10 @@ MonoBehaviour:
   activateBehaviour: 0
   setActiveSetting: 0
   corruptedPushRadius: 0
-  corruptedPullRadius: 0
+  corruptedPullRadius: 0.4
   corruptedActivateRadius: 0
   childNumberTolerance: 2
-  bypassActivateRules: 1
+  bypassActivateRules: 0
 --- !u!212 &1454825857
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -40943,7 +40946,7 @@ MonoBehaviour:
   corruptedPullRadius: 0
   corruptedActivateRadius: 0
   childNumberTolerance: 2
-  bypassActivateRules: 1
+  bypassActivateRules: 0
 --- !u!212 &1486803780
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -67098,7 +67101,7 @@ MonoBehaviour:
   corruptedPullRadius: 0
   corruptedActivateRadius: 0
   childNumberTolerance: 2
-  bypassActivateRules: 1
+  bypassActivateRules: 0
 --- !u!212 &2115364653
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -5,7 +5,25 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/_Scenes/LON_MainMenu.unity
+    guid: d20605c3f5c4a6b4fb0b157622b68ad3
+  - enabled: 1
+    path: Assets/_Scenes/LON_PlayMenu.unity
+    guid: f4cc964daaae2ab4aa2484a54c7b09d4
+  - enabled: 1
+    path: Assets/_Scenes/LON_Scene1.unity
+    guid: 714dda2e6d44ae048a7ac1d3a2d3427d
+  - enabled: 1
+    path: Assets/_Scenes/LON_ChapterMenu.unity
+    guid: 69adac345ddb9b84ea44f6d36e71d92d
+  - enabled: 1
+    path: Assets/_Scenes/LON_Options.unity
+    guid: 9c60a837681704344a6c6c9c9b3ca86d
+  - enabled: 1
+    path: Assets/_Scenes/LON_QuitPopUp.unity
+    guid: 754275a499a784446a2cd637626e7d6a
   m_configObjects: {}

@@ -275,13 +275,11 @@ public class ReactionToWave : MonoBehaviour
         }
         else if (isActivated != true)
         {
-            Debug.Log("isActivated = true");
             isActivated = true;
 
             switch (activateBehaviour)
             {
                 case ActivateBehaviour._Debug:
-                    Debug.Log("Debug Message");
                     break;
 
                 case ActivateBehaviour._Destroy:
