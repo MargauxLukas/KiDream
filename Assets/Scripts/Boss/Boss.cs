@@ -42,11 +42,12 @@ public class Boss : MonoBehaviour
     private bool isStartingPhase =  true;
     private bool isDream = true;
     private bool isInvincible = false;
+    private bool isFollow = true;
 
     private int seconds   = 0;
     private int lookingAt = 0; // 1 = Droite, 2 = Down, 3 = Left, 4 = Up
     private int direction = 0;
-    private int hp        = 5;
+    public  int hp        = 5;
 
     void Start ()
     {
@@ -66,6 +67,7 @@ public class Boss : MonoBehaviour
 	
 	void Update ()
     {
+        Debug.Log("Boss " + hp);
         isDream = player.GetComponent<CharacterController>().isDream;
         if (isDream) { animator.SetBool("isDream",  true);}
         else         { animator.SetBool("isDream", false);}
@@ -165,10 +167,12 @@ public class Boss : MonoBehaviour
             }
             else
             {
+                
                 speed = 0.6f;                                 //Vitesse du boss augmenté
                 if (seconds < 3)
                 {
                     animator.SetBool("isMoving", true);
+                    bossFallDown = false;
                     cameraAnimator.ResetTrigger("shake");
                     Move();
                 }
@@ -293,21 +297,22 @@ public class Boss : MonoBehaviour
             gameObject.transform.position = Vector2.MoveTowards(transform.position, new Vector2(transform.position.x, 4.5f), 0.1f);
             yield return new WaitForSeconds(0.2f);
             Shadow(3); //Ombre à Instantiate
-            InstantiateBomb();  // Bombe qu'il lâche en l'air
+            InstantiateBomb(phase);  // Bombe qu'il lâche en l'air
         }
         else if (phase == 4)
         {
             yield return new WaitForSeconds(0.9f);
             gameObject.transform.position = Vector2.MoveTowards(transform.position, new Vector2(transform.position.x, 4.5f), 0.1f);
             yield return new WaitForSeconds(0.2f);
-            Shadow(3); //Ombre à Instantiate
+            Shadow(4); //Ombre à Instantiate
+            InstantiateBomb(phase);
         }
     }
 
     /**************************************************************************************
     * Function : L'ombre du boss apparait lorsqu'il est hors de l'écran et suit le joueur *
     ***************************************************************************************/
-    void Shadow(int phase)
+    void Shadow(int phase) //A améliorer, Moyen de réduire (Switch case)
     {
         if (phase == 2)
         {
@@ -316,21 +321,45 @@ public class Boss : MonoBehaviour
             ombreObject.transform.position = Vector2.MoveTowards(ombreObject.transform.position, target.position, 1f * Time.deltaTime);
             transform.position = Vector2.MoveTowards(transform.position, new Vector2(ombreObject.transform.position.x, transform.position.y), 1f * Time.deltaTime);
 
-            StartCoroutine(WaitShadow());
+            StartCoroutine(WaitShadow(phase));
         }
-        if (phase == 3)
+        else if (phase == 3)
         {
             if (ombreObject == null) { ombreObject = Instantiate(ombre, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y - 3.50f, 0), Quaternion.identity); }    //Instantiate Ombre 
 
             ombreObject.transform.position = Vector2.MoveTowards(ombreObject.transform.position, target.position, 1f * Time.deltaTime);
             transform.position = Vector2.MoveTowards(transform.position, new Vector2(ombreObject.transform.position.x, transform.position.y), 1f * Time.deltaTime);
         }
+        else if (phase == 4)
+        {
+            if (ombreObject == null) { ombreObject = Instantiate(ombre, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y - 3.50f, 0), Quaternion.identity); }    //Instantiate Ombre 
+
+            if (isFollow)
+            {
+                ombreObject.transform.position = Vector2.MoveTowards(ombreObject.transform.position, target.position, 1f * Time.deltaTime);
+            }
+                transform.position = Vector2.MoveTowards(transform.position, new Vector2(ombreObject.transform.position.x, transform.position.y), 1f * Time.deltaTime);
+
+            StartCoroutine(WaitShadow(phase));
+        }
     }
 
-    IEnumerator WaitShadow()
+    IEnumerator WaitShadow(int phase)
     {
-        yield return new WaitForSeconds(2f);
-        bossFallDown = true;
+        if (phase == 2 || phase == 3)
+        {
+            yield return new WaitForSeconds(2f);
+            bossFallDown = true;
+        }
+        else if (phase == 4)
+        {
+            yield return new WaitForSeconds(2f);
+            isFollow = false;
+            if (target.position.x > 0) { ombreObject.transform.position = Vector2.MoveTowards(ombreObject.transform.position, new Vector2(-0.7f, 0.50f), 1f * Time.deltaTime); }
+            else { ombreObject.transform.position = Vector2.MoveTowards(ombreObject.transform.position, new Vector2(1f, 0.50f), 1f * Time.deltaTime); }
+            yield return new WaitForSeconds(1.5f);
+            bossFallDown = true;
+        }
     }
 
     /*************************************************************************************************************
@@ -363,12 +392,18 @@ public class Boss : MonoBehaviour
         bossFallDown    = false              ;
     }
 
-    void InstantiateBomb()
+    void InstantiateBomb(int phase)
     {
-        //GetComponent<BombAOE>().BombArea();
-        if (player.transform.position.x < 0) { GetComponent<BombAOE>().BombAreaLeftToRight(); }  //Bombe laché de la gauche vers la droite
-        if (player.transform.position.x > 0) { GetComponent<BombAOE>().BombAreaRightToLeft(); }  //Bombe laché de la droite vers la gauche
-        StartCoroutine(WaitBomb());
+        if (phase == 3)
+        {
+            if (player.transform.position.x < 0) { GetComponent<BombAOE>().BombAreaLeftToRight(); }  //Bombe laché de la gauche vers la droite
+            if (player.transform.position.x > 0) { GetComponent<BombAOE>().BombAreaRightToLeft(); }  //Bombe laché de la droite vers la gauche
+            StartCoroutine(WaitBomb());
+        }
+        if (phase == 4)
+        {
+            GetComponent<BombAOE>().BombAreaMiddle();
+        }
     }
 
     IEnumerator WaitBomb()

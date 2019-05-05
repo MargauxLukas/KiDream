@@ -13,7 +13,8 @@ public class BombAOE : MonoBehaviour
 
     Vector2[,] bombTab = new Vector2[7, 4];  //Tableau des positions des bombes
 
-    bool isPlayed = false;
+    bool isPlayed1 = false;
+    bool isPlayed2 = false;
 
     public void Start()
     {
@@ -38,7 +39,7 @@ public class BombAOE : MonoBehaviour
     ********************************************/
     public void BombArea()
     {
-        if (!isPlayed)
+        if (!isPlayed1)
         {
             for (int ligne = 0; ligne <= 3; ligne++)
             {
@@ -57,7 +58,7 @@ public class BombAOE : MonoBehaviour
                 }
             }
         }
-        isPlayed = true;
+        isPlayed1 = true;
     }
 
     /****************************************************
@@ -65,7 +66,7 @@ public class BombAOE : MonoBehaviour
     *****************************************************/
     public void BombAreaRight()
     {
-        if (!isPlayed)
+        if (!isPlayed1)
         {
             for (int ligne = 0; ligne <= 3; ligne++)
             {
@@ -81,7 +82,7 @@ public class BombAOE : MonoBehaviour
                 }
             }
         }
-        isPlayed = true;
+        isPlayed1 = true;
     }
 
     /****************************************************
@@ -92,7 +93,7 @@ public class BombAOE : MonoBehaviour
         float positionX = -3f;
         float positionY =  2f;
 
-        if (!isPlayed)
+        if (!isPlayed1)
         {
             for (int ligne = 0; ligne <= 3; ligne++)
             {
@@ -111,7 +112,7 @@ public class BombAOE : MonoBehaviour
                 positionY--;
             }
         }
-        isPlayed = true;
+        isPlayed1 = true;
     }
 
     /*************************************************************
@@ -119,11 +120,11 @@ public class BombAOE : MonoBehaviour
     **************************************************************/
     public void BombAreaLeftToRight()
     {
-        if (!isPlayed)
+        if (!isPlayed1)
         {
             StartCoroutine(WaitAreaLTR());
         }
-        isPlayed = true;
+        isPlayed1 = true;
     }
 
     IEnumerator WaitAreaLTR()
@@ -158,11 +159,11 @@ public class BombAOE : MonoBehaviour
     **************************************************************/
     public void BombAreaRightToLeft()
     {
-        if (!isPlayed)
+        if (!isPlayed1)
         {
             StartCoroutine(WaitAreaRTL());
         }
-        isPlayed = true;
+        isPlayed1 = true;
     }
 
     IEnumerator WaitAreaRTL()
@@ -189,6 +190,34 @@ public class BombAOE : MonoBehaviour
 
             positionY = 2f;
             positionX--   ;
+        }
+    }
+
+    public void BombAreaMiddle()
+    {
+        if(!isPlayed2)
+        {
+            StartCoroutine(WaitAreaM());
+        }
+        isPlayed2 = true;
+    }
+
+    IEnumerator WaitAreaM()
+    {
+        float positionX = 0f;
+        float positionY = 2.50f;
+
+        for (int i = 0; i <= 8; i++)
+        {
+            GameObject fBomb = Instantiate(fallingBomb, new Vector2(positionX, positionY + 5f), Quaternion.identity);
+            GameObject shadow = Instantiate(shadowBomb, new Vector2(positionX, positionY), Quaternion.identity);
+            fBomb.GetComponent<BombFalling>().target = new Vector2(positionX, positionY);
+            fBomb.GetComponent<BombFalling>().shadowBomb = shadow;
+            fBomb.GetComponent<BombFalling>().explosionTime = 20f;
+
+            positionY = positionY - 0.5f;
+
+            yield return new WaitForSeconds(0.2f); // Temps entre chaque colonne de bombe //A réduire si on veut que se soit plus rapide
         }
     }
 }

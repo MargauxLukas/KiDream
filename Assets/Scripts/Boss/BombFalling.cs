@@ -17,7 +17,7 @@ public class BombFalling : MonoBehaviour
     private bool isDream;
 
     [Header("Timer")]
-    [SerializeField] float explosionTime;
+    [SerializeField]public float explosionTime;
     [SerializeField] float timer        ;
 
     [Header("Bombe Object")]
@@ -66,6 +66,11 @@ public class BombFalling : MonoBehaviour
             animator.SetBool("isExplode", true);
             collision.gameObject.GetComponent<CharacterController>().damage();
             Destroy(gameObject, 0.6f    );
+        }
+        else if (collision.gameObject.name == "WallCollider")
+        {
+            animator.SetBool("isExplode", true);
+            Destroy(gameObject, 0.6f);
         }
     }
 
