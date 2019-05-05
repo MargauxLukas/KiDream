@@ -14,7 +14,6 @@ public class CheckpointTrigger : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log(CheckpointAnim);
         if (collision.tag == "Player" && isChecked == false)
         {
             CheckpointAnim.SetBool("isChecked", true);

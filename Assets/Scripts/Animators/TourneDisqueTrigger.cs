@@ -13,7 +13,6 @@ public class TourneDisqueTrigger : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log(musicAnim);
         if (collision.tag == "Player")
         {
             musicAnim.SetBool("isTouched", true);
