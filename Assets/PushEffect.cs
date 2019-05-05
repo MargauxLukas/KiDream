@@ -13,7 +13,7 @@ public class PushEffect : MonoBehaviour
     [Header("Forces horizontales et verticales")]
     [Range(0,1000), SerializeField]
     private float forceX;
-    [Range(0, 100), SerializeField]
+    [Range(0, 1000), SerializeField]
     private float forceY;
     public bool yEqualX = false;
 

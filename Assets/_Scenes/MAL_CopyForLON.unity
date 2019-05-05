@@ -47049,12 +47049,15 @@ MonoBehaviour:
   horizontalPullForce: 1
   connectedGameObject: {fileID: 0}
   playAnimation: 1
+  launchAgainToDisable: 0
   isActivated: 0
   activateBehaviour: 0
+  setActiveSetting: 0
   corruptedPushRadius: 0
   corruptedPullRadius: 0
   corruptedActivateRadius: 0
   childNumberTolerance: 1
+  bypassActivateRules: 0
 --- !u!95 &600505121
 Animator:
   serializedVersion: 3
@@ -58430,6 +58433,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5be0ff84b094e444a79a65b1c8e2e1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isDream: 1
 --- !u!81 &1434556015
 AudioListener:
   m_ObjectHideFlags: 0
@@ -58446,7 +58450,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.85490197, g: 0.5764706, b: 0.5372549, a: 0}
+  m_BackGroundColor: {r: 0.85490197, g: 0.5764706, b: 0.5372549, a: 1}
   m_projectionMatrixMode: 1
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}

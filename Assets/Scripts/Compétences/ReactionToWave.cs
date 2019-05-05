@@ -15,7 +15,7 @@ public class ReactionToWave : MonoBehaviour
     public WaveManager waveManager;
 
     [Header("Physics")]
-    [Range(0,10), SerializeField]
+    [Range(0, 10), SerializeField]
     private int linearDrag;
 
     [Header("Properties")]
@@ -26,7 +26,7 @@ public class ReactionToWave : MonoBehaviour
     public bool canBePushCorrupted = false;
     public bool canBePullCorrupted = false;
     public bool canBeActivateCorrupted = false;
-    
+
     [Header("Push options")]
     [Range(0, 50), SerializeField]
     public float verticalPushForce = 1f;
@@ -74,21 +74,26 @@ public class ReactionToWave : MonoBehaviour
 
         thisRb = this.GetComponent<Rigidbody2D>();
         thisRb.drag = linearDrag;
-	}
-	
-	// Update
-	void Update()
+    }
+
+    // Update
+    void Update()
     {
         ActivationDesactivationAnimation();
     }
 
     private void OnParticleCollision(GameObject other)
-    {    
-         foreach (GameObject go in whoCanShootMe)
-         {
-             if (other == go || (other.transform.parent != null && other.transform.parent.gameObject == go))
-             {
-                Rigidbody2D rb = this.GetComponent<Rigidbody2D>();
+    {
+        Rigidbody2D rb = this.GetComponent<Rigidbody2D>();
+        //rb.bodyType = RigidbodyType2D.Dynamic;
+
+        //Debug.Log(rb.bodyType);
+
+        foreach (GameObject go in whoCanShootMe)
+        {
+            if (other == go || (other.transform.parent != null && other.transform.parent.gameObject == go))
+            {
+
                 shooter = other.GetComponent<ParticleSystem>();
 
                 ParticleSystem.Particle[] ParticleList = new ParticleSystem.Particle[shooter.particleCount];
@@ -114,57 +119,57 @@ public class ReactionToWave : MonoBehaviour
                 BypassActivationRules();
 
                 switch (waveManager.waveSelection)
-                 {
-                     case WaveType.Push:
-                         if(canBePushed == true)
-                         {
-                             rb.AddForce(new Vector2(-(this.shooter.transform.position.x - this.transform.position.x) * horizontalPushForce, -(this.shooter.transform.position.y - this.transform.position.y) * verticalPushForce));
-                         }
-                         break;
+                {
+                    case WaveType.Push:
+                        if (canBePushed == true)
+                        {
+                            rb.AddForce(new Vector2(-(this.shooter.transform.position.x - this.transform.position.x) * horizontalPushForce, -(this.shooter.transform.position.y - this.transform.position.y) * verticalPushForce));
+                        }
+                        break;
 
-                     case WaveType.Pull:
-                         if(canBePulled == true)
-                         {
-                             rb.AddForce(new Vector2((this.shooter.transform.position.x - this.transform.position.x) * horizontalPullForce, (this.shooter.transform.position.y - this.transform.position.y) * verticalPullForce));
-                         }
-                         break;
+                    case WaveType.Pull:
+                        if (canBePulled == true)
+                        {
+                            rb.AddForce(new Vector2((this.shooter.transform.position.x - this.transform.position.x) * horizontalPullForce, (this.shooter.transform.position.y - this.transform.position.y) * verticalPullForce));
+                        }
+                        break;
 
-                     case WaveType.Activate:
-                         if(canBeActivated == true)
-                         {
-                             Activate();
-                         }
-                         break;
+                    case WaveType.Activate:
+                        if (canBeActivated == true)
+                        {
+                            Activate();
+                        }
+                        break;
 
-                     case WaveType.PushCorruption:
+                    case WaveType.PushCorruption:
 
-                         localCounter = 0;
-                         if(canBePushCorrupted == true)
-                         {
-                             SetupChosenParticleSystem();
-                         }
-                         break;
+                        localCounter = 0;
+                        if (canBePushCorrupted == true)
+                        {
+                            SetupChosenParticleSystem();
+                        }
+                        break;
 
-                     case WaveType.PullCorruption:
+                    case WaveType.PullCorruption:
 
-                         localCounter = 1;
-                         if(canBePullCorrupted == true)
-                         {
-                             SetupChosenParticleSystem();
-                         }
-                         break;
+                        localCounter = 1;
+                        if (canBePullCorrupted == true)
+                        {
+                            SetupChosenParticleSystem();
+                        }
+                        break;
 
-                     case WaveType.ActivateCorruption:
+                    case WaveType.ActivateCorruption:
 
-                         localCounter = 2;
-                         if(canBeActivateCorrupted == true)
-                         {
-                             SetupChosenParticleSystem();
-                         }
-                         break;
-                 }
+                        localCounter = 2;
+                        if (canBeActivateCorrupted == true)
+                        {
+                            SetupChosenParticleSystem();
+                        }
+                        break;
+                }
 
-             }
+            }
             else if (other != go || (other.transform.parent == null && other.transform.parent.gameObject != go))
             {
                 shooter = other.GetComponent<ParticleSystem>();
@@ -185,17 +190,17 @@ public class ReactionToWave : MonoBehaviour
                     }
                 }
 
-                ParticleList[indexParticle].remainingLifetime = ParticleList[indexParticle].remainingLifetime +1f;
+                ParticleList[indexParticle].remainingLifetime = ParticleList[indexParticle].remainingLifetime + 1f;
 
                 shooter.SetParticles(ParticleList, shooter.particleCount);
             }
 
 
-         }                
+        }
     }
 
     public void SetupChosenParticleSystem()
-    {    
+    {
         if (this.transform.childCount == childNumberTolerance)
         {
             ps = Instantiate(myPSList[localCounter]);
@@ -233,7 +238,7 @@ public class ReactionToWave : MonoBehaviour
 
     public void ActivationDesactivationAnimation()
     {
-        if(playAnimation == true)
+        if (playAnimation == true)
         {
             if (isActivated == true && doubleLock == false)
             {
@@ -252,7 +257,7 @@ public class ReactionToWave : MonoBehaviour
 
     public void CrashAvoider()
     {
-        if(this.GetComponent<Animator>() == null)
+        if (this.GetComponent<Animator>() == null)
         {
             playAnimation = false;
         }
@@ -260,7 +265,7 @@ public class ReactionToWave : MonoBehaviour
 
     public void BypassActivationRules()
     {
-        if(bypassActivateRules == true)
+        if (bypassActivateRules == true)
         {
             Activate();
             return;
@@ -292,6 +297,17 @@ public class ReactionToWave : MonoBehaviour
             }
         }
     }
+
+    //Set colliding props to static
+    /*private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "ActionObject")
+        {
+            Rigidbody2D rb = collision.gameObject.GetComponent<Rigidbody2D>();
+
+            rb.bodyType = RigidbodyType2D.Static;
+        }
+    }*/
 }
 
 public enum ActivateBehaviour {_Debug, _Destroy, _SetActive}
