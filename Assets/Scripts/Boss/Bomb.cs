@@ -42,7 +42,7 @@ public class Bomb : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             animator.SetBool("isExplode", true);
-            Destroy(collision.gameObject);
+            collision.gameObject.GetComponent<CharacterController>().damage();
             Destroy(gameObject, 0.6f    );
         }
         else if (collision.gameObject.tag == "Boss" && canHurtBoss)

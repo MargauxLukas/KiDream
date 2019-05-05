@@ -216,11 +216,17 @@ public class CharacterController : MonoBehaviour
         }
     }
 
+    public void damage()
+    {
+        hp--;
+    }
+
     void Dead(int hp)
     {
         if(hp <= 0)
         {
-            transform.position = gameMaster.lastCheckpointPos;
+            //transform.position = gameMaster.lastCheckpointPos;
+            Destroy(gameObject);
             isKilled = true;
         }
     }

@@ -46,7 +46,7 @@ public class Boss : MonoBehaviour
     private int seconds   = 0;
     private int lookingAt = 0; // 1 = Droite, 2 = Down, 3 = Left, 4 = Up
     private int direction = 0;
-    private int hp        = 3;
+    private int hp        = 5;
 
     void Start ()
     {
@@ -95,7 +95,7 @@ public class Boss : MonoBehaviour
          *  HP du boss lié au changement de phase  *
          *   A augmenter si on veut plus de phase  *
          *******************************************/
-        if (hp == 3) //Phase 1 
+        if (hp == 5) //Phase 1 
         {
             if (seconds >= 1) // Fight commence à 1 seconde pour pas que le boss bouge direct apres la cinematique
             {
@@ -112,7 +112,7 @@ public class Boss : MonoBehaviour
             }
         }
 
-        if(hp == 2)                                           //Phase 2
+        if(hp == 4)                                           //Phase 2
         {
             if (isStartingPhase)                              //Changement de phase
             {
@@ -146,7 +146,7 @@ public class Boss : MonoBehaviour
             }
         }
 
-        if (hp == 1)                                          //Phase 3
+        if (hp == 3)                                          //Phase 3
         {
             if (isStartingPhase)
             {

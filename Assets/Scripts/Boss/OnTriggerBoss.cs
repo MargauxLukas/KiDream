@@ -10,7 +10,7 @@ public class OnTriggerBoss : MonoBehaviour
         Debug.Log(collision);
         if (collision.tag == "Player")
         {
-            Destroy(collision.gameObject);
+            collision.gameObject.GetComponent<CharacterController>().damage();
         }
     }
 }
