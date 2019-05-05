@@ -51,7 +51,7 @@ public class Boss : MonoBehaviour
     void Start ()
     {
               animator =                                GetComponent<Animator>();
-        cameraAnimator = GameObject.Find("Main Camera").GetComponent<Animator>();
+         cameraAnimator = GameObject.Find("Main Camera").GetComponent<Animator>();
          bombAnimator1 = null;
          bombAnimator1 = null;
          bombAnimator1 = null;
@@ -133,10 +133,12 @@ public class Boss : MonoBehaviour
                 if (seconds < 4)
                 {
                     animator.SetBool("isMoving", true);
+                    cameraAnimator.ResetTrigger("shake");
                     Move();
                 }
                 if (seconds == 4)
                 {
+                    cameraAnimator.SetBool("isTrigger", false);
                     animator.SetBool(   "isMoving", false);
                     animator.SetBool("isLaunching",  true);
                     direction = ThrowBomb(lookingAt)      ;
@@ -167,10 +169,12 @@ public class Boss : MonoBehaviour
                 if (seconds < 3)
                 {
                     animator.SetBool("isMoving", true);
+                    cameraAnimator.ResetTrigger("shake");
                     Move();
                 }
                 if (seconds == 3)
                 {
+                    cameraAnimator.SetBool("isTrigger", false);
                     animator.SetBool(  "isMoving", false);
                     animator.SetBool("isLaunching", true);
                     direction = ThrowBomb(lookingAt);
@@ -301,6 +305,7 @@ public class Boss : MonoBehaviour
     {
         yield return new WaitForSeconds(1.30f);
         cameraAnimator.SetTrigger("shake")    ;
+        cameraAnimator.SetBool("isTrigger", true);
         Destroy(ombreObject)                  ;
         pushCorrupted.SetActive(true)         ;
         areaDetection.SetActive(true)         ;
