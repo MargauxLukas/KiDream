@@ -12,9 +12,19 @@ public class BombAOE : MonoBehaviour
     public GameObject shadowBomb ;
 
     Vector2[,] bombTab = new Vector2[7, 4];  //Tableau des positions des bombes
+    float[,] bombCenterTab = new float[8, 2] { {   0f , 1.5f }, 
+                                               { -0.5f, 1.4f }, 
+                                               { -0.7f,   1f }, 
+                                               { -0.5f, 0.6f }, 
+                                               {    0f, 0.5f }, 
+                                               {  0.5f, 0.6f }, 
+                                               {  0.7f,   1f }, 
+                                               {  0.5f, 1.4f }};
+
 
     bool isPlayed1 = false;
     bool isPlayed2 = false;
+    bool isPlayed3 = false;
 
     public void Start()
     {
@@ -220,4 +230,29 @@ public class BombAOE : MonoBehaviour
             yield return new WaitForSeconds(0.2f); // Temps entre chaque colonne de bombe //A réduire si on veut que se soit plus rapide
         }
     }
+
+    public void BombAreaCenter()
+    {
+        if (!isPlayed3)
+        {
+            StartCoroutine(WaitAreaC());
+        }
+        isPlayed3 = true;
+    }
+
+    IEnumerator WaitAreaC() //Certainement moyen de faire un calcul mais flemme
+    {
+        int coll = 0;
+
+        for (int i = 0; i <= 8; i++)
+        {
+            GameObject fBomb = Instantiate(fallingBomb, new Vector2(bombCenterTab[i, coll], bombCenterTab[i, coll + 1] + 5f), Quaternion.identity);
+            GameObject shadow = Instantiate(shadowBomb, new Vector2(bombCenterTab[i, coll], bombCenterTab[i, coll + 1]), Quaternion.identity);
+            fBomb.GetComponent<BombFalling>().target  = new Vector2(bombCenterTab[i, coll], bombCenterTab[i, coll + 1]);
+            fBomb.GetComponent<BombFalling>().shadowBomb = shadow;
+            fBomb.GetComponent<BombFalling>().explosionTime = 20f;
+        }
+
+        yield return new WaitForSeconds(1f);
+    } 
 }
