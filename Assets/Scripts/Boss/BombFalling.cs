@@ -10,6 +10,7 @@ public class BombFalling : MonoBehaviour
     private GameObject player  ;
 
     private Collider2D collider;
+    public GameObject explosionArea;
 
     public Vector2 target;
 
@@ -35,6 +36,7 @@ public class BombFalling : MonoBehaviour
         timer += Time.deltaTime;
 
         if (timer >= explosionTime - 4.380f){animator.SetBool("isTimer", true);}
+        if (timer >= explosionTime - 0.583f) { explosionArea.SetActive(true) ;}
         if (timer >= explosionTime         ){Explode()                        ;}
 
         isDream = player.GetComponent<CharacterController>().isDream;
