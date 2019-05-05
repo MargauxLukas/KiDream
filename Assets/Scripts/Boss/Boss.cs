@@ -183,6 +183,42 @@ public class Boss : MonoBehaviour
                 }
             }
         }
+
+        if (hp == 2)                                          //Phase 4
+        {
+            if (isStartingPhase)
+            {
+                if (!bossFallDown)                            //Sauter
+                {
+                    animator.SetBool("isJumping", true);
+                    Jump(4);
+                }
+                else                                          //Atterir
+                {
+                    animator.SetBool("isJumping", false);
+                    BossLanding();
+                }
+            }
+            else
+            {
+                speed = 0.6f;                                 //Vitesse du boss augmenté
+                if (seconds < 3)
+                {
+                    animator.SetBool("isMoving", true);
+                    cameraAnimator.ResetTrigger("shake");
+                    Move();
+                }
+                if (seconds == 3)
+                {
+                    cameraAnimator.SetBool("isTrigger", false);
+                    animator.SetBool("isMoving", false);
+                    animator.SetBool("isLaunching", true);
+                    direction = ThrowBomb(lookingAt);
+                    seconds = 0;
+                    animator.SetBool("isLaunching", false);
+                }
+            }
+        }
     }
 
    /*******************************************************************************
@@ -258,6 +294,13 @@ public class Boss : MonoBehaviour
             yield return new WaitForSeconds(0.2f);
             Shadow(3); //Ombre à Instantiate
             InstantiateBomb();  // Bombe qu'il lâche en l'air
+        }
+        else if (phase == 4)
+        {
+            yield return new WaitForSeconds(0.9f);
+            gameObject.transform.position = Vector2.MoveTowards(transform.position, new Vector2(transform.position.x, 4.5f), 0.1f);
+            yield return new WaitForSeconds(0.2f);
+            Shadow(3); //Ombre à Instantiate
         }
     }
 

@@ -36,7 +36,7 @@ public class BombFalling : MonoBehaviour
         timer += Time.deltaTime;
 
         if (timer >= explosionTime - 4.380f){animator.SetBool("isTimer", true);}
-        if (timer >= explosionTime - 0.583f) { explosionArea.SetActive(true) ;}
+        if (timer >= explosionTime - 0.583f){ explosionArea.SetActive(true)   ;}
         if (timer >= explosionTime         ){Explode()                        ;}
 
         isDream = player.GetComponent<CharacterController>().isDream;
