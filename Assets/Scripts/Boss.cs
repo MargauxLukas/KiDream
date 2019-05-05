@@ -15,6 +15,7 @@ public class Boss : MonoBehaviour
     public GameObject         ombre; //Ombre Prefab
     public GameObject  bombLauncher; //Zone ou les bombes spawnent
     public GameObject pushCorrupted;
+    public GameObject areaDetection;
 
     private GameObject ombreObject;  //GameObject apres l'instantiate de l'ombre
     private GameObject      bombe1;
@@ -244,13 +245,14 @@ public class Boss : MonoBehaviour
             yield return new WaitForSeconds(0.9f);
             gameObject.transform.position = Vector2.MoveTowards(transform.position, new Vector2(transform.position.x, 4.5f), 0.1f);
             yield return new WaitForSeconds(0.2f);
-            Shadow(); //Ombre à Instantiate
+            Shadow(2); //Ombre à Instantiate
         }
         else if(phase == 3)
         {
             yield return new WaitForSeconds(0.9f);
             gameObject.transform.position = Vector2.MoveTowards(transform.position, new Vector2(transform.position.x, 4.5f), 0.1f);
             yield return new WaitForSeconds(0.2f);
+            Shadow(3); //Ombre à Instantiate
             InstantiateBomb();  // Bombe qu'il lâche en l'air
         }
     }
@@ -258,14 +260,24 @@ public class Boss : MonoBehaviour
     /**************************************************************************************
     * Function : L'ombre du boss apparait lorsqu'il est hors de l'écran et suit le joueur *
     ***************************************************************************************/
-    void Shadow()
+    void Shadow(int phase)
     {
-        if (ombreObject == null) { ombreObject = Instantiate(ombre, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y - 3.50f, 0), Quaternion.identity); }    //Instantiate Ombre 
+        if (phase == 2)
+        {
+            if (ombreObject == null) { ombreObject = Instantiate(ombre, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y - 3.50f, 0), Quaternion.identity); }    //Instantiate Ombre 
 
-        ombreObject.transform.position = Vector2.MoveTowards(ombreObject.transform.position, target.position                                                    , 1f * Time.deltaTime);
-        transform.position             = Vector2.MoveTowards(transform.position            , new Vector2(ombreObject.transform.position.x, transform.position.y), 1f * Time.deltaTime);
+            ombreObject.transform.position = Vector2.MoveTowards(ombreObject.transform.position, target.position, 1f * Time.deltaTime);
+            transform.position = Vector2.MoveTowards(transform.position, new Vector2(ombreObject.transform.position.x, transform.position.y), 1f * Time.deltaTime);
 
-        StartCoroutine(WaitShadow());
+            StartCoroutine(WaitShadow());
+        }
+        if (phase == 3)
+        {
+            if (ombreObject == null) { ombreObject = Instantiate(ombre, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y - 3.50f, 0), Quaternion.identity); }    //Instantiate Ombre 
+
+            ombreObject.transform.position = Vector2.MoveTowards(ombreObject.transform.position, target.position, 1f * Time.deltaTime);
+            transform.position = Vector2.MoveTowards(transform.position, new Vector2(ombreObject.transform.position.x, transform.position.y), 1f * Time.deltaTime);
+        }
     }
 
     IEnumerator WaitShadow()
@@ -290,12 +302,14 @@ public class Boss : MonoBehaviour
         yield return new WaitForSeconds(1.30f);
         cameraAnimator.SetTrigger("shake")    ;
         Destroy(ombreObject)                  ;
-        pushCorrupted.SetActive(true);
+        pushCorrupted.SetActive(true)         ;
+        areaDetection.SetActive(true)         ;
         //Detruit pillier et repousse bombe
 
         yield return new WaitForSeconds(0.5f);
         pushCorrupted.SetActive(false);
         animator.SetBool("isLanding", false) ;
+        areaDetection.SetActive(false);
         seconds = 0                          ;
         isStartingPhase = false              ;
         bossFallDown    = false              ;
