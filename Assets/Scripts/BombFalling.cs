@@ -45,22 +45,15 @@ public class BombFalling : MonoBehaviour
         if (transform.position.y > target.y)
         {
             animator.SetBool("isFalling", true);
+            collider.isTrigger = true;
             transform.Translate(-transform.up * 0.03f);
         }
         if (transform.position.y < target.y)
         {
             animator.SetBool("isFalling", false);
+            collider.isTrigger = false;
             transform.Translate(0,0,0);
             Destroy(shadowBomb);
-        }
-
-        if (transform.position.y > 2.05f || transform.position.y < -0.8f)
-        {
-            collider.isTrigger = true;
-        }
-        else
-        {
-            collider.isTrigger = false;
         }
     }
 

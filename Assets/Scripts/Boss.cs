@@ -11,9 +11,10 @@ public class Boss : MonoBehaviour
     Animator cameraAnimator; //Pour lancer le screenShake
 
     [Header("GameObject to attached")]
-    public  GameObject         bomb;
-    public  GameObject        ombre; //Ombre Prefab
-    public  GameObject bombLauncher; //Zone ou les bombes spawnent
+    public GameObject          bomb;
+    public GameObject         ombre; //Ombre Prefab
+    public GameObject  bombLauncher; //Zone ou les bombes spawnent
+    public GameObject pushCorrupted;
 
     private GameObject ombreObject;  //GameObject apres l'instantiate de l'ombre
     private GameObject      bombe1;
@@ -286,12 +287,14 @@ public class Boss : MonoBehaviour
 
     IEnumerator WaitLanding()
     {
-        yield return new WaitForSeconds(1.15f);
+        yield return new WaitForSeconds(1.30f);
         cameraAnimator.SetTrigger("shake")    ;
         Destroy(ombreObject)                  ;
+        pushCorrupted.SetActive(true);
         //Detruit pillier et repousse bombe
 
         yield return new WaitForSeconds(0.5f);
+        pushCorrupted.SetActive(false);
         animator.SetBool("isLanding", false) ;
         seconds = 0                          ;
         isStartingPhase = false              ;
@@ -304,12 +307,12 @@ public class Boss : MonoBehaviour
         if (player.transform.position.x < 0) { GetComponent<BombAOE>().BombAreaLeftToRight(); }  //Bombe laché de la gauche vers la droite
         if (player.transform.position.x > 0) { GetComponent<BombAOE>().BombAreaRightToLeft(); }  //Bombe laché de la droite vers la gauche
         StartCoroutine(WaitBomb());
-        bossFallDown = true;
     }
 
     IEnumerator WaitBomb()
     {
-        yield return new WaitForSeconds(2f); //Temps avant que le boss retombe
+        yield return new WaitForSeconds(5f); //Temps avant que le boss retombe
+        bossFallDown = true;
     }
 
     /********************************************************************************************
@@ -323,9 +326,14 @@ public class Boss : MonoBehaviour
     /****************************************************************
     * Function : Si le joueur est trop prêt du boss, il le repousse *
     *****************************************************************/
-    void PushPlayer()
+    public void PushPlayerOn()
     {
-        //Push Player if is very trop pret
+        
+    }
+
+    public void PushPlayerOff()
+    {
+        
     }
 
     /***************************************************
