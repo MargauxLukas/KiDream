@@ -4,60 +4,127 @@ using UnityEngine;
 
 public class StairsTrigger : MonoBehaviour
 {
-    GameObject[] stairsTab;
+    public List<GameObject> stairsTabDream = new List<GameObject>();
+    public List<GameObject> stairsTabNightmare = new List<GameObject>();
     Animator anim;
     public GameObject stairsEntryCollider;
     public bool hasCollide = false;
 
+    [Range(0, 10f), SerializeField]
+    private float fadingRate;
+    [Range(0, 1f), SerializeField]
+    private float destroyingRate;
+
     void Start ()
     {
-        stairsTab = FindObjectsOfType<GameObject>();
+        Debug.Log(Time.timeScale);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Player" && !hasCollide)
+
+        if (collision.tag == "Player" && hasCollide == false)
         {
-            foreach (GameObject gameobject in stairsTab)
+            StartCoroutine(ColorChangerDream());
+            StartCoroutine(ColorChangerNightmare());
+            StartCoroutine(Fade());
+            hasCollide = true;
+        }
+    }
+
+    IEnumerator Fade()
+    {
+        yield return new WaitForSeconds(destroyingRate);
+        Destroy(stairsEntryCollider);
+    }
+
+    IEnumerator Wait(GameObject gameObjectParameter, int index)
+    {
+        SpriteRenderer objectColor = gameObjectParameter.GetComponent<SpriteRenderer>();
+        for (int i = 0; i < 255; i++)
+        {
+            yield return new WaitForSecondsRealtime(fadingRate);
+            objectColor.color = new Color32(255, 255, 255, (byte)(i));
+
+            if(i == 254)
             {
-                if (gameobject.name.Contains("Escalier"))
-                {
-                    anim = gameobject.GetComponent<Animator>();
-                    anim.SetBool("isOpen", true);
-                    StartCoroutine(Fade(gameobject));
-                }
+                index++;
             }
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    /*IEnumerator ColorChangerOLD()
     {
-        hasCollide = true;
+        Debug.Log("Coroutine Started");
+
+        int counter = 0;
+        foreach (GameObject go in stairsTab)
+        {
+            Debug.Log("New Stair n°"+counter);
+            if (stairsTab[counter] == go)
+            {
+                SpriteRenderer objectColor = go.GetComponent<SpriteRenderer>();
+                for (int i = 0; i < 255; i++)
+                {
+                    yield return new WaitForSeconds(fadingRate);
+                    objectColor.color = new Color32(255, 255, 255, (byte)(i));
+
+                    if (i == 254)
+                    {
+                        counter++;
+                    }
+                }
+            }
+        }
+    }*/
+
+    IEnumerator ColorChangerDream()
+    {
+        Debug.Log("Coroutine Started");
+
+        int counter = 0;
+        foreach (GameObject go in stairsTabDream)
+        {
+            Debug.Log("New Stair n°" + counter);
+            if (stairsTabDream[counter] == go)
+            {
+                SpriteRenderer objectColor = go.GetComponent<SpriteRenderer>();
+                float alphaValue = 0;
+
+                while (alphaValue < 255)
+                {
+                    objectColor.color = new Color32(255, 255, 255, (byte)(alphaValue));
+                    alphaValue += 1 + fadingRate;
+                    yield return null;
+                }
+
+                counter++;
+            }
+        }
     }
 
-    IEnumerator Fade(GameObject gameobject)
+    IEnumerator ColorChangerNightmare()
     {
-        yield return new WaitForSeconds(0.1f);
-        gameobject.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0.1f);
-        yield return new WaitForSeconds(0.1f);
-        gameobject.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0.2f);
-        yield return new WaitForSeconds(0.1f);
-        gameobject.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0.3f);
-        yield return new WaitForSeconds(0.1f);
-        gameobject.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0.4f);
-        yield return new WaitForSeconds(0.1f);
-        gameobject.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0.5f);
-        yield return new WaitForSeconds(0.1f);
-        gameobject.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0.6f);
-        yield return new WaitForSeconds(0.1f);
-        gameobject.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0.7f);
-        yield return new WaitForSeconds(0.1f);
-        gameobject.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0.8f);
-        yield return new WaitForSeconds(0.1f);
-        gameobject.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0.9f);
-        yield return new WaitForSeconds(0.1f);
-        gameobject.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 1f);
-        yield return new WaitForSeconds(1.7f);
-        Destroy(stairsEntryCollider);
+        Debug.Log("Coroutine Started");
+
+        int counter = 0;
+        foreach (GameObject go in stairsTabNightmare)
+        {
+            Debug.Log("New Stair n°" + counter);
+            if (stairsTabNightmare[counter] == go)
+            {
+                SpriteRenderer objectColor = go.GetComponent<SpriteRenderer>();
+                float alphaValue = 0;
+
+                while (alphaValue < 255)
+                {
+                    objectColor.color = new Color32(255, 255, 255, (byte)(alphaValue));
+                    alphaValue += 1 + fadingRate;
+                    yield return null;
+                }
+
+                counter++;
+            }
+        }
     }
 }
