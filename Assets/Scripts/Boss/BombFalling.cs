@@ -83,4 +83,12 @@ public class BombFalling : MonoBehaviour
     {
         Explode(collision);
     }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (transform.position.x > 3.40f || transform.position.x < -3.40f || transform.position.y > 2.8f || transform.position.y < -1.5f)
+        {
+            Explode();
+        }
+    }
 }

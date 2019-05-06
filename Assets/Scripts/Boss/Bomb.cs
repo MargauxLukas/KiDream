@@ -73,6 +73,11 @@ public class Bomb : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
         collider.isTrigger = false;
+
+        if (transform.position.x > 3.40f || transform.position.x < -3.40f || transform.position.y > 2.8f || transform.position.y < -1.5f)
+        {
+            Explode();
+        }
     }
 
     private void OnParticleCollision(GameObject other)
