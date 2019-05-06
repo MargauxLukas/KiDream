@@ -69,7 +69,8 @@ public class CharacterController : MonoBehaviour
 
     private void Update()
     {
-        if(myShooter != waveManager.WaveShooters[waveManager.selectionIndex])
+        Debug.Log("PlayerHP = " + hp);
+        if (myShooter != waveManager.WaveShooters[waveManager.selectionIndex])
         {
             myShooter          = waveManager.WaveShooters         [waveManager.selectionIndex];
             myShooterTransform = waveManager.WaveShootersTransform[waveManager.selectionIndex];
@@ -223,11 +224,17 @@ public class CharacterController : MonoBehaviour
         }
     }
 
+    public void damage()
+    {
+        hp--;
+    }
+
     void Dead(int hp)
     {
         if(hp <= 0)
         {
-            transform.position = gameMaster.lastCheckpointPos;
+            //transform.position = gameMaster.lastCheckpointPos;
+            Destroy(gameObject);
             isKilled = true;
         }
     }
