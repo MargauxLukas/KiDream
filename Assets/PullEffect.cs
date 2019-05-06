@@ -37,7 +37,6 @@ public class PullEffect : MonoBehaviour
         parentBehaviour = this.GetComponentInParent<ReactionToWave>();
         corruptedPullPS = this.GetComponent<ParticleSystem>();
         colRadius.radius = parentBehaviour.corruptedPullRadius;
-        corruptedPullPS.startSize = 2.76131f * colRadius.radius + 0.063143f;
     }
 
     void Update()
@@ -46,11 +45,6 @@ public class PullEffect : MonoBehaviour
         {
             forceY = forceX;
         }
-    }
-
-    private void AttractionBonus()
-    {
-        StartCoroutine("StrongWaves");
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -70,6 +64,11 @@ public class PullEffect : MonoBehaviour
                 rb.AddForce(new Vector2((this.transform.position.x - collision.transform.position.x) * forceX * behaviour.horizontalPullForce, (this.transform.position.y - collision.transform.position.y) * forceY * behaviour.verticalPullForce));
             }
         }
+    }
+
+    private void AttractionBonus()
+    {
+        StartCoroutine("StrongWaves");
     }
 
     IEnumerator StrongWaves()

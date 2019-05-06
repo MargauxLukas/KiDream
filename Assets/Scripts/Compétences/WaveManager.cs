@@ -33,7 +33,8 @@ public class WaveManager : MonoBehaviour
 
     private int enumCount;
 
-    private bool canDisable;
+    [HideInInspector]
+    public bool canDisable;
     private bool isPlayingCoroutine;
 
     public bool isRegenerating;
@@ -138,8 +139,11 @@ public class WaveManager : MonoBehaviour
         }
 
         if (Input.GetAxisRaw("ShootParticles") != 0 && uiManager.manaBar.value != 0 && rightAxisInUse == false)
-        {          
-                switch (selectionIndex)
+        {
+            StopCoroutine("ChangingAbilityDisableDelay");
+            StartCoroutine("ChangingAbilityDisableDelay");
+
+            switch (selectionIndex)
                 {
                     case 0:
                         waveSelection = WaveType.Push;
@@ -190,8 +194,6 @@ public class WaveManager : MonoBehaviour
                         }
                         break;
                 }
-                StopCoroutine("ChangingAbilityDisableDelay");
-                StartCoroutine("ChangingAbilityDisableDelay");
                 rightAxisInUse = true;
         }
     }
@@ -201,7 +203,6 @@ public class WaveManager : MonoBehaviour
         isRegenerating = true;
         yield return new WaitForSeconds(1);
         InvokeRepeating("ManaRegen", 0, regenerationRate);
-
     }
 
     public void ManaRegen()
@@ -214,11 +215,7 @@ public class WaveManager : MonoBehaviour
         canDisable = false;
         yield return new WaitForSeconds(WaveShooters[selectionIndex].startLifetime);
         canDisable = true;
-
     }
 }
-
-//selection = selection + listcount/2;
-// - pour l'autre sens
 
 public enum WaveType {Push, Pull, Activate, PushCorruption, PullCorruption, ActivateCorruption}

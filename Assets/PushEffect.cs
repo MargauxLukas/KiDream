@@ -13,7 +13,7 @@ public class PushEffect : MonoBehaviour
     [Header("Forces horizontales et verticales")]
     [Range(0,1000), SerializeField]
     private float forceX;
-    [Range(0, 100), SerializeField]
+    [Range(0, 1000), SerializeField]
     private float forceY;
     public bool yEqualX = false;
 
@@ -21,16 +21,14 @@ public class PushEffect : MonoBehaviour
     void Start()
     {
         colRadius = this.GetComponent<CircleCollider2D>();
-        parentBehaviour = this.GetComponentInParent<ReactionToWave>();
         corruptedPushPS = this.GetComponent<ParticleSystem>();
+        parentBehaviour = this.GetComponentInParent<ReactionToWave>();
         colRadius.radius = parentBehaviour.corruptedPushRadius;
-        corruptedPushPS.startSize = 2.76131f*colRadius.radius + 0.063143f;
     }
 
 
     void Update()
     {
-
         if (yEqualX == true)
         {
             forceY = forceX;
@@ -44,12 +42,6 @@ public class PushEffect : MonoBehaviour
             float xInitial = this.transform.position.x;
             float yInitial = this.transform.position.y;
 
-            Vector2 rotationVector = new Vector2(collision.transform.position.x - xInitial, collision.transform.position.y - yInitial);
-            float angleValue = Mathf.Atan2(rotationVector.normalized.y, rotationVector.normalized.x) * Mathf.Rad2Deg;
-
-            /*float x = xInitial + bColRadius.radius * Mathf.Cos(angleValue);
-            float y = yInitial + bColRadius.radius * Mathf.Sin(angleValue);*/
-
             rb = collision.gameObject.GetComponent<Rigidbody2D>();
             rb.AddForce((collision.transform.position - transform.position)*forceX);
         }
@@ -60,7 +52,7 @@ public class PushEffect : MonoBehaviour
             if (behaviour.canBePushed == true)
             {
                 rb = collision.gameObject.GetComponent<Rigidbody2D>();
-                rb.AddForce(new Vector2(-(this.transform.position.x - collision.transform.position.x) * forceX, -(this.transform.position.y - collision.transform.position.y) * forceY));
+                rb.AddForce(new Vector2(-(this.transform.position.x - collision.transform.position.x) * behaviour.horizontalPushForce * forceX, -(this.transform.position.y - collision.transform.position.y) * behaviour.verticalPushForce * forceY), ForceMode2D.Impulse);
             }
         }
                     
