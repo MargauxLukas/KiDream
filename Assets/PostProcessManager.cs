@@ -8,8 +8,11 @@ public class PostProcessManager : MonoBehaviour
 
     public PostProcessVolume mainCamPP;
     public CharacterController myPlayer;
-
     public PostProcessVolume secondPP;
+
+    AutoExposure autoExpo;
+
+    PostProcessVolume temp;
 
     public float autoExpoStep;
     public float autoExpoHighAim;
@@ -17,56 +20,106 @@ public class PostProcessManager : MonoBehaviour
 
     public float rate;
 
-    bool isLaunched = false;
+    public int position = 1;
+
+    public bool isLaunched;
 
 	// Start
 	void Start ()
     {
-        mainCamPP.profile.name = "DreamPP";
-        Debug.Log(mainCamPP.profile.name);
-	}
+
+    }
 	
 	// Update
 	void Update ()
     {
-        if(mainCamPP.profile.name.Contains("Dream") && myPlayer.isDream == false && isLaunched == false)
+        autoExpo = mainCamPP.profile.GetSetting<AutoExposure>();
+
+        if (position == 1 && myPlayer.isDream == false && isLaunched == false)
         {
-            StartCoroutine("PP_Transition");
+            StartCoroutine("PP_Transition_To_Nightmare");
+            isLaunched = true;
+        }
+        else if (position == 2 && myPlayer.isDream == true && isLaunched == false)
+        {
+            StartCoroutine("PP_Transition_To_Dream");
+            isLaunched = true;
         }
 
+        if(autoExpo.minLuminance.value == 0 && autoExpo.maxLuminance.value == 0)
+        {
+            isLaunched = false;
+        }
     }
 
-    IEnumerator PP_Transition()
+    IEnumerator PP_Transition_To_Nightmare()
     {
-        isLaunched = true;
-
-        AutoExposure autoExpo = mainCamPP.profile.GetSetting<AutoExposure>();
-
-        for(autoExpo.keyValue.value = autoExpo.keyValue.value; autoExpo.keyValue.value <= autoExpoHighAim; autoExpo.keyValue.value = autoExpo.keyValue.value + autoExpoStep)
+        position++;
+        for (float i = autoExpo.minLuminance.value; i >= autoExpoLowAim; i = autoExpo.minLuminance.value - autoExpoStep)
         {
+            autoExpo.minLuminance.value = autoExpo.minLuminance.value - autoExpoStep;
+            autoExpo.maxLuminance.value = autoExpo.minLuminance.value;
             yield return new WaitForSeconds(rate);
-        }
 
-        if(mainCamPP.name.Contains("Dream") && autoExpo.keyValue.value == autoExpoHighAim)
+            if (i == autoExpoLowAim)
+            {
+                temp = secondPP;
+                Debug.Log(temp.profile.name);
+
+                secondPP.profile = mainCamPP.profile;
+                Debug.Log(mainCamPP.profile.name);
+                Debug.Log(temp.profile.name);
+
+                mainCamPP.profile = temp.profile;
+                Debug.Log(secondPP.profile.name);
+
+                for (float j = autoExpo.maxLuminance.value; j <= autoExpoHighAim; j = autoExpo.maxLuminance.value + autoExpoStep)
+                {
+                    autoExpo.maxLuminance.value = autoExpo.maxLuminance.value + autoExpoStep;
+                    autoExpo.minLuminance.value = autoExpo.maxLuminance.value;
+                    yield return new WaitForSeconds(rate);
+                }
+                /*for (float j = autoExpo.minLuminance.value; j >= autoExpoHighAim; j = autoExpo.minLuminance.value - autoExpoStep)
+                {
+                    autoExpo.minLuminance.value = autoExpo.minLuminance.value - autoExpoStep;
+                    autoExpo.maxLuminance.value = autoExpo.minLuminance.value;
+                    yield return new WaitForSeconds(rate);
+                }*/
+
+                break;
+            }
+        }
+    }
+
+    IEnumerator PP_Transition_To_Dream()
+    {
+        position--;
+        for (float i = autoExpo.minLuminance.value; i >= autoExpoLowAim; i = autoExpo.minLuminance.value - autoExpoStep)
         {
-            PostProcessVolume temp = mainCamPP;
+            autoExpo.minLuminance.value = autoExpo.minLuminance.value - autoExpoStep;
+            autoExpo.maxLuminance.value = autoExpo.minLuminance.value;
+            yield return new WaitForSeconds(rate);
 
-            mainCamPP.profile = secondPP.profile;
-            secondPP.profile = temp.profile;
+            if ( i == autoExpoLowAim)
+            {
+                temp = mainCamPP;
+                Debug.Log(temp.profile.name);
 
-            mainCamPP.profile.name = "NightmarePP";
+                mainCamPP.profile = secondPP.profile;
+                Debug.Log(mainCamPP.profile.name);
+
+                secondPP.profile = temp.profile;
+                Debug.Log(secondPP.profile.name);
+
+
+                for (float j = autoExpo.maxLuminance.value; j <= autoExpoHighAim; j = autoExpo.maxLuminance.value + autoExpoStep)
+                {
+                    autoExpo.maxLuminance.value = autoExpo.maxLuminance.value + autoExpoStep;
+                    autoExpo.minLuminance.value = autoExpo.maxLuminance.value;
+                    yield return new WaitForSeconds(rate);
+                }
+                break;
+            }
         }
-        else if(mainCamPP.name.Contains("Nightmare") && autoExpo.keyValue.value == autoExpoHighAim)
-        {
-            PostProcessVolume temp = mainCamPP;
-
-            mainCamPP.profile = secondPP.profile;
-            secondPP.profile = temp.profile;
-
-            mainCamPP.profile.name = "DreamPP";
-        }
-
-
-
     }
 }

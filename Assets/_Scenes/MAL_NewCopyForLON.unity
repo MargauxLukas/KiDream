@@ -119728,7 +119728,7 @@ GameObject:
   - component: {fileID: 1434556016}
   - component: {fileID: 1434556015}
   - component: {fileID: 1434556014}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: ParallaxCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -137637,7 +137637,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sharedProfile: {fileID: 11400000, guid: 1c3990c377b6118479642fc837aa268c, type: 2}
-  isGlobal: 1
+  isGlobal: 0
   blendDistance: 0
   weight: 1
   priority: 0
@@ -137655,7 +137655,7 @@ MonoBehaviour:
   volumeTrigger: {fileID: 1794638836}
   volumeLayer:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 3895
   stopNaNPropagation: 1
   finalBlitToCameraTarget: 1
   antialiasingMode: 0
@@ -139942,6 +139942,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c5ac09ff2ecbc14a9ec52c9faac3886, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  worldTransitionDelay: 0.5
   waveManager: {fileID: 1997852498}
   myShooter: {fileID: 161730977}
   myShooterTransform: {fileID: 161730975}
@@ -140622,6 +140623,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1964576053}
   - component: {fileID: 1964576052}
+  - component: {fileID: 1964576054}
   m_Layer: 0
   m_Name: PostProcessTransition
   m_TagString: Untagged
@@ -140642,11 +140644,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainCamPP: {fileID: 1794638838}
   myPlayer: {fileID: 1947392184}
-  secondPP: {fileID: 0}
-  autoExpoStep: 1
+  secondPP: {fileID: 1964576054}
+  autoExpoStep: 0.5
   autoExpoHighAim: 0
-  autoExpoLowAim: 0
-  rate: 0.2
+  autoExpoLowAim: -9
+  rate: 0.02
+  position: 1
+  isLaunched: 0
 --- !u!4 &1964576053
 Transform:
   m_ObjectHideFlags: 0
@@ -140660,6 +140664,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1964576054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1964576051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b9a305e18de0c04dbd257a21cd47087, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sharedProfile: {fileID: 11400000, guid: 7874e05f6d7f092439fa9d27faf8b53b, type: 2}
+  isGlobal: 1
+  blendDistance: 0
+  weight: 1
+  priority: 0
 --- !u!1 &1974641210
 GameObject:
   m_ObjectHideFlags: 0

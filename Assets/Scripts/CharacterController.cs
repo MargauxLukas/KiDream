@@ -18,6 +18,9 @@ public class CharacterController : MonoBehaviour
     GameObject[] cauchemarObjects;
     GameObject[] reveObjects     ;
 
+    [Range(0,2)]
+    public float worldTransitionDelay;
+
     public WaveManager waveManager;
 
     [Header("Shooting System")]
@@ -55,7 +58,7 @@ public class CharacterController : MonoBehaviour
 
     private void Awake()
     {
-        GoToDream();
+        StartCoroutine(GoToDream());
     }
 
     void Start()
@@ -65,7 +68,7 @@ public class CharacterController : MonoBehaviour
     }
 
     private void Update()
-    {   
+    {
         if(myShooter != waveManager.WaveShooters[waveManager.selectionIndex])
         {
             myShooter          = waveManager.WaveShooters         [waveManager.selectionIndex];
@@ -77,12 +80,12 @@ public class CharacterController : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.Joystick1Button3) && isDream)
         {
-            GoToNightmare();
+            StartCoroutine(GoToNightmare());
             isDream = false;
         }
         else if(Input.GetKeyDown(KeyCode.Joystick1Button3) && !isDream)
         {
-            GoToDream();
+            StartCoroutine(GoToDream());
             isDream = true;
         }
 
@@ -127,8 +130,10 @@ public class CharacterController : MonoBehaviour
     /**************************************
      * Permet d'aller en mode Cauchemar   *
      **************************************/
-    void GoToNightmare()
+    IEnumerator GoToNightmare()
     {
+        yield return new WaitForSeconds(worldTransitionDelay);
+
         //GameObject.Find("Main Camera").GetComponent<Rippleeffect>().RippleEff(transform, 10f, 1f);
         tilemapD.GetComponent<TilemapRenderer>().enabled = false;
         tilemapN.GetComponent<TilemapRenderer>().enabled =  true;
@@ -137,7 +142,7 @@ public class CharacterController : MonoBehaviour
         reveObjects = GameObject.FindGameObjectsWithTag("CeQuiApparaitEnReve");
         cauchemarObjects = GameObject.FindGameObjectsWithTag("CeQuiApparaitEnCauchemar");
 
-        foreach (GameObject reveObject in reveObjects)  // Pour chaque object avec le tag "CeQuiApparaitEnReve", je desactive le spriteRenderer et active le isTrigger
+        foreach (GameObject reveObject in reveObjects)  // Pour chaque object avec le tag "CeQuiApparaitEnReve", je désactive le spriteRenderer et active le isTrigger
         {      
             if (reveObject.GetComponent<SpriteRenderer>() != null)
             {
@@ -165,8 +170,10 @@ public class CharacterController : MonoBehaviour
     /*********************************
      * Permet d'aller en mode Reve   *
      *********************************/
-    void GoToDream()
+    IEnumerator GoToDream()
     {
+        yield return new WaitForSeconds(worldTransitionDelay);
+
         //GameObject.Find("Main Camera").GetComponent<Rippleeffect>().RippleEff(transform, 10f, 1f);
         tilemapD.GetComponent<TilemapRenderer>().enabled = true;
         tilemapN.GetComponent<TilemapRenderer>().enabled = false;
