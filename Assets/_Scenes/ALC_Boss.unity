@@ -446,7 +446,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &167619063
 Transform:
   m_ObjectHideFlags: 0
@@ -550,7 +550,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0.0077126026, y: 0}
   serializedVersion: 2
-  m_Radius: 2.0256898
+  m_Radius: 0.92
 --- !u!198 &167619067
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -5181,6 +5181,7 @@ MonoBehaviour:
   - {fileID: 0}
   waveManager: {fileID: 1487536545}
   linearDrag: 1
+  whoCanShootMe: []
   canBePushed: 0
   canBePulled: 0
   canBeActivated: 1
@@ -5193,12 +5194,15 @@ MonoBehaviour:
   horizontalPullForce: 1
   connectedGameObject: {fileID: 256584243}
   playAnimation: 1
+  launchAgainToDisable: 0
   isActivated: 0
   activateBehaviour: 2
+  setActiveSetting: 0
   corruptedPushRadius: 0
   corruptedPullRadius: 0
   corruptedActivateRadius: 0
   childNumberTolerance: 1
+  bypassActivateRules: 0
 --- !u!95 &256584248
 Animator:
   serializedVersion: 3
@@ -7003,6 +7007,7 @@ MonoBehaviour:
   corruptedPushCost: 0
   corruptedPullCost: 0
   corruptedActivateCost: 0
+  canDisable: 0
   isRegenerating: 0
 --- !u!1 &1495986113
 GameObject:
@@ -7947,7 +7952,7 @@ Prefab:
     - target: {fileID: 114488211001567090, guid: c2182d8e48b654f41baeeb6f7cfdeaf5,
         type: 2}
       propertyPath: hp
-      value: 3
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c2182d8e48b654f41baeeb6f7cfdeaf5, type: 2}

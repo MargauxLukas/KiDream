@@ -454,24 +454,28 @@ MonoBehaviour:
   waveManager: {fileID: 114874006852601004, guid: b5128d70401ffa24cba9fa4d3e19e364,
     type: 2}
   linearDrag: 1
+  whoCanShootMe: []
   canBePushed: 1
   canBePulled: 0
   canBeActivated: 0
   canBePushCorrupted: 0
   canBePullCorrupted: 0
   canBeActivateCorrupted: 0
-  verticalPushForce: 50
-  horizontalPushForce: 50
+  verticalPushForce: 1
+  horizontalPushForce: 1
   verticalPullForce: 1
   horizontalPullForce: 1
   connectedGameObject: {fileID: 0}
   playAnimation: 0
+  launchAgainToDisable: 0
   isActivated: 0
   activateBehaviour: 0
+  setActiveSetting: 0
   corruptedPushRadius: 0
   corruptedPullRadius: 0
   corruptedActivateRadius: 0
   childNumberTolerance: 0
+  bypassActivateRules: 0
 --- !u!114 &114315578017842562
 MonoBehaviour:
   m_ObjectHideFlags: 1
