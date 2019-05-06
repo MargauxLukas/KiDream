@@ -32,7 +32,6 @@ public class AudioThemeManager : MonoBehaviour
         }
         else if(myPlayer.isDream == true && dreamTheme.volume == 0f)
         {
-            Debug.Log(dreamTheme.volume);
             selectedTheme = dreamTheme;
             otherTheme = nightmareTheme;
             StartCoroutine("FadeIn");
@@ -45,7 +44,6 @@ public class AudioThemeManager : MonoBehaviour
         }
         else if (myPlayer.isDream == false && nightmareTheme.volume == 0f)
         {
-            Debug.Log(nightmareTheme.volume);
             selectedTheme = nightmareTheme;
             otherTheme = dreamTheme;
             StartCoroutine("FadeIn");
