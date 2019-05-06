@@ -433,7 +433,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosionArea: {fileID: 1649867607131242}
   target: {x: 0, y: 0}
-  explosionTime: 5
+  explosionTime: 50
   timer: 0
   shadowBomb: {fileID: 1757853116840092}
 --- !u!114 &114297119744155646
@@ -454,24 +454,28 @@ MonoBehaviour:
   waveManager: {fileID: 114874006852601004, guid: b5128d70401ffa24cba9fa4d3e19e364,
     type: 2}
   linearDrag: 1
+  whoCanShootMe: []
   canBePushed: 1
-  canBePulled: 0
+  canBePulled: 1
   canBeActivated: 0
   canBePushCorrupted: 0
   canBePullCorrupted: 0
   canBeActivateCorrupted: 0
-  verticalPushForce: 50
-  horizontalPushForce: 50
-  verticalPullForce: 1
-  horizontalPullForce: 1
+  verticalPushForce: 1
+  horizontalPushForce: 1
+  verticalPullForce: 50
+  horizontalPullForce: 50
   connectedGameObject: {fileID: 0}
   playAnimation: 0
+  launchAgainToDisable: 0
   isActivated: 0
   activateBehaviour: 0
+  setActiveSetting: 0
   corruptedPushRadius: 0
   corruptedPullRadius: 0
   corruptedActivateRadius: 0
   childNumberTolerance: 0
+  bypassActivateRules: 0
 --- !u!114 &114315578017842562
 MonoBehaviour:
   m_ObjectHideFlags: 1

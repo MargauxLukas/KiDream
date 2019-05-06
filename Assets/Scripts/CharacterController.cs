@@ -66,7 +66,6 @@ public class CharacterController : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log("PlayerHP = " + hp);
         if (myShooter != waveManager.WaveShooters[waveManager.selectionIndex])
         {
             myShooter          = waveManager.WaveShooters         [waveManager.selectionIndex];

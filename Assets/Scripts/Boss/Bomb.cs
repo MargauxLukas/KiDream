@@ -13,19 +13,25 @@ public class Bomb : MonoBehaviour
     private bool canHurtBoss = false;
     private bool isDream     =  true;
 
-    CircleCollider2D collider;
+    CircleCollider2D  collider     ;
     public GameObject explosionArea;
 
     GameObject boss;
     GameObject player;
+    WaveManager waveManager;
 
 	void Start ()
     {
         animator = GetComponent<Animator>() ;
         boss     = GameObject.Find("Boss"  );
         player   = GameObject.Find("Player");
+        waveManager = FindObjectOfType<WaveManager>();
         collider = gameObject.GetComponent<CircleCollider2D>();
-	}
+        GetComponent<ReactionToWave>().whoCanShootMe.Add(player);
+        GetComponent<ReactionToWave>().whoCanShootMe.Add(boss);
+        GetComponent<ReactionToWave>().waveManager = waveManager;
+
+    }
 	
 	void Update ()
     {
