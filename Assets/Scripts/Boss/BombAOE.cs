@@ -44,6 +44,12 @@ public class BombAOE : MonoBehaviour
         }
     }
 
+    public static Vector2 GetPositionOnCircle(float minRadius, float maxRadius)
+    {
+        Vector2 v = Random.insideUnitCircle;
+        return v.normalized * minRadius + v * (maxRadius - minRadius);
+    }
+
     /*******************************************
     * Function : Bombe partout / Sert de test  *
     ********************************************/
@@ -254,5 +260,21 @@ public class BombAOE : MonoBehaviour
         }
 
         yield return new WaitForSeconds(1f);
-    } 
+    }
+
+    public void BombAreaRandom()
+    {
+        StartCoroutine(WaitAreaR());
+    }
+
+    IEnumerator WaitAreaR() //Certainement moyen de faire un calcul mais flemme
+    {
+        yield return new WaitForSeconds(1f);
+        Vector2 position = GetPositionOnCircle(3,0);
+        GameObject fBomb = Instantiate(fallingBomb, new Vector2(position.x, position.y+5f) , Quaternion.identity);
+        GameObject shadow = Instantiate(shadowBomb, position , Quaternion.identity);
+        fBomb.GetComponent<BombFalling>().target = position;
+        fBomb.GetComponent<BombFalling>().shadowBomb = shadow;
+        fBomb.GetComponent<BombFalling>().explosionTime = 20f;
+    }
 }

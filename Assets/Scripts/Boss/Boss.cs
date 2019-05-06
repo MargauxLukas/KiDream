@@ -243,14 +243,15 @@ public class Boss : MonoBehaviour
             {
                 isRage = true;
                 speed = 0.6f;                                 //Vitesse du boss augmenté
-                if (seconds < 3)
+                if (seconds > 3)
                 {
                     animator.SetBool("isMoving", true);
                     bossFallDown = false;
                     cameraAnimator.ResetTrigger("shake");
                     Move();
+                    StartCoroutine(BombRandom());
                 }
-                if (seconds == 3)
+                if (seconds == 4)
                 {
                     cameraAnimator.SetBool("isTrigger", false);
                     animator.SetBool("isMoving", false);
@@ -262,6 +263,7 @@ public class Boss : MonoBehaviour
             }
         }
     }
+
 
    /*******************************************************************************
    * Function : Le boss suit du regard le joueur et sauvegarde vers ou il regarde *
@@ -484,6 +486,13 @@ public class Boss : MonoBehaviour
     void Rage()
     {
         isRage = true;
+    }
+
+    IEnumerator BombRandom()
+    {
+        GetComponent<BombAOE>().BombAreaRandom();
+        yield return new WaitForSeconds(1f);
+        StartCoroutine(BombRandom());
     }
 
     /****************************************************************
