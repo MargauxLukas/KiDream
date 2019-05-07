@@ -176,23 +176,23 @@ MonoBehaviour:
     overrideState: 1
     value: {x: 1, y: 99}
   minLuminance:
-    overrideState: 0
+    overrideState: 1
     value: 0
   maxLuminance:
-    overrideState: 0
+    overrideState: 1
     value: 0
   keyValue:
     overrideState: 1
     value: 1
   eyeAdaptation:
-    overrideState: 0
+    overrideState: 1
     value: 0
   speedUp:
-    overrideState: 0
-    value: 2
+    overrideState: 1
+    value: 10
   speedDown:
-    overrideState: 0
-    value: 1
+    overrideState: 1
+    value: 50
 --- !u!114 &114244700197727704
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -204,7 +204,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adb84e30e02715445aeb9959894e3b4d, type: 3}
   m_Name: ColorGrading
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   enabled:
     overrideState: 1
     value: 1

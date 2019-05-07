@@ -19,6 +19,8 @@ public class PullEffect : MonoBehaviour
     private float forceY;
     public bool yEqualX = false;
 
+    public bool adaptRadius;
+
 
     [Header("Attraction complémentaire")]
     [Range(0, 1000), SerializeField]
@@ -36,7 +38,10 @@ public class PullEffect : MonoBehaviour
         colRadius = this.GetComponent<CircleCollider2D>();
         parentBehaviour = this.GetComponentInParent<ReactionToWave>();
         corruptedPullPS = this.GetComponent<ParticleSystem>();
-        colRadius.radius = parentBehaviour.corruptedPullRadius;
+        if (adaptRadius == true)
+        {
+            colRadius.radius = parentBehaviour.corruptedPullRadius;
+        }
     }
 
     void Update()
