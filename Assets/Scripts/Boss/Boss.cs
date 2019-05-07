@@ -16,6 +16,7 @@ public class Boss : MonoBehaviour
     public GameObject  bombLauncher; //Zone ou les bombes spawnent
     public GameObject pushCorrupted;
     public GameObject areaDetection;
+    public GameObject wallCollider;
 
     private GameObject ombreObject;  //GameObject apres l'instantiate de l'ombre
     private GameObject      bombe1;
@@ -44,6 +45,7 @@ public class Boss : MonoBehaviour
     private bool isInvincible = false;
     private bool isFollow = true;
     private bool isBombR = true;
+    private bool isLastPhase = true;
 
     private int seconds   = 0;
     private int lookingAt = 0; // 1 = Droite, 2 = Down, 3 = Left, 4 = Up
@@ -167,8 +169,7 @@ public class Boss : MonoBehaviour
                 }
             }
             else
-            {
-                
+            {  
                 speed = 0.6f;                                 //Vitesse du boss augmenté
                 if (seconds < 3)
                 {
@@ -245,9 +246,13 @@ public class Boss : MonoBehaviour
             {
                 GetComponent<BombAOE>().isPlayed3 = false;
                 isRage = true;
-                speed = 0.6f;                                 //Vitesse du boss augmenté
+                Destroy(wallCollider);
 
-                if(isBombR)
+                if(isLastPhase)
+                {
+                    LastPhaseBomb();
+                }
+                if (isBombR)
                 {
                     StartCoroutine(BombRandom());
                     isBombR = false;
@@ -264,6 +269,7 @@ public class Boss : MonoBehaviour
                 if(seconds == 5)
                 {
                     isStartingPhase = true;
+                    isLastPhase = true;
                 }
             }
         }
@@ -497,6 +503,12 @@ public class Boss : MonoBehaviour
         yield return new WaitForSeconds(1f);
         GetComponent<BombAOE>().BombAreaRandom();
         StartCoroutine(BombRandom());
+    }
+
+    void LastPhaseBomb()
+    {
+        isLastPhase = false;
+        GetComponent<BombAOE>().LastBomb();
     }
 
     /****************************************************************
