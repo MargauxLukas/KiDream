@@ -12,7 +12,7 @@ public class ReactionToWave : MonoBehaviour
     private Rigidbody2D thisRb;
     private ParticleSystem ps;
 
-    private WaveManager waveManager;
+    public WaveManager waveManager;
 
     [Header("Physics")]
     [Range(0, 10), SerializeField]
