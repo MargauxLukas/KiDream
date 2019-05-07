@@ -138,17 +138,20 @@ public class Boss : MonoBehaviour
             else
             {
                 speed = 0.4f;                                 //Vitesse du boss augmenté
-                if (seconds < 4)
+                if (seconds < 3)
                 {
                     animator.SetBool("isMoving", true);
                     cameraAnimator.ResetTrigger("shake");
                     Move();
                 }
+                if(seconds == 3)
+                {
+                    animator.SetBool("isLaunching", true);
+                }
                 if (seconds == 4)
                 {
                     cameraAnimator.SetBool("isTrigger", false);
                     animator.SetBool(   "isMoving", false);
-                    animator.SetBool("isLaunching",  true);
                     direction = ThrowBomb(lookingAt)      ;
                     seconds   = 0                         ;
                     animator.SetBool("isLaunching", false);
@@ -181,11 +184,14 @@ public class Boss : MonoBehaviour
                     cameraAnimator.ResetTrigger("shake");
                     Move();
                 }
+                if(seconds == 2)
+                {
+                    animator.SetBool("isLaunching", true);
+                }
                 if (seconds == 3)
                 {
                     cameraAnimator.SetBool("isTrigger", false);
                     animator.SetBool(  "isMoving", false);
-                    animator.SetBool("isLaunching", true);
                     direction = ThrowBomb(lookingAt);
                     seconds = 0;
                     animator.SetBool("isLaunching", false);
