@@ -17,7 +17,7 @@ public class StairsTrigger : MonoBehaviour
 
     void Start ()
     {
-        Debug.Log(Time.timeScale);
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -80,12 +80,10 @@ public class StairsTrigger : MonoBehaviour
 
     IEnumerator ColorChangerDream()
     {
-        Debug.Log("Coroutine Started");
 
         int counter = 0;
         foreach (GameObject go in stairsTabDream)
         {
-            Debug.Log("New Stair n°" + counter);
             if (stairsTabDream[counter] == go)
             {
                 SpriteRenderer objectColor = go.GetComponent<SpriteRenderer>();
@@ -105,12 +103,10 @@ public class StairsTrigger : MonoBehaviour
 
     IEnumerator ColorChangerNightmare()
     {
-        Debug.Log("Coroutine Started");
 
         int counter = 0;
         foreach (GameObject go in stairsTabNightmare)
         {
-            Debug.Log("New Stair n°" + counter);
             if (stairsTabNightmare[counter] == go)
             {
                 SpriteRenderer objectColor = go.GetComponent<SpriteRenderer>();

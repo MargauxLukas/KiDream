@@ -15,10 +15,10 @@ public class ReactionToWave : MonoBehaviour
     public WaveManager waveManager;
 
     [Header("Physics")]
-    [Range(0,10), SerializeField]
+    [Range(0, 10), SerializeField]
     private int linearDrag;
 
-    [Header("Propriétés")]
+    [Header("Properties")]
     public List<GameObject> whoCanShootMe = new List<GameObject>();
     public bool canBePushed = false;
     public bool canBePulled = false;
@@ -29,9 +29,9 @@ public class ReactionToWave : MonoBehaviour
 
     [Header("Push options")]
     [Range(0, 50), SerializeField]
-    private float verticalPushForce = 1f;
+    public float verticalPushForce = 1f;
     [Range(0, 50), SerializeField]
-    private float horizontalPushForce = 1f;
+    public float horizontalPushForce = 1f;
 
     [Header("Pull options")]
     [Range(0, 50), SerializeField]
@@ -42,8 +42,10 @@ public class ReactionToWave : MonoBehaviour
     [Header("Activate options")]
     public GameObject connectedGameObject;
     public bool playAnimation;
+    public bool launchAgainToDisable;
     public bool isActivated;
     public ActivateBehaviour activateBehaviour;
+    public bool setActiveSetting;
 
     [Header("Corrupted Push options")]
     [Range(0, 2), SerializeField]
@@ -57,11 +59,13 @@ public class ReactionToWave : MonoBehaviour
     [Range(0, 2), SerializeField]
     public float corruptedActivateRadius;
 
-    [Header("Enfants")]
+    [Header("Child")]
     public int childNumberTolerance;
 
-    private bool doubleLock = false;
+    [Header("Bypass")]
+    public bool bypassActivateRules;
 
+    private bool doubleLock = false;
 
     // Start
     void Start()
@@ -70,75 +74,77 @@ public class ReactionToWave : MonoBehaviour
 
         thisRb = this.GetComponent<Rigidbody2D>();
         thisRb.drag = linearDrag;
-	}
-	
-	// Update
-	void Update()
+    }
+
+    // Update
+    void Update()
     {
         ActivationDesactivationAnimation();
     }
 
     private void OnParticleCollision(GameObject other)
     {
-        foreach(GameObject go in whoCanShootMe)
+        Rigidbody2D rb = this.GetComponent<Rigidbody2D>();
+        //rb.bodyType = RigidbodyType2D.Dynamic;
+
+        //Debug.Log(rb.bodyType);
+
+        foreach (GameObject go in whoCanShootMe)
         {
             if (other == go || (other.transform.parent != null && other.transform.parent.gameObject == go))
             {
-                Rigidbody2D rb = this.GetComponent<Rigidbody2D>();
+
                 shooter = other.GetComponent<ParticleSystem>();
+
+                ParticleSystem.Particle[] ParticleList = new ParticleSystem.Particle[shooter.particleCount];
+                shooter.GetParticles(ParticleList);
+
+                float dist = float.PositiveInfinity;
+
+                int indexParticle = 0;
+
+                for (int i = 0; i < ParticleList.Length; ++i)
+                {
+                    if ((ParticleList[i].position - transform.position).magnitude < dist)
+                    {
+                        dist = (ParticleList[i].position - transform.position).magnitude;
+                        indexParticle = i;
+                    }
+                }
+
+                ParticleList[indexParticle].startLifetime = 0f;
+
+                shooter.SetParticles(ParticleList, shooter.particleCount);
+
+                BypassActivationRules();
 
                 switch (waveManager.waveSelection)
                 {
                     case WaveType.Push:
-                        if(canBePushed == true)
+                        if (canBePushed == true)
                         {
-                            rb.AddForce(new Vector2(-(shooter.transform.position.x - this.transform.position.x) * horizontalPushForce, -(shooter.transform.position.y - this.transform.position.y) * verticalPushForce));
+                            rb.AddForce(new Vector2(-(this.shooter.transform.position.x - this.transform.position.x) * horizontalPushForce, -(this.shooter.transform.position.y - this.transform.position.y) * verticalPushForce));
                         }
                         break;
 
                     case WaveType.Pull:
-                        if(canBePulled == true)
+                        if (canBePulled == true)
                         {
-                            rb.AddForce(new Vector2((shooter.transform.position.x - this.transform.position.x) * horizontalPullForce, (shooter.transform.position.y - this.transform.position.y) * verticalPullForce));
+                            rb.AddForce(new Vector2((this.shooter.transform.position.x - this.transform.position.x) * horizontalPullForce, (this.shooter.transform.position.y - this.transform.position.y) * verticalPullForce));
                         }
                         break;
 
                     case WaveType.Activate:
-                        if(canBeActivated == true)
+                        if (canBeActivated == true)
                         {
-
-                            if (isActivated == true)
-                            {
-                                isActivated = false;
-                            }
-                            else
-                            {
-                                isActivated = true;
-                            }
-                        
-
-                            switch (activateBehaviour)
-                            {
-
-                            case ActivateBehaviour._Transform:
-                                Debug.Log("Transform");
-                                break;
-
-                            case ActivateBehaviour._Destroy:
-                                Destroy(connectedGameObject);
-                                break;
-
-                            case ActivateBehaviour._SetActive:
-                                connectedGameObject.SetActive(true);
-                                break;
-                            }
+                            Activate();
                         }
                         break;
 
                     case WaveType.PushCorruption:
 
                         localCounter = 0;
-                        if(canBePushCorrupted == true)
+                        if (canBePushCorrupted == true)
                         {
                             SetupChosenParticleSystem();
                         }
@@ -147,7 +153,7 @@ public class ReactionToWave : MonoBehaviour
                     case WaveType.PullCorruption:
 
                         localCounter = 1;
-                        if(canBePullCorrupted == true)
+                        if (canBePullCorrupted == true)
                         {
                             SetupChosenParticleSystem();
                         }
@@ -156,7 +162,7 @@ public class ReactionToWave : MonoBehaviour
                     case WaveType.ActivateCorruption:
 
                         localCounter = 2;
-                        if(canBeActivateCorrupted == true)
+                        if (canBeActivateCorrupted == true)
                         {
                             SetupChosenParticleSystem();
                         }
@@ -164,13 +170,37 @@ public class ReactionToWave : MonoBehaviour
                 }
 
             }
+            else if (other != go || (other.transform.parent == null && other.transform.parent.gameObject != go))
+            {
+                shooter = other.GetComponent<ParticleSystem>();
+
+                ParticleSystem.Particle[] ParticleList = new ParticleSystem.Particle[shooter.particleCount];
+                shooter.GetParticles(ParticleList);
+
+                float dist = float.PositiveInfinity;
+
+                int indexParticle = 0;
+
+                for (int i = 0; i < ParticleList.Length; ++i)
+                {
+                    if ((ParticleList[i].position - transform.position).magnitude < dist)
+                    {
+                        dist = (ParticleList[i].position - transform.position).magnitude;
+                        indexParticle = i;
+                    }
+                }
+
+                ParticleList[indexParticle].remainingLifetime = ParticleList[indexParticle].remainingLifetime + 1f;
+
+                shooter.SetParticles(ParticleList, shooter.particleCount);
+            }
+
 
         }
     }
 
     public void SetupChosenParticleSystem()
-    {    
-
+    {
         if (this.transform.childCount == childNumberTolerance)
         {
             ps = Instantiate(myPSList[localCounter]);
@@ -178,7 +208,7 @@ public class ReactionToWave : MonoBehaviour
             ps.gameObject.SetActive(true);
             ps.transform.SetParent(this.transform);
 
-            switch(localCounter)
+            switch (localCounter)
             {
                 case 0:
                     ps.startSize = 2.76131f * corruptedPushRadius + 0.063143f;
@@ -208,8 +238,7 @@ public class ReactionToWave : MonoBehaviour
 
     public void ActivationDesactivationAnimation()
     {
-
-        if(playAnimation == true)
+        if (playAnimation == true)
         {
             if (isActivated == true && doubleLock == false)
             {
@@ -228,12 +257,57 @@ public class ReactionToWave : MonoBehaviour
 
     public void CrashAvoider()
     {
-        if(this.GetComponent<Animator>() == null)
+        if (this.GetComponent<Animator>() == null)
         {
             playAnimation = false;
         }
     }
 
+    public void BypassActivationRules()
+    {
+        if (bypassActivateRules == true)
+        {
+            Activate();
+            return;
+        }
+    }
+
+    public void Activate()
+    {
+        if (isActivated == true && launchAgainToDisable == true)
+        {
+            isActivated = false;
+        }
+        else if (isActivated != true)
+        {
+            isActivated = true;
+
+            switch (activateBehaviour)
+            {
+                case ActivateBehaviour._Debug:
+                    break;
+
+                case ActivateBehaviour._Destroy:
+                    Destroy(connectedGameObject);
+                    break;
+
+                case ActivateBehaviour._SetActive:
+                    connectedGameObject.SetActive(setActiveSetting);
+                    break;
+            }
+        }
+    }
+
+    //Set colliding props to static
+    /*private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "ActionObject")
+        {
+            Rigidbody2D rb = collision.gameObject.GetComponent<Rigidbody2D>();
+
+            rb.bodyType = RigidbodyType2D.Static;
+        }
+    }*/
 }
 
-public enum ActivateBehaviour {_Transform, _Destroy, _SetActive}
+public enum ActivateBehaviour {_Debug, _Destroy, _SetActive}

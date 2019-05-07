@@ -13,7 +13,7 @@ public class PushEffect : MonoBehaviour
     [Header("Forces horizontales et verticales")]
     [Range(0,1000), SerializeField]
     private float forceX;
-    [Range(0, 100), SerializeField]
+    [Range(0, 1000), SerializeField]
     private float forceY;
     public bool yEqualX = false;
 
@@ -29,7 +29,6 @@ public class PushEffect : MonoBehaviour
 
     void Update()
     {
-
         if (yEqualX == true)
         {
             forceY = forceX;
@@ -53,7 +52,7 @@ public class PushEffect : MonoBehaviour
             if (behaviour.canBePushed == true)
             {
                 rb = collision.gameObject.GetComponent<Rigidbody2D>();
-                rb.AddForce(new Vector2(-(this.transform.position.x - collision.transform.position.x) * forceX, -(this.transform.position.y - collision.transform.position.y) * forceY), ForceMode2D.Impulse);
+                rb.AddForce(new Vector2(-(this.transform.position.x - collision.transform.position.x) * behaviour.horizontalPushForce * forceX, -(this.transform.position.y - collision.transform.position.y) * behaviour.verticalPushForce * forceY), ForceMode2D.Impulse);
             }
         }
                     

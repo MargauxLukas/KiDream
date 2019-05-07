@@ -129,6 +129,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1799956479567810
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4773583810060318}
+  - component: {fileID: 58280523726408392}
+  - component: {fileID: 114002376018321314}
+  m_Layer: 9
+  m_Name: ExplosionArea
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
 --- !u!1 &1911739461408914
 GameObject:
   m_ObjectHideFlags: 1
@@ -200,10 +217,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1756383030712992}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.224279, y: -1.6231859, z: 0}
+  m_LocalPosition: {x: -1.2308829, y: 0.71642613, z: 0}
   m_LocalScale: {x: 1.7425575, y: 1.7425575, z: 0}
   m_Children:
   - {fileID: 4741644589298806}
+  - {fileID: 4773583810060318}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -286,6 +304,19 @@ Transform:
   m_Father: {fileID: 4209781593161796}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4773583810060318
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1799956479567810}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4209781593161796}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &50110495259964812
 Rigidbody2D:
   serializedVersion: 4
@@ -303,7 +334,7 @@ Rigidbody2D:
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
-  m_SleepingMode: 1
+  m_SleepingMode: 0
   m_CollisionDetection: 0
   m_Constraints: 4
 --- !u!50 &50772493182377550
@@ -326,6 +357,21 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!58 &58280523726408392
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1799956479567810}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.3155877
 --- !u!58 &58372149308474428
 CircleCollider2D:
   m_ObjectHideFlags: 1
@@ -374,6 +420,17 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114002376018321314
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1799956479567810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ea6e168b8a921c4494ac98685de3be3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114220848817144130
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -403,8 +460,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ba0654ae262a9d449a5e1fb46473137, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosionTime: 6
+  explosionTime: 7
   timer: 0
+  explosionArea: {fileID: 1799956479567810}
 --- !u!114 &114943634689890884
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -416,28 +474,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72e6f736707c2e842a00536803a91d7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myPSList: []
+  myPSList:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   waveManager: {fileID: 114874006852601004, guid: b5128d70401ffa24cba9fa4d3e19e364,
     type: 2}
   linearDrag: 1
+  whoCanShootMe: []
   canBePushed: 1
-  canBePulled: 0
+  canBePulled: 1
   canBeActivated: 0
   canBePushCorrupted: 0
   canBePullCorrupted: 0
   canBeActivateCorrupted: 0
   verticalPushForce: 50
   horizontalPushForce: 50
-  verticalPullForce: 1
-  horizontalPullForce: 1
+  verticalPullForce: 50
+  horizontalPullForce: 50
   connectedGameObject: {fileID: 0}
   playAnimation: 0
+  launchAgainToDisable: 0
   isActivated: 0
   activateBehaviour: 0
-  cPushRadius: 0
-  cPullRadius: 0
-  cActivateRadius: 0
+  setActiveSetting: 0
+  corruptedPushRadius: 0
+  corruptedPullRadius: 0
+  corruptedActivateRadius: 0
   childNumberTolerance: 0
+  bypassActivateRules: 0
 --- !u!212 &212167677763294528
 SpriteRenderer:
   m_ObjectHideFlags: 1

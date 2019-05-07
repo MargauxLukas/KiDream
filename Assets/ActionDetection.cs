@@ -20,7 +20,7 @@ public class ActionDetection : MonoBehaviour {
                 {
                     if(go.name.Contains("Corrupted") == true)
                     {
-                        go.SetActive(false);
+                        go.SetActive(false);                       
                     }
                 }
 
@@ -51,7 +51,7 @@ public class ActionDetection : MonoBehaviour {
                     case true:
                         indicatorList.iconList[2].SetActive(true);
                         break;
-
+                        
                     case false:
                         indicatorList.iconList[2].SetActive(false);
                         break;
