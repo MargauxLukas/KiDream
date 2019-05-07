@@ -9,6 +9,7 @@ public class BombAOE : MonoBehaviour
     [Header("GameObject to attached")]
     public GameObject bomb       ;
     public GameObject fallingBomb;
+    public GameObject greyBomb   ;
     public GameObject shadowBomb ;
 
     Vector2[,] bombTab = new Vector2[7, 4];  //Tableau des positions des bombes
@@ -269,11 +270,11 @@ public class BombAOE : MonoBehaviour
     public void BombAreaRandom()
     {
         Vector2 position = GetPositionOnCircle(3,0);
-        GameObject fBomb = Instantiate(fallingBomb, new Vector2(position.x, position.y+5f) , Quaternion.identity);
+        GameObject gBomb = Instantiate(greyBomb, new Vector2(position.x, position.y+5f) , Quaternion.identity);
         GameObject shadow = Instantiate(shadowBomb, position , Quaternion.identity);
-        fBomb.GetComponent<BombFalling>().target = position;
-        fBomb.GetComponent<BombFalling>().shadowBomb = shadow;
-        fBomb.GetComponent<BombFalling>().explosionTime = 6f;
+        gBomb.GetComponent<BombFalling>().target = position;
+        gBomb.GetComponent<BombFalling>().shadowBomb = shadow;
+        gBomb.GetComponent<BombFalling>().explosionTime = 6f;
     }
 
     IEnumerator WaitAreaR() //Certainement moyen de faire un calcul mais flemme
