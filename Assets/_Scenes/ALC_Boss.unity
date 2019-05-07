@@ -828,7 +828,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
-  forceX: 0.3
+  forceX: 0.05
   forceY: 0
   yEqualX: 1
   adaptRadius: 0
@@ -5862,7 +5862,7 @@ MonoBehaviour:
   wallCollider: {fileID: 1840375979}
   speed: 0.2
   isRage: 0
-  hp: 3
+  hp: 5
 --- !u!95 &587806242
 Animator:
   serializedVersion: 3
@@ -8072,6 +8072,11 @@ Prefab:
     - target: {fileID: 1830243983484124, guid: c2182d8e48b654f41baeeb6f7cfdeaf5, type: 2}
       propertyPath: m_Layer
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114488211001567090, guid: c2182d8e48b654f41baeeb6f7cfdeaf5,
+        type: 2}
+      propertyPath: maxSpeed
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c2182d8e48b654f41baeeb6f7cfdeaf5, type: 2}
