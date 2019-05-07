@@ -43,6 +43,7 @@ public class Boss : MonoBehaviour
     private bool isDream = true;
     private bool isInvincible = false;
     private bool isFollow = true;
+    private bool isBombR = true;
 
     private int seconds   = 0;
     private int lookingAt = 0; // 1 = Droite, 2 = Down, 3 = Left, 4 = Up
@@ -237,28 +238,32 @@ public class Boss : MonoBehaviour
                 {
                     animator.SetBool("isJumping", false);
                     BossLanding();
+                    seconds = 0;
                 }
             }
             else
             {
+                GetComponent<BombAOE>().isPlayed3 = false;
                 isRage = true;
                 speed = 0.6f;                                 //Vitesse du boss augmenté
+
+                if(isBombR)
+                {
+                    StartCoroutine(BombRandom());
+                    isBombR = false;
+                }
                 if (seconds > 3)
                 {
-                    animator.SetBool("isMoving", true);
                     bossFallDown = false;
                     cameraAnimator.ResetTrigger("shake");
-                    Move();
-                    StartCoroutine(BombRandom());
                 }
-                if (seconds == 4)
+                if(seconds == 4)
                 {
                     cameraAnimator.SetBool("isTrigger", false);
-                    animator.SetBool("isMoving", false);
-                    animator.SetBool("isLaunching", true);
-                    direction = ThrowBomb(lookingAt);
-                    seconds = 0;
-                    animator.SetBool("isLaunching", false);
+                }
+                if(seconds == 5)
+                {
+                    isStartingPhase = true;
                 }
             }
         }
@@ -400,7 +405,6 @@ public class Boss : MonoBehaviour
 
             StartCoroutine(WaitShadow(phase));
         }
-
     }
 
     IEnumerator WaitShadow(int phase)
@@ -490,8 +494,8 @@ public class Boss : MonoBehaviour
 
     IEnumerator BombRandom()
     {
-        GetComponent<BombAOE>().BombAreaRandom();
         yield return new WaitForSeconds(1f);
+        GetComponent<BombAOE>().BombAreaRandom();
         StartCoroutine(BombRandom());
     }
 

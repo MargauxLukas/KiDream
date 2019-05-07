@@ -461,8 +461,8 @@ MonoBehaviour:
   canBePushCorrupted: 0
   canBePullCorrupted: 0
   canBeActivateCorrupted: 0
-  verticalPushForce: 1
-  horizontalPushForce: 1
+  verticalPushForce: 20
+  horizontalPushForce: 20
   verticalPullForce: 50
   horizontalPullForce: 50
   connectedGameObject: {fileID: 0}

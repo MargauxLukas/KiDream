@@ -815,12 +815,12 @@ Prefab:
     - target: {fileID: 114825622800523986, guid: 01767463a35f44044aac545efa8112af,
         type: 2}
       propertyPath: hp
-      value: 5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 58311079174749844, guid: 01767463a35f44044aac545efa8112af,
         type: 2}
       propertyPath: m_Radius
-      value: 1.16
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 198468985485500282, guid: 01767463a35f44044aac545efa8112af,
         type: 2}
@@ -830,7 +830,7 @@ Prefab:
     - target: {fileID: 114834427757769530, guid: 01767463a35f44044aac545efa8112af,
         type: 2}
       propertyPath: forceX
-      value: 2
+      value: 0.3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 01767463a35f44044aac545efa8112af, type: 2}
@@ -1056,7 +1056,7 @@ MonoBehaviour:
   isActivated: 0
   activateBehaviour: 0
   setActiveSetting: 0
-  corruptedPushRadius: 2
+  corruptedPushRadius: 1
   corruptedPullRadius: 0
   corruptedActivateRadius: 0
   childNumberTolerance: 3

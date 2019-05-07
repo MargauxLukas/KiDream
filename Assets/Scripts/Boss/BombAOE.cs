@@ -24,7 +24,7 @@ public class BombAOE : MonoBehaviour
 
     bool isPlayed1 = false;
     bool isPlayed2 = false;
-    bool isPlayed3 = false;
+    public bool isPlayed3 = false;
 
     public void Start()
     {
@@ -264,7 +264,12 @@ public class BombAOE : MonoBehaviour
 
     public void BombAreaRandom()
     {
-        StartCoroutine(WaitAreaR());
+        Vector2 position = GetPositionOnCircle(3,0);
+        GameObject fBomb = Instantiate(fallingBomb, new Vector2(position.x, position.y+5f) , Quaternion.identity);
+        GameObject shadow = Instantiate(shadowBomb, position , Quaternion.identity);
+        fBomb.GetComponent<BombFalling>().target = position;
+        fBomb.GetComponent<BombFalling>().shadowBomb = shadow;
+        fBomb.GetComponent<BombFalling>().explosionTime = 20f;
     }
 
     IEnumerator WaitAreaR() //Certainement moyen de faire un calcul mais flemme
