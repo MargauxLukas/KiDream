@@ -47,6 +47,7 @@ public class ActivateEffect : MonoBehaviour
 
             if (behaviour.canBeActivated == true)
             {
+                behaviour.Activate();
                 behaviour.isActivated = true;
             }
         }

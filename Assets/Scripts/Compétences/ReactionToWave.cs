@@ -102,12 +102,11 @@ public class ReactionToWave : MonoBehaviour
 
     private void OnParticleCollision(GameObject other)
     {
-
         foreach (GameObject go in whoCanShootMe)
         {
             if (other == go || (other.transform.parent != null && other.transform.parent.gameObject == go))
             {
-
+                Debug.Log("ahah");
                 shooter = other.GetComponent<ParticleSystem>();
 
                 ParticleSystem.Particle[] ParticleList = new ParticleSystem.Particle[shooter.particleCount];
@@ -186,27 +185,30 @@ public class ReactionToWave : MonoBehaviour
             }
             else if (other != go || (other.transform.parent == null && other.transform.parent.gameObject != go))
             {
-                shooter = other.GetComponent<ParticleSystem>();
-
-                ParticleSystem.Particle[] ParticleList = new ParticleSystem.Particle[shooter.particleCount];
-                shooter.GetParticles(ParticleList);
-
-                float dist = float.PositiveInfinity;
-
-                int indexParticle = 0;
-
-                for (int i = 0; i < ParticleList.Length; ++i)
+                if(other.GetComponent<ParticleSystem>() != null)
                 {
-                    if ((ParticleList[i].position - transform.position).magnitude < dist)
+                    shooter = other.GetComponent<ParticleSystem>();
+
+                    ParticleSystem.Particle[] ParticleList = new ParticleSystem.Particle[shooter.particleCount];
+                    shooter.GetParticles(ParticleList);
+
+                    float dist = float.PositiveInfinity;
+
+                    int indexParticle = 0;
+
+                    for (int i = 0; i < ParticleList.Length; ++i)
                     {
-                        dist = (ParticleList[i].position - transform.position).magnitude;
-                        indexParticle = i;
+                        if ((ParticleList[i].position - transform.position).magnitude < dist)
+                        {
+                            dist = (ParticleList[i].position - transform.position).magnitude;
+                            indexParticle = i;
+                        }
                     }
+
+                    ParticleList[indexParticle].remainingLifetime = ParticleList[indexParticle].remainingLifetime + 1f;
+
+                    shooter.SetParticles(ParticleList, shooter.particleCount);
                 }
-
-                ParticleList[indexParticle].remainingLifetime = ParticleList[indexParticle].remainingLifetime + 1f;
-
-                shooter.SetParticles(ParticleList, shooter.particleCount);
             }
 
 
@@ -306,29 +308,41 @@ public class ReactionToWave : MonoBehaviour
         }
         else if (isActivated != true)
         {
-            isActivated = true;
-
             switch (activateBehaviour)
             {
                 case ActivateBehaviour._Debug:
                     break;
 
                 case ActivateBehaviour._Destroy:
-                    Destroy(connectedGameObject);
+                    if(connectedGameObject != null)
+                    {
+                        Destroy(connectedGameObject);
+                    }
                     break;
 
                 case ActivateBehaviour._SetActiveTrue:
-                    connectedGameObject.SetActive(true);
+                    if (connectedGameObject != null)
+                    {
+                        connectedGameObject.SetActive(true);
+                    }
                     break;
 
                 case ActivateBehaviour._SetActiveFalse:
-                    connectedGameObject.SetActive(false);
+                    if (connectedGameObject != null)
+                    {
+                        connectedGameObject.SetActive(false);
+                    }
                     break;
 
                 case ActivateBehaviour._Shoot:
-                    connectedGameObject.GetComponent<ParticleSystem>().Play();
+                    if (connectedGameObject != null)
+                    {
+                        connectedGameObject.GetComponent<ParticleSystem>().Play();
+                    }
                     break;
             }
+
+            isActivated = true;
         }
     }
 

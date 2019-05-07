@@ -8,12 +8,20 @@ public class TriggerByName : MonoBehaviour
 
     public GameObject connectedGO;
 
+    public TriggerBehaviour behaviour;
+
     public void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.name.Contains(triggerer))
         {
-            connectedGO.SetActive(false);
+            switch(behaviour)
+            {
+                case TriggerBehaviour._SetActiveFalse:
+                    connectedGO.SetActive(false);
+                    break;
+            }
         }
     }
 
 }
+public enum TriggerBehaviour {_SetActiveFalse}
