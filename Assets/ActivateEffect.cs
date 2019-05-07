@@ -32,7 +32,6 @@ public class ActivateEffect : MonoBehaviour
             }
             else if(collision.GetComponent<ReactionToWave>() != null)
             {
-                Debug.Log("Okaay");
                 behaviour = collision.GetComponent<ReactionToWave>();
             }
 
@@ -42,14 +41,12 @@ public class ActivateEffect : MonoBehaviour
             }
             else if (collision.GetComponentInParent<ReactionToWave>() != null)
             {
-                Debug.Log("Okaay");
                 behaviour = collision.GetComponentInParent<ReactionToWave>();
             }
 
 
             if (behaviour.canBeActivated == true)
             {
-                Debug.Log("Okaay");
                 behaviour.isActivated = true;
             }
         }

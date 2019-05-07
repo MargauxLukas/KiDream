@@ -12,11 +12,11 @@ public class ReactionToWave : MonoBehaviour
     private Rigidbody2D thisRb;
     private ParticleSystem ps;
 
-    public WaveManager waveManager;
+    private WaveManager waveManager;
 
     [Header("Physics")]
     [Range(0, 10), SerializeField]
-    private int linearDrag;
+    private int linearDrag = 1;
 
     [Header("Properties")]
     public List<GameObject> whoCanShootMe = new List<GameObject>();
@@ -28,16 +28,16 @@ public class ReactionToWave : MonoBehaviour
     public bool canBeActivateCorrupted = false;
 
     [Header("Push options")]
-    [Range(0, 50), SerializeField]
+    [Range(0, 500), SerializeField]
     public float verticalPushForce = 1f;
-    [Range(0, 50), SerializeField]
+    [Range(0, 500), SerializeField]
     public float horizontalPushForce = 1f;
     public bool pushXEqualY;
 
     [Header("Pull options")]
-    [Range(0, 50), SerializeField]
+    [Range(0, 500), SerializeField]
     public float verticalPullForce = 1f;
-    [Range(0, 50), SerializeField]
+    [Range(0, 500), SerializeField]
     public float horizontalPullForce = 1f;
     public bool pullXEqualY;
 
@@ -47,7 +47,6 @@ public class ReactionToWave : MonoBehaviour
     public bool launchAgainToDisable;
     public bool isActivated;
     public ActivateBehaviour activateBehaviour;
-    public bool setActiveSetting;
 
     [Header("Corrupted options")]
     [Range(0, 2), SerializeField]
@@ -63,17 +62,26 @@ public class ReactionToWave : MonoBehaviour
     private bool doubleLock = false;
     private int childNumberTolerance;
 
-
     // Start
     void Start()
     {
         CrashAvoider();
 
-        childNumberTolerance = this.transform.childCount;
+        waveManager = FindObjectOfType<WaveManager>();
 
-        thisRb = this.GetComponent<Rigidbody2D>();
-        thisRb.drag = linearDrag;
+        myPSList.Clear();
+
+        GameObject psReferencer = GameObject.Find("ParticleSystemReferencer");
+        ParticleSystem[] array = psReferencer.GetComponentsInChildren<ParticleSystem>(true);
+
+        foreach(ParticleSystem ps in array)
+        {
+            myPSList.Add(ps);
+        }
+
+        childNumberTolerance = this.transform.childCount;
     }
+
 
     // Update
     void Update()
@@ -91,12 +99,9 @@ public class ReactionToWave : MonoBehaviour
         }
     }
 
+
     private void OnParticleCollision(GameObject other)
     {
-        Rigidbody2D rb = this.GetComponent<Rigidbody2D>();
-        //rb.bodyType = RigidbodyType2D.Dynamic;
-
-        //Debug.Log(rb.bodyType);
 
         foreach (GameObject go in whoCanShootMe)
         {
@@ -132,14 +137,14 @@ public class ReactionToWave : MonoBehaviour
                     case WaveType.Push:
                         if (canBePushed == true)
                         {
-                            rb.AddForce(new Vector2(-(this.shooter.transform.position.x - this.transform.position.x) * horizontalPushForce, -(this.shooter.transform.position.y - this.transform.position.y) * verticalPushForce));
+                            thisRb.AddForce(new Vector2(-(this.shooter.transform.position.x - this.transform.position.x) * horizontalPushForce, -(this.shooter.transform.position.y - this.transform.position.y) * verticalPushForce));
                         }
                         break;
 
                     case WaveType.Pull:
                         if (canBePulled == true)
                         {
-                            rb.AddForce(new Vector2((this.shooter.transform.position.x - this.transform.position.x) * horizontalPullForce, (this.shooter.transform.position.y - this.transform.position.y) * verticalPullForce));
+                            thisRb.AddForce(new Vector2((this.shooter.transform.position.x - this.transform.position.x) * horizontalPullForce, (this.shooter.transform.position.y - this.transform.position.y) * verticalPullForce));
                         }
                         break;
 
@@ -270,6 +275,18 @@ public class ReactionToWave : MonoBehaviour
         {
             playAnimation = false;
         }
+
+        if (this.GetComponent<Rigidbody2D>() != null)
+        {
+            thisRb = this.GetComponent<Rigidbody2D>();
+            thisRb.drag = linearDrag;
+        }
+        else
+        {
+            Debug.Log(this.gameObject.name + " n'a pas de RigidBody2D attaché");
+            canBePushed = false;
+            canBePulled = false;
+        }
     }
 
     public void BypassActivationRules()
@@ -300,8 +317,16 @@ public class ReactionToWave : MonoBehaviour
                     Destroy(connectedGameObject);
                     break;
 
-                case ActivateBehaviour._SetActive:
-                    connectedGameObject.SetActive(setActiveSetting);
+                case ActivateBehaviour._SetActiveTrue:
+                    connectedGameObject.SetActive(true);
+                    break;
+
+                case ActivateBehaviour._SetActiveFalse:
+                    connectedGameObject.SetActive(false);
+                    break;
+
+                case ActivateBehaviour._Shoot:
+                    connectedGameObject.GetComponent<ParticleSystem>().Play();
                     break;
             }
         }
@@ -319,4 +344,4 @@ public class ReactionToWave : MonoBehaviour
     }*/
 }
 
-public enum ActivateBehaviour {_Debug, _Destroy, _SetActive}
+public enum ActivateBehaviour {_Debug, _Destroy, _SetActiveTrue, _SetActiveFalse, _Shoot}
