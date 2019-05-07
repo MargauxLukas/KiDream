@@ -9,6 +9,7 @@ public class BombAOE : MonoBehaviour
     [Header("GameObject to attached")]
     public GameObject bomb       ;
     public GameObject fallingBomb;
+    public GameObject greyBomb   ;
     public GameObject shadowBomb ;
 
     Vector2[,] bombTab = new Vector2[7, 4];  //Tableau des positions des bombes
@@ -21,10 +22,14 @@ public class BombAOE : MonoBehaviour
                                                {  0.7f,   1f }, 
                                                {  0.5f, 1.4f }};
 
+    float[,] lastBomb = new float[4, 2] {{ -3f, 2.5f },
+                                         {  3f, 2.5f },
+                                         {  3f,  -1f },
+                                         { -3f,  -1f }};
 
     bool isPlayed1 = false;
     bool isPlayed2 = false;
-    bool isPlayed3 = false;
+    public bool isPlayed3 = false;
 
     public void Start()
     {
@@ -229,7 +234,7 @@ public class BombAOE : MonoBehaviour
             GameObject shadow = Instantiate(shadowBomb, new Vector2(positionX, positionY), Quaternion.identity);
             fBomb.GetComponent<BombFalling>().target = new Vector2(positionX, positionY);
             fBomb.GetComponent<BombFalling>().shadowBomb = shadow;
-            fBomb.GetComponent<BombFalling>().explosionTime = 20f;
+            fBomb.GetComponent<BombFalling>().explosionTime = 8f;
 
             positionY = positionY - 0.5f;
 
@@ -256,7 +261,7 @@ public class BombAOE : MonoBehaviour
             GameObject shadow = Instantiate(shadowBomb, new Vector2(bombCenterTab[i, coll], bombCenterTab[i, coll + 1]), Quaternion.identity);
             fBomb.GetComponent<BombFalling>().target  = new Vector2(bombCenterTab[i, coll], bombCenterTab[i, coll + 1]);
             fBomb.GetComponent<BombFalling>().shadowBomb = shadow;
-            fBomb.GetComponent<BombFalling>().explosionTime = 20f;
+            fBomb.GetComponent<BombFalling>().explosionTime = 10f;
         }
 
         yield return new WaitForSeconds(1f);
@@ -264,7 +269,12 @@ public class BombAOE : MonoBehaviour
 
     public void BombAreaRandom()
     {
-        StartCoroutine(WaitAreaR());
+        Vector2 position = GetPositionOnCircle(3,0);
+        GameObject gBomb = Instantiate(greyBomb, new Vector2(position.x, position.y+5f) , Quaternion.identity);
+        GameObject shadow = Instantiate(shadowBomb, position , Quaternion.identity);
+        gBomb.GetComponent<BombFalling>().target = position;
+        gBomb.GetComponent<BombFalling>().shadowBomb = shadow;
+        gBomb.GetComponent<BombFalling>().explosionTime = 6f;
     }
 
     IEnumerator WaitAreaR() //Certainement moyen de faire un calcul mais flemme
@@ -275,6 +285,21 @@ public class BombAOE : MonoBehaviour
         GameObject shadow = Instantiate(shadowBomb, position , Quaternion.identity);
         fBomb.GetComponent<BombFalling>().target = position;
         fBomb.GetComponent<BombFalling>().shadowBomb = shadow;
-        fBomb.GetComponent<BombFalling>().explosionTime = 20f;
+        fBomb.GetComponent<BombFalling>().explosionTime = 6f;
+    }
+
+    public void LastBomb()
+    {
+        int coll = 0;
+
+        for (int i = 0; i <= 4; i++)
+        {
+            GameObject lastFallingBomb = Instantiate(fallingBomb, new Vector2(lastBomb[i, coll], lastBomb[i, coll + 1] + 5f), Quaternion.identity);
+            GameObject shadow          = Instantiate( shadowBomb, new Vector2(lastBomb[i, coll], lastBomb[i, coll + 1])     , Quaternion.identity);
+       
+            lastFallingBomb.GetComponent<BombFalling>().target        = shadow.transform.position;
+            lastFallingBomb.GetComponent<BombFalling>().shadowBomb    = shadow;
+            lastFallingBomb.GetComponent<BombFalling>().explosionTime = 10f;
+        }
     }
 }

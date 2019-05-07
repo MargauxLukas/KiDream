@@ -235,6 +235,7 @@ public class CharacterController : MonoBehaviour
     public void damage()
     {
         hp--;
+        Debug.Log(hp);
     }
 
     void Dead(int hp)

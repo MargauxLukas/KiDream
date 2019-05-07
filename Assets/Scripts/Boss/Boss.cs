@@ -16,6 +16,7 @@ public class Boss : MonoBehaviour
     public GameObject  bombLauncher; //Zone ou les bombes spawnent
     public GameObject pushCorrupted;
     public GameObject areaDetection;
+    public GameObject  wallCollider;
 
     private GameObject ombreObject;  //GameObject apres l'instantiate de l'ombre
     private GameObject      bombe1;
@@ -23,7 +24,7 @@ public class Boss : MonoBehaviour
     private GameObject      bombe3;
     private GameObject      player;
 
-    private Transform       target;
+    private Transform target;
 
     private Rigidbody2D rb;
 
@@ -43,6 +44,8 @@ public class Boss : MonoBehaviour
     private bool isDream = true;
     private bool isInvincible = false;
     private bool isFollow = true;
+    private bool isBombR = true;
+    private bool isLastPhase = true;
 
     private int seconds   = 0;
     private int lookingAt = 0; // 1 = Droite, 2 = Down, 3 = Left, 4 = Up
@@ -166,8 +169,7 @@ public class Boss : MonoBehaviour
                 }
             }
             else
-            {
-                
+            {  
                 speed = 0.6f;                                 //Vitesse du boss augmenté
                 if (seconds < 3)
                 {
@@ -237,28 +239,37 @@ public class Boss : MonoBehaviour
                 {
                     animator.SetBool("isJumping", false);
                     BossLanding();
+                    seconds = 0;
                 }
             }
             else
             {
+                GetComponent<BombAOE>().isPlayed3 = false;
                 isRage = true;
-                speed = 0.6f;                                 //Vitesse du boss augmenté
+                Destroy(wallCollider);
+
+                if(isLastPhase)
+                {
+                    LastPhaseBomb();
+                }
+                if (isBombR)
+                {
+                    StartCoroutine(BombRandom());
+                    isBombR = false;
+                }
                 if (seconds > 3)
                 {
-                    animator.SetBool("isMoving", true);
                     bossFallDown = false;
                     cameraAnimator.ResetTrigger("shake");
-                    Move();
-                    StartCoroutine(BombRandom());
                 }
-                if (seconds == 4)
+                if(seconds == 4)
                 {
                     cameraAnimator.SetBool("isTrigger", false);
-                    animator.SetBool("isMoving", false);
-                    animator.SetBool("isLaunching", true);
-                    direction = ThrowBomb(lookingAt);
-                    seconds = 0;
-                    animator.SetBool("isLaunching", false);
+                }
+                if(seconds == 5)
+                {
+                    isStartingPhase = true;
+                    isLastPhase = true;
                 }
             }
         }
@@ -400,7 +411,6 @@ public class Boss : MonoBehaviour
 
             StartCoroutine(WaitShadow(phase));
         }
-
     }
 
     IEnumerator WaitShadow(int phase)
@@ -444,13 +454,11 @@ public class Boss : MonoBehaviour
         cameraAnimator.SetBool("isTrigger", true);
         Destroy(ombreObject)                  ;
         pushCorrupted.SetActive(true)         ;
-        areaDetection.SetActive(true)         ;
         //Detruit pillier et repousse bombe
 
         yield return new WaitForSeconds(0.5f);
         pushCorrupted.SetActive(false);
         animator.SetBool("isLanding", false) ;
-        areaDetection.SetActive(false);
         seconds = 0                          ;
         isStartingPhase = false              ;
         bossFallDown    = false              ;
@@ -490,9 +498,15 @@ public class Boss : MonoBehaviour
 
     IEnumerator BombRandom()
     {
-        GetComponent<BombAOE>().BombAreaRandom();
         yield return new WaitForSeconds(1f);
+        GetComponent<BombAOE>().BombAreaRandom();
         StartCoroutine(BombRandom());
+    }
+
+    void LastPhaseBomb()
+    {
+        isLastPhase = false;
+        GetComponent<BombAOE>().LastBomb();
     }
 
     /****************************************************************

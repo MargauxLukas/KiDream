@@ -8,6 +8,7 @@ public class BombFalling : MonoBehaviour
 
     private GameObject boss    ;
     private GameObject player  ;
+    private WaveManager waveManager;
 
     private Collider2D collider;
     public GameObject explosionArea;
@@ -29,6 +30,10 @@ public class BombFalling : MonoBehaviour
         animator = GetComponent<Animator  >();
         boss     = GameObject.Find("Boss"  );
         player   = GameObject.Find("Player");
+        waveManager = FindObjectOfType<WaveManager>();
+        GetComponent<ReactionToWave>().whoCanShootMe.Add(player);
+        GetComponent<ReactionToWave>().whoCanShootMe.Add(boss);
+        GetComponent<ReactionToWave>().waveManager = waveManager;
     }
 
     void Update ()
@@ -72,6 +77,12 @@ public class BombFalling : MonoBehaviour
             animator.SetBool("isExplode", true);
             Destroy(gameObject, 0.6f);
         }
+        /*else if (collision.gameObject.name == "Boss")
+        {
+            animator.SetBool("isExplode", true);
+            boss.GetComponent<Boss>().Damages();
+            Destroy(gameObject, 0.6f);
+        }*/
     }
 
     void Explode()
