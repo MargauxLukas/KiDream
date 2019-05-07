@@ -233,7 +233,7 @@ public class BombAOE : MonoBehaviour
             GameObject shadow = Instantiate(shadowBomb, new Vector2(positionX, positionY), Quaternion.identity);
             fBomb.GetComponent<BombFalling>().target = new Vector2(positionX, positionY);
             fBomb.GetComponent<BombFalling>().shadowBomb = shadow;
-            fBomb.GetComponent<BombFalling>().explosionTime = 20f;
+            fBomb.GetComponent<BombFalling>().explosionTime = 8f;
 
             positionY = positionY - 0.5f;
 
@@ -260,7 +260,7 @@ public class BombAOE : MonoBehaviour
             GameObject shadow = Instantiate(shadowBomb, new Vector2(bombCenterTab[i, coll], bombCenterTab[i, coll + 1]), Quaternion.identity);
             fBomb.GetComponent<BombFalling>().target  = new Vector2(bombCenterTab[i, coll], bombCenterTab[i, coll + 1]);
             fBomb.GetComponent<BombFalling>().shadowBomb = shadow;
-            fBomb.GetComponent<BombFalling>().explosionTime = 20f;
+            fBomb.GetComponent<BombFalling>().explosionTime = 10f;
         }
 
         yield return new WaitForSeconds(1f);
@@ -273,7 +273,7 @@ public class BombAOE : MonoBehaviour
         GameObject shadow = Instantiate(shadowBomb, position , Quaternion.identity);
         fBomb.GetComponent<BombFalling>().target = position;
         fBomb.GetComponent<BombFalling>().shadowBomb = shadow;
-        fBomb.GetComponent<BombFalling>().explosionTime = 20f;
+        fBomb.GetComponent<BombFalling>().explosionTime = 6f;
     }
 
     IEnumerator WaitAreaR() //Certainement moyen de faire un calcul mais flemme
@@ -284,7 +284,7 @@ public class BombAOE : MonoBehaviour
         GameObject shadow = Instantiate(shadowBomb, position , Quaternion.identity);
         fBomb.GetComponent<BombFalling>().target = position;
         fBomb.GetComponent<BombFalling>().shadowBomb = shadow;
-        fBomb.GetComponent<BombFalling>().explosionTime = 20f;
+        fBomb.GetComponent<BombFalling>().explosionTime = 6f;
     }
 
     public void LastBomb()
@@ -296,8 +296,8 @@ public class BombAOE : MonoBehaviour
             GameObject lastFallingBomb = Instantiate(fallingBomb, new Vector2(lastBomb[i, coll], lastBomb[i, coll + 1] + 5f), Quaternion.identity);
             GameObject shadow          = Instantiate( shadowBomb, new Vector2(lastBomb[i, coll], lastBomb[i, coll + 1])     , Quaternion.identity);
        
-            lastFallingBomb.GetComponent<BombFalling>().target     = shadow.transform.position;
-            lastFallingBomb.GetComponent<BombFalling>().shadowBomb = shadow;
+            lastFallingBomb.GetComponent<BombFalling>().target        = shadow.transform.position;
+            lastFallingBomb.GetComponent<BombFalling>().shadowBomb    = shadow;
             lastFallingBomb.GetComponent<BombFalling>().explosionTime = 10f;
         }
     }

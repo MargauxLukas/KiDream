@@ -433,7 +433,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosionArea: {fileID: 1649867607131242}
   target: {x: 0, y: 0}
-  explosionTime: 50
+  explosionTime: 8
   timer: 0
   shadowBomb: {fileID: 1757853116840092}
 --- !u!114 &114297119744155646

@@ -77,6 +77,12 @@ public class BombFalling : MonoBehaviour
             animator.SetBool("isExplode", true);
             Destroy(gameObject, 0.6f);
         }
+        /*else if (collision.gameObject.name == "Boss")
+        {
+            animator.SetBool("isExplode", true);
+            boss.GetComponent<Boss>().Damages();
+            Destroy(gameObject, 0.6f);
+        }*/
     }
 
     void Explode()

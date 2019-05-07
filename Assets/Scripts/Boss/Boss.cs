@@ -16,7 +16,7 @@ public class Boss : MonoBehaviour
     public GameObject  bombLauncher; //Zone ou les bombes spawnent
     public GameObject pushCorrupted;
     public GameObject areaDetection;
-    public GameObject wallCollider;
+    public GameObject  wallCollider;
 
     private GameObject ombreObject;  //GameObject apres l'instantiate de l'ombre
     private GameObject      bombe1;
@@ -24,7 +24,7 @@ public class Boss : MonoBehaviour
     private GameObject      bombe3;
     private GameObject      player;
 
-    private Transform       target;
+    private Transform target;
 
     private Rigidbody2D rb;
 
@@ -454,13 +454,11 @@ public class Boss : MonoBehaviour
         cameraAnimator.SetBool("isTrigger", true);
         Destroy(ombreObject)                  ;
         pushCorrupted.SetActive(true)         ;
-        areaDetection.SetActive(true)         ;
         //Detruit pillier et repousse bombe
 
         yield return new WaitForSeconds(0.5f);
         pushCorrupted.SetActive(false);
         animator.SetBool("isLanding", false) ;
-        areaDetection.SetActive(false);
         seconds = 0                          ;
         isStartingPhase = false              ;
         bossFallDown    = false              ;
