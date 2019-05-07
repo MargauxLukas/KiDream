@@ -102,15 +102,18 @@ public class Boss : MonoBehaviour
          *******************************************/
         if (hp == 5) //Phase 1 
         {
-            if (seconds >= 1) // Fight commence à 1 seconde pour pas que le boss bouge direct apres la cinematique
+            if (seconds >= 1 && seconds < 5) // Fight commence à 1 seconde pour pas que le boss bouge direct apres la cinematique
             {
                 animator.SetBool("isMoving", true);
                 Move();
             }
+            if(seconds == 5)
+            {
+                animator.SetBool("isLaunching", true);
+            }
             if (seconds == 6)
             {
                 animator.SetBool(   "isMoving", false);
-                animator.SetBool("isLaunching",  true);
                 direction = ThrowBomb(lookingAt)      ;
                 seconds   = -5                        ;       //A augmenter si on veut que le boss bouge plus rapidement après avoir balancé ses bombes
                 animator.SetBool("isLaunching", false);
