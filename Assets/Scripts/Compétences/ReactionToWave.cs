@@ -32,12 +32,14 @@ public class ReactionToWave : MonoBehaviour
     public float verticalPushForce = 1f;
     [Range(0, 50), SerializeField]
     public float horizontalPushForce = 1f;
+    public bool pushXEqualY;
 
     [Header("Pull options")]
     [Range(0, 50), SerializeField]
     public float verticalPullForce = 1f;
     [Range(0, 50), SerializeField]
     public float horizontalPullForce = 1f;
+    public bool pullXEqualY;
 
     [Header("Activate options")]
     public GameObject connectedGameObject;
@@ -47,30 +49,27 @@ public class ReactionToWave : MonoBehaviour
     public ActivateBehaviour activateBehaviour;
     public bool setActiveSetting;
 
-    [Header("Corrupted Push options")]
+    [Header("Corrupted options")]
     [Range(0, 2), SerializeField]
     public float corruptedPushRadius;
-
-    [Header("Corrupted Pull options")]
     [Range(0, 2), SerializeField]
     public float corruptedPullRadius;
-
-    [Header("Corrupted Activate options")]
     [Range(0, 2), SerializeField]
     public float corruptedActivateRadius;
-
-    [Header("Child")]
-    public int childNumberTolerance;
 
     [Header("Bypass")]
     public bool bypassActivateRules;
 
     private bool doubleLock = false;
+    private int childNumberTolerance;
+
 
     // Start
     void Start()
     {
         CrashAvoider();
+
+        childNumberTolerance = this.transform.childCount;
 
         thisRb = this.GetComponent<Rigidbody2D>();
         thisRb.drag = linearDrag;
@@ -80,6 +79,16 @@ public class ReactionToWave : MonoBehaviour
     void Update()
     {
         ActivationDesactivationAnimation();
+
+        if (pushXEqualY == true)
+        {
+            horizontalPushForce = verticalPushForce;
+        }
+
+        if (pullXEqualY == true)
+        {
+            horizontalPullForce = verticalPullForce;
+        }
     }
 
     private void OnParticleCollision(GameObject other)

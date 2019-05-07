@@ -40,7 +40,6 @@ public class WaveManager : MonoBehaviour
     public bool isRegenerating;
 
     private bool rightAxisInUse = false;
-    private bool leftAxisInUse = false;
 
 
     // Start
@@ -84,16 +83,11 @@ public class WaveManager : MonoBehaviour
             rightAxisInUse = false;
         }
 
-        if (Input.GetAxisRaw("ChangeParticles") == 0)
-        {
-            leftAxisInUse = false;
-        }
-
         switch (myPlayer.isDream)
         {
             case true:
 
-                if (Input.GetAxisRaw("ChangeParticles") != 0 && leftAxisInUse == false)
+                if (Input.GetKeyDown(KeyCode.Joystick1Button3))
                 {
                     if (selectionIndex == enumCount / 2)
                     {
@@ -103,8 +97,6 @@ public class WaveManager : MonoBehaviour
                     {
                         selectionIndex++;
                     }
-
-                    leftAxisInUse = true;
                 }
 
                 if (selectionIndex >= WaveShooters.Count / 2)
@@ -116,7 +108,7 @@ public class WaveManager : MonoBehaviour
 
             case false:
 
-                if (Input.GetAxisRaw("ChangeParticles") != 0 && leftAxisInUse == false)
+                if (Input.GetKeyDown(KeyCode.Joystick1Button3))
                 {
                     if (selectionIndex == enumCount)
                     {
@@ -126,8 +118,6 @@ public class WaveManager : MonoBehaviour
                     {
                         selectionIndex++;
                     }
-
-                    leftAxisInUse = true;
                 }
 
                 if (selectionIndex < WaveShooters.Count / 2)

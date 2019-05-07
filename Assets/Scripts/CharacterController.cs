@@ -56,6 +56,8 @@ public class CharacterController : MonoBehaviour
     //private bool nightmare = false;  //Useless donc je l'ai viré
     public  bool isDream     =  true;
 
+    private bool leftAxisInUse;
+
     private void Awake()
     {
         StartCoroutine(GoToDream());
@@ -69,7 +71,6 @@ public class CharacterController : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log("PlayerHP = " + hp);
         if (myShooter != waveManager.WaveShooters[waveManager.selectionIndex])
         {
             myShooter          = waveManager.WaveShooters         [waveManager.selectionIndex];
@@ -79,15 +80,22 @@ public class CharacterController : MonoBehaviour
         moveX = Input.GetAxis("Horizontal");
         moveY = Input.GetAxis("Vertical"  );
 
-        if(Input.GetKeyDown(KeyCode.Joystick1Button3) && isDream)
+        if(Input.GetAxisRaw("ChangeWorld") != 0 && isDream && leftAxisInUse == false)
         {
             StartCoroutine(GoToNightmare());
             isDream = false;
+            leftAxisInUse = true;
         }
-        else if(Input.GetKeyDown(KeyCode.Joystick1Button3) && !isDream)
+        else if(Input.GetAxisRaw("ChangeWorld") != 0 && !isDream && leftAxisInUse == false)
         {
             StartCoroutine(GoToDream());
             isDream = true;
+            leftAxisInUse = true;
+        }
+
+        if(Input.GetAxisRaw("ChangeWorld") == 0)
+        {
+            leftAxisInUse = false;
         }
 
         if(Input.GetKeyDown(KeyCode.Joystick1Button0) && !dialogueHasStarted)
