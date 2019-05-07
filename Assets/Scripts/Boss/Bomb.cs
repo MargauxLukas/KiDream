@@ -45,8 +45,9 @@ public class Bomb : MonoBehaviour
         if (timer >= explosionTime         ) {Explode()                        ;}
 	}
 
-    void Explode(Collision2D collision)
+    public void Explode(Collision2D collision)
     {
+        Debug.Log(collision.gameObject.name);
         if (collision.gameObject.tag == "Player")
         {
             animator.SetBool("isExplode", true);
@@ -71,7 +72,7 @@ public class Bomb : MonoBehaviour
         Destroy(gameObject);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    public void OnCollisionEnter2D(Collision2D collision)
     {
         Explode(collision);
     }

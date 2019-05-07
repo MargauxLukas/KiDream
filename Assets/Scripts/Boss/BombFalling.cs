@@ -64,7 +64,7 @@ public class BombFalling : MonoBehaviour
         }
     }
 
-    void Explode(Collision2D collision)
+    public void Explode(Collision2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
