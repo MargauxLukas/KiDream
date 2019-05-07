@@ -17,6 +17,12 @@ public class CheckpointTrigger : MonoBehaviour
         if (collision.tag == "Player" && isChecked == false)
         {
             CheckpointAnim.SetBool("isChecked", true);
+
+            if(this.GetComponent<AudioSource>() != null && isChecked == false)
+            {
+                this.GetComponent<AudioSource>().Play();
+            }
+
             isChecked = true;
         }
     }

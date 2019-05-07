@@ -17,13 +17,18 @@ public class PushEffect : MonoBehaviour
     private float forceY;
     public bool yEqualX = false;
 
+    public bool adaptRadius;
+
 
     void Start()
     {
         colRadius = this.GetComponent<CircleCollider2D>();
         corruptedPushPS = this.GetComponent<ParticleSystem>();
         parentBehaviour = this.GetComponentInParent<ReactionToWave>();
-        colRadius.radius = parentBehaviour.corruptedPushRadius;
+        if(adaptRadius == true)
+        {
+            colRadius.radius = parentBehaviour.corruptedPushRadius;
+        }
     }
 
 
