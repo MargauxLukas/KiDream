@@ -106,7 +106,6 @@ public class ReactionToWave : MonoBehaviour
         {
             if (other == go || (other.transform.parent != null && other.transform.parent.gameObject == go))
             {
-                Debug.Log("ahah");
                 shooter = other.GetComponent<ParticleSystem>();
 
                 ParticleSystem.Particle[] ParticleList = new ParticleSystem.Particle[shooter.particleCount];
