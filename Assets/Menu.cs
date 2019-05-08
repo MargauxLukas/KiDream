@@ -20,7 +20,12 @@ public class Menu : MonoBehaviour
 
     public MenuReaction menuReaction;
 
-	void OnTriggerStay2D (Collider2D collision)
+    private void Update()
+    {
+
+    }
+
+    void OnTriggerStay2D (Collider2D collision)
     {
         float selector = Input.GetAxisRaw("ShootParticles");
 
@@ -40,7 +45,7 @@ public class Menu : MonoBehaviour
                     break;
                 case MenuReaction.NewGame:
                     loadingScreenPop.Play();
-                    //StartCoroutine(LoadAsynchronously(2));
+                    StartCoroutine(LoadAsynchronously(2));
                     break;
                 case MenuReaction.ChapterMenu:
                     SceneLoader(3);
@@ -95,15 +100,14 @@ public class Menu : MonoBehaviour
 
     IEnumerator LoadAsynchronously(int index)
     {
-        yield return new WaitForSeconds(loadingScreenPop.clip.length);
+        //yield return new WaitForSeconds(loadingScreenPop.clip.length);
         AsyncOperation operation = SceneManager.LoadSceneAsync(index);
 
         while(operation.isDone == false)
         {
             float progress = Mathf.Clamp01(operation.progress / .9f);
             Debug.Log(progress);
-            progressionBar.transform.localPosition = new Vector3(progress*(0 - this.transform.localPosition.x), this.transform.localPosition.y, this.transform.localPosition.z);
-            Debug.Log(progressionBar.transform.localPosition);
+            progressionBar.transform.localPosition = new Vector3(((0 - progressionBar.transform.localPosition.x) * progress - 3.18636f), progressionBar.transform.localPosition.y, progressionBar.transform.localPosition.z);
 
             yield return null;
         }
