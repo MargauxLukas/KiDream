@@ -571,11 +571,11 @@ MonoBehaviour:
   target: {fileID: 609406069}
   canShoot: 1
   allowClampHaut: 1
-  superiorEqualValue: 0
-  clampHaut: 45
+  superiorEqualValue: 1
+  clampHaut: 83
   allowClampBas: 1
-  clampBas: -45
-  inferiorEqualValue: 0
+  clampBas: -83
+  inferiorEqualValue: 1
   clampRange: 1
 --- !u!212 &609406068
 SpriteRenderer:

@@ -21,10 +21,10 @@ public class MenuShooter : MonoBehaviour
     public int clampHaut;
 
     public bool allowClampBas;
-
+    public bool inferiorEqualValue;
     [Range(-180, 180)]
     public int clampBas;
-    public bool inferiorEqualValue;
+
     public int clampRange;
 
 
