@@ -65,6 +65,11 @@ public class BombFalling : MonoBehaviour
             transform.Translate(0,0,0);
             Destroy(shadowBomb);
         }
+
+        if (transform.position.x > 3.40f || transform.position.x < -3.40f || transform.position.y < -1.5f)
+        {
+            Explode();
+        }
     }
 
     public void Explode(Collision2D collision)
@@ -96,19 +101,13 @@ public class BombFalling : MonoBehaviour
 
     void Explode()
     {
-        Destroy(gameObject);
+        animator.SetBool("isExplode", true);
+        rb.constraints = RigidbodyConstraints2D.FreezeAll;
+        Destroy(gameObject,0.6f);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Explode(collision);
-    }
-
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        if (transform.position.x > 3.40f || transform.position.x < -3.40f || transform.position.y > 2.8f || transform.position.y < -1.5f)
-        {
-            Explode();
-        }
     }
 }

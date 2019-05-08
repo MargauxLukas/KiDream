@@ -70,8 +70,6 @@ public class Boss : MonoBehaviour
 	
 	void Update ()
     {
-
-        Debug.Log(GetComponent<ReactionToWave>().corruptedPushRadius);
         isDream = player.GetComponent<CharacterController>().isDream;
         if (isDream) { animator.SetBool("isDream",  true);}
         else         { animator.SetBool("isDream", false);}
@@ -217,7 +215,7 @@ public class Boss : MonoBehaviour
             }
             else
             {
-                speed = 0.6f;                                 //Vitesse du boss augmenté
+                speed = 0.5f;                                 //Vitesse du boss augmenté
                 if (seconds < 2)
                 {
                     animator.SetBool("isMoving", true);
@@ -399,7 +397,7 @@ public class Boss : MonoBehaviour
         {
             if (ombreObject == null) { ombreObject = Instantiate(ombre, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y - 3.50f, 0), Quaternion.identity); }    //Instantiate Ombre 
 
-            ombreObject.transform.position = Vector2.MoveTowards(ombreObject.transform.position, target.position, 0.5f * Time.deltaTime);
+            ombreObject.transform.position = Vector2.MoveTowards(ombreObject.transform.position, target.position, 0.4f * Time.deltaTime);
             transform.position = Vector2.MoveTowards(transform.position, new Vector2(ombreObject.transform.position.x, transform.position.y), 1f * Time.deltaTime);
 
             StartCoroutine(WaitShadow(phase));
@@ -408,7 +406,7 @@ public class Boss : MonoBehaviour
         {
             if (ombreObject == null) { ombreObject = Instantiate(ombre, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y - 3.50f, 0), Quaternion.identity); }    //Instantiate Ombre 
 
-            ombreObject.transform.position = Vector2.MoveTowards(ombreObject.transform.position, target.position, 0.5f * Time.deltaTime);
+            ombreObject.transform.position = Vector2.MoveTowards(ombreObject.transform.position, target.position, 0.4f * Time.deltaTime);
             transform.position = Vector2.MoveTowards(transform.position, new Vector2(ombreObject.transform.position.x, transform.position.y), 1f * Time.deltaTime);
         }
         else if (phase == 4)
@@ -417,7 +415,7 @@ public class Boss : MonoBehaviour
 
             if (isFollow)
             {
-                ombreObject.transform.position = Vector2.MoveTowards(ombreObject.transform.position, target.position, 0.5f * Time.deltaTime);
+                ombreObject.transform.position = Vector2.MoveTowards(ombreObject.transform.position, target.position, 0.4f * Time.deltaTime);
             }
                 transform.position = Vector2.MoveTowards(transform.position, new Vector2(ombreObject.transform.position.x, transform.position.y), 1f * Time.deltaTime);
 
@@ -427,7 +425,7 @@ public class Boss : MonoBehaviour
         {
             if (ombreObject == null) { ombreObject = Instantiate(ombre, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y - 3.50f, 0), Quaternion.identity); }    //Instantiate Ombre 
 
-            ombreObject.transform.position = Vector2.MoveTowards(ombreObject.transform.position, new Vector2(0f,1f), 0.5f * Time.deltaTime);
+            ombreObject.transform.position = Vector2.MoveTowards(ombreObject.transform.position, new Vector2(0f,1f), 0.4f * Time.deltaTime);
 
             transform.position = Vector2.MoveTowards(transform.position, new Vector2(ombreObject.transform.position.x, transform.position.y), 1f * Time.deltaTime);
 
@@ -446,12 +444,12 @@ public class Boss : MonoBehaviour
         {
             yield return new WaitForSeconds(2f);
             isFollow = false;
-            if (target.position.x > 0 && ombreObject != null) { ombreObject.transform.position = Vector2.MoveTowards(ombreObject.transform.position, new Vector2(-0.7f, 0.50f), 1f * Time.deltaTime); }
+            if (target.position.x > 0 && ombreObject != null) { ombreObject.transform.position = Vector2.MoveTowards(ombreObject.transform.position, new Vector2(-0.7f, 0.70f), 1f * Time.deltaTime); }
             else
             {
                 if (ombreObject != null)
                 {
-                    ombreObject.transform.position = Vector2.MoveTowards(ombreObject.transform.position, new Vector2(1f, 0.50f), 1f * Time.deltaTime);
+                    ombreObject.transform.position = Vector2.MoveTowards(ombreObject.transform.position, new Vector2(1f, 0.70f), 1f * Time.deltaTime);
                 }
             }
             yield return new WaitForSeconds(1.5f);

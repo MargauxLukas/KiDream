@@ -14,7 +14,6 @@ public class OnTriggerBoss : MonoBehaviour
         }
         if(collision.tag == "UIDetectionTag")
         {
-            Debug.Log("Action");
             boss.GetComponent<Boss>().PushWave();
         }
     }
