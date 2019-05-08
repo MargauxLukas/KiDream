@@ -5805,7 +5805,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 160914361}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 500}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1360770645}
@@ -15259,6 +15259,7 @@ GameObject:
   - component: {fileID: 879937191}
   - component: {fileID: 879937192}
   - component: {fileID: 879937193}
+  - component: {fileID: 879937194}
   m_Layer: 0
   m_Name: Chick
   m_TagString: Untagged
@@ -15366,6 +15367,10 @@ MonoBehaviour:
   neverDown: 0
   neverLeft: 0
   neverRight: 0
+  isMoving: 0
+  speedMoving: 0.3
+  timeBeforeMoving: 0
+  timeMoving: 0
 --- !u!114 &879937192
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15423,6 +15428,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &879937194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 879937187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 721e1d5f1223801428c81baf6c158c84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offsetValue: 0
+  runOnlyOnceForStaticObjects: 0
 --- !u!1001 &882563903
 Prefab:
   m_ObjectHideFlags: 0
@@ -15640,7 +15658,7 @@ Prefab:
     - target: {fileID: 114488211001567090, guid: c2182d8e48b654f41baeeb6f7cfdeaf5,
         type: 2}
       propertyPath: maxSpeed
-      value: 0.7
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c2182d8e48b654f41baeeb6f7cfdeaf5, type: 2}
@@ -22854,7 +22872,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1340947241}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 500}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1844585959}

@@ -22,13 +22,25 @@ public class ChickBehaviour : MonoBehaviour
     public bool neverLeft  = false ;
     public bool neverRight = false ;
 
+    [Header("A cocher si on veut qu'il se déplace")]
+    public bool isMoving   = false ;
+    public float speedMoving = 0.5f;
+
+    [Header("A remplir si on veut qu'il se déplace toutes les [timeBeforeMoving] seconds pendant [timeMoving] seconds")]
+    public int timeBeforeMoving = 0; 
+    public int timeMoving       = 0;
+
     private int lookingAt = 0; // 1 = Droite, 2 = Down, 3 = Left, 4 = Up
+    private int seconds   = 0;
+    private int timeAddition ;  //timeBeforeMoving + timeMoving
+    private float timer;
 
     void Start ()
     {
-        player   = GameObject.Find("Player");
-        animator = GetComponent<Animator>();
-        target = player.transform;
+        player       = GameObject.Find("Player");
+        animator     = GetComponent<Animator>();
+        target       = player.transform;
+        timeAddition = timeBeforeMoving + timeMoving;
     }
 	
 	void Update ()
@@ -40,7 +52,35 @@ public class ChickBehaviour : MonoBehaviour
 
         LookAt();
         Attack(lookingAt);
+
+        if(isMoving && timeBeforeMoving == 0)
+        {
+            Move();
+        }
+        else if(isMoving && timeBeforeMoving != 0)
+        {
+            if (Time.time > timer + 1) //Timer
+            {
+                timer = Time.time;
+                seconds++;
+            }
+            else if(seconds >= timeBeforeMoving && seconds < timeAddition)
+            {
+                Move();
+            }
+            else if(seconds == timeAddition)
+            {
+                seconds = 0;
+            }
+        }
     }
+
+    void Move()
+    {
+        LookAt();
+        transform.position = Vector2.MoveTowards(transform.position, target.position, speedMoving * Time.deltaTime);
+    }
+
 
     void LookAt()
     {
@@ -109,5 +149,10 @@ public class ChickBehaviour : MonoBehaviour
             pushCorrupted3.SetActive(false);
             pushCorrupted1.SetActive(false);
         }
+    }
+
+    void Dead()
+    {
+        animator.SetBool("isHurting", true);
     }
 }
