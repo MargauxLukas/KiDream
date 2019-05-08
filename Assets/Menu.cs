@@ -6,26 +6,29 @@ using UnityEngine.SceneManagement;
 
 public class Menu : MonoBehaviour
 {
-    private bool selectionInUse;
+    private bool selectorInUse;
 
     public SpriteRenderer indicator;
 
+    public GameObject progressionBar;
+    //public GameObject finalPosition;
+
     public AudioSource as0;
     public AudioSource as1;
+
+    public Animation loadingScreenPop;
 
     public MenuReaction menuReaction;
 
 	void OnTriggerStay2D (Collider2D collision)
     {
-        float selection = Input.GetAxisRaw("ShootParticles");
+        float selector = Input.GetAxisRaw("ShootParticles");
 
         indicator.enabled = true;
 
-        if(selection > 0 && selectionInUse == false)
+        if(selector > 0 && selectorInUse == false)
         {
-            Debug.Log("1");
-            selectionInUse = true;
-            Debug.Log("2");
+            selectorInUse = true;
 
 		    switch(menuReaction)
             {
@@ -36,7 +39,8 @@ public class Menu : MonoBehaviour
                     SceneLoader(1);
                     break;
                 case MenuReaction.NewGame:
-                    SceneLoader(2);
+                    loadingScreenPop.Play();
+                    //StartCoroutine(LoadAsynchronously(2));
                     break;
                 case MenuReaction.ChapterMenu:
                     SceneLoader(3);
@@ -88,6 +92,26 @@ public class Menu : MonoBehaviour
         Application.Quit();
         Debug.Log("Goodbye !");
     }
+
+    IEnumerator LoadAsynchronously(int index)
+    {
+        yield return new WaitForSeconds(loadingScreenPop.clip.length);
+        AsyncOperation operation = SceneManager.LoadSceneAsync(index);
+
+        while(operation.isDone == false)
+        {
+            float progress = Mathf.Clamp01(operation.progress / .9f);
+            Debug.Log(progress);
+            progressionBar.transform.localPosition = new Vector3(progress*(0 - this.transform.localPosition.x), this.transform.localPosition.y, this.transform.localPosition.z);
+            Debug.Log(progressionBar.transform.localPosition);
+
+            yield return null;
+        }
+    }
+    //205 - 611
+    // -700 - 0
+    //-3.186363
+
 }
 
 public enum MenuReaction {MainMenu, PlayMenu, NewGame, ChapterMenu, OptionsMenu, QuitPopUp, QuitGame}
