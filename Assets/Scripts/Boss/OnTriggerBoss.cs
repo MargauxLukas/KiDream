@@ -4,16 +4,18 @@ using UnityEngine;
 
 public class OnTriggerBoss : MonoBehaviour
 {
+    public GameObject boss;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Collision");
         if (collision.tag == "Player")
         {
             collision.gameObject.GetComponent<CharacterController>().damage();
         }
-        if(collision.tag == "ActionObject")
+        if(collision.tag == "UIDetectionTag")
         {
-            GetComponentInParent<Boss>().PushWave();
+            Debug.Log("Action");
+            boss.GetComponent<Boss>().PushWave();
         }
     }
 }

@@ -831,7 +831,7 @@ MonoBehaviour:
   forceX: 0.05
   forceY: 0
   yEqualX: 1
-  adaptRadius: 0
+  adaptRadius: 1
 --- !u!199 &447779165
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -905,7 +905,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0.0077126026, y: 0}
   serializedVersion: 2
-  m_Radius: 2.5
+  m_Radius: 2
 --- !u!198 &447779167
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -5862,7 +5862,7 @@ MonoBehaviour:
   wallCollider: {fileID: 1840375979}
   speed: 0.2
   isRage: 0
-  hp: 1
+  hp: 5
 --- !u!95 &587806242
 Animator:
   serializedVersion: 3
@@ -7079,26 +7079,13 @@ GameObject:
   m_Component:
   - component: {fileID: 1466609728}
   - component: {fileID: 1466609727}
-  - component: {fileID: 1466609726}
   m_Layer: 0
   m_Name: Area detection
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!114 &1466609726
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 114036359707410750, guid: 01767463a35f44044aac545efa8112af,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1466609725}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ea6e168b8a921c4494ac98685de3be3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_IsActive: 1
 --- !u!58 &1466609727
 CircleCollider2D:
   m_ObjectHideFlags: 0

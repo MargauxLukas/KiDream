@@ -52,24 +52,26 @@ public class Boss : MonoBehaviour
     private int direction = 0;
     public  int hp        = 5;
 
-    void Start ()
+    void Start()
     {
-              animator =                                GetComponent<Animator>();
-         cameraAnimator = GameObject.Find("Main Camera").GetComponent<Animator>();
-         bombAnimator1 = null;
-         bombAnimator1 = null;
-         bombAnimator1 = null;
+        animator = GetComponent<Animator>();
+        cameraAnimator = GameObject.Find("Main Camera").GetComponent<Animator>();
+        bombAnimator1 = null;
+        bombAnimator1 = null;
+        bombAnimator1 = null;
 
-        rb       = GetComponent<Rigidbody2D>();
-        player   = GameObject.Find("Player")  ;
-        target   = player.transform           ;
+        rb = GetComponent<Rigidbody2D>();
+        player = GameObject.Find("Player");
+        target = player.transform;
 
-        distanceDeltaHV   = Time.deltaTime *   1f;
+        distanceDeltaHV = Time.deltaTime * 1f;
         distanceDeltaDiag = Time.deltaTime * 0.5f;
     }
 	
 	void Update ()
     {
+
+        Debug.Log(GetComponent<ReactionToWave>().corruptedPushRadius);
         isDream = player.GetComponent<CharacterController>().isDream;
         if (isDream) { animator.SetBool("isDream",  true);}
         else         { animator.SetBool("isDream", false);}
@@ -332,8 +334,16 @@ public class Boss : MonoBehaviour
     ************************************************/
     void Move()
     {
+        //StartCoroutine(areaDetectionTrue());
         LookAt();
         transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
+    }
+
+    IEnumerator areaDetectionTrue()
+    {
+        pushCorrupted.GetComponent<CircleCollider2D>().radius = 0.6f;
+        yield return new WaitForSeconds(1f);
+        areaDetection.SetActive(true);
     }
 
     /****************************
@@ -341,6 +351,7 @@ public class Boss : MonoBehaviour
     *****************************/
     void Jump(int phase)
     {
+        //pushCorrupted.GetComponent<CircleCollider2D>().radius = 2f;
         StartCoroutine(WaitJump(phase));
     }
 
@@ -470,11 +481,11 @@ public class Boss : MonoBehaviour
         cameraAnimator.SetTrigger("shake")    ;
         cameraAnimator.SetBool("isTrigger", true);
         Destroy(ombreObject)                  ;
-        pushCorrupted.SetActive(true)         ;
+        PushWave()    ;
         //Detruit pillier et repousse bombe
 
         yield return new WaitForSeconds(0.5f);
-        pushCorrupted.SetActive(false);
+        //pushCorrupted.SetActive(false);
         animator.SetBool("isLanding", false) ;
         seconds = 0                          ;
         isStartingPhase = false              ;
@@ -544,6 +555,8 @@ public class Boss : MonoBehaviour
     ****************************************************/
     int ThrowBomb(int lookingAt)
     {
+        areaDetection.SetActive(false);
+        
         switch(lookingAt)
         {
             case 1: //Est

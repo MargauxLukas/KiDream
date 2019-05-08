@@ -255,7 +255,7 @@ public class BombAOE : MonoBehaviour
     {
         int coll = 0;
 
-        for (int i = 0; i <= 8; i++)
+        for (int i = 0; i <= 7; i++)
         {
             GameObject fBomb = Instantiate(fallingBomb, new Vector2(bombCenterTab[i, coll], bombCenterTab[i, coll + 1] + 5f), Quaternion.identity);
             GameObject shadow = Instantiate(shadowBomb, new Vector2(bombCenterTab[i, coll], bombCenterTab[i, coll + 1]), Quaternion.identity);
@@ -292,7 +292,7 @@ public class BombAOE : MonoBehaviour
     {
         int coll = 0;
 
-        for (int i = 0; i <= 4; i++)
+        for (int i = 0; i <= 3; i++)
         {
             GameObject lastFallingBomb = Instantiate(fallingBomb, new Vector2(lastBomb[i, coll], lastBomb[i, coll + 1] + 5f), Quaternion.identity);
             GameObject shadow          = Instantiate( shadowBomb, new Vector2(lastBomb[i, coll], lastBomb[i, coll + 1])     , Quaternion.identity);
