@@ -10,6 +10,9 @@ public class Menu : MonoBehaviour
 
     public SpriteRenderer indicator;
 
+    public AudioSource as0;
+    public AudioSource as1;
+
     public MenuReaction menuReaction;
 
 	void OnTriggerStay2D (Collider2D collision)
@@ -47,6 +50,25 @@ public class Menu : MonoBehaviour
                 case MenuReaction.QuitGame:
                     QuitGame();
                     break;
+            }
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(as0.isPlaying == false)
+        {
+            as0.Play();
+        }
+        else if(as0.isPlaying == true)
+        {
+            if (as1.isPlaying == true)
+            {
+                return;
+            }
+            else
+            {
+                as1.Play();
             }
         }
     }
