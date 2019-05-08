@@ -524,7 +524,7 @@ public class Boss : MonoBehaviour
 
     IEnumerator BombRandom()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.5f);
         GetComponent<BombAOE>().BombAreaRandom();
         StartCoroutine(BombRandom());
     }
