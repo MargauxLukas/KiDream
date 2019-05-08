@@ -70,7 +70,6 @@ public class Boss : MonoBehaviour
 	
 	void Update ()
     {
-        Debug.Log("Boss " + hp);
         isDream = player.GetComponent<CharacterController>().isDream;
         if (isDream) { animator.SetBool("isDream",  true);}
         else         { animator.SetBool("isDream", false);}
@@ -436,8 +435,14 @@ public class Boss : MonoBehaviour
         {
             yield return new WaitForSeconds(2f);
             isFollow = false;
-            if (target.position.x > 0) { ombreObject.transform.position = Vector2.MoveTowards(ombreObject.transform.position, new Vector2(-0.7f, 0.50f), 1f * Time.deltaTime); }
-            else { ombreObject.transform.position = Vector2.MoveTowards(ombreObject.transform.position, new Vector2(1f, 0.50f), 1f * Time.deltaTime); }
+            if (target.position.x > 0 && ombreObject != null) { ombreObject.transform.position = Vector2.MoveTowards(ombreObject.transform.position, new Vector2(-0.7f, 0.50f), 1f * Time.deltaTime); }
+            else
+            {
+                if (ombreObject != null)
+                {
+                    ombreObject.transform.position = Vector2.MoveTowards(ombreObject.transform.position, new Vector2(1f, 0.50f), 1f * Time.deltaTime);
+                }
+            }
             yield return new WaitForSeconds(1.5f);
             bossFallDown = true;
         }
@@ -683,11 +688,17 @@ public class Boss : MonoBehaviour
     /****************************************************************
      * Function : Onde qui repousse le joueur, les IA et les objets *
      ****************************************************************/
-    void PushWave()
+    public void PushWave()
     {
-        //Push Player/IA/Bombe
+        StartCoroutine(PushWaveC());
     }
 
+    IEnumerator PushWaveC()
+    {
+        pushCorrupted.SetActive(true);
+        yield return new WaitForSeconds(0.2f);
+        pushCorrupted.SetActive(false);
+    }
     /**************************************************************
      * Function : Le boss prend un dégat quand touché par bombes  *
      **************************************************************/

@@ -49,7 +49,6 @@ public class Bomb : MonoBehaviour
 
     public void Explode(Collision2D collision)
     {
-        Debug.Log(collision.gameObject.name);
         if (collision.gameObject.tag == "Player")
         {
             animator.SetBool("isExplode", true);
