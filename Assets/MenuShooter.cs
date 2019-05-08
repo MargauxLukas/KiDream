@@ -16,13 +16,15 @@ public class MenuShooter : MonoBehaviour
 
     [Header("Clamping")]
     public bool allowClampHaut;
+    public bool superiorEqualValue;
     [Range(-180, 180)]
     public int clampHaut;
 
     public bool allowClampBas;
+
     [Range(-180, 180)]
     public int clampBas;
-
+    public bool inferiorEqualValue;
     public int clampRange;
 
 
@@ -58,6 +60,15 @@ public class MenuShooter : MonoBehaviour
             }
 
             if (z < clampBas + clampRange && z > clampBas - clampRange && allowClampBas == true)
+            {
+                z = clampBas;
+            }
+
+            if (superiorEqualValue == true && z > clampHaut)
+            {
+                z = clampHaut;
+            }
+            else if(inferiorEqualValue == true && z < clampBas)
             {
                 z = clampBas;
             }

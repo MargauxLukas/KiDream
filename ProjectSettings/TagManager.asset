@@ -50,3 +50,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Mask Gauche
+    uniqueID: 3163220925
+    locked: 0
+  - name: Mask Droit
+    uniqueID: 526687733
+    locked: 0
