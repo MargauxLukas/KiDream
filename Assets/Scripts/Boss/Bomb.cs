@@ -19,10 +19,12 @@ public class Bomb : MonoBehaviour
     GameObject boss;
     GameObject player;
     WaveManager waveManager;
+    Rigidbody2D rb;
 
 	void Start ()
     {
         animator = GetComponent<Animator>() ;
+        rb       = GetComponent<Rigidbody2D>();
         boss     = GameObject.Find("Boss"  );
         player   = GameObject.Find("Player");
         waveManager = FindObjectOfType<WaveManager>();
@@ -52,17 +54,20 @@ public class Bomb : MonoBehaviour
         {
             animator.SetBool("isExplode", true);
             collision.gameObject.GetComponent<CharacterController>().damage();
+            rb.constraints = RigidbodyConstraints2D.FreezeAll;
             Destroy(gameObject, 0.6f    );
         }
         else if (collision.gameObject.tag == "Boss" && canHurtBoss)
         {
             animator.SetBool("isExplode", true);
             boss.GetComponent<Boss>().Damages();
+            rb.constraints = RigidbodyConstraints2D.FreezeAll;
             Destroy(gameObject, 0.55f);
         }
         else if(collision.gameObject.name == "WallCollider")
         {
             animator.SetBool("isExplode", true);
+            rb.constraints = RigidbodyConstraints2D.FreezeAll;
             Destroy(gameObject, 0.55f);
         }
     }

@@ -296,10 +296,10 @@ public class BombAOE : MonoBehaviour
         {
             GameObject lastFallingBomb = Instantiate(fallingBomb, new Vector2(lastBomb[i, coll], lastBomb[i, coll + 1] + 5f), Quaternion.identity);
             GameObject shadow          = Instantiate( shadowBomb, new Vector2(lastBomb[i, coll], lastBomb[i, coll + 1])     , Quaternion.identity);
-       
             lastFallingBomb.GetComponent<BombFalling>().target        = shadow.transform.position;
             lastFallingBomb.GetComponent<BombFalling>().shadowBomb    = shadow;
             lastFallingBomb.GetComponent<BombFalling>().explosionTime = 10f;
+            lastFallingBomb.GetComponent<BombFalling>().canHurtBoss = true;
         }
     }
 }

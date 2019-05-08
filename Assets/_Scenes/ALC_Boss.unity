@@ -8076,7 +8076,7 @@ Prefab:
     - target: {fileID: 114488211001567090, guid: c2182d8e48b654f41baeeb6f7cfdeaf5,
         type: 2}
       propertyPath: maxSpeed
-      value: 2
+      value: 0.7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c2182d8e48b654f41baeeb6f7cfdeaf5, type: 2}

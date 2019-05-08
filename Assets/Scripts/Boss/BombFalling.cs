@@ -9,13 +9,15 @@ public class BombFalling : MonoBehaviour
     private GameObject boss    ;
     private GameObject player  ;
     private WaveManager waveManager;
+    private Rigidbody2D rb;
 
     private Collider2D collider;
-    public GameObject explosionArea;
+    public  GameObject explosionArea;
 
     public Vector2 target;
 
     private bool isDream;
+    public bool canHurtBoss = false;
 
     [Header("Timer")]
     [SerializeField]public float explosionTime;
@@ -28,6 +30,7 @@ public class BombFalling : MonoBehaviour
     {
         collider = GetComponent<Collider2D>();
         animator = GetComponent<Animator  >();
+        rb = GetComponent<Rigidbody2D>();
         boss     = GameObject.Find("Boss"  );
         player   = GameObject.Find("Player");
         waveManager = FindObjectOfType<WaveManager>();
@@ -70,19 +73,25 @@ public class BombFalling : MonoBehaviour
         {
             animator.SetBool("isExplode", true);
             collision.gameObject.GetComponent<CharacterController>().damage();
+            rb.constraints = RigidbodyConstraints2D.FreezeAll;
             Destroy(gameObject, 0.6f    );
         }
         else if (collision.gameObject.name == "WallCollider")
         {
             animator.SetBool("isExplode", true);
+            rb.constraints = RigidbodyConstraints2D.FreezeAll;
             Destroy(gameObject, 0.6f);
         }
-        /*else if (collision.gameObject.name == "Boss")
+        if (canHurtBoss)
         {
-            animator.SetBool("isExplode", true);
-            boss.GetComponent<Boss>().Damages();
-            Destroy(gameObject, 0.6f);
-        }*/
+            if (collision.gameObject.name == "Boss")
+            {
+                animator.SetBool("isExplode", true);
+                boss.GetComponent<Boss>().Damages();
+                rb.constraints = RigidbodyConstraints2D.FreezeAll;
+                Destroy(gameObject, 0.6f);
+            }
+        }
     }
 
     void Explode()
