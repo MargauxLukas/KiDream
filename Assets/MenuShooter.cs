@@ -20,6 +20,10 @@ public class MenuShooter : MonoBehaviour
     [Range(-180, 180)]
     public int clampHaut;
 
+    public bool allowClampMid;
+    [Range(-180, 180)]
+    public int clampMid;
+
     public bool allowClampBas;
     public bool inferiorEqualValue;
     [Range(-180, 180)]
@@ -27,9 +31,11 @@ public class MenuShooter : MonoBehaviour
 
     public int clampRange;
 
+    public bool autoReturnToInitialPos = false;
 
-	// Use this for initialization
-	void Start ()
+
+    // Use this for initialization
+    void Start ()
     {
 		
 	}
@@ -64,6 +70,11 @@ public class MenuShooter : MonoBehaviour
                 z = clampBas;
             }
 
+            if (z < clampMid + clampRange && z > clampMid - clampRange && allowClampMid == true)
+            {
+                z = clampMid;
+            }
+
             if (superiorEqualValue == true && z > clampHaut)
             {
                 z = clampHaut;
@@ -75,7 +86,7 @@ public class MenuShooter : MonoBehaviour
 
             targetRotator.transform.localEulerAngles = new Vector3(0f, 0f, z); // this does the actual rotaion according to inputs
         }
-        else
+        else if(autoReturnToInitialPos == true)
         {
             Vector3 curRot = targetRotator.transform.localEulerAngles;
             Vector3 homeRot;

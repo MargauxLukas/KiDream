@@ -25,7 +25,7 @@ public class PullEffectFix : MonoBehaviour {
         {
             ReactionToWave rtw = collision.gameObject.GetComponent<ReactionToWave>();
             rb = collision.gameObject.GetComponent<Rigidbody2D>();
-            rb.bodyType = RigidbodyType2D.Static;
+            rb.bodyType = RigidbodyType2D.Kinematic;
             rtw.canBePulled = false;
             rb.velocity = Vector2.zero;
             Debug.Log("kinem");

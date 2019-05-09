@@ -18,11 +18,15 @@ public class Menu : MonoBehaviour
 
     public Animation loadingScreenPop;
 
+    public Animator animator;
+
     public MenuReaction menuReaction;
 
-    private void Update()
-    {
+    private int levelIndex;
 
+    void Start()
+    {
+        StartCoroutine(AvoidDoubleClick(0.5f));
     }
 
     void OnTriggerStay2D (Collider2D collision)
@@ -35,32 +39,45 @@ public class Menu : MonoBehaviour
         {
             selectorInUse = true;
 
-		    switch(menuReaction)
+            switch (menuReaction)
             {
                 case MenuReaction.MainMenu:
-                    SceneLoader(0);
+                    FadeToLevel(0);
                     break;
                 case MenuReaction.PlayMenu:
-                    SceneLoader(1);
+                    FadeToLevel(1);
                     break;
                 case MenuReaction.NewGame:
-                    loadingScreenPop.Play();
-                    StartCoroutine(LoadAsynchronously(6));
+                    StartCoroutine(LoadAsynchronously(2));
                     break;
                 case MenuReaction.ChapterMenu:
-                    SceneLoader(3);
+                    FadeToLevel(3);
                     break;
                 case MenuReaction.OptionsMenu:
-                    SceneLoader(4);
+                    FadeToLevel(4);
+                    OnFadeComplete();
                     break;
                 case MenuReaction.QuitPopUp:
-                    SceneLoader(5);
+                    FadeToLevel(5);
                     break;
                 case MenuReaction.QuitGame:
                     QuitGame();
                     break;
             }
         }
+    }
+
+    public void FadeToLevel(int i)
+    {
+        levelIndex = i;
+        animator.SetTrigger("FadeIn_To_FadeOut");
+        StartCoroutine(OnFadeComplete());
+    }
+
+    IEnumerator OnFadeComplete()
+    {
+        yield return new WaitForSeconds(1f);
+        SceneManager.LoadScene(levelIndex);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -87,11 +104,6 @@ public class Menu : MonoBehaviour
         indicator.enabled = false;
     }
 
-    public void SceneLoader(int i)
-    {
-        SceneManager.LoadScene(i);
-    }
-
     public void QuitGame()
     {
         Application.Quit();
@@ -100,17 +112,25 @@ public class Menu : MonoBehaviour
 
     IEnumerator LoadAsynchronously(int index)
     {
-        //yield return new WaitForSeconds(loadingScreenPop.clip.length);
+        loadingScreenPop.Play();
+        yield return new WaitForSeconds(loadingScreenPop.clip.length);
         AsyncOperation operation = SceneManager.LoadSceneAsync(index);
 
         while(operation.isDone == false)
         {
             float progress = Mathf.Clamp01(operation.progress / .9f);
             Debug.Log(progress);
-            progressionBar.transform.localPosition = new Vector3(((0 - progressionBar.transform.localPosition.x) * progress - 3.18636f), progressionBar.transform.localPosition.y, progressionBar.transform.localPosition.z);
+            progressionBar.transform.localPosition = new Vector3((-3.18636f * progress - 3.18636f), progressionBar.transform.localPosition.y, progressionBar.transform.localPosition.z);
 
             yield return null;
         }
+    }
+
+    IEnumerator AvoidDoubleClick(float time)
+    {
+        selectorInUse = true;
+        yield return new WaitForSeconds(time);
+        selectorInUse = false;
     }
     //205 - 611
     // -700 - 0
