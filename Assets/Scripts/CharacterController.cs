@@ -215,7 +215,6 @@ public class CharacterController : MonoBehaviour
             {
                 reveObject.GetComponent<BoxCollider2D>().enabled = true;
             }
-
         }
     }
 
