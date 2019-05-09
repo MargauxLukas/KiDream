@@ -45,7 +45,7 @@ public class Menu : MonoBehaviour
                     break;
                 case MenuReaction.NewGame:
                     loadingScreenPop.Play();
-                    StartCoroutine(LoadAsynchronously(2));
+                    StartCoroutine(LoadAsynchronously(6));
                     break;
                 case MenuReaction.ChapterMenu:
                     SceneLoader(3);
