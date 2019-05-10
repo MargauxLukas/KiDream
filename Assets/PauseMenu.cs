@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -11,6 +12,13 @@ public class PauseMenu : MonoBehaviour
     public GameObject pauseMenuNightmare;
 
     public CharacterController myPlayer;
+
+    public ButtonBehaviour buttonBehaviour;
+
+    public GameObject indicator;
+
+    public GameObject optionsGO;
+    public GameObject controlsGO;
 
     public List<GameObject> InputsGoList = new List<GameObject>();
 
@@ -24,7 +32,7 @@ public class PauseMenu : MonoBehaviour
     // Update
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Joystick1Button7))
+        if (Input.GetKeyDown(KeyCode.Joystick1Button7) && this.gameObject.name == "PauseMenu")
         {
             if (gameIsPaused == true)
             {
@@ -35,7 +43,34 @@ public class PauseMenu : MonoBehaviour
                 Pause();
             }
         }
+    }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        indicator.SetActive(true);
+
+        switch(buttonBehaviour)
+        {
+            case ButtonBehaviour.Resume:
+                Resume();
+                break;
+            case ButtonBehaviour.Options:
+                controlsGO.SetActive(false);
+                optionsGO.SetActive(true);
+                break;
+            case ButtonBehaviour.Controls:
+                optionsGO.SetActive(false);
+                controlsGO.SetActive(true);
+                break;
+            case ButtonBehaviour.Quit:
+                SceneManager.LoadScene(0);
+                break;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        indicator.SetActive(false);
     }
 
     public void Resume()
@@ -75,3 +110,4 @@ public class PauseMenu : MonoBehaviour
     }
 
 }
+public enum ButtonBehaviour { Resume, Options, Controls, Quit}
