@@ -1,14 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class BatBehaviour : MonoBehaviour
 {
-    private GameObject   player;
+    public GameObject    player;
+    public GameObject    mySelf;
+    public GameObject cone;
     private ReactionToWave  rtw;
     private WaveManager      wm;
     private Animator   animator;
     private Transform    target;
+
+    private RaycastHit2D hit;
+    private Collider2D playerCollider;
+    private Collider2D mySelfCollider;
+    private Collider2D playerConeCollider;
 
     [Header("Move : ")]
     public bool canMove = false;
@@ -34,7 +42,9 @@ public class BatBehaviour : MonoBehaviour
 
     void Start()
     {
-        player   = GameObject.Find("Player");
+        playerCollider =     player.GetComponent<Collider2D>();
+        mySelfCollider = gameObject.GetComponent<Collider2D>();
+        playerConeCollider = cone.GetComponentInChildren<Collider2D>();
         animator = GetComponent<Animator>();
         target   = player.transform;
         rtw      = GetComponent<ReactionToWave>();
@@ -43,6 +53,8 @@ public class BatBehaviour : MonoBehaviour
 
     void Update()
     {
+        hit = Physics2D.Linecast(new Vector2(transform.position.x+1f, transform.position.y), target.transform.position);
+
         isDream = player.GetComponent<CharacterController>().isDream;
 
         if (isDream) { animator.SetBool("isDream",  true); }
@@ -58,7 +70,11 @@ public class BatBehaviour : MonoBehaviour
         {
             animator.SetBool("isProtectingOver", true);
             playerAttack = false;
-            rtw.whoCanShootMe.Add(player);
+
+            if (!rtw.whoCanShootMe.Contains(player))
+            {
+                rtw.whoCanShootMe.Add(player);
+            }      
         }
 
         LookAt();
@@ -89,9 +105,17 @@ public class BatBehaviour : MonoBehaviour
 
     void CleverFunction()
     {
-        if(wm.rightAxisInUse)
+        if (hit.collider != null && hit.collider != playerCollider && hit.collider != mySelfCollider && hit.collider != playerConeCollider)
         {
-            Protect();
+            Debug.Log("Je ne vois pas le joueur");
+        }
+        else
+        {
+            Debug.Log("Je vois le joueur");
+            if (wm.rightAxisInUse)
+            {
+                Protect();
+            }
         }
     }
 
