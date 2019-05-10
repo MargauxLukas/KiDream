@@ -21,6 +21,9 @@ EditorBuildSettings:
     path: Assets/_Scenes/LON_Options.unity
     guid: f4cc964daaae2ab4aa2484a54c7b09d4
   - enabled: 1
+    path: Assets/_Scenes/CREDITS.unity
+    guid: 838563adf13442942bf52ef14966b263
+  - enabled: 1
     path: Assets/_Scenes/MAL_Proto.unity
     guid: 6052656ea45ba0847bed26d6bd4f2fc8
   - enabled: 1

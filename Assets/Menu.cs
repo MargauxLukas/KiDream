@@ -10,6 +10,11 @@ public class Menu : MonoBehaviour
 
     public SpriteRenderer indicator;
 
+    public GameObject frenchFlag;
+    public GameObject englishFlag;
+
+    //public static bool isFrench;
+
     public GameObject progressionBar;
     //public GameObject finalPosition;
 
@@ -39,6 +44,11 @@ public class Menu : MonoBehaviour
         {
             selectorInUse = true;
 
+            if (this.CompareTag("LanguageButton"))
+            {
+                ChangeLanguage();
+            }
+
             switch (menuReaction)
             {
                 case MenuReaction.MainMenu:
@@ -57,13 +67,19 @@ public class Menu : MonoBehaviour
                     FadeToLevel(4);
                     OnFadeComplete();
                     break;
-                case MenuReaction.QuitPopUp:
+                case MenuReaction.Credits:
                     FadeToLevel(5);
                     break;
                 case MenuReaction.QuitGame:
                     QuitGame();
                     break;
+                case MenuReaction.Null:
+                    break;
             }
+        }
+        else if(selector == 0)
+        {
+            selectorInUse = false;
         }
     }
 
@@ -136,6 +152,26 @@ public class Menu : MonoBehaviour
     // -700 - 0
     //-3.186363
 
+    public void ChangeLanguage()
+    {
+        if(GameLanguage.lang == Language.english)
+        {
+            englishFlag.SetActive(false);
+            frenchFlag.SetActive(true);
+
+            Debug.Log("Change language to French");
+            GameLanguage.lang = Language.french;
+        }
+        else if(GameLanguage.lang == Language.french)
+        {
+            frenchFlag.SetActive(false);
+            englishFlag.SetActive(true);
+
+            Debug.Log("Change language to English");
+            GameLanguage.lang = Language.english;
+        }
+    }
+
 }
 
-public enum MenuReaction {MainMenu, PlayMenu, NewGame, ChapterMenu, OptionsMenu, QuitPopUp, QuitGame}
+public enum MenuReaction {MainMenu, PlayMenu, NewGame, ChapterMenu, OptionsMenu, Credits, QuitGame, Null}

@@ -187,7 +187,7 @@ GameObject:
   - component: {fileID: 89895125}
   - component: {fileID: 89895127}
   m_Layer: 5
-  m_Name: GoToQuitPopUp
+  m_Name: GoToQuit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -231,7 +231,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -29.02945, y: -19.641113}
+  m_Offset: {x: 1.1720428, y: -0.87942123}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -242,7 +242,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 131.71982, y: 57.05371}
+  m_Size: {x: 155.51562, y: 61.629715}
   m_EdgeRadius: 0
 --- !u!114 &89895127
 MonoBehaviour:
@@ -256,12 +256,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   indicator: {fileID: 1723867302}
+  frenchFlag: {fileID: 0}
+  englishFlag: {fileID: 0}
   progressionBar: {fileID: 0}
   as0: {fileID: 784683303}
   as1: {fileID: 938492289}
   loadingScreenPop: {fileID: 0}
   animator: {fileID: 1846979437}
-  menuReaction: 5
+  menuReaction: 6
 --- !u!1 &487979873
 GameObject:
   m_ObjectHideFlags: 0
@@ -636,10 +638,13 @@ MonoBehaviour:
   allowClampHaut: 1
   superiorEqualValue: 1
   clampHaut: 83
+  allowClampMid: 0
+  clampMid: 0
   allowClampBas: 1
   inferiorEqualValue: 1
   clampBas: -83
   clampRange: 1
+  autoReturnToInitialPos: 1
 --- !u!212 &609406068
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1003,7 +1008,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.27928925, y: -19.05426}
+  m_Offset: {x: 0.6374817, y: -0.7146263}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1014,7 +1019,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 132.89555, y: 53.533188}
+  m_Size: {x: 147.56705, y: 62.702522}
   m_EdgeRadius: 0
 --- !u!114 &917539830
 MonoBehaviour:
@@ -1028,12 +1033,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   indicator: {fileID: 569080694}
+  frenchFlag: {fileID: 0}
+  englishFlag: {fileID: 0}
   progressionBar: {fileID: 581740589}
   as0: {fileID: 784683303}
   as1: {fileID: 938492289}
   loadingScreenPop: {fileID: 1620867223}
   animator: {fileID: 1846979437}
-  menuReaction: 2
+  menuReaction: 1
 --- !u!1 &938492288
 GameObject:
   m_ObjectHideFlags: 0
@@ -1214,7 +1221,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 34.92343, y: -20.227692}
+  m_Offset: {x: 3.1672554, y: -0.94680405}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1225,7 +1232,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 135.24207, y: 55.88005}
+  m_Size: {x: 148.85156, y: 61.551033}
   m_EdgeRadius: 0
 --- !u!114 &1086246809
 MonoBehaviour:
@@ -1239,6 +1246,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   indicator: {fileID: 1484562047}
+  frenchFlag: {fileID: 0}
+  englishFlag: {fileID: 0}
   progressionBar: {fileID: 0}
   as0: {fileID: 784683303}
   as1: {fileID: 938492289}

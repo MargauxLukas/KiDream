@@ -26,6 +26,7 @@ public class Switcher : MonoBehaviour
         if (selector > 0 && dream == false && selectorInUse == false)
         {
             dreamObject.SetActive(true);
+            nightmareObject.SetActive(false);
 
             dream = true;
             selectorInUse = true;
@@ -34,6 +35,7 @@ public class Switcher : MonoBehaviour
         else if (selector > 0 && dream == true && selectorInUse == false)
         {
             dreamObject.SetActive(false);
+            nightmareObject.SetActive(true);
 
             dream = false;
             selectorInUse = true;

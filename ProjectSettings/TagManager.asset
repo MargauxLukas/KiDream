@@ -13,6 +13,7 @@ TagManager:
   - Boss
   - Light
   - UIDetectionTag
+  - LanguageButton
   layers:
   - Default
   - TransparentFX
