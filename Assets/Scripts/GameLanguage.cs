@@ -4,11 +4,7 @@ using UnityEngine;
 
 public static class GameLanguage
 {
-
-    public static Language lang = Language.french;
-
-
-
+    public static Language lang = Language.english;
 }
 
 public enum Language

@@ -5,13 +5,15 @@ using UnityEngine;
 public class ReactionToWave : MonoBehaviour
 {
 
-    public List<ParticleSystem> myPSList = new List<ParticleSystem>();
-
     private ParticleSystem shooter;
     private int localCounter;
     private Rigidbody2D thisRb;
     private ParticleSystem ps;
 
+    //[Header("Ne rien assigner / Automatique")]
+    [HideInInspector]
+    public List<ParticleSystem> myPSList = new List<ParticleSystem>();
+    [HideInInspector]
     public WaveManager waveManager;
 
     [Header("Physics")]
