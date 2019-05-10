@@ -22,6 +22,10 @@ public class PauseMenu : MonoBehaviour
 
     public List<GameObject> InputsGoList = new List<GameObject>();
 
+    private bool shootAxisInUse;
+    float shootAxis;
+
+    public PauseMenu pauseMenuManager;
 
     // Start
     void Start()
@@ -32,6 +36,13 @@ public class PauseMenu : MonoBehaviour
     // Update
     void Update()
     {
+        shootAxis = Input.GetAxisRaw("ShootParticles");
+
+        if (shootAxis == 0)
+        {
+            shootAxisInUse = false;
+        }
+
         if (Input.GetKeyDown(KeyCode.Joystick1Button7) && this.gameObject.name == "PauseMenu")
         {
             if (gameIsPaused == true)
@@ -45,36 +56,54 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        indicator.SetActive(true);
-
-        switch(buttonBehaviour)
+        if (this.gameObject.name != "PauseMenu")
         {
-            case ButtonBehaviour.Resume:
-                Resume();
-                break;
-            case ButtonBehaviour.Options:
-                controlsGO.SetActive(false);
-                optionsGO.SetActive(true);
-                break;
-            case ButtonBehaviour.Controls:
-                optionsGO.SetActive(false);
-                controlsGO.SetActive(true);
-                break;
-            case ButtonBehaviour.Quit:
-                SceneManager.LoadScene(0);
-                break;
+            pauseMenuManager.indicator = indicator;
+        }
+
+        if (collision.CompareTag("Aiguille"))
+        {
+            indicator.SetActive(true);
+
+            if(shootAxis > 0 && shootAxisInUse == false)
+            {
+                switch (buttonBehaviour)
+                {
+                    case ButtonBehaviour.Resume:
+                        Resume();
+                        break;
+                    case ButtonBehaviour.Options:
+                        controlsGO.SetActive(false);
+                        optionsGO.SetActive(true);
+                        break;
+                    case ButtonBehaviour.Controls:
+                        optionsGO.SetActive(false);
+                        controlsGO.SetActive(true);
+                        break;
+                    case ButtonBehaviour.Quit:
+                        SceneManager.LoadScene(0);
+                        break;
+                }
+
+                shootAxisInUse = true;
+            }
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        indicator.SetActive(false);
+        if (collision.CompareTag("Aiguille"))
+        {
+            indicator.SetActive(false);
+        }
     }
 
     public void Resume()
     {
+        indicator.SetActive(false);
+
         pauseMenuDream.SetActive(false);
         pauseMenuNightmare.SetActive(false);
 
@@ -83,7 +112,7 @@ public class PauseMenu : MonoBehaviour
             go.SetActive(true);
         }
 
-        Time.timeScale = 1f;
+        //Time.timeScale = 1f;
         gameIsPaused = false;
     }
 
@@ -105,7 +134,7 @@ public class PauseMenu : MonoBehaviour
             go.SetActive(false);
         }
 
-        Time.timeScale = 0f;
+        //Time.timeScale = 0f;
         gameIsPaused = true;
     }
 
