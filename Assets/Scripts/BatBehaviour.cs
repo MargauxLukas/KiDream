@@ -7,7 +7,7 @@ public class BatBehaviour : MonoBehaviour
 {
     public GameObject    player;
     public GameObject    mySelf;
-    public GameObject cone;
+    public GameObject      cone;
     private ReactionToWave  rtw;
     private WaveManager      wm;
     private Animator   animator;
