@@ -52,25 +52,24 @@ public class Boss : MonoBehaviour
     private int direction = 0;
     public  int hp        = 5;
 
-    void Start ()
+    void Start()
     {
-              animator =                                GetComponent<Animator>();
-         cameraAnimator = GameObject.Find("Main Camera").GetComponent<Animator>();
-         bombAnimator1 = null;
-         bombAnimator1 = null;
-         bombAnimator1 = null;
+        animator = GetComponent<Animator>();
+        cameraAnimator = GameObject.Find("Main Camera").GetComponent<Animator>();
+        bombAnimator1 = null;
+        bombAnimator1 = null;
+        bombAnimator1 = null;
 
-        rb       = GetComponent<Rigidbody2D>();
-        player   = GameObject.Find("Player")  ;
-        target   = player.transform           ;
+        rb = GetComponent<Rigidbody2D>();
+        player = GameObject.Find("Player");
+        target = player.transform;
 
-        distanceDeltaHV   = Time.deltaTime *   1f;
+        distanceDeltaHV = Time.deltaTime * 1f;
         distanceDeltaDiag = Time.deltaTime * 0.5f;
     }
 	
 	void Update ()
     {
-        Debug.Log("Boss " + hp);
         isDream = player.GetComponent<CharacterController>().isDream;
         if (isDream) { animator.SetBool("isDream",  true);}
         else         { animator.SetBool("isDream", false);}
@@ -102,15 +101,18 @@ public class Boss : MonoBehaviour
          *******************************************/
         if (hp == 5) //Phase 1 
         {
-            if (seconds >= 1) // Fight commence à 1 seconde pour pas que le boss bouge direct apres la cinematique
+            if (seconds >= 1 && seconds < 5) // Fight commence à 1 seconde pour pas que le boss bouge direct apres la cinematique
             {
                 animator.SetBool("isMoving", true);
                 Move();
             }
+            if(seconds == 5)
+            {
+                animator.SetBool("isLaunching", true);
+            }
             if (seconds == 6)
             {
                 animator.SetBool(   "isMoving", false);
-                animator.SetBool("isLaunching",  true);
                 direction = ThrowBomb(lookingAt)      ;
                 seconds   = -5                        ;       //A augmenter si on veut que le boss bouge plus rapidement après avoir balancé ses bombes
                 animator.SetBool("isLaunching", false);
@@ -135,17 +137,20 @@ public class Boss : MonoBehaviour
             else
             {
                 speed = 0.4f;                                 //Vitesse du boss augmenté
-                if (seconds < 4)
+                if (seconds < 3)
                 {
                     animator.SetBool("isMoving", true);
                     cameraAnimator.ResetTrigger("shake");
                     Move();
                 }
+                if(seconds == 3)
+                {
+                    animator.SetBool("isLaunching", true);
+                }
                 if (seconds == 4)
                 {
                     cameraAnimator.SetBool("isTrigger", false);
                     animator.SetBool(   "isMoving", false);
-                    animator.SetBool("isLaunching",  true);
                     direction = ThrowBomb(lookingAt)      ;
                     seconds   = 0                         ;
                     animator.SetBool("isLaunching", false);
@@ -170,19 +175,22 @@ public class Boss : MonoBehaviour
             }
             else
             {  
-                speed = 0.6f;                                 //Vitesse du boss augmenté
-                if (seconds < 3)
+                speed = 0.5f;                                 //Vitesse du boss augmenté
+                if (seconds < 2)
                 {
                     animator.SetBool("isMoving", true);
                     bossFallDown = false;
                     cameraAnimator.ResetTrigger("shake");
                     Move();
                 }
+                if(seconds == 2)
+                {
+                    animator.SetBool("isLaunching", true);
+                }
                 if (seconds == 3)
                 {
                     cameraAnimator.SetBool("isTrigger", false);
                     animator.SetBool(  "isMoving", false);
-                    animator.SetBool("isLaunching", true);
                     direction = ThrowBomb(lookingAt);
                     seconds = 0;
                     animator.SetBool("isLaunching", false);
@@ -207,19 +215,22 @@ public class Boss : MonoBehaviour
             }
             else
             {
-                speed = 0.6f;                                 //Vitesse du boss augmenté
-                if (seconds < 3)
+                speed = 0.5f;                                 //Vitesse du boss augmenté
+                if (seconds < 2)
                 {
                     animator.SetBool("isMoving", true);
                     bossFallDown = false;
                     cameraAnimator.ResetTrigger("shake");
                     Move();
                 }
+                if(seconds == 2)
+                {
+                    animator.SetBool("isLaunching", true);
+                }
                 if (seconds == 3)
                 {
                     cameraAnimator.SetBool("isTrigger", false);
                     animator.SetBool("isMoving", false);
-                    animator.SetBool("isLaunching", true);
                     direction = ThrowBomb(lookingAt);
                     seconds = 0;
                     animator.SetBool("isLaunching", false);
@@ -321,8 +332,16 @@ public class Boss : MonoBehaviour
     ************************************************/
     void Move()
     {
+        //StartCoroutine(areaDetectionTrue());
         LookAt();
         transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
+    }
+
+    IEnumerator areaDetectionTrue()
+    {
+        pushCorrupted.GetComponent<CircleCollider2D>().radius = 0.6f;
+        yield return new WaitForSeconds(1f);
+        areaDetection.SetActive(true);
     }
 
     /****************************
@@ -330,6 +349,7 @@ public class Boss : MonoBehaviour
     *****************************/
     void Jump(int phase)
     {
+        //pushCorrupted.GetComponent<CircleCollider2D>().radius = 2f;
         StartCoroutine(WaitJump(phase));
     }
 
@@ -377,7 +397,7 @@ public class Boss : MonoBehaviour
         {
             if (ombreObject == null) { ombreObject = Instantiate(ombre, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y - 3.50f, 0), Quaternion.identity); }    //Instantiate Ombre 
 
-            ombreObject.transform.position = Vector2.MoveTowards(ombreObject.transform.position, target.position, 1f * Time.deltaTime);
+            ombreObject.transform.position = Vector2.MoveTowards(ombreObject.transform.position, target.position, 0.4f * Time.deltaTime);
             transform.position = Vector2.MoveTowards(transform.position, new Vector2(ombreObject.transform.position.x, transform.position.y), 1f * Time.deltaTime);
 
             StartCoroutine(WaitShadow(phase));
@@ -386,7 +406,7 @@ public class Boss : MonoBehaviour
         {
             if (ombreObject == null) { ombreObject = Instantiate(ombre, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y - 3.50f, 0), Quaternion.identity); }    //Instantiate Ombre 
 
-            ombreObject.transform.position = Vector2.MoveTowards(ombreObject.transform.position, target.position, 1f * Time.deltaTime);
+            ombreObject.transform.position = Vector2.MoveTowards(ombreObject.transform.position, target.position, 0.4f * Time.deltaTime);
             transform.position = Vector2.MoveTowards(transform.position, new Vector2(ombreObject.transform.position.x, transform.position.y), 1f * Time.deltaTime);
         }
         else if (phase == 4)
@@ -395,7 +415,7 @@ public class Boss : MonoBehaviour
 
             if (isFollow)
             {
-                ombreObject.transform.position = Vector2.MoveTowards(ombreObject.transform.position, target.position, 1f * Time.deltaTime);
+                ombreObject.transform.position = Vector2.MoveTowards(ombreObject.transform.position, target.position, 0.4f * Time.deltaTime);
             }
                 transform.position = Vector2.MoveTowards(transform.position, new Vector2(ombreObject.transform.position.x, transform.position.y), 1f * Time.deltaTime);
 
@@ -405,7 +425,7 @@ public class Boss : MonoBehaviour
         {
             if (ombreObject == null) { ombreObject = Instantiate(ombre, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y - 3.50f, 0), Quaternion.identity); }    //Instantiate Ombre 
 
-            ombreObject.transform.position = Vector2.MoveTowards(ombreObject.transform.position, new Vector2(0f,1f), 1f * Time.deltaTime);
+            ombreObject.transform.position = Vector2.MoveTowards(ombreObject.transform.position, new Vector2(0f,1f), 0.4f * Time.deltaTime);
 
             transform.position = Vector2.MoveTowards(transform.position, new Vector2(ombreObject.transform.position.x, transform.position.y), 1f * Time.deltaTime);
 
@@ -424,8 +444,14 @@ public class Boss : MonoBehaviour
         {
             yield return new WaitForSeconds(2f);
             isFollow = false;
-            if (target.position.x > 0) { ombreObject.transform.position = Vector2.MoveTowards(ombreObject.transform.position, new Vector2(-0.7f, 0.50f), 1f * Time.deltaTime); }
-            else { ombreObject.transform.position = Vector2.MoveTowards(ombreObject.transform.position, new Vector2(1f, 0.50f), 1f * Time.deltaTime); }
+            if (target.position.x > 0 && ombreObject != null) { ombreObject.transform.position = Vector2.MoveTowards(ombreObject.transform.position, new Vector2(-0.7f, 0.70f), 1f * Time.deltaTime); }
+            else
+            {
+                if (ombreObject != null)
+                {
+                    ombreObject.transform.position = Vector2.MoveTowards(ombreObject.transform.position, new Vector2(1f, 0.70f), 1f * Time.deltaTime);
+                }
+            }
             yield return new WaitForSeconds(1.5f);
             bossFallDown = true;
         }
@@ -453,11 +479,11 @@ public class Boss : MonoBehaviour
         cameraAnimator.SetTrigger("shake")    ;
         cameraAnimator.SetBool("isTrigger", true);
         Destroy(ombreObject)                  ;
-        pushCorrupted.SetActive(true)         ;
+        PushWave()    ;
         //Detruit pillier et repousse bombe
 
         yield return new WaitForSeconds(0.5f);
-        pushCorrupted.SetActive(false);
+        //pushCorrupted.SetActive(false);
         animator.SetBool("isLanding", false) ;
         seconds = 0                          ;
         isStartingPhase = false              ;
@@ -498,7 +524,7 @@ public class Boss : MonoBehaviour
 
     IEnumerator BombRandom()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.5f);
         GetComponent<BombAOE>().BombAreaRandom();
         StartCoroutine(BombRandom());
     }
@@ -527,6 +553,8 @@ public class Boss : MonoBehaviour
     ****************************************************/
     int ThrowBomb(int lookingAt)
     {
+        areaDetection.SetActive(false);
+        
         switch(lookingAt)
         {
             case 1: //Est
@@ -671,11 +699,17 @@ public class Boss : MonoBehaviour
     /****************************************************************
      * Function : Onde qui repousse le joueur, les IA et les objets *
      ****************************************************************/
-    void PushWave()
+    public void PushWave()
     {
-        //Push Player/IA/Bombe
+        StartCoroutine(PushWaveC());
     }
 
+    IEnumerator PushWaveC()
+    {
+        pushCorrupted.SetActive(true);
+        yield return new WaitForSeconds(0.2f);
+        pushCorrupted.SetActive(false);
+    }
     /**************************************************************
      * Function : Le boss prend un dégat quand touché par bombes  *
      **************************************************************/

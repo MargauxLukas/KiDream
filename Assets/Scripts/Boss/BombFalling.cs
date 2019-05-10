@@ -8,14 +8,17 @@ public class BombFalling : MonoBehaviour
 
     private GameObject boss    ;
     private GameObject player  ;
+    private GameObject collisionLayer;
     private WaveManager waveManager;
+    private Rigidbody2D rb;
 
     private Collider2D collider;
-    public GameObject explosionArea;
+    public  GameObject explosionArea;
 
     public Vector2 target;
 
     private bool isDream;
+    public bool canHurtBoss = false;
 
     [Header("Timer")]
     [SerializeField]public float explosionTime;
@@ -28,6 +31,8 @@ public class BombFalling : MonoBehaviour
     {
         collider = GetComponent<Collider2D>();
         animator = GetComponent<Animator  >();
+        rb = GetComponent<Rigidbody2D>();
+        collisionLayer = GetComponentInChildren<CapsuleCollider2D>().gameObject;
         boss     = GameObject.Find("Boss"  );
         player   = GameObject.Find("Player");
         waveManager = FindObjectOfType<WaveManager>();
@@ -53,53 +58,60 @@ public class BombFalling : MonoBehaviour
         {
             animator.SetBool("isFalling", true);
             collider.isTrigger = true;
+            collisionLayer.GetComponent<CapsuleCollider2D>().isTrigger = true;
             transform.Translate(-transform.up * 0.03f);
         }
         if (transform.position.y < target.y)
         {
             animator.SetBool("isFalling", false);
             collider.isTrigger = false;
+            collisionLayer.GetComponent<CapsuleCollider2D>().isTrigger = false;
             transform.Translate(0,0,0);
             Destroy(shadowBomb);
         }
+
+        if (transform.position.x > 3.40f || transform.position.x < -3.40f || transform.position.y < -1.5f)
+        {
+            Explode();
+        }
     }
 
-    void Explode(Collision2D collision)
+    public void Explode(Collision2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
             animator.SetBool("isExplode", true);
             collision.gameObject.GetComponent<CharacterController>().damage();
+            rb.constraints = RigidbodyConstraints2D.FreezeAll;
             Destroy(gameObject, 0.6f    );
         }
         else if (collision.gameObject.name == "WallCollider")
         {
             animator.SetBool("isExplode", true);
+            rb.constraints = RigidbodyConstraints2D.FreezeAll;
             Destroy(gameObject, 0.6f);
         }
-        /*else if (collision.gameObject.name == "Boss")
+        if (canHurtBoss)
         {
-            animator.SetBool("isExplode", true);
-            boss.GetComponent<Boss>().Damages();
-            Destroy(gameObject, 0.6f);
-        }*/
+            if (collision.gameObject.name == "Boss")
+            {
+                animator.SetBool("isExplode", true);
+                boss.GetComponent<Boss>().Damages();
+                rb.constraints = RigidbodyConstraints2D.FreezeAll;
+                Destroy(gameObject, 0.6f);
+            }
+        }
     }
 
     void Explode()
     {
-        Destroy(gameObject);
+        animator.SetBool("isExplode", true);
+        rb.constraints = RigidbodyConstraints2D.FreezeAll;
+        Destroy(gameObject,0.6f);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Explode(collision);
-    }
-
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        if (transform.position.x > 3.40f || transform.position.x < -3.40f || transform.position.y > 2.8f || transform.position.y < -1.5f)
-        {
-            Explode();
-        }
     }
 }

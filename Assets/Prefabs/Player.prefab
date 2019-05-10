@@ -156,7 +156,7 @@ GameObject:
   - component: {fileID: 50321375110114386}
   - component: {fileID: 114923503058591240}
   - component: {fileID: 70938805561868888}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -337,7 +337,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1830243983484124}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.17962456, y: 0.38534972, z: 0}
+  m_LocalPosition: {x: -0.02, y: -0.09, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 0}
   m_Children:
   - {fileID: 4482293199925292}
@@ -367,7 +367,7 @@ Rigidbody2D:
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
-  m_SleepingMode: 1
+  m_SleepingMode: 0
   m_CollisionDetection: 0
   m_Constraints: 4
 --- !u!60 &60784744544539896
@@ -456,8 +456,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c5ac09ff2ecbc14a9ec52c9faac3886, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waveManager: {fileID: 114874006852601004, guid: b5128d70401ffa24cba9fa4d3e19e364,
-    type: 2}
+  worldTransitionDelay: 0
+  waveManager: {fileID: 0}
   myShooter: {fileID: 198427278896928618}
   myShooterTransform: {fileID: 4482293199925292}
   target: {fileID: 4515242385134138}
@@ -469,7 +469,7 @@ MonoBehaviour:
   dialogueTriggerObject: {fileID: 0}
   dialogueHasStarted: 0
   maxSpeed: 2
-  hp: 3
+  hp: 1000
   isDream: 1
 --- !u!114 &114923503058591240
 MonoBehaviour:
@@ -4062,7 +4062,7 @@ ParticleSystem:
     radiusScale: 0.15
     collidesWith:
       serializedVersion: 2
-      m_Bits: 567
+      m_Bits: 566
     maxCollisionShapes: 256
     quality: 0
     voxelSize: 0.5
@@ -8595,7 +8595,7 @@ ParticleSystem:
     radiusScale: 0.25
     collidesWith:
       serializedVersion: 2
-      m_Bits: 567
+      m_Bits: 566
     maxCollisionShapes: 256
     quality: 0
     voxelSize: 0.5
@@ -13128,7 +13128,7 @@ ParticleSystem:
     radiusScale: 0.15
     collidesWith:
       serializedVersion: 2
-      m_Bits: 567
+      m_Bits: 566
     maxCollisionShapes: 256
     quality: 0
     voxelSize: 0.5
@@ -17661,7 +17661,7 @@ ParticleSystem:
     radiusScale: 0.15
     collidesWith:
       serializedVersion: 2
-      m_Bits: 567
+      m_Bits: 566
     maxCollisionShapes: 256
     quality: 0
     voxelSize: 0.5
@@ -22194,7 +22194,7 @@ ParticleSystem:
     radiusScale: 0.15
     collidesWith:
       serializedVersion: 2
-      m_Bits: 567
+      m_Bits: 566
     maxCollisionShapes: 256
     quality: 0
     voxelSize: 0.5
@@ -26727,7 +26727,7 @@ ParticleSystem:
     radiusScale: 0.15
     collidesWith:
       serializedVersion: 2
-      m_Bits: 567
+      m_Bits: 566
     maxCollisionShapes: 256
     quality: 0
     voxelSize: 0.5

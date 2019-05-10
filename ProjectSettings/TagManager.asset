@@ -13,6 +13,7 @@ TagManager:
   - Boss
   - Light
   - UIDetectionTag
+  - LanguageButton
   layers:
   - Default
   - TransparentFX
@@ -49,4 +50,13 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Mask Gauche
+    uniqueID: 3163220925
+    locked: 0
+  - name: Mask Droit
+    uniqueID: 526687733
+    locked: 0
+  - name: Rien
+    uniqueID: 301472241
     locked: 0

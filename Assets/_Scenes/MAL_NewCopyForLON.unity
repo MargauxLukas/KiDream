@@ -56083,18 +56083,18 @@ MonoBehaviour:
   canBeActivateCorrupted: 0
   verticalPushForce: 1
   horizontalPushForce: 1
+  pushXEqualY: 0
   verticalPullForce: 1
   horizontalPullForce: 1
+  pullXEqualY: 0
   connectedGameObject: {fileID: 0}
   playAnimation: 1
   launchAgainToDisable: 0
   isActivated: 0
   activateBehaviour: 0
-  setActiveSetting: 0
   corruptedPushRadius: 0
   corruptedPullRadius: 0
   corruptedActivateRadius: 0
-  childNumberTolerance: 1
   bypassActivateRules: 0
 --- !u!95 &600505121
 Animator:
@@ -133650,7 +133650,7 @@ AudioSource:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1812513729}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 7f0aded3f2aaa68428d82bb5fe2369d4, type: 3}
