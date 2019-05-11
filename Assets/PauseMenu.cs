@@ -34,7 +34,22 @@ public class PauseMenu : MonoBehaviour
     public RectTransform handleMax;
     public float handleStep;
 
-    private static float handleReturnedValue;
+    public static float handleReturnedValue;
+
+    public GameObject aiguille;
+    private int optionsIndex = 0;
+
+    private void Awake()
+    {
+        if (this.gameObject.name.Contains("Options") && myPlayer.isDream == true)
+        {
+            handleReturnedValue = (handlePosition.localPosition.x - handleMin.localPosition.x) / (handleMax.localPosition.x - handleMin.localPosition.x);
+        }
+        else if (this.gameObject.name.Contains("Options") && myPlayer.isDream == false)
+        {
+            handlePosition.localPosition = new Vector2((handleReturnedValue*(handleMax.localPosition.x-handleMin.localPosition.x)) + handleMin.localPosition.x, handlePosition.localPosition.y);
+        }
+    }
 
     // Start
     void Start()
@@ -70,6 +85,8 @@ public class PauseMenu : MonoBehaviour
         }
 
     }
+
+    //TESTER LE CHANGEMENT DE SON AVEC L'AUDIO MIXER
 
     private void OnTriggerStay2D(Collider2D collision)
     {
@@ -142,6 +159,11 @@ public class PauseMenu : MonoBehaviour
 
     public void Pause()
     {
+        if(this.gameObject.name.Contains("Options"))
+        {
+            handlePosition.localPosition = new Vector2((handleReturnedValue * (handleMax.localPosition.x - handleMin.localPosition.x)) + handleMin.localPosition.x, handlePosition.localPosition.y);
+        }
+
         if (myPlayer.isDream == false)
         {
             pauseMenuNightmare.SetActive(true);
@@ -165,23 +187,50 @@ public class PauseMenu : MonoBehaviour
     public void InOptionsMenu()
     {
 
+        handlePosition.localPosition = new Vector2(Mathf.Clamp(handlePosition.localPosition.x, handleMin.localPosition.x + 0.1f, handleMax.localPosition.x - 0.1f), handlePosition.localPosition.y);        
 
-        if (handlePosition.localPosition.x > handleMin.localPosition.x && handlePosition.localPosition.x < handleMax.localPosition.x)
+        if (optionsSelected == true)
         {
-            if(Input.GetKey(KeyCode.Joystick1Button4))
+            aiguille.SetActive(false);
+
+            if (shootAxis > 0 && shootAxisInUse == false)
             {
-                handlePosition.localPosition = new Vector2(handlePosition.localPosition.x - handleStep, handlePosition.localPosition.y);
+                optionsIndex++;
             }
-            else if (Input.GetKey(KeyCode.Joystick1Button5))
-            {
-                handlePosition.localPosition = new Vector2(handlePosition.localPosition.x + handleStep, handlePosition.localPosition.y);
-            }
+                switch (optionsIndex)
+                {
+                    case 0:
+                        if (handlePosition.localPosition.x > handleMin.localPosition.x && handlePosition.localPosition.x < handleMax.localPosition.x)
+                        {
+                            if (Input.GetKey(KeyCode.Joystick1Button4))
+                            {
+                                handlePosition.localPosition = new Vector2(handlePosition.localPosition.x - handleStep, handlePosition.localPosition.y);
+                            }
+                            else if (Input.GetKey(KeyCode.Joystick1Button5))
+                            {
+                                handlePosition.localPosition = new Vector2(handlePosition.localPosition.x + handleStep, handlePosition.localPosition.y);
+                            }
+
+                        handleReturnedValue = (handlePosition.localPosition.x - handleMin.localPosition.x) / (handleMax.localPosition.x - handleMin.localPosition.x);
+
+                        }
+                    break;
+                    case 1:
+
+                        break;
+                    case 2:
+
+                        break;
+
+                }
+            
+
+        }
+        else
+        {
+            aiguille.SetActive(true);
         }
 
-        handlePosition.localPosition = new Vector2(Mathf.Clamp(handlePosition.localPosition.x, handleMin.localPosition.x + 0.1f, handleMax.localPosition.x - 0.1f), handlePosition.localPosition.y);
-
-        handleReturnedValue = (handlePosition.localPosition.x - handleMin.localPosition.x) / (handleMax.localPosition.x - handleMin.localPosition.x);
-        Debug.Log(handleReturnedValue);
     }
 
 }
