@@ -19,7 +19,7 @@ public class PullEffectFix : MonoBehaviour {
 	}
 
 
-    private void OnCollisionStay2D(Collision2D collision)
+    /*private void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("ActionObject") && this.GetComponentInChildren<ParticleSystem>().gameObject.name.Contains("Pull") == true)
         {
@@ -50,5 +50,5 @@ public class PullEffectFix : MonoBehaviour {
             rb.bodyType = RigidbodyType2D.Dynamic;
             rb.velocity = Vector2.zero;
         }
-    }
+    }*/
 }
