@@ -434,6 +434,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosionArea: {fileID: 1649867607131242}
   target: {x: 0, y: 0}
+  canHurtBoss: 0
   explosionTime: 8
   timer: 0
   shadowBomb: {fileID: 1757853116840092}
@@ -517,6 +518,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ea6e168b8a921c4494ac98685de3be3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boss: {fileID: 0}
 --- !u!212 &212128051926537390
 SpriteRenderer:
   m_ObjectHideFlags: 1

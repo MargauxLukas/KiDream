@@ -139,7 +139,7 @@ public class CharacterController : MonoBehaviour
     /**************************************
      * Permet d'aller en mode Cauchemar   *
      **************************************/
-    IEnumerator GoToNightmare()
+    IEnumerator GoToNightmare() //On pourrait enlver la première partie si on met tous les objets en enfant d'un "CeQuiApparaitEnReve" ou "CeQuiApparaitEnCauchemar"
     {
         yield return new WaitForSeconds(worldTransitionDelay);
 
@@ -152,14 +152,29 @@ public class CharacterController : MonoBehaviour
         cauchemarObjects = GameObject.FindGameObjectsWithTag("CeQuiApparaitEnCauchemar");
 
         foreach (GameObject reveObject in reveObjects)  // Pour chaque object avec le tag "CeQuiApparaitEnReve", je désactive le spriteRenderer et active le isTrigger
-        {      
+        {
             if (reveObject.GetComponent<SpriteRenderer>() != null)
             {
                 reveObject.GetComponent<SpriteRenderer>().enabled = false;
             }
-            if (reveObject.GetComponent<BoxCollider2D>() != null  && reveObject.name.Contains("KEY") == false) // Faire une liste pour les exceptions (optimisation)
+            if (reveObject.GetComponent<BoxCollider2D>()  != null) // Faire une liste pour les exceptions (optimisation)
             {
                 reveObject.GetComponent<BoxCollider2D>().enabled = false;
+            }
+
+            if(reveObject.transform.childCount > 0)
+            {
+                foreach(Transform child in reveObject.transform)
+                {
+                    if (child.GetComponent<SpriteRenderer>() != null)
+                    {
+                        child.GetComponent<SpriteRenderer>().enabled = false;
+                    }
+                    if (child.GetComponent<BoxCollider2D>() != null) // Faire une liste pour les exceptions (optimisation)
+                    {
+                        child.GetComponent<BoxCollider2D>().enabled = false;
+                    }
+                }
             }
         }
 
@@ -172,6 +187,21 @@ public class CharacterController : MonoBehaviour
             if (cauchemarObject.GetComponent<BoxCollider2D>() != null)
             {
                 cauchemarObject.GetComponent<BoxCollider2D>().enabled = true;
+            }
+
+            if (cauchemarObject.transform.childCount > 0)
+            {
+                foreach (Transform child in cauchemarObject.transform)
+                {
+                    if (child.GetComponent<SpriteRenderer>() != null)
+                    {
+                        child.GetComponent<SpriteRenderer>().enabled = true;
+                    }
+                    if (child.GetComponent<BoxCollider2D>() != null)
+                    {
+                        child.GetComponent<BoxCollider2D>().enabled = true;
+                    }
+                }
             }
         }
     }
@@ -203,6 +233,21 @@ public class CharacterController : MonoBehaviour
                 cauchemarObject.GetComponent<BoxCollider2D>().enabled = false;
             }
 
+            if (cauchemarObject.transform.childCount > 0)
+            {
+                foreach (Transform child in cauchemarObject.transform)
+                {
+                    if (child.GetComponent<SpriteRenderer>() != null) // Pour chaque object avec le tag "CeQuiApparaitEnCauchemar", je desactive le spriteRenderer et active le isTrigger
+                    {
+                        child.GetComponent<SpriteRenderer>().enabled = false;
+                    }
+                    if (child.GetComponent<BoxCollider2D>() != null)
+                    {
+                        child.GetComponent<BoxCollider2D>().enabled = false;
+                    }
+                }
+            }
+
         }
 
         foreach (GameObject reveObject in reveObjects) // Pour chaque object avec le tag "CeQuiApparaitEnReve", j'active le spriteRenderer et desactive le isTrigger
@@ -214,6 +259,21 @@ public class CharacterController : MonoBehaviour
             if (reveObject.GetComponent<BoxCollider2D>() != null )
             {
                 reveObject.GetComponent<BoxCollider2D>().enabled = true;
+            }
+
+            if (reveObject.transform.childCount > 0)
+            {
+                foreach (Transform child in reveObject.transform)
+                {
+                    if (child.GetComponent<SpriteRenderer>() != null)
+                    {
+                        child.GetComponent<SpriteRenderer>().enabled = true;
+                    }
+                    if (child.GetComponent<BoxCollider2D>() != null)
+                    {
+                        child.GetComponent<BoxCollider2D>().enabled = true;
+                    }
+                }
             }
         }
     }

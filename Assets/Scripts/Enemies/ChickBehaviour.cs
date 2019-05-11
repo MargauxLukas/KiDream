@@ -7,7 +7,6 @@ public class ChickBehaviour : MonoBehaviour
     private bool isDream = true;
 
     private GameObject player;
-    private ParticleSystem ps;
     private Animator animator;
     private Transform  target;
 
@@ -71,12 +70,14 @@ public class ChickBehaviour : MonoBehaviour
             else if(seconds == timeAddition)
             {
                 seconds = 0;
+                animator.SetBool("isMoving", false);
             }
         }
     }
 
     void Move()
     {
+        animator.SetBool("isMoving", true);
         LookAt();
         transform.position = Vector2.MoveTowards(transform.position, target.position, speedMoving * Time.deltaTime);
     }
@@ -93,7 +94,7 @@ public class ChickBehaviour : MonoBehaviour
 
             if (target.position.x > transform.position.x && !neverRight)
             {
-                animator.SetFloat("moveX", 1f);
+                animator.SetFloat("moveX",  1f);
                 lookingAt = 1;                 //Droite
             }
             if (target.position.x < transform.position.x && !neverLeft)
