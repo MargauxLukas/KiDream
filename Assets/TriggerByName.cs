@@ -19,9 +19,14 @@ public class TriggerByName : MonoBehaviour
                 case TriggerBehaviour._SetActiveFalse:
                     connectedGO.SetActive(false);
                     break;
+
+                case TriggerBehaviour._Portal:
+                    connectedGO.GetComponent<Animator>().SetBool("isOpen", true);
+                    connectedGO.GetComponent<BoxCollider2D>().enabled = false;
+                    break;
             }
         }
     }
 
 }
-public enum TriggerBehaviour {_SetActiveFalse}
+public enum TriggerBehaviour {_SetActiveFalse, _Portal}
