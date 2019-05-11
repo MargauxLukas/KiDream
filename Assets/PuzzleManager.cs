@@ -4,45 +4,24 @@ using UnityEngine;
 
 public class PuzzleManager : MonoBehaviour
 {
-    public GameObject[] puzzleTab = new GameObject[9];
-    public  int     nbSave;
+    public List<GameObject> puzzleTab;
     private bool noConnect = false;
+    private int number = 0;
 
-    private void Update()
+    void Update()
     {
-        for(int i = 0; i< puzzleTab.Length;i++)
-        {
-            if(puzzleTab[i]==null)
-            {
-                nbSave = i;
-                break;
-            }
-        }
-
         checkFunction();
-
     }
 
     void checkFunction()
     {
-        for (int i = 0; i < puzzleTab.Length; i++)
-        {
-            if (puzzleTab[i] != null)
-            {
-                Debug.Log(puzzleTab[i]);
-                if (noConnect)
-                {
-                    puzzleTab[i].GetComponent<PuzzleInter>().isConnected = false;
-                    puzzleTab[i] = null;
-                }
 
-                if (puzzleTab[i].GetComponent<PuzzleInter>().isConnected == false)
-                {
-                    Debug.Log("Je rentre là");
-                    puzzleTab[i] = null;
-                    noConnect = true;
-                }
-            }
-        }
+    }
+
+    public int getNumber()
+    {
+        number++;
+        return number;
+        
     }
 }

@@ -9,13 +9,13 @@ public class PuzzleStart : MonoBehaviour
 
     private int i;
 
+    private void Start()
+    {
+        puzzle.GetComponent<PuzzleManager>().puzzleTab.Add(gameObject);
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.GetComponent<PuzzleInter>().isConnected == false)
-        {
-            i = puzzle.GetComponent<PuzzleManager>().nbSave;
-            collision.GetComponent<PuzzleInter>().isConnected = true;
-            puzzle.GetComponent<PuzzleManager>().puzzleTab[i] = collision.gameObject;
-        }
+            
     }
 }
