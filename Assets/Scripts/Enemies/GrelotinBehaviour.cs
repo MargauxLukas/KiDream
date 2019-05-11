@@ -108,6 +108,7 @@ public class GrelotinBehaviour : MonoBehaviour
 
     IEnumerator WaitAttack()
     {
+        yield return new WaitForSeconds(0.500f);
         if (lookingAt == 1) //Droite
         {
             pushCorrupted1.SetActive(true);
@@ -124,7 +125,7 @@ public class GrelotinBehaviour : MonoBehaviour
         {
             pushCorrupted4.SetActive(true);
         }
-        yield return new WaitForSeconds(0.700f);
+        yield return new WaitForSeconds(0.200f);
         animator.SetTrigger("isSleep");
         pushCorrupted1.SetActive(false);
         pushCorrupted2.SetActive(false);
