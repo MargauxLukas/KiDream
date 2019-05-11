@@ -124,7 +124,7 @@ GameObject:
   - component: {fileID: 8229072}
   m_Layer: 0
   m_Name: Puzzle01_TrapBaseNightmare11
-  m_TagString: CeQuiApparaitEnCauchemar
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -200,7 +200,7 @@ GameObject:
   - component: {fileID: 12867175}
   m_Layer: 0
   m_Name: Puzzle01_TrapEffectNightmare12
-  m_TagString: CeQuiApparaitEnCauchemar
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -510,7 +510,7 @@ GameObject:
   - component: {fileID: 46386373}
   m_Layer: 0
   m_Name: Puzzle01_TrapEffectNightmare17
-  m_TagString: CeQuiApparaitEnCauchemar
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1047,7 +1047,7 @@ GameObject:
   - component: {fileID: 67661180}
   m_Layer: 0
   m_Name: Puzzle01_TrapEffectNightmare08 (1)
-  m_TagString: CeQuiApparaitEnReve
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1721,7 +1721,7 @@ GameObject:
   - component: {fileID: 93475495}
   m_Layer: 0
   m_Name: Puzzle01_TrapBaseNightmare06
-  m_TagString: CeQuiApparaitEnCauchemar
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1797,7 +1797,7 @@ GameObject:
   - component: {fileID: 109271371}
   m_Layer: 0
   m_Name: Puzzle01_TrapEffectNightmare14 (1)
-  m_TagString: CeQuiApparaitEnReve
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2569,7 +2569,7 @@ GameObject:
   - component: {fileID: 137968481}
   m_Layer: 0
   m_Name: Puzzle01_TrapBaseNightmare27 (1)
-  m_TagString: CeQuiApparaitEnReve
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2907,7 +2907,7 @@ GameObject:
   - component: {fileID: 145212542}
   m_Layer: 0
   m_Name: Puzzle01_AnimatedTrapBaseNightmare01
-  m_TagString: CeQuiApparaitEnCauchemar
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3076,7 +3076,7 @@ GameObject:
   - component: {fileID: 151359573}
   m_Layer: 0
   m_Name: Nightmare
-  m_TagString: CeQuiApparaitEnCauchemar
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3091,6 +3091,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 244068196}
   - {fileID: 1235781540}
   m_Father: {fileID: 1245054313}
   m_RootOrder: 1
@@ -8075,7 +8076,7 @@ GameObject:
   - component: {fileID: 162871150}
   m_Layer: 0
   m_Name: Puzzle01_TrapBaseNightmare00
-  m_TagString: CeQuiApparaitEnCauchemar
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8393,7 +8394,7 @@ GameObject:
   - component: {fileID: 180451241}
   m_Layer: 0
   m_Name: Puzzle01_TrapBaseNightmare20
-  m_TagString: CeQuiApparaitEnCauchemar
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8469,7 +8470,7 @@ GameObject:
   - component: {fileID: 188193998}
   m_Layer: 0
   m_Name: Puzzle01_TrapEffectNightmare16
-  m_TagString: CeQuiApparaitEnCauchemar
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8869,8 +8870,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1749367285}
-  m_Father: {fileID: 1235781540}
-  m_RootOrder: 11
+  m_Father: {fileID: 244068196}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &204254104
 MonoBehaviour:
@@ -9846,7 +9847,7 @@ GameObject:
   - component: {fileID: 231955396}
   m_Layer: 0
   m_Name: Puzzle01_TrapBaseNightmare06 (1)
-  m_TagString: CeQuiApparaitEnReve
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9921,7 +9922,7 @@ GameObject:
   - component: {fileID: 241604157}
   m_Layer: 0
   m_Name: Puzzle01_PortalWallDream00
-  m_TagString: CeQuiApparaitEnReve
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9983,7 +9984,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1179883383}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &242274142
 GameObject:
@@ -10079,6 +10080,36 @@ Transform:
   - {fileID: 1641242404}
   m_Father: {fileID: 577987264}
   m_RootOrder: 53
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &244068195
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 244068196}
+  m_Layer: 0
+  m_Name: Puzzle01_ActionObjectsFix
+  m_TagString: CeQuiApparaitEnCauchemar
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &244068196
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 244068195}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.15, y: 10.02, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1791340292}
+  - {fileID: 204254103}
+  m_Father: {fileID: 151359573}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &245291088
 GameObject:
@@ -10362,7 +10393,7 @@ GameObject:
   - component: {fileID: 258757767}
   m_Layer: 0
   m_Name: Puzzle01_TrapBaseNightmare25 (1)
-  m_TagString: CeQuiApparaitEnReve
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10639,7 +10670,7 @@ GameObject:
   - component: {fileID: 273451669}
   m_Layer: 0
   m_Name: Puzzle01_TrapEffectNightmare23 (1)
-  m_TagString: CeQuiApparaitEnReve
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10807,7 +10838,7 @@ GameObject:
   - component: {fileID: 274940965}
   m_Layer: 0
   m_Name: Puzzle01_TrapEffectNightmare25
-  m_TagString: CeQuiApparaitEnCauchemar
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11070,7 +11101,7 @@ GameObject:
   - component: {fileID: 282910385}
   m_Layer: 0
   m_Name: Puzzle01_TrapBaseNightmare16 (1)
-  m_TagString: CeQuiApparaitEnReve
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11491,7 +11522,7 @@ GameObject:
   - component: {fileID: 307675049}
   m_Layer: 0
   m_Name: Puzzle01_RuneTileNightmare00
-  m_TagString: CeQuiApparaitEnCauchemar
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11507,7 +11538,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1235781540}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &307675049
 BoxCollider2D:
@@ -11871,7 +11902,7 @@ GameObject:
   - component: {fileID: 337655711}
   m_Layer: 0
   m_Name: Puzzle01_CatNightmare00
-  m_TagString: CeQuiApparaitEnCauchemar
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12182,7 +12213,7 @@ GameObject:
   - component: {fileID: 349479713}
   m_Layer: 0
   m_Name: Puzzle01_TrapBaseNightmare22 (1)
-  m_TagString: CeQuiApparaitEnReve
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12344,8 +12375,8 @@ Transform:
   m_LocalPosition: {x: 2.0208874, y: 4.7703085, z: -0.07640623}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1179883383}
-  m_RootOrder: 6
+  m_Father: {fileID: 1226089986}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &356340941
 MonoBehaviour:
@@ -12730,7 +12761,7 @@ GameObject:
   - component: {fileID: 375128942}
   m_Layer: 0
   m_Name: Puzzle01_TrapBaseNightmare05
-  m_TagString: CeQuiApparaitEnCauchemar
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13102,7 +13133,7 @@ GameObject:
   - component: {fileID: 402926745}
   m_Layer: 0
   m_Name: Puzzle01_TrapBaseNightmare18 (1)
-  m_TagString: CeQuiApparaitEnReve
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13610,7 +13641,7 @@ GameObject:
   - component: {fileID: 428510465}
   m_Layer: 0
   m_Name: Puzzle01_TrapBaseNightmare21
-  m_TagString: CeQuiApparaitEnCauchemar
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13690,7 +13721,7 @@ GameObject:
   - component: {fileID: 429725711}
   m_Layer: 0
   m_Name: Puzzle01_PortalWallDream00
-  m_TagString: CeQuiApparaitEnReve
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13752,7 +13783,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1179883383}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &431483775
 GameObject:
@@ -13765,7 +13796,7 @@ GameObject:
   - component: {fileID: 431483777}
   m_Layer: 0
   m_Name: Puzzle01_TrapBaseNightmare12
-  m_TagString: CeQuiApparaitEnCauchemar
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13841,7 +13872,7 @@ GameObject:
   - component: {fileID: 440363478}
   m_Layer: 0
   m_Name: Puzzle01_BancNightmare00
-  m_TagString: CeQuiApparaitEnCauchemar
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13942,7 +13973,7 @@ GameObject:
   - component: {fileID: 442685615}
   m_Layer: 0
   m_Name: Puzzle01_TrapEffectNightmare00 (1)
-  m_TagString: CeQuiApparaitEnReve
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14043,7 +14074,7 @@ GameObject:
   - component: {fileID: 446841827}
   m_Layer: 0
   m_Name: Puzzle01_TrapEffectNightmare10
-  m_TagString: CeQuiApparaitEnCauchemar
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14443,7 +14474,7 @@ GameObject:
   - component: {fileID: 472086317}
   m_Layer: 0
   m_Name: Puzzle01_PortalDream00
-  m_TagString: CeQuiApparaitEnReve
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14523,7 +14554,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1179883383}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &472086316
 MonoBehaviour:
@@ -14825,7 +14856,7 @@ GameObject:
   - component: {fileID: 476873987}
   m_Layer: 0
   m_Name: Puzzle01_TrapEffectNightmare24 (1)
-  m_TagString: CeQuiApparaitEnReve
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14926,7 +14957,7 @@ GameObject:
   - component: {fileID: 492631416}
   m_Layer: 0
   m_Name: Puzzle01_TrapEffectNightmare08
-  m_TagString: CeQuiApparaitEnCauchemar
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15026,7 +15057,7 @@ GameObject:
   - component: {fileID: 498375663}
   m_Layer: 0
   m_Name: Puzzle01_TrapBaseNightmare25
-  m_TagString: CeQuiApparaitEnCauchemar
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15324,7 +15355,7 @@ GameObject:
   - component: {fileID: 520375896}
   m_Layer: 0
   m_Name: Puzzle01_TrapEffectNightmare25 (1)
-  m_TagString: CeQuiApparaitEnReve
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15835,7 +15866,7 @@ GameObject:
   - component: {fileID: 536056581}
   m_Layer: 0
   m_Name: Nightmare
-  m_TagString: Untagged
+  m_TagString: CeQuiApparaitEnCauchemar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -48006,7 +48037,7 @@ GameObject:
   - component: {fileID: 546439101}
   m_Layer: 0
   m_Name: Dream
-  m_TagString: CeQuiApparaitEnReve
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -48021,6 +48052,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 1226089986}
   - {fileID: 1179883383}
   m_Father: {fileID: 1245054313}
   m_RootOrder: 0
@@ -48036,7 +48068,7 @@ GameObject:
   - component: {fileID: 551031036}
   m_Layer: 0
   m_Name: Puzzle01_TrapBaseNightmare22
-  m_TagString: CeQuiApparaitEnCauchemar
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -48112,7 +48144,7 @@ GameObject:
   - component: {fileID: 553669490}
   m_Layer: 0
   m_Name: Puzzle01_TrapEffectNightmare13 (1)
-  m_TagString: CeQuiApparaitEnReve
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -48213,7 +48245,7 @@ GameObject:
   - component: {fileID: 555018818}
   m_Layer: 0
   m_Name: Puzzle01_TrapEffectNightmare05 (1)
-  m_TagString: CeQuiApparaitEnReve
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -48388,7 +48420,7 @@ GameObject:
   - component: {fileID: 563575389}
   m_Layer: 0
   m_Name: Puzzle01_TrapBaseNightmare18
-  m_TagString: CeQuiApparaitEnCauchemar
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -48626,7 +48658,7 @@ GameObject:
   - component: {fileID: 573279791}
   m_Layer: 0
   m_Name: Puzzle01_TrapBaseNightmare02
-  m_TagString: CeQuiApparaitEnCauchemar
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -48879,7 +48911,7 @@ GameObject:
   - component: {fileID: 578172937}
   m_Layer: 0
   m_Name: Puzzle01_TrapEffectNightmare20 (1)
-  m_TagString: CeQuiApparaitEnReve
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -48979,7 +49011,7 @@ GameObject:
   - component: {fileID: 579518493}
   m_Layer: 0
   m_Name: Puzzle01_TrapBaseNightmare13
-  m_TagString: CeQuiApparaitEnCauchemar
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -49142,7 +49174,7 @@ GameObject:
   - component: {fileID: 580023360}
   m_Layer: 0
   m_Name: Puzzle01_TrapBaseNightmare00 (1)
-  m_TagString: CeQuiApparaitEnReve
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -49591,7 +49623,7 @@ GameObject:
   - component: {fileID: 597485596}
   m_Layer: 0
   m_Name: Puzzle01_TrapEffectNightmare15 (1)
-  m_TagString: CeQuiApparaitEnReve
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -50120,7 +50152,7 @@ GameObject:
   - component: {fileID: 616015412}
   m_Layer: 0
   m_Name: Puzzle01_TrapEffectNightmare16 (1)
-  m_TagString: CeQuiApparaitEnReve
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -50221,7 +50253,7 @@ GameObject:
   - component: {fileID: 616475589}
   m_Layer: 0
   m_Name: Puzzle01_TrapEffectNightmare21
-  m_TagString: CeQuiApparaitEnCauchemar
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -50388,7 +50420,7 @@ GameObject:
   - component: {fileID: 621847762}
   m_Layer: 0
   m_Name: Puzzle01_TrapBaseNightmare01 (1)
-  m_TagString: CeQuiApparaitEnReve
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -51060,7 +51092,7 @@ GameObject:
   - component: {fileID: 704233198}
   m_Layer: 0
   m_Name: Puzzle01_TrapBaseNightmare19 (1)
-  m_TagString: CeQuiApparaitEnReve
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -51385,7 +51417,7 @@ GameObject:
   - component: {fileID: 715139799}
   m_Layer: 0
   m_Name: Puzzle01_TrapBaseNightmare26 (1)
-  m_TagString: CeQuiApparaitEnReve
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -51536,7 +51568,7 @@ GameObject:
   - component: {fileID: 716507956}
   m_Layer: 0
   m_Name: Puzzle01_TourneDisqueNightmare00
-  m_TagString: CeQuiApparaitEnCauchemar
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -51765,7 +51797,7 @@ GameObject:
   - component: {fileID: 731589109}
   m_Layer: 0
   m_Name: Puzzle01_TrapEffectNightmare14
-  m_TagString: CeQuiApparaitEnCauchemar
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -52022,7 +52054,7 @@ GameObject:
   - component: {fileID: 738900771}
   m_Layer: 0
   m_Name: Puzzle01_TrapBaseNightmare28
-  m_TagString: CeQuiApparaitEnCauchemar
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -52165,7 +52197,7 @@ GameObject:
   - component: {fileID: 752627057}
   m_Layer: 0
   m_Name: Puzzle01_TrapEffectNightmare05
-  m_TagString: CeQuiApparaitEnCauchemar
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -56956,7 +56988,7 @@ GameObject:
   - component: {fileID: 768806778}
   m_Layer: 0
   m_Name: Puzzle01_TrapBaseNightmare09 (1)
-  m_TagString: CeQuiApparaitEnReve
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -57414,7 +57446,7 @@ GameObject:
   - component: {fileID: 780805205}
   m_Layer: 0
   m_Name: Puzzle01_TrapBaseNightmare12 (1)
-  m_TagString: CeQuiApparaitEnReve
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -57577,7 +57609,7 @@ GameObject:
   - component: {fileID: 787298822}
   m_Layer: 0
   m_Name: Puzzle01_AnimatedTrapBaseNightmare00
-  m_TagString: CeQuiApparaitEnCauchemar
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -57790,7 +57822,7 @@ GameObject:
   - component: {fileID: 808411962}
   m_Layer: 0
   m_Name: Puzzle01_TrapBaseNightmare31
-  m_TagString: CeQuiApparaitEnCauchemar
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -58872,7 +58904,7 @@ GameObject:
   - component: {fileID: 852859323}
   m_Layer: 0
   m_Name: Puzzle01_TrapEffectNightmare06 (1)
-  m_TagString: CeQuiApparaitEnReve
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -59798,7 +59830,7 @@ GameObject:
   - component: {fileID: 876427755}
   m_Layer: 0
   m_Name: Puzzle01_TrapBaseNightmare04
-  m_TagString: CeQuiApparaitEnCauchemar
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -92339,7 +92371,7 @@ GameObject:
   - component: {fileID: 901506375}
   m_Layer: 0
   m_Name: Puzzle01_TrapBaseNightmare03
-  m_TagString: CeQuiApparaitEnCauchemar
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -92502,7 +92534,7 @@ GameObject:
   - component: {fileID: 912431912}
   m_Layer: 0
   m_Name: Puzzle01_TrapBaseNightmare30 (1)
-  m_TagString: CeQuiApparaitEnReve
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -92578,7 +92610,7 @@ GameObject:
   - component: {fileID: 920136782}
   m_Layer: 0
   m_Name: Puzzle01_TrapEffectNightmare26 (1)
-  m_TagString: CeQuiApparaitEnReve
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -92943,7 +92975,7 @@ GameObject:
   - component: {fileID: 932320969}
   m_Layer: 0
   m_Name: Puzzle01_TrapEffectNightmare17 (1)
-  m_TagString: CeQuiApparaitEnReve
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -93117,7 +93149,7 @@ GameObject:
   - component: {fileID: 933385634}
   m_Layer: 0
   m_Name: Puzzle01_TrapEffectNightmare13
-  m_TagString: CeQuiApparaitEnCauchemar
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -93306,7 +93338,7 @@ GameObject:
   - component: {fileID: 950007638}
   m_Layer: 0
   m_Name: Puzzle01_TrapEffectNightmare12 (1)
-  m_TagString: CeQuiApparaitEnReve
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -93406,7 +93438,7 @@ GameObject:
   - component: {fileID: 953040337}
   m_Layer: 0
   m_Name: Puzzle01_TrapBaseNightmare05 (1)
-  m_TagString: CeQuiApparaitEnReve
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -93968,7 +94000,7 @@ GameObject:
   - component: {fileID: 981722945}
   m_Layer: 0
   m_Name: Puzzle01_TrapEffectNightmare18 (1)
-  m_TagString: CeQuiApparaitEnReve
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -94163,7 +94195,7 @@ GameObject:
   - component: {fileID: 988686724}
   m_Layer: 0
   m_Name: Puzzle01_TrapBaseNightmare23
-  m_TagString: CeQuiApparaitEnCauchemar
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -94412,7 +94444,7 @@ GameObject:
   - component: {fileID: 999710063}
   m_Layer: 0
   m_Name: Puzzle01_TrapEffectNightmare20
-  m_TagString: CeQuiApparaitEnCauchemar
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -94845,7 +94877,7 @@ GameObject:
   - component: {fileID: 1008205834}
   m_Layer: 0
   m_Name: Puzzle01_TrapEffectNightmare01
-  m_TagString: CeQuiApparaitEnCauchemar
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -95355,7 +95387,7 @@ GameObject:
   - component: {fileID: 1026627922}
   m_Layer: 0
   m_Name: Puzzle01_PortalWallNightmare01
-  m_TagString: CeQuiApparaitEnCauchemar
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -95417,7 +95449,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1235781540}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1030078453
 GameObject:
@@ -95430,7 +95462,7 @@ GameObject:
   - component: {fileID: 1030078455}
   m_Layer: 0
   m_Name: Puzzle01_TrapBaseNightmare30
-  m_TagString: CeQuiApparaitEnCauchemar
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -95819,7 +95851,7 @@ GameObject:
   - component: {fileID: 1057603755}
   m_Layer: 0
   m_Name: Puzzle01_TrapBaseNightmare23 (1)
-  m_TagString: CeQuiApparaitEnReve
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -95895,7 +95927,7 @@ GameObject:
   - component: {fileID: 1057612681}
   m_Layer: 0
   m_Name: Puzzle01_TrapEffectNightmare09
-  m_TagString: CeQuiApparaitEnCauchemar
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -96257,7 +96289,7 @@ GameObject:
   - component: {fileID: 1079389206}
   m_Layer: 0
   m_Name: Puzzle01_TrapBaseNightmare28 (1)
-  m_TagString: CeQuiApparaitEnReve
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -96333,7 +96365,7 @@ GameObject:
   - component: {fileID: 1088972212}
   m_Layer: 0
   m_Name: Puzzle01_TrapEffectNightmare07 (1)
-  m_TagString: CeQuiApparaitEnReve
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -96433,7 +96465,7 @@ GameObject:
   - component: {fileID: 1093201222}
   m_Layer: 0
   m_Name: Puzzle01_TrapBaseNightmare19
-  m_TagString: CeQuiApparaitEnCauchemar
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -96851,7 +96883,7 @@ GameObject:
   - component: {fileID: 1114140152}
   m_Layer: 0
   m_Name: Puzzle01_TrapBaseNightmare07
-  m_TagString: CeQuiApparaitEnCauchemar
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -96926,7 +96958,7 @@ GameObject:
   - component: {fileID: 1115305209}
   m_Layer: 0
   m_Name: Puzzle01_TrapBaseNightmare09
-  m_TagString: CeQuiApparaitEnCauchemar
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -97091,7 +97123,7 @@ GameObject:
   - component: {fileID: 1131026198}
   m_Layer: 0
   m_Name: Puzzle01_TrapEffectNightmare09 (1)
-  m_TagString: CeQuiApparaitEnReve
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -97465,7 +97497,7 @@ GameObject:
   - component: {fileID: 1158273761}
   m_Layer: 0
   m_Name: Puzzle01_CheckpointNightmare00
-  m_TagString: CeQuiApparaitEnCauchemar
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -97917,7 +97949,7 @@ GameObject:
   - component: {fileID: 1170157531}
   m_Layer: 11
   m_Name: Puzzle01_AnimatedTrapEffectNightmare00 (2)
-  m_TagString: CeQuiApparaitEnReve
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -98183,7 +98215,7 @@ GameObject:
   - component: {fileID: 1179883383}
   m_Layer: 0
   m_Name: Puzzle01
-  m_TagString: Untagged
+  m_TagString: CeQuiApparaitEnReve
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -98204,14 +98236,12 @@ Transform:
   - {fileID: 1201624252}
   - {fileID: 1840657646}
   - {fileID: 1644563800}
-  - {fileID: 356340940}
   - {fileID: 429725712}
   - {fileID: 241604158}
   - {fileID: 472086315}
   - {fileID: 1794116627}
-  - {fileID: 1502384471}
   m_Father: {fileID: 546439101}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1181393868
 GameObject:
@@ -98446,7 +98476,7 @@ GameObject:
   - component: {fileID: 1200902733}
   m_Layer: 0
   m_Name: Puzzle01_AnimatedTrapBaseNightmare01 (1)
-  m_TagString: CeQuiApparaitEnReve
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -98524,7 +98554,7 @@ GameObject:
   - component: {fileID: 1201624255}
   m_Layer: 0
   m_Name: Puzzle01_CheckpointDream01
-  m_TagString: CeQuiApparaitEnReve
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -99092,6 +99122,36 @@ Transform:
   m_Father: {fileID: 577987264}
   m_RootOrder: 61
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1226089985
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1226089986}
+  m_Layer: 0
+  m_Name: Puzzle01_ActionObjectsFix
+  m_TagString: CeQuiApparaitEnReve
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1226089986
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1226089985}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.15, y: 10.02, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 356340940}
+  - {fileID: 1502384471}
+  m_Father: {fileID: 546439101}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1228555979
 GameObject:
   m_ObjectHideFlags: 0
@@ -99324,7 +99384,7 @@ GameObject:
   - component: {fileID: 1235781540}
   m_Layer: 0
   m_Name: Puzzle01
-  m_TagString: Untagged
+  m_TagString: CeQuiApparaitEnCauchemar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -99345,14 +99405,12 @@ Transform:
   - {fileID: 716507955}
   - {fileID: 1158273760}
   - {fileID: 1412118467}
-  - {fileID: 1791340292}
   - {fileID: 2012289886}
   - {fileID: 1026627923}
   - {fileID: 1681252419}
   - {fileID: 307675048}
-  - {fileID: 204254103}
   m_Father: {fileID: 151359573}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1241414209
 GameObject:
@@ -99666,7 +99724,7 @@ GameObject:
   - component: {fileID: 1246341519}
   m_Layer: 0
   m_Name: Puzzle01_TrapBaseNightmare04 (1)
-  m_TagString: CeQuiApparaitEnReve
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -99807,7 +99865,7 @@ GameObject:
   - component: {fileID: 1256969728}
   m_Layer: 0
   m_Name: Dream
-  m_TagString: Untagged
+  m_TagString: CeQuiApparaitEnReve
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -100056,7 +100114,7 @@ GameObject:
   - component: {fileID: 1266950063}
   m_Layer: 0
   m_Name: Puzzle01_BancDream00
-  m_TagString: CeQuiApparaitEnReve
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -100502,7 +100560,7 @@ GameObject:
   - component: {fileID: 1291657880}
   m_Layer: 0
   m_Name: Puzzle01_TrapBaseNightmare29 (1)
-  m_TagString: CeQuiApparaitEnReve
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -100732,7 +100790,7 @@ GameObject:
   - component: {fileID: 1299179013}
   m_Layer: 0
   m_Name: Puzzle01_TrapBaseNightmare14 (1)
-  m_TagString: CeQuiApparaitEnReve
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -101387,7 +101445,7 @@ GameObject:
   - component: {fileID: 1335943403}
   m_Layer: 0
   m_Name: Puzzle01_TrapBaseNightmare31 (1)
-  m_TagString: CeQuiApparaitEnReve
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -101998,7 +102056,7 @@ GameObject:
   - component: {fileID: 1376001583}
   m_Layer: 0
   m_Name: Puzzle01_TrapBaseNightmare08 (1)
-  m_TagString: CeQuiApparaitEnReve
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -102720,7 +102778,7 @@ GameObject:
   - component: {fileID: 1408409032}
   m_Layer: 0
   m_Name: Puzzle01_TrapEffectNightmare18
-  m_TagString: CeQuiApparaitEnCauchemar
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -102890,7 +102948,7 @@ GameObject:
   - component: {fileID: 1412118468}
   m_Layer: 0
   m_Name: Puzzle01_CheckpointNightmare01
-  m_TagString: CeQuiApparaitEnCauchemar
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -103023,7 +103081,7 @@ GameObject:
   - component: {fileID: 1414539340}
   m_Layer: 0
   m_Name: Puzzle01_TrapEffectNightmare23
-  m_TagString: CeQuiApparaitEnCauchemar
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -103124,7 +103182,7 @@ GameObject:
   - component: {fileID: 1418466449}
   m_Layer: 0
   m_Name: Puzzle01_TrapEffectNightmare07
-  m_TagString: CeQuiApparaitEnCauchemar
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -103224,7 +103282,7 @@ GameObject:
   - component: {fileID: 1419423337}
   m_Layer: 0
   m_Name: Puzzle01_TrapBaseNightmare01
-  m_TagString: CeQuiApparaitEnCauchemar
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -103620,7 +103678,7 @@ GameObject:
   - component: {fileID: 1448186592}
   m_Layer: 0
   m_Name: Puzzle01_TrapEffectNightmare04
-  m_TagString: CeQuiApparaitEnCauchemar
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -103897,7 +103955,7 @@ GameObject:
   - component: {fileID: 1452947146}
   m_Layer: 0
   m_Name: Puzzle01_TrapEffectNightmare19 (1)
-  m_TagString: CeQuiApparaitEnReve
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -109087,7 +109145,7 @@ GameObject:
   - component: {fileID: 1476665807}
   m_Layer: 0
   m_Name: Puzzle01_TrapBaseNightmare20 (1)
-  m_TagString: CeQuiApparaitEnReve
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -109237,7 +109295,7 @@ GameObject:
   - component: {fileID: 1485194427}
   m_Layer: 0
   m_Name: Puzzle01_TrapBaseNightmare29
-  m_TagString: CeQuiApparaitEnCauchemar
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -109312,7 +109370,7 @@ GameObject:
   - component: {fileID: 1490395202}
   m_Layer: 0
   m_Name: Puzzle01_TrapBaseNightmare13 (1)
-  m_TagString: CeQuiApparaitEnReve
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -109462,7 +109520,7 @@ GameObject:
   - component: {fileID: 1492214664}
   m_Layer: 0
   m_Name: Puzzle01_TrapBaseNightmare10 (1)
-  m_TagString: CeQuiApparaitEnReve
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -109559,8 +109617,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 848620946}
-  m_Father: {fileID: 1179883383}
-  m_RootOrder: 11
+  m_Father: {fileID: 1226089986}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1502384472
 MonoBehaviour:
@@ -114787,7 +114845,7 @@ GameObject:
   - component: {fileID: 1523247828}
   m_Layer: 0
   m_Name: Puzzle01_TrapEffectNightmare21 (1)
-  m_TagString: CeQuiApparaitEnReve
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -114888,7 +114946,7 @@ GameObject:
   - component: {fileID: 1532757445}
   m_Layer: 0
   m_Name: Puzzle01_TrapEffectNightmare27
-  m_TagString: CeQuiApparaitEnCauchemar
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -114989,7 +115047,7 @@ GameObject:
   - component: {fileID: 1547296959}
   m_Layer: 0
   m_Name: Puzzle01_TrapEffectNightmare06
-  m_TagString: CeQuiApparaitEnCauchemar
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -115311,7 +115369,7 @@ GameObject:
   - component: {fileID: 1584262876}
   m_Layer: 0
   m_Name: Puzzle01_TrapBaseNightmare07 (1)
-  m_TagString: CeQuiApparaitEnReve
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -120342,7 +120400,7 @@ GameObject:
   - component: {fileID: 1616004031}
   m_Layer: 0
   m_Name: Puzzle01_TrapEffectNightmare10 (1)
-  m_TagString: CeQuiApparaitEnReve
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -120735,7 +120793,7 @@ GameObject:
   - component: {fileID: 1644563801}
   m_Layer: 0
   m_Name: Puzzle01_TourneDisqueDream00
-  m_TagString: CeQuiApparaitEnReve
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -120936,7 +120994,7 @@ GameObject:
   - component: {fileID: 1649263872}
   m_Layer: 0
   m_Name: Puzzle01_TrapEffectNightmare03
-  m_TagString: CeQuiApparaitEnCauchemar
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -121274,7 +121332,7 @@ GameObject:
   - component: {fileID: 1667141712}
   m_Layer: 0
   m_Name: Puzzle01_CheckpointDream00
-  m_TagString: CeQuiApparaitEnReve
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -121642,7 +121700,7 @@ GameObject:
   - component: {fileID: 1679747275}
   m_Layer: 0
   m_Name: Puzzle01_TrapBaseNightmare24
-  m_TagString: CeQuiApparaitEnCauchemar
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -121720,7 +121778,7 @@ GameObject:
   - component: {fileID: 1681252422}
   m_Layer: 0
   m_Name: Puzzle01_PortalNightmare00
-  m_TagString: CeQuiApparaitEnCauchemar
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -121782,7 +121840,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1235781540}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &1681252420
 Animator:
@@ -122353,7 +122411,7 @@ GameObject:
   - component: {fileID: 1702235174}
   m_Layer: 0
   m_Name: Puzzle01_TrapEffectNightmare03 (1)
-  m_TagString: CeQuiApparaitEnReve
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -122454,7 +122512,7 @@ GameObject:
   - component: {fileID: 1714430119}
   m_Layer: 0
   m_Name: Puzzle01_TrapEffectNightmare04 (1)
-  m_TagString: CeQuiApparaitEnReve
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -122622,7 +122680,7 @@ GameObject:
   - component: {fileID: 1718437937}
   m_Layer: 0
   m_Name: Puzzle01_TrapEffectNightmare27 (1)
-  m_TagString: CeQuiApparaitEnReve
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -122794,7 +122852,7 @@ GameObject:
   - component: {fileID: 1720039974}
   m_Layer: 0
   m_Name: Puzzle01_TrapEffectNightmare00
-  m_TagString: CeQuiApparaitEnCauchemar
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -122962,7 +123020,7 @@ GameObject:
   - component: {fileID: 1728147100}
   m_Layer: 0
   m_Name: Puzzle01_TrapEffectNightmare22 (1)
-  m_TagString: CeQuiApparaitEnReve
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -123466,7 +123524,7 @@ GameObject:
   - component: {fileID: 1735863101}
   m_Layer: 0
   m_Name: Puzzle01_TrapBaseNightmare27
-  m_TagString: CeQuiApparaitEnCauchemar
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -123544,7 +123602,7 @@ GameObject:
   - component: {fileID: 1736592465}
   m_Layer: 11
   m_Name: Puzzle01_AnimatedTrapEffectNightmare00 (1)
-  m_TagString: CeQuiApparaitEnReve
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -123707,6 +123765,10 @@ Prefab:
       propertyPath: m_Name
       value: Puzzle01_RoseNightmare00
       objectReference: {fileID: 0}
+    - target: {fileID: 1729404284831654, guid: f91226fe6592b4e448b0c98abd9bf812, type: 2}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f91226fe6592b4e448b0c98abd9bf812, type: 2}
   m_IsPrefabAsset: 0
@@ -123863,7 +123925,7 @@ GameObject:
   - component: {fileID: 1753494462}
   m_Layer: 0
   m_Name: Puzzle01_TrapEffectNightmare11
-  m_TagString: CeQuiApparaitEnCauchemar
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -124051,7 +124113,7 @@ GameObject:
   - component: {fileID: 1764724752}
   m_Layer: 0
   m_Name: Puzzle01_TrapBaseNightmare17 (1)
-  m_TagString: CeQuiApparaitEnReve
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -124127,7 +124189,7 @@ GameObject:
   - component: {fileID: 1766506991}
   m_Layer: 0
   m_Name: Puzzle01_TrapEffectNightmare24
-  m_TagString: CeQuiApparaitEnCauchemar
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -124491,7 +124553,7 @@ GameObject:
   - component: {fileID: 1788665642}
   m_Layer: 0
   m_Name: Puzzle01_TrapBaseNightmare11 (1)
-  m_TagString: CeQuiApparaitEnReve
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -124714,8 +124776,8 @@ Transform:
   m_LocalPosition: {x: 2.0208874, y: 4.7703085, z: -0.07640623}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1235781540}
-  m_RootOrder: 6
+  m_Father: {fileID: 244068196}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1791340293
 MonoBehaviour:
@@ -124760,7 +124822,7 @@ GameObject:
   - component: {fileID: 1794116628}
   m_Layer: 0
   m_Name: Puzzle01_RuneTileDream00
-  m_TagString: CeQuiApparaitEnReve
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -124776,7 +124838,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1179883383}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1794116628
 BoxCollider2D:
@@ -125046,7 +125108,7 @@ GameObject:
   - component: {fileID: 1796098990}
   m_Layer: 0
   m_Name: Puzzle01_TrapBaseNightmare15
-  m_TagString: CeQuiApparaitEnCauchemar
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -125298,7 +125360,7 @@ GameObject:
   - component: {fileID: 1806358161}
   m_Layer: 0
   m_Name: Puzzle01_TrapEffectNightmare22
-  m_TagString: CeQuiApparaitEnCauchemar
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -125398,7 +125460,7 @@ GameObject:
   - component: {fileID: 1815607268}
   m_Layer: 0
   m_Name: Puzzle01_TrapBaseNightmare17
-  m_TagString: CeQuiApparaitEnCauchemar
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -125474,7 +125536,7 @@ GameObject:
   - component: {fileID: 1816173837}
   m_Layer: 0
   m_Name: Puzzle01_TrapEffectNightmare15
-  m_TagString: CeQuiApparaitEnCauchemar
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -125714,7 +125776,7 @@ GameObject:
   - component: {fileID: 1828310215}
   m_Layer: 0
   m_Name: Puzzle01_TrapBaseNightmare02 (1)
-  m_TagString: CeQuiApparaitEnReve
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -125972,7 +126034,7 @@ GameObject:
   - component: {fileID: 1833621902}
   m_Layer: 0
   m_Name: Puzzle01_TrapBaseNightmare16
-  m_TagString: CeQuiApparaitEnCauchemar
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -126194,7 +126256,7 @@ GameObject:
   - component: {fileID: 1840657643}
   m_Layer: 0
   m_Name: Puzzle01_CatDream00
-  m_TagString: CeQuiApparaitEnReve
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -126477,7 +126539,7 @@ GameObject:
   - component: {fileID: 1859201082}
   m_Layer: 0
   m_Name: Puzzle01_TrapEffectNightmare19
-  m_TagString: CeQuiApparaitEnCauchemar
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -127301,7 +127363,7 @@ GameObject:
   - component: {fileID: 1901179190}
   m_Layer: 0
   m_Name: Puzzle01_TrapBaseNightmare14
-  m_TagString: CeQuiApparaitEnCauchemar
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -127641,6 +127703,10 @@ Prefab:
       propertyPath: m_Name
       value: Trigger
       objectReference: {fileID: 0}
+    - target: {fileID: 1771074784784092, guid: 5a02fe783e2365a489772c7a955c8a64, type: 2}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a02fe783e2365a489772c7a955c8a64, type: 2}
   m_IsPrefabAsset: 0
@@ -127656,7 +127722,7 @@ GameObject:
   - component: {fileID: 1910694923}
   m_Layer: 0
   m_Name: Puzzle01_TrapEffectNightmare02
-  m_TagString: CeQuiApparaitEnCauchemar
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -128406,7 +128472,7 @@ GameObject:
   - component: {fileID: 1949703304}
   m_Layer: 0
   m_Name: Puzzle01_TrapBaseNightmare15 (1)
-  m_TagString: CeQuiApparaitEnReve
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -128752,7 +128818,7 @@ GameObject:
   - component: {fileID: 1960497975}
   m_Layer: 0
   m_Name: Puzzle01_TrapBaseNightmare08
-  m_TagString: CeQuiApparaitEnCauchemar
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -128989,7 +129055,7 @@ GameObject:
   - component: {fileID: 1981213957}
   m_Layer: 0
   m_Name: Puzzle01_AnimatedTrapBaseNightmare00 (1)
-  m_TagString: CeQuiApparaitEnReve
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -129566,7 +129632,7 @@ GameObject:
   - component: {fileID: 2004724281}
   m_Layer: 0
   m_Name: Puzzle01_TrapBaseNightmare26
-  m_TagString: CeQuiApparaitEnCauchemar
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -129708,7 +129774,7 @@ GameObject:
   - component: {fileID: 2012289885}
   m_Layer: 0
   m_Name: Puzzle01_PortalWallNightmare00
-  m_TagString: CeQuiApparaitEnCauchemar
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -129770,7 +129836,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1235781540}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2014157095
 GameObject:
@@ -135076,7 +135142,7 @@ GameObject:
   - component: {fileID: 2037450110}
   m_Layer: 0
   m_Name: Puzzle01_TrapBaseNightmare21 (1)
-  m_TagString: CeQuiApparaitEnReve
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -135820,7 +135886,7 @@ GameObject:
   - component: {fileID: 2070123810}
   m_Layer: 0
   m_Name: Puzzle01_TrapBaseNightmare03 (1)
-  m_TagString: CeQuiApparaitEnReve
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -135896,7 +135962,7 @@ GameObject:
   - component: {fileID: 2070956388}
   m_Layer: 0
   m_Name: Puzzle01_TrapEffectNightmare02 (1)
-  m_TagString: CeQuiApparaitEnReve
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -136187,7 +136253,7 @@ GameObject:
   - component: {fileID: 2080834663}
   m_Layer: 0
   m_Name: Puzzle01_TrapEffectNightmare11 (1)
-  m_TagString: CeQuiApparaitEnReve
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -136442,7 +136508,7 @@ GameObject:
   - component: {fileID: 2094615014}
   m_Layer: 0
   m_Name: Puzzle01_TrapBaseNightmare10
-  m_TagString: CeQuiApparaitEnCauchemar
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -136518,7 +136584,7 @@ GameObject:
   - component: {fileID: 2100357800}
   m_Layer: 0
   m_Name: Puzzle01_TrapEffectNightmare01 (1)
-  m_TagString: CeQuiApparaitEnReve
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -136707,7 +136773,7 @@ GameObject:
   - component: {fileID: 2116808690}
   m_Layer: 0
   m_Name: Puzzle01_TrapBaseNightmare24 (1)
-  m_TagString: CeQuiApparaitEnReve
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -136925,7 +136991,7 @@ GameObject:
   - component: {fileID: 2135845696}
   m_Layer: 0
   m_Name: Puzzle01_TrapEffectNightmare26
-  m_TagString: CeQuiApparaitEnCauchemar
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
