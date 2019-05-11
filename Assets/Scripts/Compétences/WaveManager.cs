@@ -39,7 +39,7 @@ public class WaveManager : MonoBehaviour
 
     public bool isRegenerating;
 
-    private bool rightAxisInUse = false;
+    public bool rightAxisInUse = false;
 
 
     // Start
