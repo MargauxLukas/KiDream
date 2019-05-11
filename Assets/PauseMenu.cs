@@ -8,6 +8,8 @@ public class PauseMenu : MonoBehaviour
 
     public static bool gameIsPaused = false;
 
+    public static bool optionsSelected = false;
+
     public GameObject pauseMenuDream;
     public GameObject pauseMenuNightmare;
 
@@ -22,6 +24,32 @@ public class PauseMenu : MonoBehaviour
 
     public List<GameObject> InputsGoList = new List<GameObject>();
 
+    private bool shootAxisInUse;
+    float shootAxis;
+
+    public PauseMenu pauseMenuManager;
+
+    public RectTransform handlePosition;
+    public RectTransform handleMin;
+    public RectTransform handleMax;
+    public float handleStep;
+
+    public static float handleReturnedValue;
+
+    public GameObject aiguille;
+    private int optionsIndex = 0;
+
+    private void Awake()
+    {
+        if (this.gameObject.name.Contains("Options") && myPlayer.isDream == true)
+        {
+            handleReturnedValue = (handlePosition.localPosition.x - handleMin.localPosition.x) / (handleMax.localPosition.x - handleMin.localPosition.x);
+        }
+        else if (this.gameObject.name.Contains("Options") && myPlayer.isDream == false)
+        {
+            handlePosition.localPosition = new Vector2((handleReturnedValue*(handleMax.localPosition.x-handleMin.localPosition.x)) + handleMin.localPosition.x, handlePosition.localPosition.y);
+        }
+    }
 
     // Start
     void Start()
@@ -32,6 +60,13 @@ public class PauseMenu : MonoBehaviour
     // Update
     void Update()
     {
+        shootAxis = Input.GetAxisRaw("ShootParticles");
+        
+        if (shootAxis == 0)
+        {
+            shootAxisInUse = false;
+        }
+
         if (Input.GetKeyDown(KeyCode.Joystick1Button7) && this.gameObject.name == "PauseMenu")
         {
             if (gameIsPaused == true)
@@ -43,52 +78,92 @@ public class PauseMenu : MonoBehaviour
                 Pause();
             }
         }
+
+        if(this.gameObject.name.Contains("Options"))
+        {
+            InOptionsMenu();
+        }
+
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        indicator.SetActive(true);
+    //TESTER LE CHANGEMENT DE SON AVEC L'AUDIO MIXER
 
-        switch(buttonBehaviour)
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (this.gameObject.name != "PauseMenu")
         {
-            case ButtonBehaviour.Resume:
-                Resume();
-                break;
-            case ButtonBehaviour.Options:
-                controlsGO.SetActive(false);
-                optionsGO.SetActive(true);
-                break;
-            case ButtonBehaviour.Controls:
-                optionsGO.SetActive(false);
-                controlsGO.SetActive(true);
-                break;
-            case ButtonBehaviour.Quit:
-                SceneManager.LoadScene(0);
-                break;
+            pauseMenuManager.indicator = indicator;
+        }
+
+        if (collision.CompareTag("Aiguille"))
+        {
+            indicator.SetActive(true);
+
+            if(shootAxis > 0 && shootAxisInUse == false && optionsSelected == false)
+            {
+                switch (buttonBehaviour)
+                {
+                    case ButtonBehaviour.Resume:
+                        Resume();
+                        controlsGO.SetActive(false);
+                        optionsGO.SetActive(false);
+                        break;
+
+                    case ButtonBehaviour.Options:
+                        controlsGO.SetActive(false); // Controls FALSE
+                        optionsGO.SetActive(true); // Options TRUE
+                        optionsSelected = true;
+                        break;
+
+                    case ButtonBehaviour.Controls:
+                        controlsGO.SetActive(true); // Controls TRUE
+                        optionsGO.SetActive(false); // Options FALSE
+                        break;
+
+                    case ButtonBehaviour.Quit:
+                        controlsGO.SetActive(false);
+                        optionsGO.SetActive(false);
+                        SceneManager.LoadScene(0);
+                        break;
+                }
+
+                shootAxisInUse = true;
+            }
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        indicator.SetActive(false);
+        if (collision.CompareTag("Aiguille"))
+        {
+            indicator.SetActive(false);
+        }
     }
 
     public void Resume()
     {
+        indicator.SetActive(false);
+        optionsSelected = false;
+
         pauseMenuDream.SetActive(false);
         pauseMenuNightmare.SetActive(false);
 
-        foreach (GameObject go in InputsGoList)
+        foreach (GameObject go in pauseMenuManager.InputsGoList)
         {
             go.SetActive(true);
         }
 
-        Time.timeScale = 1f;
+        //Time.timeScale = 1f;
         gameIsPaused = false;
     }
 
     public void Pause()
     {
+        if(this.gameObject.name.Contains("Options"))
+        {
+            handlePosition.localPosition = new Vector2((handleReturnedValue * (handleMax.localPosition.x - handleMin.localPosition.x)) + handleMin.localPosition.x, handlePosition.localPosition.y);
+        }
+
         if (myPlayer.isDream == false)
         {
             pauseMenuNightmare.SetActive(true);
@@ -105,8 +180,57 @@ public class PauseMenu : MonoBehaviour
             go.SetActive(false);
         }
 
-        Time.timeScale = 0f;
+        //Time.timeScale = 0f;
         gameIsPaused = true;
+    }
+
+    public void InOptionsMenu()
+    {
+
+        handlePosition.localPosition = new Vector2(Mathf.Clamp(handlePosition.localPosition.x, handleMin.localPosition.x + 0.1f, handleMax.localPosition.x - 0.1f), handlePosition.localPosition.y);        
+
+        if (optionsSelected == true)
+        {
+            aiguille.SetActive(false);
+
+            if (shootAxis > 0 && shootAxisInUse == false)
+            {
+                optionsIndex++;
+            }
+                switch (optionsIndex)
+                {
+                    case 0:
+                        if (handlePosition.localPosition.x > handleMin.localPosition.x && handlePosition.localPosition.x < handleMax.localPosition.x)
+                        {
+                            if (Input.GetKey(KeyCode.Joystick1Button4))
+                            {
+                                handlePosition.localPosition = new Vector2(handlePosition.localPosition.x - handleStep, handlePosition.localPosition.y);
+                            }
+                            else if (Input.GetKey(KeyCode.Joystick1Button5))
+                            {
+                                handlePosition.localPosition = new Vector2(handlePosition.localPosition.x + handleStep, handlePosition.localPosition.y);
+                            }
+
+                        handleReturnedValue = (handlePosition.localPosition.x - handleMin.localPosition.x) / (handleMax.localPosition.x - handleMin.localPosition.x);
+
+                        }
+                    break;
+                    case 1:
+
+                        break;
+                    case 2:
+
+                        break;
+
+                }
+            
+
+        }
+        else
+        {
+            aiguille.SetActive(true);
+        }
+
     }
 
 }
