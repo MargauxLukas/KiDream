@@ -23,7 +23,6 @@ public class TriggerByName : MonoBehaviour
 
         if(collision.gameObject.name.Contains(triggerer))
         {
-            Debug.Log(collision.gameObject.name);
             switch(enterBehaviour)
             {
                 case TriggerBehaviour._SetActiveFalse:

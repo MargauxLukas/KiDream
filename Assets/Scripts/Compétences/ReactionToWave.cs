@@ -219,6 +219,8 @@ public class ReactionToWave : MonoBehaviour
 
     public void SetupChosenParticleSystem()
     {
+        Debug.Log(childNumberTolerance);
+        Debug.Log(this.transform.childCount);
         if (this.transform.childCount == childNumberTolerance)
         {
             ps = Instantiate(myPSList[localCounter]);
@@ -230,7 +232,7 @@ public class ReactionToWave : MonoBehaviour
             {
                 case 0:
                     corruptedPushRadius = GetComponent<ReactionToWave>().corruptedPushRadius;
-                    ps.startSize = 2.76131f * corruptedPushRadius + 0.063143f;
+                    //ps.startSize = 2.76131f * corruptedPushRadius + 0.063143f;
                     ps.GetComponent<CircleCollider2D>().radius = corruptedPushRadius;
                     break;
 
@@ -246,7 +248,6 @@ public class ReactionToWave : MonoBehaviour
                     ps.GetComponent<CircleCollider2D>().radius = corruptedActivateRadius;
                     break;
             }
-
             ps.Play();
             ps.Stop();
             ps.Play();
