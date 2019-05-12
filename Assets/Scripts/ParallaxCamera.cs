@@ -7,7 +7,7 @@ public class ParallaxCamera : MonoBehaviour
 {
     public delegate void ParallaxCameraDelegate(float deltaMovement);
     public ParallaxCameraDelegate onCameraTranslate;
-    public bool isDream;
+    public CharacterController myPlayer;
 
     private float oldPositionX;
     private float oldPositionY;
@@ -20,13 +20,12 @@ public class ParallaxCamera : MonoBehaviour
 
 	void Update ()
     {
-        isDream = GameObject.Find("Player").GetComponent<CharacterController>().isDream;
 
-        if (isDream)
+        if (myPlayer.isDream)
         {
             GetComponent<Camera>().backgroundColor = new Color32(218, 147, 137, 255);
         }
-        else
+        else if (!myPlayer.isDream)
         {
             GetComponent<Camera>().backgroundColor = new Color32(96, 31, 62, 255);
         }

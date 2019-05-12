@@ -14,16 +14,23 @@ public class MenuShooter : MonoBehaviour
     public Transform target;
     //public bool canShoot;
 
-    [Header("Clamping")]
+    [Header("Clamp Haut")]
     public bool allowClampHaut;
     public bool superiorEqualValue;
     [Range(-180, 180)]
     public int clampHaut;
 
+    [Header("Clamp Middle 1")]
     public bool allowClampMid;
     [Range(-180, 180)]
     public int clampMid;
 
+    [Header("Clamp Middle 2")]
+    public bool allowClampMid2;
+    [Range(-180, 180)]
+    public int clampMid2;
+
+    [Header("Clamp Bas")]
     public bool allowClampBas;
     public bool inferiorEqualValue;
     [Range(-180, 180)]
@@ -60,26 +67,35 @@ public class MenuShooter : MonoBehaviour
         {
             float z = -(Mathf.Atan2(h1, v1) * 180 / Mathf.PI);
 
+            //Clamp Haut
             if (z < clampHaut+clampRange && z > clampHaut-clampRange && allowClampHaut == true)
             {
                 z = clampHaut;
             }
 
+            //Clamp Bas
             if (z < clampBas + clampRange && z > clampBas - clampRange && allowClampBas == true)
             {
                 z = clampBas;
             }
 
+            //Clamp Mid 1
             if (z < clampMid + clampRange && z > clampMid - clampRange && allowClampMid == true)
             {
                 z = clampMid;
             }
 
-            if (superiorEqualValue == true && z > clampHaut)
+            //Clamp Mid 2
+            if (z < clampMid2 + clampRange && z > clampMid2 - clampRange && allowClampMid2 == true)
+            {
+                z = clampMid2;
+            }
+           
+            if (superiorEqualValue == true && z > clampHaut) //Max Angle Haut
             {
                 z = clampHaut;
             }
-            else if(inferiorEqualValue == true && z < clampBas)
+            else if(inferiorEqualValue == true && z < clampBas) //Max Angle Bas
             {
                 z = clampBas;
             }
