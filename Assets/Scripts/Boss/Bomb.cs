@@ -23,6 +23,7 @@ public class Bomb : MonoBehaviour
 
 	void Start ()
     {
+        Debug.Log("J'aime beaucoup les fraises");
         animator = GetComponent<Animator>() ;
         rb       = GetComponent<Rigidbody2D>();
         boss     = GameObject.Find("Boss"  );

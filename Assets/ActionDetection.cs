@@ -77,7 +77,7 @@ public class ActionDetection : MonoBehaviour {
                         indicatorList.iconList[3].SetActive(false);
                         break;
                 }
-
+                
                 switch (rtw.canBePullCorrupted)
                 {
                     case true:

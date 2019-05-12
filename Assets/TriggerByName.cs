@@ -8,25 +8,57 @@ public class TriggerByName : MonoBehaviour
 
     public GameObject connectedGO;
 
-    public TriggerBehaviour behaviour;
+    public TriggerBehaviour enterBehaviour;
+    public TriggerBehaviour exitBehaviour;
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.name.Contains(triggerer))
         {
-            switch(behaviour)
+            Debug.Log(collision.gameObject.name);
+            switch(enterBehaviour)
             {
                 case TriggerBehaviour._SetActiveFalse:
                     connectedGO.SetActive(false);
+                    break;
+
+                case TriggerBehaviour._SetActiveTrue:
+                    connectedGO.SetActive(true);
                     break;
 
                 case TriggerBehaviour._Portal:
                     connectedGO.GetComponent<Animator>().SetBool("isOpen", true);
                     connectedGO.GetComponent<BoxCollider2D>().enabled = false;
                     break;
+
+                case TriggerBehaviour._Null:
+                    break;
             }
         }
     }
 
+    public void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.name.Contains(triggerer))
+        {
+            switch (exitBehaviour)
+            {
+                case TriggerBehaviour._SetActiveFalse:
+                    connectedGO.SetActive(false);
+                    break;
+
+                case TriggerBehaviour._SetActiveTrue:
+                    connectedGO.SetActive(true);
+                    break;
+
+                case TriggerBehaviour._Portal:
+                    connectedGO.GetComponent<Animator>().SetBool("isOpen", true);
+                    connectedGO.GetComponent<BoxCollider2D>().enabled = false;
+                    break;
+                case TriggerBehaviour._Null:
+                    break;
+            }
+        }
+    }
 }
-public enum TriggerBehaviour {_SetActiveFalse, _Portal}
+public enum TriggerBehaviour {_SetActiveFalse, _SetActiveTrue, _Portal, _Null}
