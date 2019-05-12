@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class OnCollisionPillar : MonoBehaviour
 {
+    [Header("PuzzleCollision de Main Pillar")]
     public GameObject puzzleCollision;
+    [Header("C'est allumé ?")]
     private Animator animator;
 
     public bool isActivated = false;
