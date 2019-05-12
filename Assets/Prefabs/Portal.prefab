@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 61884706314651362}
   m_Layer: 0
   m_Name: PortalD
-  m_TagString: Untagged
+  m_TagString: CeQuiApparaitEnReve
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -40,8 +40,8 @@ GameObject:
   - component: {fileID: 4861070708710026}
   - component: {fileID: 212863393115060166}
   - component: {fileID: 61097019193084334}
-  - component: {fileID: 114328727293458178}
-  m_Layer: 0
+  - component: {fileID: 114977687906274984}
+  m_Layer: 9
   m_Name: TriggerD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74,7 +74,7 @@ GameObject:
   - component: {fileID: 212134398943073180}
   - component: {fileID: 61680055859412114}
   - component: {fileID: 114856770965374656}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: triggerN
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 61019523919181946}
   m_Layer: 0
   m_Name: PortalN
-  m_TagString: Untagged
+  m_TagString: CeQuiApparaitEnCauchemar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -121,7 +121,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1562803419861818}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.15800002, y: -0.6970005, z: 500}
+  m_LocalPosition: {x: -1.4384, y: -0.9292002, z: 500}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4517442049327602}
@@ -148,7 +148,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1337358577166800}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.6948519, y: 2.6141262, z: -0.07640623}
+  m_LocalPosition: {x: -0.393, y: 15.664, z: -0.07640623}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4517442049327602}
@@ -163,7 +163,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1332033382381884}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.16000003, y: -0.6970005, z: 500}
+  m_LocalPosition: {x: -1.4364, y: -0.9292, z: 500}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4229288527006524}
@@ -206,7 +206,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.06969885, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -217,7 +217,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.16, y: 0.16}
+  m_Size: {x: 0.0206023, y: 0.16}
   m_EdgeRadius: 0
 --- !u!61 &61680055859412114
 BoxCollider2D:
@@ -231,7 +231,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.06915436, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -242,7 +242,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.16, y: 0.16}
+  m_Size: {x: 0.021691278, y: 0.16}
   m_EdgeRadius: 0
 --- !u!61 &61884706314651362
 BoxCollider2D:
@@ -305,20 +305,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &114328727293458178
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1332033382381884}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 43d9fc312a4e02c479dd693cba78f259, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  triggerer: Player
-  connectedGO: {fileID: 1300128282970624}
-  behaviour: 1
 --- !u!114 &114476761423543076
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -330,7 +316,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 721e1d5f1223801428c81baf6c158c84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  offsetValue: 0
+  offsetValue: -0.37
   runOnlyOnceForStaticObjects: 1
 --- !u!114 &114856770965374656
 MonoBehaviour:
@@ -343,9 +329,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43d9fc312a4e02c479dd693cba78f259, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  triggerer: Player
+  triggerer: Cube
   connectedGO: {fileID: 1815724226170004}
-  behaviour: 1
+  enterBehaviour: 2
+  exitBehaviour: 3
 --- !u!114 &114887237321444784
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -357,8 +344,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 721e1d5f1223801428c81baf6c158c84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  offsetValue: 0
+  offsetValue: -0.37
   runOnlyOnceForStaticObjects: 1
+--- !u!114 &114977687906274984
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1332033382381884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43d9fc312a4e02c479dd693cba78f259, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggerer: Cube
+  connectedGO: {fileID: 1300128282970624}
+  enterBehaviour: 2
+  exitBehaviour: 3
 --- !u!212 &212134398943073180
 SpriteRenderer:
   m_ObjectHideFlags: 1
