@@ -14,14 +14,6 @@ public class TriggerByName : MonoBehaviour
     {
         if(collision.gameObject.name.Contains(triggerer))
         {
-            if(collision.gameObject.name.Contains("Pillar"))
-            {
-                if(collision.gameObject.GetComponentInParent<OnCollisionPillar>().isActivated == false)
-                {
-                    return;
-                }
-            }
-
             switch(behaviour)
             {
                 case TriggerBehaviour._SetActiveFalse:
@@ -35,5 +27,6 @@ public class TriggerByName : MonoBehaviour
             }
         }
     }
+
 }
 public enum TriggerBehaviour {_SetActiveFalse, _Portal}
