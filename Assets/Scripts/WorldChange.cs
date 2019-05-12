@@ -25,5 +25,4 @@ public class WorldChange : MonoBehaviour
             animator.SetBool("isDream", false);
         }
     }
-
 }
