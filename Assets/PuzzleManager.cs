@@ -10,18 +10,21 @@ public class PuzzleManager : MonoBehaviour
 
     void Update()
     {
-        checkFunction();
+        FreezeAllExceptLast();
     }
 
-    void checkFunction()
+    void FreezeAllExceptLast()
     {
-
-    }
-
-    public int getNumber()
-    {
-        number++;
-        return number;
-        
+        for(int i = 0; i < puzzleTab.Count-1; i++)
+        {
+            if (i < puzzleTab.Count)
+            {
+                puzzleTab[i].gameObject.GetComponentInParent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY;
+            }
+            if(i == puzzleTab.Count-1)
+            {
+                puzzleTab[i].gameObject.GetComponentInParent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
+            }
+        }
     }
 }

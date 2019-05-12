@@ -17,13 +17,14 @@ public class PuzzleInter : MonoBehaviour
             isConnected = true;
             puzzle.GetComponent<PuzzleManager>().puzzleTab.Add(gameObject);
         }
-        else if (collision.GetComponent<PuzzleInter>().isConnected == true)
+        if (collision.GetComponent<PuzzleInter>().isConnected == true)
         {
             isConnected = true;
             puzzle.GetComponent<PuzzleManager>().puzzleTab.Add(gameObject);
         }
-        else if (collision.GetComponent<PuzzleEnd>())
+        if (collision.GetComponent<PuzzleEnd>())
         {
+            Debug.Log(collision.name);
             collision.GetComponent<PuzzleEnd>().isConnected = true;
             puzzle.GetComponent<PuzzleManager>().puzzleTab.Add(gameObject);
         }
@@ -31,8 +32,8 @@ public class PuzzleInter : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
+        Debug.Log("Je pars");
         isConnected = false;
         puzzle.GetComponent<PuzzleManager>().puzzleTab.Remove(gameObject);
-
     }
 }
