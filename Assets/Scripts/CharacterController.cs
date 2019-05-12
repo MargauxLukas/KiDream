@@ -174,6 +174,21 @@ public class CharacterController : MonoBehaviour
                     {
                         child.GetComponent<BoxCollider2D>().enabled = false;
                     }
+
+                    if (child.transform.childCount > 0)
+                    {
+                        foreach (Transform childChild in child.transform)
+                        {
+                            if (childChild.GetComponent<SpriteRenderer>() != null)
+                            {
+                                childChild.GetComponent<SpriteRenderer>().enabled = false;
+                            }
+                            if (childChild.GetComponent<BoxCollider2D>() != null) // Faire une liste pour les exceptions (optimisation)
+                            {
+                                childChild.GetComponent<BoxCollider2D>().enabled = false;
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -200,6 +215,21 @@ public class CharacterController : MonoBehaviour
                     if (child.GetComponent<BoxCollider2D>() != null)
                     {
                         child.GetComponent<BoxCollider2D>().enabled = true;
+                    }
+
+                    if (child.transform.childCount > 0)
+                    {
+                        foreach (Transform childChild in child.transform)
+                        {
+                            if (childChild.GetComponent<SpriteRenderer>() != null)
+                            {
+                                childChild.GetComponent<SpriteRenderer>().enabled = true;
+                            }
+                            if (childChild.GetComponent<BoxCollider2D>() != null) // Faire une liste pour les exceptions (optimisation)
+                            {
+                                childChild.GetComponent<BoxCollider2D>().enabled = true;
+                            }
+                        }
                     }
                 }
             }
@@ -245,6 +275,21 @@ public class CharacterController : MonoBehaviour
                     {
                         child.GetComponent<BoxCollider2D>().enabled = false;
                     }
+
+                    if (child.transform.childCount > 0)
+                    {
+                        foreach (Transform childChild in child.transform)
+                        {
+                            if (childChild.GetComponent<SpriteRenderer>() != null)
+                            {
+                                childChild.GetComponent<SpriteRenderer>().enabled = false;
+                            }
+                            if (childChild.GetComponent<BoxCollider2D>() != null) // Faire une liste pour les exceptions (optimisation)
+                            {
+                                childChild.GetComponent<BoxCollider2D>().enabled = false;
+                            }
+                        }
+                    }
                 }
             }
 
@@ -272,6 +317,21 @@ public class CharacterController : MonoBehaviour
                     if (child.GetComponent<BoxCollider2D>() != null)
                     {
                         child.GetComponent<BoxCollider2D>().enabled = true;
+                    }
+
+                    if (child.transform.childCount > 0)
+                    {
+                        foreach (Transform childChild in child.transform)
+                        {
+                            if (childChild.GetComponent<SpriteRenderer>() != null)
+                            {
+                                childChild.GetComponent<SpriteRenderer>().enabled = true;
+                            }
+                            if (childChild.GetComponent<BoxCollider2D>() != null) // Faire une liste pour les exceptions (optimisation)
+                            {
+                                childChild.GetComponent<BoxCollider2D>().enabled = true;
+                            }
+                        }
                     }
                 }
             }
