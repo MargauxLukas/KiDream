@@ -17,6 +17,7 @@ public class Puzzle01TrapAnimTrigger : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
+        Debug.Log("Cube");
         if (collision.gameObject == Cube && isChecked == false)
         {
             Anim.SetBool("isTouched", true);
