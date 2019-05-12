@@ -214,8 +214,6 @@ public class ReactionToWave : MonoBehaviour
                     shooter.SetParticles(ParticleList, shooter.particleCount);
                 }
             }
-
-
         }
     }
 
@@ -231,15 +229,21 @@ public class ReactionToWave : MonoBehaviour
             switch (localCounter)
             {
                 case 0:
+                    corruptedPushRadius = GetComponent<ReactionToWave>().corruptedPushRadius;
                     ps.startSize = 2.76131f * corruptedPushRadius + 0.063143f;
+                    ps.GetComponent<CircleCollider2D>().radius = corruptedPushRadius;
                     break;
 
                 case 1:
+                    corruptedPullRadius = GetComponent<ReactionToWave>().corruptedPullRadius;
                     ps.startSize = 2.76131f * corruptedPullRadius + 0.063143f;
+                    ps.GetComponent<CircleCollider2D>().radius = corruptedPullRadius;
                     break;
 
                 case 2:
+                    corruptedActivateRadius = GetComponent<ReactionToWave>().corruptedActivateRadius;
                     ps.startSize = 2.76131f * corruptedActivateRadius + 0.063143f;
+                    ps.GetComponent<CircleCollider2D>().radius = corruptedActivateRadius;
                     break;
             }
 
