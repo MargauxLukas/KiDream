@@ -17,12 +17,21 @@ public class DialogueManager : MonoBehaviour
 
     private Queue<string> sentences;
 
+    public static int dialogueExecutionStatut;
+
+    [SerializeField]
+    private int showDialogueExecutionStatut;
 
     // Start
     void Start()
     {
         sentences = new Queue<string>();
         scriptController = monJoueur.GetComponent<CharacterController>();
+    }
+
+    void Update()
+    {
+        showDialogueExecutionStatut = dialogueExecutionStatut;
     }
 
     public void StartDialogue(Dialogue dialogue)
@@ -38,12 +47,10 @@ public class DialogueManager : MonoBehaviour
         }
 
         DisplayNextSentence();
-
     }
 
     public void DisplayNextSentence ()
     {
-
         if(sentences.Count == 0)
         {
             EndDialogue();
@@ -52,14 +59,13 @@ public class DialogueManager : MonoBehaviour
 
         int i = 0;
         i++;
-        Debug.Log(i);
+        //Debug.Log(i);
 
         string sentence = sentences.Dequeue();
         dialogueText.text = sentence;
 
         StopAllCoroutines();
         StartCoroutine(LetterByLetter(sentence));
-
     }
 
     public void EndDialogue()
@@ -67,6 +73,8 @@ public class DialogueManager : MonoBehaviour
         animator.SetBool("IsOpen", false);
         scriptController.dialogueHasStarted = false;
         StopAllCoroutines();
+
+        DialogueManager.dialogueExecutionStatut++;
     }
 
     IEnumerator LetterByLetter (string sentence)
@@ -75,8 +83,11 @@ public class DialogueManager : MonoBehaviour
         foreach (char letter in sentence.ToCharArray())
         {
             dialogueText.text += letter;
-            audio.PlayOneShot(keySound);
-            yield return new WaitForSeconds(0.05f);
+            if(audio != null)
+            {
+                audio.PlayOneShot(keySound);
+            }
+            yield return new WaitForSeconds(0.08f);
         }
     }
 

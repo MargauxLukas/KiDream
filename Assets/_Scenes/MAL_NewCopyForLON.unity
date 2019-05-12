@@ -56092,10 +56092,12 @@ MonoBehaviour:
   launchAgainToDisable: 0
   isActivated: 0
   activateBehaviour: 0
+  disableBehaviour: 0
   corruptedPushRadius: 0
   corruptedPullRadius: 0
   corruptedActivateRadius: 0
   bypassActivateRules: 0
+  bypassPushRules: 0
 --- !u!95 &600505121
 Animator:
   serializedVersion: 3
@@ -113493,7 +113495,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1310973651
 Transform:
   m_ObjectHideFlags: 0
@@ -115235,7 +115237,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5be0ff84b094e444a79a65b1c8e2e1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isDream: 1
+  myPlayer: {fileID: 0}
 --- !u!81 &1434556015
 AudioListener:
   m_ObjectHideFlags: 0
