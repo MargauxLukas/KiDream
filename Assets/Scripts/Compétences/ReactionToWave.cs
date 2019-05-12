@@ -160,6 +160,7 @@ public class ReactionToWave : MonoBehaviour
                         localCounter = 0;
                         if (canBePushCorrupted == true)
                         {
+                            //thisRb.bodyType = RigidbodyType2D.Dynamic;
                             SetupChosenParticleSystem();
                         }
                         break;
@@ -169,6 +170,7 @@ public class ReactionToWave : MonoBehaviour
                         localCounter = 1;
                         if (canBePullCorrupted == true)
                         {
+                            //thisRb.bodyType = RigidbodyType2D.Static;
                             SetupChosenParticleSystem();
                         }
                         break;
@@ -178,6 +180,7 @@ public class ReactionToWave : MonoBehaviour
                         localCounter = 2;
                         if (canBeActivateCorrupted == true)
                         {
+                            //thisRb.bodyType = RigidbodyType2D.Dynamic;
                             SetupChosenParticleSystem();
                         }
                         break;
