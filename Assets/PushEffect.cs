@@ -8,14 +8,17 @@ public class PushEffect : MonoBehaviour
     ParticleSystem corruptedPushPS;
     ReactionToWave parentBehaviour;
 
+    public bool affectPlayer;
+
     public Rigidbody2D rb;
 
     [Header("Forces horizontales et verticales")]
-    [Range(0,1000), SerializeField]
-    public float forceX;
     [Range(0, 1000), SerializeField]
     public float forceY;
-    public bool yEqualX = false;
+    [Range(0,1000), SerializeField]
+    public float forceX;
+
+    public bool xEqualY;
 
     public bool adaptRadius;
 
@@ -34,15 +37,15 @@ public class PushEffect : MonoBehaviour
 
     void Update()
     {
-        if (yEqualX == true)
+        if (xEqualY == true)
         {
-            forceY = forceX;
+            forceX = forceY;
         }
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.tag == "Player")
+        if (collision.tag == "Player" && affectPlayer == true)
         {
             float xInitial = this.transform.position.x;
             float yInitial = this.transform.position.y;

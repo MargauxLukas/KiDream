@@ -64,14 +64,14 @@ public class PostProcessManager : MonoBehaviour
             if (i == autoExpoLowAim)
             {
                 temp = secondPP;
-                Debug.Log(temp.profile.name);
+                //Debug.Log(temp.profile.name);
 
                 secondPP.profile = mainCamPP.profile;
-                Debug.Log(mainCamPP.profile.name);
-                Debug.Log(temp.profile.name);
+                //Debug.Log(mainCamPP.profile.name);
+                //Debug.Log(temp.profile.name);
 
                 mainCamPP.profile = temp.profile;
-                Debug.Log(secondPP.profile.name);
+                //Debug.Log(secondPP.profile.name);
 
                 for (float j = autoExpo.maxLuminance.value; j <= autoExpoHighAim; j = autoExpo.maxLuminance.value + autoExpoStep)
                 {
@@ -103,13 +103,13 @@ public class PostProcessManager : MonoBehaviour
             if ( i == autoExpoLowAim)
             {
                 temp = mainCamPP;
-                Debug.Log(temp.profile.name);
+                //Debug.Log(temp.profile.name);
 
                 mainCamPP.profile = secondPP.profile;
-                Debug.Log(mainCamPP.profile.name);
+                //Debug.Log(mainCamPP.profile.name);
 
                 secondPP.profile = temp.profile;
-                Debug.Log(secondPP.profile.name);
+                //Debug.Log(secondPP.profile.name);
 
 
                 for (float j = autoExpo.maxLuminance.value; j <= autoExpoHighAim; j = autoExpo.maxLuminance.value + autoExpoStep)

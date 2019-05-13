@@ -58,7 +58,7 @@ public class Menu : MonoBehaviour
                     FadeToLevel(1);
                     break;
                 case MenuReaction.NewGame:
-                    StartCoroutine(LoadAsynchronously(2));
+                    StartCoroutine(LoadAsynchronously(10));
                     break;
                 case MenuReaction.ChapterMenu:
                     FadeToLevel(3);
