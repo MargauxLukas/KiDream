@@ -115,7 +115,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1672362685640224}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.005, y: 0.05650747, z: 0}
+  m_LocalPosition: {x: 11.013832, y: 0.13139474, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4411354852034842}
@@ -286,10 +286,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54cf609a4dd2c5942901d56117bcfb6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  affectPlayer: 1
   rb: {fileID: 0}
-  forceX: 100
   forceY: 0
-  yEqualX: 1
+  forceX: 100
+  xEqualY: 0
   adaptRadius: 1
 --- !u!114 &114138423799519718
 MonoBehaviour:
@@ -302,10 +303,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54cf609a4dd2c5942901d56117bcfb6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  affectPlayer: 0
   rb: {fileID: 0}
-  forceX: 100
   forceY: 0
-  yEqualX: 1
+  forceX: 100
+  xEqualY: 0
   adaptRadius: 1
 --- !u!114 &114329398264787570
 MonoBehaviour:
@@ -318,10 +320,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54cf609a4dd2c5942901d56117bcfb6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  affectPlayer: 0
   rb: {fileID: 0}
-  forceX: 100
   forceY: 0
-  yEqualX: 1
+  forceX: 100
+  xEqualY: 0
   adaptRadius: 1
 --- !u!114 &114524991097345506
 MonoBehaviour:
@@ -356,9 +359,20 @@ MonoBehaviour:
   launchAgainToDisable: 0
   isActivated: 0
   activateBehaviour: 0
+  disableBehaviour: 0
   corruptedPushRadius: 1
+  corruptedPushAffectPlayer: 1
+  cPushForceY: 0
+  cPushForceX: 0
+  xPushEqualY: 0
   corruptedPullRadius: 0
+  corruptedPullAffectPlayer: 1
+  cPullForceY: 0
+  cPullForceX: 0
+  xPullEqualY: 0
   corruptedActivateRadius: 0
+  bypassPushRules: 0
+  bypassPullRules: 0
   bypassActivateRules: 0
 --- !u!114 &114594651419463260
 MonoBehaviour:
@@ -407,10 +421,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54cf609a4dd2c5942901d56117bcfb6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  affectPlayer: 0
   rb: {fileID: 0}
-  forceX: 100
   forceY: 0
-  yEqualX: 1
+  forceX: 100
+  xEqualY: 0
   adaptRadius: 1
 --- !u!198 &198234840665716560
 ParticleSystem:
