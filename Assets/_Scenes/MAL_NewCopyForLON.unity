@@ -56096,8 +56096,9 @@ MonoBehaviour:
   corruptedPushRadius: 0
   corruptedPullRadius: 0
   corruptedActivateRadius: 0
-  bypassActivateRules: 0
   bypassPushRules: 0
+  bypassPullRules: 0
+  bypassActivateRules: 0
 --- !u!95 &600505121
 Animator:
   serializedVersion: 3
@@ -115237,7 +115238,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5be0ff84b094e444a79a65b1c8e2e1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myPlayer: {fileID: 0}
+  myPlayer: {fileID: 1947392184}
 --- !u!81 &1434556015
 AudioListener:
   m_ObjectHideFlags: 0
