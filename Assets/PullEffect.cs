@@ -57,6 +57,7 @@ public class PullEffect : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
+
         if (collision.tag == "Player" && affectPlayer == true)
         {
             rb = collision.gameObject.GetComponent<Rigidbody2D>();
@@ -68,6 +69,10 @@ public class PullEffect : MonoBehaviour
             if (collision.GetComponent<ReactionToWave>() != null)
             {
                 behaviour = collision.GetComponent<ReactionToWave>();
+            }
+            else
+            {
+                return;
             }
 
             if (behaviour.canBePulled == true)
