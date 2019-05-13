@@ -75,7 +75,7 @@ public class PullEffect : MonoBehaviour
                 this.GetComponentInParent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
 
                 rb = collision.gameObject.GetComponent<Rigidbody2D>();
-                rb.AddForce(new Vector2((this.transform.position.x - collision.transform.position.x) * forceX * behaviour.horizontalPullForce, (this.transform.position.y - collision.transform.position.y) * forceY * behaviour.verticalPullForce));
+                rb.AddForce(new Vector2((this.transform.position.x - collision.transform.position.x) * forceX, (this.transform.position.y - collision.transform.position.y) * forceY));
             }
         }
     }
