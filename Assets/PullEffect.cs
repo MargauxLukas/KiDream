@@ -12,15 +12,18 @@ public class PullEffect : MonoBehaviour
 
     ReactionToWave behaviour;
 
+    public bool affectPlayer;
+
     [Header("Forces horizontales et verticales")]
     [Range(0, 1000), SerializeField]
-    private float forceX;
+    public float forceY;
     [Range(0, 1000), SerializeField]
-    private float forceY;
-    public bool yEqualX = false;
+    public float forceX;
+
+
+    public bool xEqualY;
 
     public bool adaptRadius;
-
 
     [Header("Attraction complémentaire")]
     [Range(0, 1000), SerializeField]
@@ -46,28 +49,42 @@ public class PullEffect : MonoBehaviour
 
     void Update()
     {
-        if (yEqualX == true)
+        if (xEqualY == true)
         {
-            forceY = forceX;
+            forceX = forceY;
         }
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.tag == "Player")
+        if (collision.tag == "Player" && affectPlayer == true)
         {
             rb = collision.gameObject.GetComponent<Rigidbody2D>();
             rb.AddForce(new Vector2((this.transform.position.x - collision.transform.position.x) * forceX, (this.transform.position.y - collision.transform.position.y) * forceY));
         }
+
         else if (collision.tag == "ActionObject") //Tous les objets ayant ce tag doivent avoir un BoxCollider2D (Normal), un RigidBody2D (Dynamic + GravityScale à 0) et le script ReactionToWave.
         {
-            behaviour = collision.GetComponent<ReactionToWave>();
+            if (collision.GetComponent<ReactionToWave>() != null)
+            {
+                behaviour = collision.GetComponent<ReactionToWave>();
+            }
 
             if (behaviour.canBePulled == true)
             {
+                this.GetComponentInParent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+
                 rb = collision.gameObject.GetComponent<Rigidbody2D>();
                 rb.AddForce(new Vector2((this.transform.position.x - collision.transform.position.x) * forceX * behaviour.horizontalPullForce, (this.transform.position.y - collision.transform.position.y) * forceY * behaviour.verticalPullForce));
             }
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if(collision.tag == "ActionObject")
+        {
+            this.GetComponentInParent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
         }
     }
 

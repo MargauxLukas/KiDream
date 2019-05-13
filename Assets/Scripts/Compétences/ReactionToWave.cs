@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class ReactionToWave : MonoBehaviour
 {
-
     private ParticleSystem shooter;
-    private int localCounter;
     private Rigidbody2D thisRb;
     private ParticleSystem ps;
 
@@ -52,11 +50,28 @@ public class ReactionToWave : MonoBehaviour
     public ActivateBehaviour disableBehaviour;
 
     [Header("Corrupted options")]
-    [Range(0, 2), SerializeField]
+    [Header("C-Push")]
+    [Range(0, 2)]
     public float corruptedPushRadius;
-    [Range(0, 2), SerializeField]
+    public bool corruptedPushAffectPlayer = true;
+    [Range(0, 1000)]
+    public float cPushForceY;
+    [Range(0, 1000)]
+    public float cPushForceX;
+    public bool xPushEqualY;
+
+    [Header("C-Pull")]
+    [Range(0, 2)]
     public float corruptedPullRadius;
-    [Range(0, 2), SerializeField]
+    public bool corruptedPullAffectPlayer = true;
+    [Range(0, 1000)]
+    public float cPullForceY;
+    [Range(0, 1000)]
+    public float cPullForceX;
+    public bool xPullEqualY;
+
+    [Header("C-Activate")]
+    [Range(0, 2)]
     public float corruptedActivateRadius;
 
     [Header("Bypass")]
@@ -66,6 +81,7 @@ public class ReactionToWave : MonoBehaviour
 
     private bool doubleLock = false;
     private int childNumberTolerance;
+    private int localCounter;
 
     // Start
     void Start()
@@ -224,8 +240,8 @@ public class ReactionToWave : MonoBehaviour
 
     public void SetupChosenParticleSystem()
     {
-        Debug.Log(childNumberTolerance);
-        Debug.Log(this.transform.childCount);
+        //Debug.Log(childNumberTolerance);
+        //Debug.Log(this.transform.childCount);
         if (this.transform.childCount == childNumberTolerance)
         {
             ps = Instantiate(myPSList[localCounter]);
@@ -238,12 +254,21 @@ public class ReactionToWave : MonoBehaviour
                 case 0:
                     corruptedPushRadius = GetComponent<ReactionToWave>().corruptedPushRadius;
                     //ps.startSize = 2.76131f * corruptedPushRadius + 0.063143f;
+                    ps.GetComponent<PushEffect>();
+                    ps.GetComponent<PushEffect>().affectPlayer = corruptedPushAffectPlayer;
+                    ps.GetComponent<PushEffect>().forceX = cPushForceX;
+                    ps.GetComponent<PushEffect>().forceY = cPushForceY;
+                    ps.GetComponent<PushEffect>().xEqualY = xPushEqualY;
                     ps.GetComponent<CircleCollider2D>().radius = corruptedPushRadius;
                     break;
 
                 case 1:
                     corruptedPullRadius = GetComponent<ReactionToWave>().corruptedPullRadius;
                     ps.startSize = 2.76131f * corruptedPullRadius + 0.063143f;
+                    ps.GetComponent<PullEffect>().affectPlayer = corruptedPullAffectPlayer;
+                    ps.GetComponent<PullEffect>().forceX = cPullForceX;
+                    ps.GetComponent<PullEffect>().forceY = cPullForceY;
+                    ps.GetComponent<PullEffect>().xEqualY = xPullEqualY;
                     ps.GetComponent<CircleCollider2D>().radius = corruptedPullRadius;
                     break;
 
