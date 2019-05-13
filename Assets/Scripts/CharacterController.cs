@@ -166,14 +166,7 @@ public class CharacterController : MonoBehaviour
             {
                 foreach(Transform child in reveObject.transform)
                 {
-                    if (child.GetComponent<SpriteRenderer>() != null)
-                    {
-                        child.GetComponent<SpriteRenderer>().enabled = false;
-                    }
-                    if (child.GetComponent<BoxCollider2D>() != null) // Faire une liste pour les exceptions (optimisation)
-                    {
-                        child.GetComponent<BoxCollider2D>().enabled = false;
-                    }
+                    child.gameObject.SetActive(false);
                 }
             }
         }
@@ -193,14 +186,7 @@ public class CharacterController : MonoBehaviour
             {
                 foreach (Transform child in cauchemarObject.transform)
                 {
-                    if (child.GetComponent<SpriteRenderer>() != null)
-                    {
-                        child.GetComponent<SpriteRenderer>().enabled = true;
-                    }
-                    if (child.GetComponent<BoxCollider2D>() != null)
-                    {
-                        child.GetComponent<BoxCollider2D>().enabled = true;
-                    }
+                    child.gameObject.SetActive(true);
                 }
             }
         }
@@ -237,14 +223,7 @@ public class CharacterController : MonoBehaviour
             {
                 foreach (Transform child in cauchemarObject.transform)
                 {
-                    if (child.GetComponent<SpriteRenderer>() != null) // Pour chaque object avec le tag "CeQuiApparaitEnCauchemar", je desactive le spriteRenderer et active le isTrigger
-                    {
-                        child.GetComponent<SpriteRenderer>().enabled = false;
-                    }
-                    if (child.GetComponent<BoxCollider2D>() != null)
-                    {
-                        child.GetComponent<BoxCollider2D>().enabled = false;
-                    }
+                    child.gameObject.SetActive(false);   
                 }
             }
 
@@ -265,14 +244,7 @@ public class CharacterController : MonoBehaviour
             {
                 foreach (Transform child in reveObject.transform)
                 {
-                    if (child.GetComponent<SpriteRenderer>() != null)
-                    {
-                        child.GetComponent<SpriteRenderer>().enabled = true;
-                    }
-                    if (child.GetComponent<BoxCollider2D>() != null)
-                    {
-                        child.GetComponent<BoxCollider2D>().enabled = true;
-                    }
+                    child.gameObject.SetActive(true);
                 }
             }
         }

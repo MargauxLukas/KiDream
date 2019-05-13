@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ParticleLifeAmplifier : MonoBehaviour {
 
-    [Range(0,5)]
+    [Range(0,20)]
     public float lifeTimeBonus;
 
     // Use this for initialization

@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class Puzzle01TrapAnimTrigger : MonoBehaviour
 {
-    Animator Anim;
+    public Animator anim1;
+    public Animator anim2;
     BoxCollider2D collider;
     public GameObject Cube;
     public bool isChecked = false;
 
     void Start()
     {
-        Anim = GetComponentInParent<Animator>();
         collider = GetComponent<BoxCollider2D>();
     }
 
@@ -19,7 +19,8 @@ public class Puzzle01TrapAnimTrigger : MonoBehaviour
     {
         if (collision.gameObject == Cube && isChecked == false)
         {
-            Anim.SetBool("isTouched", true);
+            anim1.SetTrigger("isTouched");
+            anim2.SetTrigger("isTouched");
             isChecked = true;
             collider.isTrigger = false;
             Destroy(this);
