@@ -11,13 +11,11 @@ public class StuckYaxis : MonoBehaviour
     {
         if (transform.position.y < minY)
         {
-            Debug.Log("INF");
             transform.position = new Vector2(transform.position.x, minY);
         }
 
         if (transform.position.y > maxY)
         {
-            Debug.Log("SUP");
             transform.position = new Vector2(transform.position.x, maxY);
         }
     }
