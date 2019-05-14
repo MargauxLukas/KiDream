@@ -35,6 +35,8 @@ public class CharacterController : MonoBehaviour
     [Header("Tilemaps")]
     public GameObject tilemapD;
     public GameObject tilemapN;
+    public GameObject tileWallD;
+    public GameObject tileWallN;
 
     [Header("Dialogue System")]
     public GameObject dialogueManagerObject;
@@ -145,7 +147,9 @@ public class CharacterController : MonoBehaviour
 
         //GameObject.Find("Main Camera").GetComponent<Rippleeffect>().RippleEff(transform, 10f, 1f);
         tilemapD.GetComponent<TilemapRenderer>().enabled = false;
+        tileWallD.GetComponent<TilemapRenderer>().enabled = false;
         tilemapN.GetComponent<TilemapRenderer>().enabled =  true;
+        tileWallN.GetComponent<TilemapRenderer>().enabled = true;
         isDream = false;
 
         reveObjects = GameObject.FindGameObjectsWithTag("CeQuiApparaitEnReve");
@@ -245,7 +249,9 @@ public class CharacterController : MonoBehaviour
 
         //GameObject.Find("Main Camera").GetComponent<Rippleeffect>().RippleEff(transform, 10f, 1f);
         tilemapD.GetComponent<TilemapRenderer>().enabled = true;
+        tileWallD.GetComponent<TilemapRenderer>().enabled = true;
         tilemapN.GetComponent<TilemapRenderer>().enabled = false;
+        tileWallN.GetComponent<TilemapRenderer>().enabled = false;
         isDream = true;
 
         reveObjects = GameObject.FindGameObjectsWithTag("CeQuiApparaitEnReve");
