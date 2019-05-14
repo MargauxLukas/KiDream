@@ -7,12 +7,22 @@ public class ActionDetection : MonoBehaviour {
     public CharacterController myPlayer;
     public IndicatorList indicatorList;
 
+    private ReactionToWave rtw;
+
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.tag == "UIDetectionTag")
         {
             indicatorList = collision.GetComponentInChildren<IndicatorList>();
-            ReactionToWave rtw = collision.GetComponentInParent<ReactionToWave>();
+
+            if(collision.GetComponentInParent<ReactionToWave>() == true)
+            {
+                rtw = collision.GetComponentInParent<ReactionToWave>();
+            }
+            else
+            {
+                return;
+            }
 
             if (myPlayer.isDream == true)
             {

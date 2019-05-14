@@ -46,8 +46,18 @@ public class ChickBehaviour : MonoBehaviour
     {
         isDream = player.GetComponent<CharacterController>().isDream;
 
-        if (isDream) { animator.SetBool("isDream",  true);}
-        else         { animator.SetBool("isDream", false);}
+        if (isDream)
+        {
+            animator.SetBool("isDream",  true);
+            GetComponent<ReactionToWave>().canBePushed = false;
+            GetComponent<ReactionToWave>().canBePulled = false;
+        }
+        else
+        {
+            animator.SetBool("isDream", false);
+            GetComponent<ReactionToWave>().canBePushed = true;
+            GetComponent<ReactionToWave>().canBePulled = true;
+        }
 
         LookAt();
         Attack(lookingAt);
@@ -81,7 +91,6 @@ public class ChickBehaviour : MonoBehaviour
         LookAt();
         transform.position = Vector2.MoveTowards(transform.position, target.position, speedMoving * Time.deltaTime);
     }
-
 
     void LookAt()
     {

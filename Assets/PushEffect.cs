@@ -8,14 +8,17 @@ public class PushEffect : MonoBehaviour
     ParticleSystem corruptedPushPS;
     ReactionToWave parentBehaviour;
 
+    public bool affectPlayer;
+
     public Rigidbody2D rb;
 
     [Header("Forces horizontales et verticales")]
-    [Range(0,1000), SerializeField]
-    public float forceX;
     [Range(0, 1000), SerializeField]
     public float forceY;
-    public bool yEqualX = false;
+    [Range(0,1000), SerializeField]
+    public float forceX;
+
+    public bool xEqualY;
 
     public bool adaptRadius;
 
@@ -34,15 +37,15 @@ public class PushEffect : MonoBehaviour
 
     void Update()
     {
-        if (yEqualX == true)
+        if (xEqualY == true)
         {
-            forceY = forceX;
+            forceX = forceY;
         }
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.tag == "Player")
+        if (collision.tag == "Player" && affectPlayer == true)
         {
             float xInitial = this.transform.position.x;
             float yInitial = this.transform.position.y;
@@ -53,11 +56,11 @@ public class PushEffect : MonoBehaviour
         else if(collision.tag == "ActionObject") //Tous les objets ayant ce tag doivent avoir un BoxCollider2D (Normal), un RigidBody2D (Dynamic + GravityScale à 0) et le script ReactionToWave.
         {
             ReactionToWave behaviour = collision.GetComponent<ReactionToWave>();
-
+            Debug.Log("Je suis la ");
             if (behaviour.canBePushed == true)
             {
                 rb = collision.gameObject.GetComponent<Rigidbody2D>();
-                rb.AddForce(new Vector2(-(this.transform.position.x - collision.transform.position.x) * behaviour.horizontalPushForce * forceX, -(this.transform.position.y - collision.transform.position.y) * behaviour.verticalPushForce * forceY), ForceMode2D.Impulse);
+                rb.AddForce(new Vector2(-(this.transform.position.x - collision.transform.position.x) * forceX, -(this.transform.position.y - collision.transform.position.y) * forceY), ForceMode2D.Impulse);
             }
         }
                     

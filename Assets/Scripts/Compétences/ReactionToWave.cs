@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class ReactionToWave : MonoBehaviour
 {
-
     private ParticleSystem shooter;
-    private int localCounter;
     private Rigidbody2D thisRb;
     private ParticleSystem ps;
 
@@ -49,20 +47,41 @@ public class ReactionToWave : MonoBehaviour
     public bool launchAgainToDisable;
     public bool isActivated;
     public ActivateBehaviour activateBehaviour;
+    public ActivateBehaviour disableBehaviour;
 
     [Header("Corrupted options")]
-    [Range(0, 2), SerializeField]
+    [Header("C-Push")]
+    [Range(0, 2)]
     public float corruptedPushRadius;
-    [Range(0, 2), SerializeField]
+    public bool corruptedPushAffectPlayer = true;
+    [Range(0, 1000)]
+    public float cPushForceY;
+    [Range(0, 1000)]
+    public float cPushForceX;
+    public bool xPushEqualY;
+
+    [Header("C-Pull")]
+    [Range(0, 2)]
     public float corruptedPullRadius;
-    [Range(0, 2), SerializeField]
+    public bool corruptedPullAffectPlayer = true;
+    [Range(0, 1000)]
+    public float cPullForceY;
+    [Range(0, 1000)]
+    public float cPullForceX;
+    public bool xPullEqualY;
+
+    [Header("C-Activate")]
+    [Range(0, 2)]
     public float corruptedActivateRadius;
 
     [Header("Bypass")]
+    public bool bypassPushRules;
+    public bool bypassPullRules;
     public bool bypassActivateRules;
 
     private bool doubleLock = false;
     private int childNumberTolerance;
+    private int localCounter;
 
     // Start
     void Start()
@@ -130,6 +149,8 @@ public class ReactionToWave : MonoBehaviour
 
                 shooter.SetParticles(ParticleList, shooter.particleCount);
 
+                BypassPushingRules();
+                BypassPullingRules();
                 BypassActivationRules();
 
                 switch (waveManager.waveSelection)
@@ -137,14 +158,14 @@ public class ReactionToWave : MonoBehaviour
                     case WaveType.Push:
                         if (canBePushed == true)
                         {
-                            thisRb.AddForce(new Vector2(-(this.shooter.transform.position.x - this.transform.position.x) * horizontalPushForce, -(this.shooter.transform.position.y - this.transform.position.y) * verticalPushForce));
+                            Push();
                         }
                         break;
 
                     case WaveType.Pull:
                         if (canBePulled == true)
                         {
-                            thisRb.AddForce(new Vector2((this.shooter.transform.position.x - this.transform.position.x) * horizontalPullForce, (this.shooter.transform.position.y - this.transform.position.y) * verticalPullForce));
+                            Pull();
                         }
                         break;
 
@@ -219,8 +240,8 @@ public class ReactionToWave : MonoBehaviour
 
     public void SetupChosenParticleSystem()
     {
-        Debug.Log(childNumberTolerance);
-        Debug.Log(this.transform.childCount);
+        //Debug.Log(childNumberTolerance);
+        //Debug.Log(this.transform.childCount);
         if (this.transform.childCount == childNumberTolerance)
         {
             ps = Instantiate(myPSList[localCounter]);
@@ -233,12 +254,21 @@ public class ReactionToWave : MonoBehaviour
                 case 0:
                     corruptedPushRadius = GetComponent<ReactionToWave>().corruptedPushRadius;
                     //ps.startSize = 2.76131f * corruptedPushRadius + 0.063143f;
+                    ps.GetComponent<PushEffect>();
+                    ps.GetComponent<PushEffect>().affectPlayer = corruptedPushAffectPlayer;
+                    ps.GetComponent<PushEffect>().forceX = cPushForceX;
+                    ps.GetComponent<PushEffect>().forceY = cPushForceY;
+                    ps.GetComponent<PushEffect>().xEqualY = xPushEqualY;
                     ps.GetComponent<CircleCollider2D>().radius = corruptedPushRadius;
                     break;
 
                 case 1:
                     corruptedPullRadius = GetComponent<ReactionToWave>().corruptedPullRadius;
                     ps.startSize = 2.76131f * corruptedPullRadius + 0.063143f;
+                    ps.GetComponent<PullEffect>().affectPlayer = corruptedPullAffectPlayer;
+                    ps.GetComponent<PullEffect>().forceX = cPullForceX;
+                    ps.GetComponent<PullEffect>().forceY = cPullForceY;
+                    ps.GetComponent<PullEffect>().xEqualY = xPullEqualY;
                     ps.GetComponent<CircleCollider2D>().radius = corruptedPullRadius;
                     break;
 
@@ -300,6 +330,24 @@ public class ReactionToWave : MonoBehaviour
         }
     }
 
+    public void BypassPushingRules()
+    {
+        if (bypassPushRules == true)
+        {
+            Push();
+            return;
+        }
+    }
+
+    public void BypassPullingRules()
+    {
+        if (bypassPullRules == true)
+        {
+            Pull();
+            return;
+        }
+    }
+
     public void BypassActivationRules()
     {
         if (bypassActivateRules == true)
@@ -309,16 +357,63 @@ public class ReactionToWave : MonoBehaviour
         }
     }
 
+
+    public void Push()
+    {
+        thisRb.AddForce(new Vector2(-(this.shooter.transform.position.x - this.transform.position.x) * horizontalPushForce, -(this.shooter.transform.position.y - this.transform.position.y) * verticalPushForce));
+    }
+
+    public void Pull()
+    {
+        thisRb.AddForce(new Vector2((this.shooter.transform.position.x - this.transform.position.x) * horizontalPullForce, (this.shooter.transform.position.y - this.transform.position.y) * verticalPullForce));
+    }
+
     public void Activate()
     {
         if (isActivated == true && launchAgainToDisable == true)
         {
+            switch (disableBehaviour)
+            {
+                default:
+                    break;
+
+                case ActivateBehaviour._Debug:
+                    break;
+
+                case ActivateBehaviour._Destroy:
+                    break;
+
+                case ActivateBehaviour._SetActiveTrue:
+                    if (connectedGameObject != null)
+                    {
+                        connectedGameObject.SetActive(false);
+                    }
+                    break;
+
+                case ActivateBehaviour._SetActiveFalse:
+                    if (connectedGameObject != null)
+                    {
+                        connectedGameObject.SetActive(true);
+                    }
+                    break;
+
+                case ActivateBehaviour._Shoot:
+                    if (connectedGameObject != null)
+                    {
+                        connectedGameObject.GetComponent<ParticleSystem>().Stop();
+                    }
+                    break;
+            }
+
             isActivated = false;
         }
         else if (isActivated != true)
         {
             switch (activateBehaviour)
             {
+                default:
+                    break;
+
                 case ActivateBehaviour._Debug:
                     break;
 

@@ -28,7 +28,7 @@ public class ActivateEffect : MonoBehaviour
 
             if (collision.GetComponent<ReactionToWave>() == null)
             {
-                
+                return;
             }
             else if(collision.GetComponent<ReactionToWave>() != null)
             {
@@ -37,7 +37,7 @@ public class ActivateEffect : MonoBehaviour
 
             if (collision.GetComponentInParent<ReactionToWave>() == null)
             {
-                
+                return;
             }
             else if (collision.GetComponentInParent<ReactionToWave>() != null)
             {
@@ -47,8 +47,14 @@ public class ActivateEffect : MonoBehaviour
 
             if (behaviour.canBeActivated == true)
             {
-                behaviour.Activate();
-                behaviour.isActivated = true;
+                foreach(GameObject go in behaviour.whoCanShootMe)
+                {
+                    if(go == this.gameObject || go == this.transform.parent.gameObject)
+                    {
+                        behaviour.Activate();
+                        behaviour.isActivated = true;
+                    }
+                }
             }
         }
     }

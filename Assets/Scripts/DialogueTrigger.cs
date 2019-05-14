@@ -15,14 +15,16 @@ public class DialogueTrigger : MonoBehaviour
 
     private void Awake()
     {
-        data = Resources.Load<SpeechData>("Dialogues/" + id);
 
-        dialogue.name = data.name+" :";
     }
 
     private void Update()
     {
-        if(GameLanguage.lang == Language.french && dialogue.sentences != data.speechFR)
+        data = Resources.Load<SpeechData>("Dialogues/" + (id + DialogueManager.dialogueExecutionStatut));
+
+        dialogue.name = data.name + " :";
+
+        if (GameLanguage.lang == Language.french && dialogue.sentences != data.speechFR)
         {
             dialogue.sentences = data.speechFR;
         }
