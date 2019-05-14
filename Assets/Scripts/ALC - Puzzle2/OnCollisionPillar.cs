@@ -20,6 +20,7 @@ public class OnCollisionPillar : MonoBehaviour
     {
         if(collision.gameObject == puzzleCollision)
         {
+            Debug.Log("true");
             animator.SetBool("isChecked", true);
             isActivated = true;
         }
@@ -30,6 +31,11 @@ public class OnCollisionPillar : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.GetComponent<OnCollisionPillar>().isActivated == true)
+        {
+            animator.SetBool("isChecked", true);
+            isActivated = true;
+        }
+        else if(collision.gameObject == puzzleCollision)
         {
             animator.SetBool("isChecked", true);
             isActivated = true;
