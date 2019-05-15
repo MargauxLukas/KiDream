@@ -9,14 +9,14 @@ public class StuckYaxis : MonoBehaviour
 
     void Update()
     {
-        if (transform.position.y < minY)
+        if (transform.localPosition.y < minY)
         {
-            transform.position = new Vector2(transform.position.x, minY);
+            transform.localPosition = new Vector2(transform.localPosition.x, minY);
         }
 
-        if (transform.position.y > maxY)
+        if (transform.localPosition.y > maxY)
         {
-            transform.position = new Vector2(transform.position.x, maxY);
+            transform.localPosition = new Vector2(transform.localPosition.x, maxY);
         }
     }
 }
