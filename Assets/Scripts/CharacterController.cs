@@ -145,10 +145,10 @@ public class CharacterController : MonoBehaviour
         yield return new WaitForSeconds(worldTransitionDelay);
 
         //GameObject.Find("Main Camera").GetComponent<Rippleeffect>().RippleEff(transform, 10f, 1f);
-        tilemapD.GetComponent<TilemapRenderer>().enabled = false;
-        tileWallD.GetComponent<TilemapRenderer>().enabled = false;
-        tilemapN.GetComponent<TilemapRenderer>().enabled =  true;
-        tileWallN.GetComponent<TilemapRenderer>().enabled = true;
+        if( tilemapD != null) tilemapD.GetComponent<TilemapRenderer>().enabled = false;
+        if(tileWallD != null) tileWallD.GetComponent<TilemapRenderer>().enabled = false;
+        if( tilemapN != null) tilemapN.GetComponent<TilemapRenderer>().enabled =  true;
+        if(tileWallN != null) tileWallN.GetComponent<TilemapRenderer>().enabled = true;
         isDream = false;
 
         reveObjects = GameObject.FindGameObjectsWithTag("CeQuiApparaitEnReve");
@@ -203,10 +203,10 @@ public class CharacterController : MonoBehaviour
         yield return new WaitForSeconds(worldTransitionDelay);
 
         //GameObject.Find("Main Camera").GetComponent<Rippleeffect>().RippleEff(transform, 10f, 1f);
-        tilemapD.GetComponent<TilemapRenderer>().enabled = true;
-        tileWallD.GetComponent<TilemapRenderer>().enabled = true;
-        tilemapN.GetComponent<TilemapRenderer>().enabled = false;
-        tileWallN.GetComponent<TilemapRenderer>().enabled = false;
+        if ( tilemapD != null) tilemapD.GetComponent<TilemapRenderer>().enabled = true;
+        if (tileWallD != null) tileWallD.GetComponent<TilemapRenderer>().enabled = true;
+        if ( tilemapN != null) tilemapN.GetComponent<TilemapRenderer>().enabled = false;
+        if (tileWallN != null) tileWallN.GetComponent<TilemapRenderer>().enabled = false;
         isDream = true;
 
         reveObjects = GameObject.FindGameObjectsWithTag("CeQuiApparaitEnReve");
