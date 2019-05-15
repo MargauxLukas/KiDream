@@ -38,7 +38,10 @@ public class Menu : MonoBehaviour
     {
         float selector = Input.GetAxisRaw("ShootParticles");
 
-        indicator.enabled = true;
+        if(indicator != null)
+        {
+            indicator.enabled = true;
+        }
 
         if(selector > 0 && selectorInUse == false)
         {
