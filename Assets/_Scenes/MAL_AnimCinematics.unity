@@ -8875,9 +8875,22 @@ MonoBehaviour:
   launchAgainToDisable: 0
   isActivated: 0
   activateBehaviour: 2
+  disableBehaviour: 0
+  corruptedPosition: {x: 0, y: 0, z: 0}
+  useCorruptedPosition: 0
   corruptedPushRadius: 0.98
+  corruptedPushAffectPlayer: 1
+  cPushForceY: 0
+  cPushForceX: 0
+  xPushEqualY: 0
   corruptedPullRadius: 0.23
+  corruptedPullAffectPlayer: 1
+  cPullForceY: 0
+  cPullForceX: 0
+  xPullEqualY: 0
   corruptedActivateRadius: 0.23
+  bypassPushRules: 0
+  bypassPullRules: 0
   bypassActivateRules: 1
 --- !u!95 &204254108
 Animator:
@@ -12316,9 +12329,22 @@ MonoBehaviour:
   launchAgainToDisable: 0
   isActivated: 0
   activateBehaviour: 0
+  disableBehaviour: 0
+  corruptedPosition: {x: 0, y: 0, z: 0}
+  useCorruptedPosition: 0
   corruptedPushRadius: 0
+  corruptedPushAffectPlayer: 1
+  cPushForceY: 0
+  cPushForceX: 0
+  xPushEqualY: 0
   corruptedPullRadius: 0
+  corruptedPullAffectPlayer: 1
+  cPullForceY: 0
+  cPullForceX: 0
+  xPullEqualY: 0
   corruptedActivateRadius: 0
+  bypassPushRules: 0
+  bypassPullRules: 0
   bypassActivateRules: 0
 --- !u!50 &356340943
 Rigidbody2D:
@@ -14209,9 +14235,22 @@ MonoBehaviour:
   launchAgainToDisable: 0
   isActivated: 0
   activateBehaviour: 2
+  disableBehaviour: 0
+  corruptedPosition: {x: 0, y: 0, z: 0}
+  useCorruptedPosition: 0
   corruptedPushRadius: 0.98
+  corruptedPushAffectPlayer: 1
+  cPushForceY: 0
+  cPushForceX: 0
+  xPushEqualY: 0
   corruptedPullRadius: 0.23
+  corruptedPullAffectPlayer: 1
+  cPullForceY: 0
+  cPullForceX: 0
+  xPullEqualY: 0
   corruptedActivateRadius: 0.23
+  bypassPushRules: 0
+  bypassPullRules: 0
   bypassActivateRules: 1
 --- !u!95 &436754162
 Animator:
@@ -18327,9 +18366,22 @@ MonoBehaviour:
   launchAgainToDisable: 0
   isActivated: 0
   activateBehaviour: 0
+  disableBehaviour: 0
+  corruptedPosition: {x: 0, y: 0, z: 0}
+  useCorruptedPosition: 0
   corruptedPushRadius: 0
+  corruptedPushAffectPlayer: 1
+  cPushForceY: 0
+  cPushForceX: 0
+  xPushEqualY: 0
   corruptedPullRadius: 0
+  corruptedPullAffectPlayer: 1
+  cPullForceY: 0
+  cPullForceX: 0
+  xPullEqualY: 0
   corruptedActivateRadius: 0
+  bypassPushRules: 0
+  bypassPullRules: 0
   bypassActivateRules: 0
 --- !u!95 &600505121
 Animator:
@@ -20681,9 +20733,22 @@ MonoBehaviour:
   launchAgainToDisable: 0
   isActivated: 0
   activateBehaviour: 0
+  disableBehaviour: 0
+  corruptedPosition: {x: 0, y: 0, z: 0}
+  useCorruptedPosition: 0
   corruptedPushRadius: 0
+  corruptedPushAffectPlayer: 1
+  cPushForceY: 0
+  cPushForceX: 0
+  xPushEqualY: 0
   corruptedPullRadius: 0
+  corruptedPullAffectPlayer: 1
+  cPullForceY: 0
+  cPullForceX: 0
+  xPullEqualY: 0
   corruptedActivateRadius: 0
+  bypassPushRules: 0
+  bypassPullRules: 0
   bypassActivateRules: 0
 --- !u!50 &731540518
 Rigidbody2D:
@@ -26551,9 +26616,22 @@ MonoBehaviour:
   launchAgainToDisable: 0
   isActivated: 0
   activateBehaviour: 2
+  disableBehaviour: 0
+  corruptedPosition: {x: 0, y: 0, z: 0}
+  useCorruptedPosition: 0
   corruptedPushRadius: 0.98
+  corruptedPushAffectPlayer: 1
+  cPushForceY: 0
+  cPushForceX: 0
+  xPushEqualY: 0
   corruptedPullRadius: 0.23
+  corruptedPullAffectPlayer: 1
+  cPullForceY: 0
+  cPullForceX: 0
+  xPullEqualY: 0
   corruptedActivateRadius: 0.23
+  bypassPushRules: 0
+  bypassPullRules: 0
   bypassActivateRules: 1
 --- !u!95 &778776226
 Animator:
@@ -28834,9 +28912,22 @@ MonoBehaviour:
   launchAgainToDisable: 0
   isActivated: 0
   activateBehaviour: 2
+  disableBehaviour: 0
+  corruptedPosition: {x: 0, y: 0, z: 0}
+  useCorruptedPosition: 0
   corruptedPushRadius: 0.98
+  corruptedPushAffectPlayer: 1
+  cPushForceY: 0
+  cPushForceX: 0
+  xPushEqualY: 0
   corruptedPullRadius: 0.23
+  corruptedPullAffectPlayer: 1
+  cPullForceY: 0
+  cPullForceX: 0
+  xPullEqualY: 0
   corruptedActivateRadius: 0.23
+  bypassPushRules: 0
+  bypassPullRules: 0
   bypassActivateRules: 1
 --- !u!95 &865150246
 Animator:
@@ -35979,6 +36070,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddd03a1794494c64fb953d73e5c0469e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anim1: {fileID: 0}
+  anim2: {fileID: 0}
   Cube: {fileID: 1791340287}
   isChecked: 0
 --- !u!61 &1170157532
@@ -39063,7 +39156,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1310973651
 Transform:
   m_ObjectHideFlags: 0
@@ -40347,6 +40440,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddd03a1794494c64fb953d73e5c0469e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anim1: {fileID: 0}
+  anim2: {fileID: 0}
   Cube: {fileID: 1791340287}
   isChecked: 0
 --- !u!61 &1384364823
@@ -47777,9 +47872,22 @@ MonoBehaviour:
   launchAgainToDisable: 0
   isActivated: 0
   activateBehaviour: 2
+  disableBehaviour: 0
+  corruptedPosition: {x: 0, y: 0, z: 0}
+  useCorruptedPosition: 0
   corruptedPushRadius: 0.98
+  corruptedPushAffectPlayer: 1
+  cPushForceY: 0
+  cPushForceX: 0
+  xPushEqualY: 0
   corruptedPullRadius: 0.23
+  corruptedPullAffectPlayer: 1
+  cPullForceY: 0
+  cPullForceX: 0
+  xPullEqualY: 0
   corruptedActivateRadius: 0.23
+  bypassPushRules: 0
+  bypassPullRules: 0
   bypassActivateRules: 1
 --- !u!95 &1502384476
 Animator:
@@ -53479,6 +53587,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddd03a1794494c64fb953d73e5c0469e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anim1: {fileID: 0}
+  anim2: {fileID: 0}
   Cube: {fileID: 1791340287}
   isChecked: 0
 --- !u!61 &1578640897
@@ -59490,8 +59600,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cce00ead12b175a4e87965bab1e34f15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueManager: {fileID: 0}
-  toShow: 0
 --- !u!1 &1655783663
 GameObject:
   m_ObjectHideFlags: 0
@@ -62040,6 +62148,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddd03a1794494c64fb953d73e5c0469e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anim1: {fileID: 0}
+  anim2: {fileID: 0}
   Cube: {fileID: 1791340287}
   isChecked: 0
 --- !u!61 &1736592466
@@ -62521,9 +62631,22 @@ MonoBehaviour:
   launchAgainToDisable: 0
   isActivated: 0
   activateBehaviour: 0
+  disableBehaviour: 0
+  corruptedPosition: {x: 0, y: 0, z: 0}
+  useCorruptedPosition: 0
   corruptedPushRadius: 0
+  corruptedPushAffectPlayer: 1
+  cPushForceY: 0
+  cPushForceX: 0
+  xPushEqualY: 0
   corruptedPullRadius: 0
+  corruptedPullAffectPlayer: 1
+  cPullForceY: 0
+  cPullForceX: 0
+  xPullEqualY: 0
   corruptedActivateRadius: 0
+  bypassPushRules: 0
+  bypassPullRules: 0
   bypassActivateRules: 0
 --- !u!50 &1760347142
 Rigidbody2D:
@@ -63273,9 +63396,22 @@ MonoBehaviour:
   launchAgainToDisable: 0
   isActivated: 0
   activateBehaviour: 0
+  disableBehaviour: 0
+  corruptedPosition: {x: 0, y: 0, z: 0}
+  useCorruptedPosition: 0
   corruptedPushRadius: 0
+  corruptedPushAffectPlayer: 1
+  cPushForceY: 0
+  cPushForceX: 0
+  xPushEqualY: 0
   corruptedPullRadius: 0
+  corruptedPullAffectPlayer: 1
+  cPullForceY: 0
+  cPullForceX: 0
+  xPullEqualY: 0
   corruptedActivateRadius: 0
+  bypassPushRules: 0
+  bypassPullRules: 0
   bypassActivateRules: 0
 --- !u!50 &1791340289
 Rigidbody2D:
@@ -66228,9 +66364,22 @@ MonoBehaviour:
   launchAgainToDisable: 0
   isActivated: 0
   activateBehaviour: 2
+  disableBehaviour: 0
+  corruptedPosition: {x: 0, y: 0, z: 0}
+  useCorruptedPosition: 0
   corruptedPushRadius: 0.98
+  corruptedPushAffectPlayer: 1
+  cPushForceY: 0
+  cPushForceX: 0
+  xPushEqualY: 0
   corruptedPullRadius: 0.23
+  corruptedPullAffectPlayer: 1
+  cPullForceY: 0
+  cPullForceX: 0
+  xPullEqualY: 0
   corruptedActivateRadius: 0.23
+  bypassPushRules: 0
+  bypassPullRules: 0
   bypassActivateRules: 1
 --- !u!95 &1900832286
 Animator:
@@ -67236,6 +67385,8 @@ MonoBehaviour:
   joystickTolerance: 0.62
   tilemapD: {fileID: 898596803}
   tilemapN: {fileID: 536254190}
+  tileWallD: {fileID: 0}
+  tileWallN: {fileID: 0}
   dialogueManagerObject: {fileID: 1653222222}
   dialogueTriggerObject: {fileID: 0}
   dialogueHasStarted: 0

@@ -16,7 +16,7 @@ public class SetVolume : MonoBehaviour {
 
         foreach (AudioSource auSo in myAudios)
         {
-            Debug.Log(auSo.volume + " x " + PauseMenu.handleReturnedValue);
+            //Debug.Log(auSo.volume + " x " + PauseMenu.handleReturnedValue);
             initialVolume = auSo.volume;
         }
     }

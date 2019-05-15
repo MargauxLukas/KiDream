@@ -25,25 +25,18 @@ public class ActivateEffect : MonoBehaviour
         if (collision.tag == "ActionObject") //Tous les objets ayant ce tag doivent avoir un BoxCollider2D (Normal), un RigidBody2D (Dynamic + GravityScale à 0) et le script ReactionToWave.
         {
 
-
-            if (collision.GetComponent<ReactionToWave>() == null)
-            {
-                return;
-            }
-            else if(collision.GetComponent<ReactionToWave>() != null)
+            if (collision.GetComponent<ReactionToWave>() != null)
             {
                 behaviour = collision.GetComponent<ReactionToWave>();
             }
-
-            if (collision.GetComponentInParent<ReactionToWave>() == null)
-            {
-                return;
-            }
-            else if (collision.GetComponentInParent<ReactionToWave>() != null)
+            else if (collision.transform.parent.GetComponent<ReactionToWave>() != null)
             {
                 behaviour = collision.GetComponentInParent<ReactionToWave>();
             }
-
+            else
+            {
+                return;
+            }
 
             if (behaviour.canBeActivated == true)
             {
@@ -63,11 +56,6 @@ public class ActivateEffect : MonoBehaviour
     {
         if (collision.tag == "ActionObject") //Tous les objets ayant ce tag doivent avoir un BoxCollider2D (Normal), un RigidBody2D (Dynamic + GravityScale à 0) et le script ReactionToWave.
         {
-            if (collision.GetComponent<ReactionToWave>() == null)
-            {
-                return;
-            }
-
             behaviour = collision.GetComponent<ReactionToWave>();
 
             if (behaviour.canBeActivated == true)

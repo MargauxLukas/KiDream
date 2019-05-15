@@ -101,7 +101,15 @@ public class CharacterController : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.Joystick1Button0) && !dialogueHasStarted)
         {
-            dialogueTrigger = dialogueTriggerObject.GetComponent<DialogueTrigger>();
+            if(dialogueTriggerObject != null)
+            {
+                dialogueTrigger = dialogueTriggerObject.GetComponent<DialogueTrigger>();
+            }
+            else
+            {
+                return;
+            }
+
             dialogueTrigger.TriggerDialogue();
             dialogueHasStarted = true;
         }

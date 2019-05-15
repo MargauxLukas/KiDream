@@ -259,7 +259,7 @@ public class ReactionToWave : MonoBehaviour
                 case 0:
                     corruptedPushRadius = GetComponent<ReactionToWave>().corruptedPushRadius;
                     CorruptedPosition();
-                    //ps.startSize = 2.76131f * corruptedPushRadius + 0.063143f;
+                    ps.startSize = 2.76131f * corruptedPushRadius + 0.063143f;
                     ps.GetComponent<PushEffect>();
                     ps.GetComponent<PushEffect>().affectPlayer = corruptedPushAffectPlayer;
                     ps.GetComponent<PushEffect>().forceX = cPushForceX;
