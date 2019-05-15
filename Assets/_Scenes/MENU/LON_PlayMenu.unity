@@ -1174,7 +1174,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1359665339
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1518,6 +1518,8 @@ MonoBehaviour:
   clampHaut: 40
   allowClampMid: 1
   clampMid: 0
+  allowClampMid2: 0
+  clampMid2: 0
   allowClampBas: 1
   inferiorEqualValue: 1
   clampBas: -40

@@ -408,6 +408,8 @@ MonoBehaviour:
   clampHaut: 40
   allowClampMid: 1
   clampMid: 0
+  allowClampMid2: 0
+  clampMid2: 0
   allowClampBas: 1
   inferiorEqualValue: 1
   clampBas: -40
@@ -735,7 +737,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &552845109
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1053,7 +1055,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 654887554c2e34c4dbf6132e8bd9c076, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.4
+  m_Volume: 0
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -2120,7 +2122,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: af6d6f101d187f943b9986db77186132, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.4
+  m_Volume: 0
   m_Pitch: 1
   Loop: 0
   Mute: 0
