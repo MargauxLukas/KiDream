@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Switcher : MonoBehaviour
 {
-
     private bool dream = true;
 
     public GameObject dreamObject;
