@@ -49,6 +49,10 @@ public class ReactionToWave : MonoBehaviour
     public ActivateBehaviour activateBehaviour;
     public ActivateBehaviour disableBehaviour;
 
+    /*[Header("LifeTime Bonus if can't be shooted by")]
+    [Range(0, 10), SerializeField]
+    private float lifeTimeBonus = 1f;*/
+
     [Header("Corrupted options")]
 
     [Header("Transform")]
@@ -127,7 +131,8 @@ public class ReactionToWave : MonoBehaviour
 
 
     private void OnParticleCollision(GameObject other)
-    {
+    {        
+
         foreach (GameObject go in whoCanShootMe)
         {
             if (other == go || (other.transform.parent != null && other.transform.parent.gameObject == go))
@@ -235,7 +240,7 @@ public class ReactionToWave : MonoBehaviour
                         }
                     }
 
-                    ParticleList[indexParticle].remainingLifetime = ParticleList[indexParticle].remainingLifetime + 1f;
+                    ParticleList[indexParticle].remainingLifetime = ParticleList[indexParticle].remainingLifetime + 1f /*+ lifeTimeBonus*/;
 
                     shooter.SetParticles(ParticleList, shooter.particleCount);
                 }
@@ -259,7 +264,7 @@ public class ReactionToWave : MonoBehaviour
                 case 0:
                     corruptedPushRadius = GetComponent<ReactionToWave>().corruptedPushRadius;
                     CorruptedPosition();
-                    //ps.startSize = 2.76131f * corruptedPushRadius + 0.063143f;
+                    ps.startSize = 2.76131f * corruptedPushRadius + 0.063143f;
                     ps.GetComponent<PushEffect>();
                     ps.GetComponent<PushEffect>().affectPlayer = corruptedPushAffectPlayer;
                     ps.GetComponent<PushEffect>().forceX = cPushForceX;

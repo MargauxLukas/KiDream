@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class EnterOnlyAnimatorTrigger : MonoBehaviour
 {
-    Animator Anim;
+    public GameObject gameObject;
+    private Animator anim;
     BoxCollider2D Collider;
     public bool isChecked = false;
 
     void Start()
     {
-        Anim = GetComponentInParent<Animator>();
+        anim = gameObject.GetComponent<Animator>();
         Collider = GetComponent<BoxCollider2D>();
     }
 
@@ -18,7 +19,7 @@ public class EnterOnlyAnimatorTrigger : MonoBehaviour
     {
         if (collision.tag == "Player" && isChecked == false)
         {
-            Anim.SetBool("isTouched", true);
+            anim.SetBool("isTouched", true);
             isChecked = true;
             Destroy(Collider);
             Destroy(this);

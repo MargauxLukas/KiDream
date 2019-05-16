@@ -33,6 +33,7 @@ public class PullEffect : MonoBehaviour
     [SerializeField]
     private float strongWaveDuration;
 
+    //public bool objectInRange;
 
     void Start()
     {
@@ -70,6 +71,10 @@ public class PullEffect : MonoBehaviour
             {
                 behaviour = collision.GetComponent<ReactionToWave>();
             }
+            else if (collision.transform.parent.GetComponent<ReactionToWave>() != null)
+            {
+                behaviour = collision.GetComponentInParent<ReactionToWave>();
+            }
             else
             {
                 return;
@@ -79,7 +84,14 @@ public class PullEffect : MonoBehaviour
             {
                 this.GetComponentInParent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
 
-                rb = collision.gameObject.GetComponent<Rigidbody2D>();
+                if(collision.GetComponent<Rigidbody2D>() != null)
+                {
+                    rb = collision.gameObject.GetComponent<Rigidbody2D>();
+                }
+                else if(collision.GetComponentInParent<Rigidbody2D>() != null)
+                {
+                    rb = collision.gameObject.GetComponentInParent<Rigidbody2D>();
+                }
                 rb.AddForce(new Vector2((this.transform.position.x - collision.transform.position.x) * forceX, (this.transform.position.y - collision.transform.position.y) * forceY));
             }
         }

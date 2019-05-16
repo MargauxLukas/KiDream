@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
@@ -67,6 +66,7 @@ public class CharacterController : MonoBehaviour
 
     void Start()
     {
+        CheckpointSystem.RespawnCheckpoint(this.transform);
         animator  = GetComponent<Animator   >();
         rigidBody = GetComponent<Rigidbody2D>();
     }
@@ -102,7 +102,15 @@ public class CharacterController : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.Joystick1Button0) && !dialogueHasStarted)
         {
-            dialogueTrigger = dialogueTriggerObject.GetComponent<DialogueTrigger>();
+            if(dialogueTriggerObject != null)
+            {
+                dialogueTrigger = dialogueTriggerObject.GetComponent<DialogueTrigger>();
+            }
+            else
+            {
+                return;
+            }
+
             dialogueTrigger.TriggerDialogue();
             dialogueHasStarted = true;
         }
@@ -110,6 +118,11 @@ public class CharacterController : MonoBehaviour
         {
             dialogueManager = dialogueManagerObject.GetComponent<DialogueManager>();
             dialogueManager.DisplayNextSentence();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Joystick1Button6))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
 
         Twist();

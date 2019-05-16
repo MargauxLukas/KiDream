@@ -29,7 +29,7 @@ public class Menu : MonoBehaviour
 
     private int levelIndex;
 
-    void Start()
+    void Awake()
     {
         StartCoroutine(AvoidDoubleClick(0.5f));
     }
@@ -55,23 +55,23 @@ public class Menu : MonoBehaviour
             switch (menuReaction)
             {
                 case MenuReaction.MainMenu:
-                    FadeToLevel(0);
-                    break;
-                case MenuReaction.PlayMenu:
                     FadeToLevel(1);
                     break;
+                case MenuReaction.PlayMenu:
+                    FadeToLevel(2);
+                    break;
                 case MenuReaction.NewGame:
-                    StartCoroutine(LoadAsynchronously(10));
+                    StartCoroutine(LoadAsynchronously(11));
                     break;
                 case MenuReaction.ChapterMenu:
-                    FadeToLevel(3);
+                    FadeToLevel(4);
                     break;
                 case MenuReaction.OptionsMenu:
-                    FadeToLevel(4);
+                    FadeToLevel(5);
                     OnFadeComplete();
                     break;
                 case MenuReaction.Credits:
-                    FadeToLevel(5);
+                    FadeToLevel(6);
                     break;
                 case MenuReaction.QuitGame:
                     QuitGame();

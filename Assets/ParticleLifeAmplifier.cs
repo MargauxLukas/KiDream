@@ -13,13 +13,13 @@ public class ParticleLifeAmplifier : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update() {
+    void Update()
+    {
 
     }
 
     private void OnParticleCollision(GameObject other)
     {
-
         ParticleSystem shooter = other.GetComponent<ParticleSystem>();
 
         ParticleSystem.Particle[] ParticleList = new ParticleSystem.Particle[shooter.particleCount];

@@ -124,7 +124,7 @@ GameObject:
   - component: {fileID: 41499999}
   m_Layer: 0
   m_Name: "Ar\xE8ne_Boss_Sol_N"
-  m_TagString: CeQuiApparaitEnCauchemar
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -457,9 +457,22 @@ MonoBehaviour:
   launchAgainToDisable: 0
   isActivated: 0
   activateBehaviour: 2
+  disableBehaviour: 0
+  corruptedPosition: {x: 0, y: 0, z: 0}
+  useCorruptedPosition: 0
   corruptedPushRadius: 0
+  corruptedPushAffectPlayer: 1
+  cPushForceY: 0
+  cPushForceX: 0
+  xPushEqualY: 0
   corruptedPullRadius: 0
+  corruptedPullAffectPlayer: 1
+  cPullForceY: 0
+  cPullForceX: 0
+  xPullEqualY: 0
   corruptedActivateRadius: 0
+  bypassPushRules: 0
+  bypassPullRules: 0
   bypassActivateRules: 0
 --- !u!95 &256584248
 Animator:
@@ -827,10 +840,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54cf609a4dd2c5942901d56117bcfb6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  affectPlayer: 0
   rb: {fileID: 0}
-  forceX: 0.05
   forceY: 0
-  yEqualX: 1
+  forceX: 0.05
+  xEqualY: 0
   adaptRadius: 1
 --- !u!199 &447779165
 ParticleSystemRenderer:
@@ -5696,9 +5710,22 @@ MonoBehaviour:
   launchAgainToDisable: 0
   isActivated: 0
   activateBehaviour: 0
+  disableBehaviour: 0
+  corruptedPosition: {x: 0, y: 0, z: 0}
+  useCorruptedPosition: 0
   corruptedPushRadius: 2
+  corruptedPushAffectPlayer: 1
+  cPushForceY: 0
+  cPushForceX: 0
+  xPushEqualY: 0
   corruptedPullRadius: 0
+  corruptedPullAffectPlayer: 1
+  cPullForceY: 0
+  cPullForceX: 0
+  xPullEqualY: 0
   corruptedActivateRadius: 0
+  bypassPushRules: 0
+  bypassPullRules: 0
   bypassActivateRules: 0
 --- !u!114 &587806237
 MonoBehaviour:
@@ -6191,7 +6218,7 @@ GameObject:
   - component: {fileID: 726351001}
   m_Layer: 0
   m_Name: "Chute_Mur_Arri\xE8re_D00"
-  m_TagString: CeQuiApparaitEnReve
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6770,7 +6797,7 @@ GameObject:
   - component: {fileID: 1271118940}
   m_Layer: 0
   m_Name: Chute_Mur_Avant_N00
-  m_TagString: CeQuiApparaitEnCauchemar
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7644,7 +7671,7 @@ GameObject:
   - component: {fileID: 1827115952}
   m_Layer: 0
   m_Name: "Ar\xE8ne_Boss_Sol_D"
-  m_TagString: CeQuiApparaitEnReve
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7806,7 +7833,7 @@ GameObject:
   - component: {fileID: 1851292326}
   m_Layer: 0
   m_Name: "Chute_Mur_Arri\xE8re_N00"
-  m_TagString: CeQuiApparaitEnCauchemar
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8129,7 +8156,7 @@ GameObject:
   - component: {fileID: 2115170310}
   m_Layer: 0
   m_Name: Chute_Mur_Avant_D00
-  m_TagString: CeQuiApparaitEnReve
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
