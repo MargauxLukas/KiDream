@@ -8,6 +8,9 @@ public class DialogueManager : MonoBehaviour
 
     public Text nameText;
     public Text dialogueText;
+    public Image dialogueBoxAspect;
+    public Sprite dreamAspect;
+    public Sprite nightmareAspect;
 
     public AudioSource audio;
     public AudioClip keySound;
@@ -32,6 +35,15 @@ public class DialogueManager : MonoBehaviour
     void Update()
     {
         showDialogueExecutionStatut = dialogueExecutionStatut;
+
+        if(scriptController.isDream == true)
+        {
+            dialogueBoxAspect.sprite = dreamAspect;
+        }
+        else if(scriptController.isDream == false)
+        {
+            dialogueBoxAspect.sprite = nightmareAspect;
+        }
     }
 
     public void StartDialogue(Dialogue dialogue)
