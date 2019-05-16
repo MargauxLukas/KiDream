@@ -66,6 +66,7 @@ public class CharacterController : MonoBehaviour
 
     void Start()
     {
+        CheckpointSystem.RespawnCheckpoint(this.transform);
         animator  = GetComponent<Animator   >();
         rigidBody = GetComponent<Rigidbody2D>();
     }
@@ -117,6 +118,11 @@ public class CharacterController : MonoBehaviour
         {
             dialogueManager = dialogueManagerObject.GetComponent<DialogueManager>();
             dialogueManager.DisplayNextSentence();
+        }
+
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            SceneManager.LoadScene(3);
         }
 
         Twist();
