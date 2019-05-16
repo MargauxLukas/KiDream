@@ -9,7 +9,6 @@ public class UIManager : MonoBehaviour
     public List<Image> imageList = new List<Image>();
     public CharacterController myPlayer;
     public WaveManager waveManager;
-    public RectTransform selectionIndicator;
 
     public Slider manaBar;
 
@@ -22,41 +21,40 @@ public class UIManager : MonoBehaviour
 	// Update
 	void Update ()
     {
-		if(myPlayer.isDream == true)
+        switch(waveManager.selectionIndex)
         {
-            foreach(Image im in imageList)
-            {
-                if(im.gameObject.name.Contains("Dream"))
-                {
-                    im.gameObject.SetActive(true);
-                }
-                else
-                {
-                    im.gameObject.SetActive(false);
-                }
-            }
+            case 0:
+                ImageSeleciton();
+                imageList[0].gameObject.SetActive(true);
+                break;
+            case 1:
+                ImageSeleciton();
+                imageList[1].gameObject.SetActive(true);
+                break;
+            case 2:
+                ImageSeleciton();
+                imageList[2].gameObject.SetActive(true);
+                break;
+            case 3:
+                ImageSeleciton();
+                imageList[3].gameObject.SetActive(true);
+                break;
+            case 4:
+                ImageSeleciton();
+                imageList[4].gameObject.SetActive(true);
+                break;
+            case 5:
+                ImageSeleciton();
+                imageList[5].gameObject.SetActive(true);
+                break;
         }
-        else if(myPlayer.isDream == false)
-        {
-            foreach (Image im in imageList)
-            {
-                if (im.gameObject.name.Contains("Nightmare"))
-                {
-                    im.gameObject.SetActive(true);
-                }
-                else
-                {
-                    im.gameObject.SetActive(false);
-                }
-            }
-        }
-
-        if(selectionIndicator.position != imageList[waveManager.selectionIndex].rectTransform.position)
-        {
-            selectionIndicator.position = imageList[waveManager.selectionIndex].rectTransform.position;
-        }
-
-        
-
 	}
+
+    public void ImageSeleciton()
+    {
+        foreach (Image im in imageList)
+        {
+                im.gameObject.SetActive(false);
+        }
+    }
 }

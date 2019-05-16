@@ -8,6 +8,8 @@ public class PushEffect : MonoBehaviour
     ParticleSystem corruptedPushPS;
     ReactionToWave parentBehaviour;
 
+    ReactionToWave behaviour;
+
     public bool affectPlayer;
 
     public Rigidbody2D rb;
@@ -55,14 +57,44 @@ public class PushEffect : MonoBehaviour
         }
         else if(collision.tag == "ActionObject") //Tous les objets ayant ce tag doivent avoir un BoxCollider2D (Normal), un RigidBody2D (Dynamic + GravityScale à 0) et le script ReactionToWave.
         {
-            ReactionToWave behaviour = collision.GetComponent<ReactionToWave>();
+            if(collision.GetComponent<ReactionToWave>() != null)
+            {
+                behaviour = collision.GetComponent<ReactionToWave>();
+            }
+            else if(collision.transform.parent.GetComponent<ReactionToWave>() != null)
+            {
+                behaviour = collision.GetComponentInParent<ReactionToWave>();
+            }
+            else
+            {
+                return;
+            }
+
             if (behaviour.canBePushed == true)
             {
-                rb = collision.gameObject.GetComponent<Rigidbody2D>();
+                this.GetComponentInParent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+
+                if (collision.GetComponent<Rigidbody2D>() != null)
+                {
+                    rb = collision.gameObject.GetComponent<Rigidbody2D>();
+                }
+                else if (collision.GetComponentInParent<Rigidbody2D>() != null)
+                {
+                    rb = collision.gameObject.GetComponentInParent<Rigidbody2D>();
+                }
+
                 rb.AddForce(new Vector2(-(this.transform.position.x - collision.transform.position.x) * forceX, -(this.transform.position.y - collision.transform.position.y) * forceY), ForceMode2D.Impulse);
             }
         }
                     
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if(collision.tag == "ActionObject")
+        {
+            this.GetComponentInParent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+        }
     }
 
 
