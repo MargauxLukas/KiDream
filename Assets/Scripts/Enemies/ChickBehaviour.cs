@@ -161,8 +161,13 @@ public class ChickBehaviour : MonoBehaviour
         }
     }
 
-    void Dead()
+    public void Dead()
     {
+        pushCorrupted1.SetActive(false);
+        pushCorrupted2.SetActive(false);
+        pushCorrupted3.SetActive(false);
+        pushCorrupted4.SetActive(false);
         animator.SetBool("isHurting", true);
+        Destroy(gameObject, 1.250f);
     }
 }

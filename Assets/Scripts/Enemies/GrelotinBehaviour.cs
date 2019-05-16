@@ -17,8 +17,9 @@ public class GrelotinBehaviour : MonoBehaviour
 
     private bool isDream     =  true;
     private bool isAttacking = false;
-    private bool canMove     = true;
-    
+    private bool canMove      = true;
+    private bool isDeath     = false;
+
     [Header("PushCorrupted power")]
     public float PushPower = 0.1f;
 
@@ -57,10 +58,7 @@ public class GrelotinBehaviour : MonoBehaviour
             if (canMove) { Move(); }
             else { animator.SetBool("isMoving", false); }
         }
-        else
-        {
-            return;
-        }
+        else{return;}
     }
 
     void Move()
@@ -116,7 +114,6 @@ public class GrelotinBehaviour : MonoBehaviour
             canMove = false;
             StartCoroutine(WaitAttack());
         }
-        //Repousse Objet
     }
 
     IEnumerator WaitAttack()
@@ -147,5 +144,11 @@ public class GrelotinBehaviour : MonoBehaviour
         yield return new WaitForSeconds(0.500f);
         canMove = true;
         isAttacking = false;
+    }
+
+    public void isDead()
+    {
+        animator.SetBool("isDeath", true);
+        Destroy(gameObject, 1.250f);
     }
 }

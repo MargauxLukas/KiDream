@@ -122,7 +122,7 @@ public class CharacterController : MonoBehaviour
 
         IsMoving();
         //IsAttacking();
-        Dead(hp);       
+        isDead(hp);       
     }
 
     void IsMoving()
@@ -275,7 +275,7 @@ public class CharacterController : MonoBehaviour
         Debug.Log(hp);
     }
 
-    void Dead(int hp)
+    void isDead(int hp)
     {
         if(hp <= 0)
         {
@@ -285,7 +285,16 @@ public class CharacterController : MonoBehaviour
         }
     }
 
-      void Twist()
+    public void isDead()
+    {
+        if (hp <= 0)
+        {
+            Destroy(gameObject,1f);
+            isKilled = true;
+        }
+    }
+
+    void Twist()
     {
         float h1 = Input.GetAxis("HorizontalRight");
         float v1 = Input.GetAxis("VerticalRight");

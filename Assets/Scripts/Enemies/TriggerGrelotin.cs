@@ -12,5 +12,4 @@ public class TriggerGrelotin : MonoBehaviour
             isActivated = true;
         }
     }
-
 }

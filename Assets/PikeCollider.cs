@@ -8,7 +8,6 @@ public class PikeCollider : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Collision detected");
         if(collision.gameObject == player)
         {
             Debug.Log("Player detected");
