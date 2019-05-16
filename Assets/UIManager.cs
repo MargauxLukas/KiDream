@@ -9,7 +9,6 @@ public class UIManager : MonoBehaviour
     public List<Image> imageList = new List<Image>();
     public CharacterController myPlayer;
     public WaveManager waveManager;
-    public RectTransform selectionIndicator;
 
     public Slider manaBar;
 
