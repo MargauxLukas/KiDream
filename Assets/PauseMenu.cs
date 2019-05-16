@@ -216,7 +216,7 @@ public class PauseMenu : MonoBehaviour
                         }
                     break;
                     case 1:
-
+                        
                         break;
                     case 2:
 
