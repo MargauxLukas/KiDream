@@ -9,14 +9,14 @@ public class StuckXaxis : MonoBehaviour
 
     void Update()
     {
-        if (transform.position.x < minX)
+        if (transform.localPosition.x < minX)
         {
-            transform.position = new Vector2(minX, transform.position.y);
+            transform.localPosition = new Vector2(minX, transform.localPosition.y);
         }
 
-        if (transform.position.x > maxX)
+        if (transform.localPosition.x > maxX)
         {
-            transform.position = new Vector2(maxX, transform.position.y);
+            transform.localPosition = new Vector2(maxX, transform.localPosition.y);
         }
     }
 }
