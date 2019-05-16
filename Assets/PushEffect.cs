@@ -56,7 +56,6 @@ public class PushEffect : MonoBehaviour
         else if(collision.tag == "ActionObject") //Tous les objets ayant ce tag doivent avoir un BoxCollider2D (Normal), un RigidBody2D (Dynamic + GravityScale à 0) et le script ReactionToWave.
         {
             ReactionToWave behaviour = collision.GetComponent<ReactionToWave>();
-            Debug.Log("Je suis la ");
             if (behaviour.canBePushed == true)
             {
                 rb = collision.gameObject.GetComponent<Rigidbody2D>();

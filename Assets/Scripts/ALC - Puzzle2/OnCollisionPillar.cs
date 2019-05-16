@@ -24,8 +24,7 @@ public class OnCollisionPillar : MonoBehaviour
             animator.SetBool("isChecked", true);
             isActivated = true;
         }
-        else
-        { return; }
+        else { return; }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

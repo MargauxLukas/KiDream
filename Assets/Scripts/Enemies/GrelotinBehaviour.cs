@@ -6,6 +6,9 @@ public class GrelotinBehaviour : MonoBehaviour
 {
     [Header("Objet = New Target (Sympa pour scripter)")]
     public GameObject attachedObject; //Objet auquel il est attaché, il passera son temps à le pousser (Sympa pour scripté)
+    public bool triggerBeforeMove = false;
+    [Header("Trigger qui permet de defreeze")]
+    public GameObject Trigger;
     [Header("PushCorrupted en enfant")]
     public GameObject pushCorrupted1;
     public GameObject pushCorrupted2;
@@ -15,6 +18,7 @@ public class GrelotinBehaviour : MonoBehaviour
     private bool isDream     =  true;
     private bool isAttacking = false;
     private bool canMove     = true;
+    
     [Header("PushCorrupted power")]
     public float PushPower = 0.1f;
 
@@ -46,8 +50,17 @@ public class GrelotinBehaviour : MonoBehaviour
 	
 	void Update ()
     {
-        if (canMove){Move();}
-        else { animator.SetBool("isMoving", false); }
+        if(Trigger.GetComponent<TriggerGrelotin>().isActivated){triggerBeforeMove = false;}
+
+        if (!triggerBeforeMove)
+        {
+            if (canMove) { Move(); }
+            else { animator.SetBool("isMoving", false); }
+        }
+        else
+        {
+            return;
+        }
     }
 
     void Move()
@@ -108,7 +121,7 @@ public class GrelotinBehaviour : MonoBehaviour
 
     IEnumerator WaitAttack()
     {
-        yield return new WaitForSeconds(0.500f);
+        yield return new WaitForSeconds(0.900f);
         if (lookingAt == 1) //Droite
         {
             pushCorrupted1.SetActive(true);
@@ -131,7 +144,7 @@ public class GrelotinBehaviour : MonoBehaviour
         pushCorrupted2.SetActive(false);
         pushCorrupted3.SetActive(false);
         pushCorrupted4.SetActive(false);
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(0.500f);
         canMove = true;
         isAttacking = false;
     }
