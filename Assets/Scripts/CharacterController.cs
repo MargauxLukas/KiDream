@@ -120,7 +120,7 @@ public class CharacterController : MonoBehaviour
             dialogueManager.DisplayNextSentence();
         }
 
-        if (Input.GetKeyDown(KeyCode.J))
+        if (Input.GetKeyDown(KeyCode.Joystick1Button6))
         {
             SceneManager.LoadScene(3);
         }
