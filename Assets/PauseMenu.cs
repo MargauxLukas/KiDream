@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
@@ -22,10 +23,28 @@ public class PauseMenu : MonoBehaviour
     public GameObject optionsGO;
     public GameObject controlsGO;
 
+    [Header("Langues")]
+    public GameObject langue;
+    public GameObject englishFlag;
+    public GameObject frenchFlag;
+
+
+    [Header("Volume")]
+    public Image volumeLogo;
+    public Image volumeBar;
+    public Image volumeHandle;
+
+    public Sprite nightmareLogo;
+    public Sprite nightmareBar;
+    public Sprite nightmareHandle;
+    public Sprite dreamLogo;
+    public Sprite dreamBar;
+    public Sprite dreamHandle;
+
     public List<GameObject> InputsGoList = new List<GameObject>();
 
     private bool shootAxisInUse;
-    float shootAxis;
+    private float shootAxis;
 
     public PauseMenu pauseMenuManager;
 
@@ -37,7 +56,7 @@ public class PauseMenu : MonoBehaviour
     public static float handleReturnedValue;
 
     public GameObject aiguille;
-    private int optionsIndex = 0;
+    public int optionsIndex = 0;
 
     private void Awake()
     {
@@ -82,8 +101,20 @@ public class PauseMenu : MonoBehaviour
         if(this.gameObject.name.Contains("Options"))
         {
             InOptionsMenu();
-        }
 
+            if (myPlayer.isDream == true)
+            {
+                volumeLogo.sprite = dreamLogo;
+                volumeBar.sprite = dreamBar;
+                volumeHandle.sprite = dreamHandle;
+            }
+            else if (myPlayer.isDream == false)
+            {
+                volumeLogo.sprite = nightmareLogo;
+                volumeBar.sprite = nightmareBar;
+                volumeHandle.sprite = nightmareHandle;
+            }
+        }
     }
 
     //TESTER LE CHANGEMENT DE SON AVEC L'AUDIO MIXER
@@ -106,23 +137,27 @@ public class PauseMenu : MonoBehaviour
                     case ButtonBehaviour.Resume:
                         Resume();
                         controlsGO.SetActive(false);
-                        optionsGO.SetActive(false);
+                        langue.SetActive(false);
+                        volumeLogo.gameObject.SetActive(false);
                         break;
 
                     case ButtonBehaviour.Options:
                         controlsGO.SetActive(false); // Controls FALSE
-                        optionsGO.SetActive(true); // Options TRUE
+                        langue.SetActive(true);
+                        volumeLogo.gameObject.SetActive(true); // Options TRUE
                         optionsSelected = true;
                         break;
 
                     case ButtonBehaviour.Controls:
                         controlsGO.SetActive(true); // Controls TRUE
-                        optionsGO.SetActive(false); // Options FALSE
+                        langue.SetActive(false);
+                        volumeLogo.gameObject.SetActive(false); // Options FALSE
                         break;
 
                     case ButtonBehaviour.Quit:
                         controlsGO.SetActive(false);
-                        optionsGO.SetActive(false);
+                        langue.SetActive(false);
+                        volumeLogo.gameObject.SetActive(false);
                         SceneManager.LoadScene(0);
                         break;
                 }
@@ -147,6 +182,8 @@ public class PauseMenu : MonoBehaviour
 
         pauseMenuDream.SetActive(false);
         pauseMenuNightmare.SetActive(false);
+        langue.SetActive(false);
+        volumeLogo.gameObject.SetActive(false);
 
         foreach (GameObject go in pauseMenuManager.InputsGoList)
         {
@@ -191,12 +228,10 @@ public class PauseMenu : MonoBehaviour
 
         if (optionsSelected == true)
         {
+            langue.SetActive(true);
+
             aiguille.SetActive(false);
 
-            if (shootAxis > 0 && shootAxisInUse == false)
-            {
-                optionsIndex++;
-            }
                 switch (optionsIndex)
                 {
                     case 0:
@@ -211,27 +246,53 @@ public class PauseMenu : MonoBehaviour
                                 handlePosition.localPosition = new Vector2(handlePosition.localPosition.x + handleStep, handlePosition.localPosition.y);
                             }
 
-                        handleReturnedValue = (handlePosition.localPosition.x - handleMin.localPosition.x) / (handleMax.localPosition.x - handleMin.localPosition.x);
-
+                            handleReturnedValue = (handlePosition.localPosition.x - handleMin.localPosition.x) / (handleMax.localPosition.x - handleMin.localPosition.x);
                         }
-                    break;
+
+                        if (shootAxis > 0 && shootAxisInUse == false)
+                        {
+                            optionsIndex++;
+                            shootAxisInUse = true;
+                        }
+
+                        break;
+
                     case 1:
 
+                        if (Input.GetKeyDown(KeyCode.Joystick1Button4))
+                        {
+                            GameLanguage.lang = Language.french;
+                            englishFlag.SetActive(false);
+                            frenchFlag.SetActive(true);
+                        }
+                        else if (Input.GetKeyDown(KeyCode.Joystick1Button5))
+                        {
+                            GameLanguage.lang = Language.english;
+                            englishFlag.SetActive(true);
+                            frenchFlag.SetActive(false);
+                        }
+
+                        if (shootAxis > 0 && shootAxisInUse == false)
+                        {
+                            optionsIndex++;
+                            shootAxisInUse = true;
+                        }
                         break;
+
                     case 2:
-
+                        optionsSelected = false;
                         break;
-
                 }
-            
-
         }
-        else
+        else if(optionsSelected == false)
         {
+            langue.SetActive(false);
+            volumeLogo.gameObject.SetActive(false);
             aiguille.SetActive(true);
+            optionsIndex = 0;
         }
 
     }
 
 }
-public enum ButtonBehaviour { Resume, Options, Controls, Quit}
+public enum ButtonBehaviour {Resume, Options, Controls, Quit}
