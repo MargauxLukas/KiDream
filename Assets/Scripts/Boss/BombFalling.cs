@@ -59,7 +59,7 @@ public class BombFalling : MonoBehaviour
             animator.SetBool("isFalling", true);
             collider.isTrigger = true;
             collisionLayer.GetComponent<CapsuleCollider2D>().isTrigger = true;
-            transform.Translate(-transform.up * 0.03f);
+            transform.Translate(-transform.up * (0.2f * Time.fixedDeltaTime));
         }
         if (transform.position.y < target.y)
         {

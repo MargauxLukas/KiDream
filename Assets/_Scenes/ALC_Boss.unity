@@ -840,10 +840,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54cf609a4dd2c5942901d56117bcfb6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  affectPlayer: 0
+  affectPlayer: 1
   rb: {fileID: 0}
-  forceY: 0
-  forceX: 0.05
+  forceY: 0.2
+  forceX: 0.2
   xEqualY: 0
   adaptRadius: 1
 --- !u!199 &447779165
@@ -8290,7 +8290,6 @@ MonoBehaviour:
   - {fileID: 1601509308}
   myPlayer: {fileID: 795463521}
   waveManager: {fileID: 1487536545}
-  selectionIndicator: {fileID: 323131643}
   manaBar: {fileID: 554261678}
 --- !u!224 &2145356568
 RectTransform:

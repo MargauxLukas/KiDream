@@ -18,15 +18,16 @@ public class Boss : MonoBehaviour
     public GameObject areaDetection;
     public GameObject  wallCollider;
 
-    private GameObject ombreObject;  //GameObject apres l'instantiate de l'ombre
-    private GameObject      bombe1;
-    private GameObject      bombe2;
-    private GameObject      bombe3;
-    private GameObject      player;
+    private GameObject  ombreObject;  //GameObject apres l'instantiate de l'ombre
+    private GameObject       bombe1;
+    private GameObject       bombe2;
+    private GameObject       bombe3;
+    private GameObject       player;
 
     private Transform target;
 
     private Rigidbody2D rb;
+    private Collider2D bossCollider;
 
     [Header("Boss Characteristics")]
     public float speed = 0.2f;
@@ -55,6 +56,7 @@ public class Boss : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
+        bossCollider = GetComponent<BoxCollider2D>();
         cameraAnimator = GameObject.Find("Main Camera").GetComponent<Animator>();
         bombAnimator1 = null;
         bombAnimator1 = null;
@@ -64,12 +66,13 @@ public class Boss : MonoBehaviour
         player = GameObject.Find("Player");
         target = player.transform;
 
-        distanceDeltaHV = Time.deltaTime * 1f;
-        distanceDeltaDiag = Time.deltaTime * 0.5f;
+        distanceDeltaHV = Time.fixedDeltaTime * 4f;
+        distanceDeltaDiag = Time.fixedDeltaTime * 1.5f;
     }
 	
-	void Update ()
+	void FixedUpdate ()
     {
+        Debug.Log(rb.isKinematic);
         isDream = player.GetComponent<CharacterController>().isDream;
         if (isDream) { animator.SetBool("isDream",  true);}
         else         { animator.SetBool("isDream", false);}
@@ -358,6 +361,7 @@ public class Boss : MonoBehaviour
         if (phase == 2)
         {
             yield return new WaitForSeconds(0.9f);
+            bossCollider.enabled = false;
             gameObject.transform.position = Vector2.MoveTowards(transform.position, new Vector2(transform.position.x, 4.5f), 0.1f);
             yield return new WaitForSeconds(0.2f);
             Shadow(2); //Ombre à Instantiate
@@ -365,6 +369,7 @@ public class Boss : MonoBehaviour
         else if(phase == 3)
         {
             yield return new WaitForSeconds(0.9f);
+            bossCollider.enabled = false;
             gameObject.transform.position = Vector2.MoveTowards(transform.position, new Vector2(transform.position.x, 4.5f), 0.1f);
             yield return new WaitForSeconds(0.2f);
             Shadow(3); //Ombre à Instantiate
@@ -373,6 +378,7 @@ public class Boss : MonoBehaviour
         else if (phase == 4)
         {
             yield return new WaitForSeconds(0.9f);
+            bossCollider.enabled = false;
             gameObject.transform.position = Vector2.MoveTowards(transform.position, new Vector2(transform.position.x, 4.5f), 0.1f);
             yield return new WaitForSeconds(0.2f);
             Shadow(4); //Ombre à Instantiate
@@ -381,6 +387,7 @@ public class Boss : MonoBehaviour
         else if (phase == 5)
         {
             yield return new WaitForSeconds(0.9f);
+            bossCollider.enabled = false;
             gameObject.transform.position = Vector2.MoveTowards(transform.position, new Vector2(transform.position.x, 4.5f), 0.1f);
             yield return new WaitForSeconds(0.2f);
             Shadow(5); //Ombre à Instantiate
@@ -395,39 +402,40 @@ public class Boss : MonoBehaviour
     {
         if (phase == 2)
         {
-            if (ombreObject == null) { ombreObject = Instantiate(ombre, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y - 3.50f, 0), Quaternion.identity); }    //Instantiate Ombre 
+            if (ombreObject == null) { ombreObject = Instantiate(ombre, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y - 2f, 0), Quaternion.identity); }    //Instantiate Ombre 
 
-            ombreObject.transform.position = Vector2.MoveTowards(ombreObject.transform.position, target.position, 0.4f * Time.deltaTime);
-            transform.position = Vector2.MoveTowards(transform.position, new Vector2(ombreObject.transform.position.x, transform.position.y), 1f * Time.deltaTime);
+            ombreObject.transform.position = Vector2.MoveTowards(ombreObject.transform.position, target.position, 0.8f * Time.fixedDeltaTime);
+            transform.position = Vector2.MoveTowards(transform.position, new Vector2(ombreObject.transform.position.x, transform.position.y), 1f * Time.fixedDeltaTime);
 
             StartCoroutine(WaitShadow(phase));
         }
         else if (phase == 3)
         {
-            if (ombreObject == null) { ombreObject = Instantiate(ombre, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y - 3.50f, 0), Quaternion.identity); }    //Instantiate Ombre 
+            if (ombreObject == null) { ombreObject = Instantiate(ombre, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y - 2f, 0), Quaternion.identity); }    //Instantiate Ombre 
 
-            ombreObject.transform.position = Vector2.MoveTowards(ombreObject.transform.position, target.position, 0.4f * Time.deltaTime);
-            transform.position = Vector2.MoveTowards(transform.position, new Vector2(ombreObject.transform.position.x, transform.position.y), 1f * Time.deltaTime);
+            ombreObject.transform.position = Vector2.MoveTowards(ombreObject.transform.position, target.position, 1f * Time.fixedDeltaTime);
+            transform.position = Vector2.MoveTowards(transform.position, new Vector2(ombreObject.transform.position.x, transform.position.y), 1f * Time.fixedDeltaTime);
+            StartCoroutine(WaitShadow(phase));
         }
         else if (phase == 4)
         {
-            if (ombreObject == null) { ombreObject = Instantiate(ombre, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y - 3.50f, 0), Quaternion.identity); }    //Instantiate Ombre 
+            if (ombreObject == null) { ombreObject = Instantiate(ombre, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y - 2f, 0), Quaternion.identity); }    //Instantiate Ombre 
 
             if (isFollow)
             {
-                ombreObject.transform.position = Vector2.MoveTowards(ombreObject.transform.position, target.position, 0.4f * Time.deltaTime);
+                ombreObject.transform.position = Vector2.MoveTowards(ombreObject.transform.position, target.position, 0.4f * Time.fixedDeltaTime);
             }
-                transform.position = Vector2.MoveTowards(transform.position, new Vector2(ombreObject.transform.position.x, transform.position.y), 1f * Time.deltaTime);
+                transform.position = Vector2.MoveTowards(transform.position, new Vector2(ombreObject.transform.position.x, transform.position.y), 1f * Time.fixedDeltaTime);
 
             StartCoroutine(WaitShadow(phase));
         }
         else if (phase == 5)
         {
-            if (ombreObject == null) { ombreObject = Instantiate(ombre, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y - 3.50f, 0), Quaternion.identity); }    //Instantiate Ombre 
+            if (ombreObject == null) { ombreObject = Instantiate(ombre, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y - 2f, 0), Quaternion.identity); }    //Instantiate Ombre 
 
-            ombreObject.transform.position = Vector2.MoveTowards(ombreObject.transform.position, new Vector2(0f,1f), 0.4f * Time.deltaTime);
+            ombreObject.transform.position = Vector2.MoveTowards(ombreObject.transform.position, new Vector2(0f,1f), 0.8f * Time.fixedDeltaTime);
 
-            transform.position = Vector2.MoveTowards(transform.position, new Vector2(ombreObject.transform.position.x, transform.position.y), 1f * Time.deltaTime);
+            transform.position = Vector2.MoveTowards(transform.position, new Vector2(ombreObject.transform.position.x, transform.position.y), 1f * Time.fixedDeltaTime);
 
             StartCoroutine(WaitShadow(phase));
         }
@@ -444,12 +452,12 @@ public class Boss : MonoBehaviour
         {
             yield return new WaitForSeconds(2f);
             isFollow = false;
-            if (target.position.x > 0 && ombreObject != null) { ombreObject.transform.position = Vector2.MoveTowards(ombreObject.transform.position, new Vector2(-0.7f, 0.70f), 1f * Time.deltaTime); }
+            if (target.position.x > 0 && ombreObject != null) { ombreObject.transform.position = Vector2.MoveTowards(ombreObject.transform.position, new Vector2(-0.7f, 0.70f), 1f * Time.fixedDeltaTime); }
             else
             {
                 if (ombreObject != null)
                 {
-                    ombreObject.transform.position = Vector2.MoveTowards(ombreObject.transform.position, new Vector2(1f, 0.70f), 1f * Time.deltaTime);
+                    ombreObject.transform.position = Vector2.MoveTowards(ombreObject.transform.position, new Vector2(1f, 0.70f), 1f * Time.fixedDeltaTime);
                 }
             }
             yield return new WaitForSeconds(1.5f);
@@ -467,16 +475,31 @@ public class Boss : MonoBehaviour
     **************************************************************************************************************/
     void BossLanding()
     {
-        if (ombreObject != null) { gameObject.transform.position = Vector2.MoveTowards(transform.position, new Vector2(transform.position.x, ombreObject.transform.position.y), 0.1f); }
-        animator.SetBool("isLanding", true);
-
         StartCoroutine(WaitLanding());
     }
 
     IEnumerator WaitLanding()
     {
         yield return new WaitForSeconds(1.30f);
-        cameraAnimator.SetTrigger("shake")    ;
+        if (ombreObject != null && transform.position.y > ombreObject.transform.position.y)
+        {
+            gameObject.transform.position = Vector2.MoveTowards(transform.position, new Vector2(transform.position.x, ombreObject.transform.position.y), 0.1f);
+            animator.SetBool("isLanding", true);
+        }
+        else
+        {
+            cameraAnimator.SetTrigger("shake");
+            cameraAnimator.SetBool("isTrigger", true);
+            Destroy(ombreObject);
+            PushWave();
+            animator.SetBool("isLanding", false);
+            bossCollider.enabled = true;
+            seconds = 0;
+            isStartingPhase = false;
+            bossFallDown = false;
+        }
+
+        /*cameraAnimator.SetTrigger("shake")    ;
         cameraAnimator.SetBool("isTrigger", true);
         Destroy(ombreObject)                  ;
         PushWave()    ;
@@ -487,7 +510,7 @@ public class Boss : MonoBehaviour
         animator.SetBool("isLanding", false) ;
         seconds = 0                          ;
         isStartingPhase = false              ;
-        bossFallDown    = false              ;
+        bossFallDown    = false              ;*/
     }
 
     void InstantiateBomb(int phase)
@@ -623,8 +646,8 @@ public class Boss : MonoBehaviour
 
                 if (xDiffBomb1 < 0.60f) //Diagonale
                 {
-                    bombe1.transform.Translate(transform.up *  distanceDeltaDiag + transform.right * distanceDeltaDiag);
-                    bombe3.transform.Translate(-transform.up * distanceDeltaDiag + transform.right * distanceDeltaDiag);
+                    bombe1.transform.Translate((transform.up + transform.right) * distanceDeltaDiag);
+                    bombe3.transform.Translate((-transform.up + transform.right) * distanceDeltaDiag);
                 }
                 else {needToMove1 = false;}
 
@@ -640,8 +663,8 @@ public class Boss : MonoBehaviour
 
                 if (yDiffBomb1 < 1f) //Diagonale
                 {
-                    bombe1.transform.Translate(-transform.up * distanceDeltaDiag +  transform.right * distanceDeltaDiag);
-                    bombe3.transform.Translate(-transform.up * distanceDeltaDiag + -transform.right * distanceDeltaDiag);
+                    bombe1.transform.Translate((-transform.up +  transform.right) * distanceDeltaDiag);
+                    bombe3.transform.Translate((-transform.up + -transform.right) * distanceDeltaDiag);
                 }
                 else{needToMove1 = false;}
 
@@ -657,8 +680,8 @@ public class Boss : MonoBehaviour
 
                 if (xDiffBomb1 < 1f) //Diagonale
                 {
-                    bombe1.transform.Translate( transform.up * distanceDeltaDiag + -transform.right * distanceDeltaDiag);
-                    bombe3.transform.Translate(-transform.up * distanceDeltaDiag + -transform.right * distanceDeltaDiag);
+                    bombe1.transform.Translate((transform.up + -transform.right) * distanceDeltaDiag);
+                    bombe3.transform.Translate((-transform.up + -transform.right) * distanceDeltaDiag);
                 }
                 else{needToMove1 = false;}
 
@@ -674,8 +697,8 @@ public class Boss : MonoBehaviour
 
                 if (yDiffBomb1 < 1f) //Diagonale
                 {
-                    bombe1.transform.Translate(transform.up * distanceDeltaDiag +  transform.right * distanceDeltaDiag);
-                    bombe3.transform.Translate(transform.up * distanceDeltaDiag + -transform.right * distanceDeltaDiag);
+                    bombe1.transform.Translate((transform.up +  transform.right) * distanceDeltaDiag);
+                    bombe3.transform.Translate((transform.up + -transform.right) * distanceDeltaDiag);
                 }
                 else{needToMove1 = false;}
 
