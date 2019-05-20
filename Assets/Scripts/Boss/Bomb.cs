@@ -32,7 +32,6 @@ public class Bomb : MonoBehaviour
         GetComponent<ReactionToWave>().whoCanShootMe.Add(player);
         GetComponent<ReactionToWave>().whoCanShootMe.Add(boss);
         GetComponent<ReactionToWave>().waveManager = waveManager;
-
     }
 	
 	void Update ()
@@ -42,9 +41,9 @@ public class Bomb : MonoBehaviour
         else         { animator.SetBool("isDream", false);}
 
         timer += Time.deltaTime;
-        if (timer >= explosionTime - 4.380f) {animator.SetBool("isTimer", true);}
-        if (timer >= explosionTime - 0.583f) {explosionArea.SetActive(true)    ;}
-        if (timer >= explosionTime         ) {Explode()                        ;}
+        if (timer == explosionTime - 4.380f) {animator.SetBool("isTimer", true);}
+        if (timer == explosionTime - 0.583f) {explosionArea.SetActive(true)    ;}
+        if (timer == explosionTime         ) {Explode()                        ;}
 	}
 
     public void Explode(Collision2D collision)

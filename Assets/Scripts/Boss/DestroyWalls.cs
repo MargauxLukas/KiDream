@@ -40,7 +40,6 @@ public class DestroyWalls : MonoBehaviour
     {
         yield return new WaitForSeconds(0.9f);
         animator.SetBool("isFalling", true);
-        Destroy(gameObject, 1.625f);
-
+        Destroy(gameObject, 1.625f);   
     }
 }

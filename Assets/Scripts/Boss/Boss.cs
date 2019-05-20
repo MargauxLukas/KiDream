@@ -72,7 +72,6 @@ public class Boss : MonoBehaviour
 	
 	void FixedUpdate ()
     {
-        Debug.Log(rb.isKinematic);
         isDream = player.GetComponent<CharacterController>().isDream;
         if (isDream) { animator.SetBool("isDream",  true);}
         else         { animator.SetBool("isDream", false);}
@@ -260,7 +259,7 @@ public class Boss : MonoBehaviour
             {
                 GetComponent<BombAOE>().isPlayed3 = false;
                 isRage = true;
-                Destroy(wallCollider);
+                wallCollider.GetComponent<EdgeCollider2D>().isTrigger = true;
 
                 if(isLastPhase)
                 {

@@ -511,9 +511,22 @@ MonoBehaviour:
   launchAgainToDisable: 0
   isActivated: 0
   activateBehaviour: 0
+  disableBehaviour: 0
+  corruptedPosition: {x: 0, y: 0, z: 0}
+  useCorruptedPosition: 0
   corruptedPushRadius: 0
+  corruptedPushAffectPlayer: 1
+  cPushForceY: 0
+  cPushForceX: 0
+  xPushEqualY: 0
   corruptedPullRadius: 0
+  corruptedPullAffectPlayer: 1
+  cPullForceY: 0
+  cPullForceX: 0
+  xPullEqualY: 0
   corruptedActivateRadius: 0
+  bypassPushRules: 0
+  bypassPullRules: 0
   bypassActivateRules: 0
 --- !u!212 &212167677763294528
 SpriteRenderer:
