@@ -14,6 +14,12 @@ MonoBehaviour:
   id: Dialogue_Isil_1
   name: Isil
   speechFR:
-  - GEGE
+  - 'Attention aux cloches, leurs ondes
+
+    puissantes peuvent te faire tomber.'
+  - "Les murs renvoient les ondes sonores.\nUtilise les pour te prot\xE9ger."
+  - "Appuie sur la gachette de gauche pour\nbasculer entre le r\xEAve et le cauchemar."
+  - "Il se peut que des \xE9l\xE9ments ne soient\npr\xE9sents que dans un seul des
+    deux mondes."
   speechGB:
   - SUPER
