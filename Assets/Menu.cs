@@ -61,7 +61,7 @@ public class Menu : MonoBehaviour
                     FadeToLevel(2);
                     break;
                 case MenuReaction.NewGame:
-                    StartCoroutine(LoadAsynchronously(11));
+                    StartCoroutine(LoadAsynchronously(7));
                     break;
                 case MenuReaction.ChapterMenu:
                     FadeToLevel(4);
@@ -132,6 +132,7 @@ public class Menu : MonoBehaviour
     IEnumerator LoadAsynchronously(int index)
     {
         loadingScreenPop.Play();
+        Debug.Log(loadingScreenPop.clip.length);
         yield return new WaitForSeconds(loadingScreenPop.clip.length);
         AsyncOperation operation = SceneManager.LoadSceneAsync(index);
 
