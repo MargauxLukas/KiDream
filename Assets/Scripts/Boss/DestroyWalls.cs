@@ -25,7 +25,22 @@ public class DestroyWalls : MonoBehaviour
 
     void WallsEvent()
     {
+        if (gameObject.name.Contains("Arrière") || gameObject.name.Contains("Estrade"))
+        {
+            animator.SetBool("isFalling", true);
+            Destroy(gameObject, 1.625f);
+        }
+        else
+        {
+            StartCoroutine(WaitWallEvent());
+        }
+    }
+
+    IEnumerator WaitWallEvent()
+    {
+        yield return new WaitForSeconds(0.9f);
         animator.SetBool("isFalling", true);
         Destroy(gameObject, 1.625f);
+
     }
 }

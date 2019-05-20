@@ -5889,7 +5889,7 @@ MonoBehaviour:
   wallCollider: {fileID: 1840375979}
   speed: 0.2
   isRage: 0
-  hp: 2
+  hp: 1
 --- !u!95 &587806242
 Animator:
   serializedVersion: 3
