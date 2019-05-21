@@ -30,7 +30,6 @@ public class SoundSliderParticles : MonoBehaviour
 
     private void ValueChange()
     {
-
         /*
         if(newValue > lastValue)
         {
