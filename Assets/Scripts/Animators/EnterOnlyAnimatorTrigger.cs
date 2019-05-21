@@ -9,10 +9,27 @@ public class EnterOnlyAnimatorTrigger : MonoBehaviour
     BoxCollider2D Collider;
     public bool isChecked = false;
 
+    private bool isilIsDescendu = false;
+
     void Start()
     {
         anim = gameObject.GetComponent<Animator>();
         Collider = GetComponent<BoxCollider2D>();
+    }
+
+    void Update()
+    {
+        if(isilIsDescendu)
+        {
+            gameObject.transform.position = Vector3.MoveTowards(transform.position, new Vector3(-1.285f, -1.8f), 9f*Time.fixedDeltaTime);
+
+            if (gameObject.transform.position == new Vector3(-1.285f, -1.8f))
+            {
+                isChecked = true;
+                Destroy(Collider);
+                Destroy(this);
+            }
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -20,9 +37,7 @@ public class EnterOnlyAnimatorTrigger : MonoBehaviour
         if (collision.tag == "Player" && isChecked == false)
         {
             anim.SetBool("isTouched", true);
-            isChecked = true;
-            Destroy(Collider);
-            Destroy(this);
+            isilIsDescendu = true;
         }
     }
 }
