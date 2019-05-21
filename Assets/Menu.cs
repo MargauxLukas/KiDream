@@ -132,6 +132,7 @@ public class Menu : MonoBehaviour
     IEnumerator LoadAsynchronously(int index)
     {
         loadingScreenPop.Play();
+        Debug.Log(loadingScreenPop.clip.length);
         yield return new WaitForSeconds(loadingScreenPop.clip.length);
         AsyncOperation operation = SceneManager.LoadSceneAsync(index);
 

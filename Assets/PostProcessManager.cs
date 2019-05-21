@@ -79,13 +79,6 @@ public class PostProcessManager : MonoBehaviour
                     autoExpo.minLuminance.value = autoExpo.maxLuminance.value;
                     yield return new WaitForSeconds(rate);
                 }
-                /*for (float j = autoExpo.minLuminance.value; j >= autoExpoHighAim; j = autoExpo.minLuminance.value - autoExpoStep)
-                {
-                    autoExpo.minLuminance.value = autoExpo.minLuminance.value - autoExpoStep;
-                    autoExpo.maxLuminance.value = autoExpo.minLuminance.value;
-                    yield return new WaitForSeconds(rate);
-                }*/
-
                 break;
             }
         }
@@ -123,3 +116,10 @@ public class PostProcessManager : MonoBehaviour
         }
     }
 }
+
+/*for (float j = autoExpo.minLuminance.value; j >= autoExpoHighAim; j = autoExpo.minLuminance.value - autoExpoStep)
+{
+    autoExpo.minLuminance.value = autoExpo.minLuminance.value - autoExpoStep;
+    autoExpo.maxLuminance.value = autoExpo.minLuminance.value;
+    yield return new WaitForSeconds(rate);
+}*/

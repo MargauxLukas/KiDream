@@ -21,6 +21,11 @@ public class FirstScreen : MonoBehaviour
         sr = screens[(Random.Range(0, 2))];
 
         sr.sortingOrder = 5;
+
+        foreach(Transform child in sr.GetComponentsInChildren<Transform>())
+        {
+            child.gameObject.GetComponent<SpriteRenderer>().sortingOrder = 5;
+        }
 	}
 
     // Update
@@ -33,10 +38,20 @@ public class FirstScreen : MonoBehaviour
             if (sr.sortingOrder == 1)
             {
                 sr.sortingOrder = 5;
+
+                foreach (Transform child in sr.GetComponentsInChildren<Transform>())
+                {
+                    child.gameObject.GetComponent<SpriteRenderer>().sortingOrder = 5;
+                }
             }
             else
             {
                 sr.sortingOrder = 1;
+
+                foreach (Transform child in sr.GetComponentsInChildren<Transform>())
+                {
+                    child.gameObject.GetComponent<SpriteRenderer>().sortingOrder = 1;
+                }
             }
 
             selectorInUse = true;
