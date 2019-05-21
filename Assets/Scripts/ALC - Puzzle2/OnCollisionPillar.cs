@@ -13,33 +13,75 @@ public class OnCollisionPillar : MonoBehaviour
 
     private void Start()
     {
-        animator = GetComponent<Animator>();
+        animator = GetComponentInParent<Animator>();
+
+        if (isActivated)
+        {
+            animator.SetBool("isChecked", true);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject == puzzleCollision)
+        if (!isActivated)
         {
-            Debug.Log("true");
-            animator.SetBool("isChecked", true);
-            isActivated = true;
+            if (collision.gameObject == puzzleCollision)
+            {
+                animator.SetBool("isChecked", true);
+                isActivated = true;
+            }
+            if (collision.gameObject.GetComponent<OnCollisionPillar>() != null)
+            {
+                if (collision.gameObject.GetComponent<OnCollisionPillar>().isActivated == true)
+                {
+                    animator.SetBool("isChecked", true);
+                    isActivated = true;
+                }
+            }
+            else { return; }
         }
-        else { return; }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (!isActivated)
+        {
+            if (collision.gameObject == puzzleCollision)
+            {
+                Debug.Log("true");
+                animator.SetBool("isChecked", true);
+                isActivated = true;
+            }
+            if (collision.gameObject.GetComponent<OnCollisionPillar>() != null)
+            {
+                if (collision.gameObject.GetComponent<OnCollisionPillar>().isActivated == true)
+                {
+                    animator.SetBool("isChecked", true);
+                    isActivated = true;
+                }
+            }
+            else { return; }
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.GetComponent<OnCollisionPillar>().isActivated == true)
+        if (!isActivated)
         {
-            animator.SetBool("isChecked", true);
-            isActivated = true;
+            if (collision.gameObject.GetComponent<OnCollisionPillar>() != null)
+            {
+                if (collision.gameObject.GetComponent<OnCollisionPillar>().isActivated == true)
+                {
+                    animator.SetBool("isChecked", true);
+                    isActivated = true;
+                }
+            }
+            else if (collision.gameObject == puzzleCollision)
+            {
+                animator.SetBool("isChecked", true);
+                isActivated = true;
+            }
+            else { return; }
         }
-        else if(collision.gameObject == puzzleCollision)
-        {
-            animator.SetBool("isChecked", true);
-            isActivated = true;
-        }
-        else { return; }
-
     }
 }

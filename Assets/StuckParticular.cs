@@ -6,25 +6,26 @@ public class StuckParticular : MonoBehaviour
 {
     public float yPallier;
     public float xPallier;
+    private Rigidbody2D rb;
+
+    private void Start()
+    {
+        rb = gameObject.GetComponent<Rigidbody2D>();
+    }
 
     private void Update()
     {
-        if(transform.localPosition.y > yPallier )
+        if (transform.localPosition.y > yPallier)
         {
-            gameObject.GetComponent<StuckXaxis>().enabled = false;
+            rb.constraints = RigidbodyConstraints2D.None | RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation; 
+        }
+        else if (transform.localPosition.x > xPallier)
+        {
+            rb.constraints = RigidbodyConstraints2D.None | RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
         }
         else
         {
-            gameObject.GetComponent<StuckXaxis>().enabled = true;
-        }
-
-        if (transform.localPosition.x < xPallier)
-        {
-            gameObject.GetComponent<StuckYaxis>().enabled = true;
-        }
-        else
-        {
-            //gameObject.GetComponent<StuckYaxis>().enabled = false;
+            rb.constraints = RigidbodyConstraints2D.None | RigidbodyConstraints2D.FreezeRotation;
         }
     }
 }

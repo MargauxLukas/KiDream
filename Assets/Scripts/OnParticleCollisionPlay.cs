@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class OnParticleCollisionPlay : MonoBehaviour
 {
+    public CharacterController myPlayer;
+
     [SerializeField]
     private bool playParticleSystem = false;
     public ParticleSystem myParticleSystem;
@@ -11,6 +13,8 @@ public class OnParticleCollisionPlay : MonoBehaviour
     [SerializeField]
     private bool playAudio = false;
     public AudioSource myAudioSource;
+    public AudioClip acDream;
+    public AudioClip acNightmare;
 
     [SerializeField]
     private bool activeObject = false;
@@ -28,7 +32,18 @@ public class OnParticleCollisionPlay : MonoBehaviour
         
         if(playAudio == true)
         {
-            myAudioSource.Play();
+            switch(myPlayer.isDream)
+            {
+                case true:
+                    myAudioSource.clip = acDream;
+                    myAudioSource.Play();
+                    break;
+                case false:
+                    myAudioSource.clip = acNightmare;
+                    myAudioSource.Play();
+                    break;
+            }
+
         }
 
         if(activeObject == true)

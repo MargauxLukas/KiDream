@@ -11,6 +11,7 @@ public class BombFalling : MonoBehaviour
     private GameObject collisionLayer;
     private WaveManager waveManager;
     private Rigidbody2D rb;
+    private Collider2D wallCollider;
 
     private Collider2D collider;
     public  GameObject explosionArea;
@@ -18,6 +19,7 @@ public class BombFalling : MonoBehaviour
     public Vector2 target;
 
     private bool isDream;
+    public bool wallIsFalled;
     public bool canHurtBoss = false;
 
     [Header("Timer")]
@@ -29,6 +31,7 @@ public class BombFalling : MonoBehaviour
 
     private void Start()
     {
+        wallCollider = GameObject.Find("WallCollider").GetComponent<Collider2D>();
         collider = GetComponent<Collider2D>();
         animator = GetComponent<Animator  >();
         rb = GetComponent<Rigidbody2D>();
@@ -43,7 +46,8 @@ public class BombFalling : MonoBehaviour
 
     void Update ()
     {
-        timer += Time.deltaTime;
+        
+        timer += Time.fixedDeltaTime;
 
         if (timer >= explosionTime - 4.380f){animator.SetBool("isTimer", true);}
         if (timer >= explosionTime - 0.583f){ explosionArea.SetActive(true)   ;}
@@ -59,7 +63,7 @@ public class BombFalling : MonoBehaviour
             animator.SetBool("isFalling", true);
             collider.isTrigger = true;
             collisionLayer.GetComponent<CapsuleCollider2D>().isTrigger = true;
-            transform.Translate(-transform.up * 0.03f);
+            transform.Translate(-transform.up * (0.2f * Time.fixedDeltaTime));
         }
         if (transform.position.y < target.y)
         {
@@ -112,6 +116,7 @@ public class BombFalling : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Explode(collision);
+        if (wallCollider.isTrigger == false){Explode(collision);}
+        else { return; }
     }
 }

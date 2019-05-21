@@ -14,6 +14,39 @@ MonoBehaviour:
   id: Dialogue_Isil_0
   name: Isil
   speechFR:
-  - Blaaaah
+  - 'Bonjour Hana.
+
+    Mon nom est Isil.'
+  - "Je suis l\xE0 pour t'aider \xE0 gu\xE9rir."
+  - "Ensemble nous allons voyager\ndans tes r\xEAves et cauchemars\nafin que tu retrouves
+    tes sens."
+  - 'Tout va bien se passer, je vais
+
+    te guider.'
+  - "Tu es ici dans le monde de l'ou\xEFe,\npr\xEAte bien attention aux sons\nformidables
+    qui t'entourent."
+  - "Passe entre les colonnes. Elles \ns'illumineront et la progression de\nton voyage
+    onirique sera sauvegard\xE9e."
   speechGB:
-  - Bleeeeh
+  - 'Hello Hana.
+
+    I''m Isil.'
+  - I'm going to help you cure.
+  - 'Together, we will travel in your
+
+    dreams and nightmares to link
+
+    you back to your senses.'
+  - 'Everything is going to be fine,
+
+    I''m your guide.'
+  - 'Here is the hearing world. You should
+
+    focus on all the wonderful surrounding
+
+    sounds you will listen to.'
+  - 'Get between the pillars. They will
+
+    glitter and the progression of your
+
+    dream will be saved.'

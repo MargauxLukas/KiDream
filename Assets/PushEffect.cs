@@ -91,11 +91,9 @@ public class PushEffect : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if(collision.tag == "ActionObject")
+        if(collision.tag == "ActionObject" && GetComponentInParent<Rigidbody2D>().name != "Boss")
         {
             this.GetComponentInParent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
         }
     }
-
-
 }
