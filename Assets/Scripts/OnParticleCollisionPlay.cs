@@ -12,7 +12,9 @@ public class OnParticleCollisionPlay : MonoBehaviour
 
     [SerializeField]
     private bool playAudio = false;
-    public AudioSource myAudioSource;
+
+    AudioSource myAudioSource;
+
     public AudioClip acDream;
     public AudioClip acNightmare;
 
@@ -20,10 +22,16 @@ public class OnParticleCollisionPlay : MonoBehaviour
     private bool activeObject = false;
     public List<GameObject> ActivableObjects = new List<GameObject>();
 
+    private void Start()
+    {
+        myAudioSource = this.GetComponent<AudioSource>();
+    }
 
 
     private void OnParticleCollision(GameObject other)
     {
+
+        Debug.Log("HasCollide");
         if(playParticleSystem == true)
         {
             myParticleSystem = GetComponent<ParticleSystem>();
