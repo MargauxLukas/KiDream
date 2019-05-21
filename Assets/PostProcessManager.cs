@@ -8,11 +8,10 @@ public class PostProcessManager : MonoBehaviour
 
     public PostProcessVolume mainCamPP;
     public CharacterController myPlayer;
-    public PostProcessVolume secondPP;
 
     AutoExposure autoExpo;
-
-    PostProcessVolume temp;
+    Vignette vignette;
+    Grain grain;
 
     public float autoExpoStep;
     public float autoExpoHighAim;
@@ -27,7 +26,8 @@ public class PostProcessManager : MonoBehaviour
 	// Start
 	void Start ()
     {
-
+        vignette = mainCamPP.profile.GetSetting<Vignette>();
+        grain = mainCamPP.profile.GetSetting<Grain>();
     }
 	
 	// Update
@@ -63,15 +63,6 @@ public class PostProcessManager : MonoBehaviour
 
             if (i == autoExpoLowAim)
             {
-                temp = secondPP;
-                //Debug.Log(temp.profile.name);
-
-                secondPP.profile = mainCamPP.profile;
-                //Debug.Log(mainCamPP.profile.name);
-                //Debug.Log(temp.profile.name);
-
-                mainCamPP.profile = temp.profile;
-                //Debug.Log(secondPP.profile.name);
 
                 for (float j = autoExpo.maxLuminance.value; j <= autoExpoHighAim; j = autoExpo.maxLuminance.value + autoExpoStep)
                 {
@@ -79,6 +70,8 @@ public class PostProcessManager : MonoBehaviour
                     autoExpo.minLuminance.value = autoExpo.maxLuminance.value;
                     yield return new WaitForSeconds(rate);
                 }
+                vignette.intensity.value = 0.189f;
+                grain.intensity.value = 0.4f;
                 break;
             }
         }
@@ -95,22 +88,14 @@ public class PostProcessManager : MonoBehaviour
 
             if ( i == autoExpoLowAim)
             {
-                temp = mainCamPP;
-                //Debug.Log(temp.profile.name);
-
-                mainCamPP.profile = secondPP.profile;
-                //Debug.Log(mainCamPP.profile.name);
-
-                secondPP.profile = temp.profile;
-                //Debug.Log(secondPP.profile.name);
-
-
                 for (float j = autoExpo.maxLuminance.value; j <= autoExpoHighAim; j = autoExpo.maxLuminance.value + autoExpoStep)
                 {
                     autoExpo.maxLuminance.value = autoExpo.maxLuminance.value + autoExpoStep;
                     autoExpo.minLuminance.value = autoExpo.maxLuminance.value;
                     yield return new WaitForSeconds(rate);
                 }
+                vignette.intensity.value = 0f;
+                grain.intensity.value = 0f;
                 break;
             }
         }

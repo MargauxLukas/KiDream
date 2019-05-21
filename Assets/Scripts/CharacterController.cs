@@ -18,7 +18,7 @@ public class CharacterController : MonoBehaviour
     GameObject[] reveObjects     ;
 
     [Range(0,2)]
-    public float worldTransitionDelay;
+    public float worldTransitionDelay = 0f;
 
     public WaveManager waveManager;
 
