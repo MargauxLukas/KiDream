@@ -68,6 +68,7 @@ public class CharacterController : MonoBehaviour
     {
         CheckpointSystem.RespawnCheckpoint(this.transform);
         animator  = GetComponent<Animator   >();
+        animator.SetBool("isDream", true);
         rigidBody = GetComponent<Rigidbody2D>();
     }
 
@@ -86,12 +87,14 @@ public class CharacterController : MonoBehaviour
         {
             StartCoroutine(GoToNightmare());
             isDream = false;
+            animator.SetBool("isDream", false);
             leftAxisInUse = true;
         }
         else if(Input.GetAxisRaw("ChangeWorld") != 0 && !isDream && leftAxisInUse == false)
         {
             StartCoroutine(GoToDream());
             isDream = true;
+            animator.SetBool("isDream", true);
             leftAxisInUse = true;
         }
 
@@ -284,8 +287,8 @@ public class CharacterController : MonoBehaviour
 
     public void damage()
     {
+        animator.SetTrigger("isHurt");
         hp--;
-        Debug.Log(hp);
     }
 
     void isDead(int hp)
