@@ -36,7 +36,6 @@ public class PushEffect : MonoBehaviour
         }
     }
 
-
     void Update()
     {
         if (xEqualY == true)

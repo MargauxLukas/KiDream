@@ -68,6 +68,7 @@ public class Bomb : MonoBehaviour
             rb.constraints = RigidbodyConstraints2D.FreezeAll;
             Destroy(gameObject, 0.55f);
         }
+        Debug.Log(collision.gameObject.name);
     }
 
     void Explode()
@@ -92,6 +93,7 @@ public class Bomb : MonoBehaviour
 
     private void OnParticleCollision(GameObject other)
     {
+        transform.Translate(new Vector3(0f,0f,0f));
         canHurtBoss = true;
     }
 }
