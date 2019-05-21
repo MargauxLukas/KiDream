@@ -47,7 +47,7 @@ public class BombFalling : MonoBehaviour
     void Update ()
     {
         
-        timer += Time.fixedDeltaTime;
+        timer += Time.deltaTime;
 
         if (timer >= explosionTime - 4.380f){animator.SetBool("isTimer", true);}
         if (timer >= explosionTime - 0.583f){ explosionArea.SetActive(true)   ;}
@@ -117,6 +117,12 @@ public class BombFalling : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (wallCollider.isTrigger == false){Explode(collision);}
+        else { return; }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject == wallCollider.gameObject) { Explode(); }
         else { return; }
     }
 }
