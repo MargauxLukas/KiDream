@@ -59,6 +59,8 @@ public class CharacterController : MonoBehaviour
 
     private bool leftAxisInUse;
 
+    public GameObject deathPanel;
+
     private void Awake()
     {
         StartCoroutine(GoToDream());
@@ -137,8 +139,6 @@ public class CharacterController : MonoBehaviour
         rigidBody.velocity = new Vector2(maxSpeed * moveX, maxSpeed * moveY);
 
         IsMoving();
-        //IsAttacking();
-        isDead(hp);       
     }
 
     void IsMoving()
@@ -289,25 +289,18 @@ public class CharacterController : MonoBehaviour
     {
         animator.SetTrigger("isHurt");
         hp--;
-    }
 
-    void isDead(int hp)
-    {
-        if(hp <= 0)
+        if(hp == 0)
         {
-            //transform.position = gameMaster.lastCheckpointPos;
-            Destroy(gameObject);
-            isKilled = true;
+            isDead();
         }
     }
 
     public void isDead()
     {
-        if (hp <= 0)
-        {
-            Destroy(gameObject,1f);
-            isKilled = true;
-        }
+        animator.SetBool("isDead", true);
+        deathPanel.GetComponent<DeathScreen>().deathScreen();
+        GetComponent<CharacterController>().enabled = false;
     }
 
     void Twist()
