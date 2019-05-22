@@ -361,7 +361,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 945a75a342195f44182529b52b33c55b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grelotSound: {fileID: 8300000, guid: 849510b69b9265a4f9f17c47d33293db, type: 3}
+  grelot1Sound: {fileID: 8300000, guid: a2594ec9e6357ad47bb587974b5a4010, type: 3}
+  grelot2Sound: {fileID: 8300000, guid: 923aba5b636e44640a81e4c40ea5d2fe, type: 3}
+  grelot3Sound: {fileID: 8300000, guid: 2336974cbd4df9c4793f384ae3618069, type: 3}
+  grelot4Sound: {fileID: 8300000, guid: 99ed9e9ad884833448fab8251121ef31, type: 3}
+  grelot5Sound: {fileID: 8300000, guid: 2ef8f029af4ef3c439e1b214cf31223e, type: 3}
+  grelot6Sound: {fileID: 8300000, guid: e0e11de7963a0a943b31b92cf1222cc0, type: 3}
+  grelot7Sound: {fileID: 8300000, guid: cba05b8bf2d8db04eba2c13fce7b483a, type: 3}
   introHell: {fileID: 8300000, guid: d48abb1dc80a9cd499765ac3f9388b5b, type: 3}
   surpriseS: {fileID: 8300000, guid: 4fc382941ae5ca04182096f6ce5498d4, type: 3}
   audioS: {fileID: 587806236}
@@ -919,7 +925,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1357586330
 RectTransform:
   m_ObjectHideFlags: 0

@@ -661,14 +661,14 @@ AnimationClip:
   m_GenerateMotionCurves: 0
   m_Events:
   - time: 17.875
-    functionName: GrelotSound
+    functionName: Grelot6Sound
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 19.5
-    functionName: GrelotSound
+    functionName: Grelot7Sound
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
@@ -676,6 +676,27 @@ AnimationClip:
     messageOptions: 0
   - time: 20
     functionName: HellSound
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 21.125
+    functionName: Grelot1Sound
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 21.375
+    functionName: Grelot2Sound
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 22.25
+    functionName: Grelot1Sound
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
