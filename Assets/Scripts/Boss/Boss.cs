@@ -37,6 +37,7 @@ public class Boss : MonoBehaviour
     private float distanceDeltaDiag;
 
     public bool isRage = false;
+    public bool isDeadB = false;
 
     private bool bossFallDown    = false;
     private bool needToMove1     = false;
@@ -261,7 +262,7 @@ public class Boss : MonoBehaviour
                 isRage = true;
                 wallCollider.GetComponent<EdgeCollider2D>().isTrigger = true;
 
-                if(isLastPhase)
+                /*if(isLastPhase)
                 {
                     LastPhaseBomb();
                 }
@@ -278,13 +279,34 @@ public class Boss : MonoBehaviour
                 if(seconds == 4)
                 {
                     cameraAnimator.SetBool("isTrigger", false);
-                }
-                if(seconds == 5)
+                }*/
+                if (seconds < 2)
                 {
+                    bossFallDown = false;
+                    cameraAnimator.ResetTrigger("shake");
+                }
+                if (seconds == 2)
+                {
+                    animator.SetBool("isLaunching", true);
+                }
+                if (seconds == 3)
+                {
+                    cameraAnimator.SetBool("isTrigger", false);
+                    direction = ThrowBomb(lookingAt);
+                    animator.SetBool("isLaunching", false);
                     isStartingPhase = true;
                     isLastPhase = true;
+                    seconds = 0;
                 }
             }
+        }
+        if(hp == 0)
+        {
+            if (seconds > 20)
+            {
+                isDead();
+            }
+            seconds = 30;
         }
     }
 
@@ -403,7 +425,7 @@ public class Boss : MonoBehaviour
         {
             if (ombreObject == null) { ombreObject = Instantiate(ombre, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y - 2f, 0), Quaternion.identity); }    //Instantiate Ombre 
 
-            ombreObject.transform.position = Vector2.MoveTowards(ombreObject.transform.position, target.position, 0.8f * Time.fixedDeltaTime);
+            ombreObject.transform.position = Vector2.MoveTowards(ombreObject.transform.position, target.position, 0.7f * Time.fixedDeltaTime);
             transform.position = Vector2.MoveTowards(transform.position, new Vector2(ombreObject.transform.position.x, transform.position.y), 1f * Time.fixedDeltaTime);
 
             StartCoroutine(WaitShadow(phase));
@@ -412,7 +434,7 @@ public class Boss : MonoBehaviour
         {
             if (ombreObject == null) { ombreObject = Instantiate(ombre, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y - 2f, 0), Quaternion.identity); }    //Instantiate Ombre 
 
-            ombreObject.transform.position = Vector2.MoveTowards(ombreObject.transform.position, target.position, 1f * Time.fixedDeltaTime);
+            ombreObject.transform.position = Vector2.MoveTowards(ombreObject.transform.position, target.position, 0.8f * Time.fixedDeltaTime);
             transform.position = Vector2.MoveTowards(transform.position, new Vector2(ombreObject.transform.position.x, transform.position.y), 1f * Time.fixedDeltaTime);
             StartCoroutine(WaitShadow(phase));
         }
@@ -546,9 +568,12 @@ public class Boss : MonoBehaviour
 
     IEnumerator BombRandom()
     {
-        yield return new WaitForSeconds(1.5f);
-        GetComponent<BombAOE>().BombAreaRandom();
-        StartCoroutine(BombRandom());
+        if (!isDeadB)
+        {
+            yield return new WaitForSeconds(1.5f);
+            GetComponent<BombAOE>().BombAreaRandom();
+            StartCoroutine(BombRandom());
+        }
     }
 
     void LastPhaseBomb()
@@ -761,8 +786,9 @@ public class Boss : MonoBehaviour
     /*****************************
      * Function : Le boss meurt  *
      *****************************/
-    void isDead()
+    private void isDead()
     {
-        //Play Death of Mister Cloclo
+        isDeadB = true;
+        animator.SetTrigger("isDeath");
     }
 }
