@@ -49,7 +49,7 @@ public class BombFalling : MonoBehaviour
         
         timer += Time.deltaTime;
 
-        if (timer >= explosionTime - 4.380f){animator.SetBool("isTimer", true);}
+        if (timer >= explosionTime - 4.333f){animator.SetBool("isTimer", true);}
         if (timer >= explosionTime - 0.583f){ explosionArea.SetActive(true)   ;}
         if (timer >= explosionTime         ){Explode()                        ;}
 
@@ -78,6 +78,11 @@ public class BombFalling : MonoBehaviour
         {
             Explode();
         }
+
+        if(boss.GetComponent<Boss>().isDeadB)
+        {
+            Explode();
+        }
     }
 
     public void Explode(Collision2D collision)
@@ -87,7 +92,7 @@ public class BombFalling : MonoBehaviour
             animator.SetBool("isExplode", true);
             collision.gameObject.GetComponent<CharacterController>().damage();
             rb.constraints = RigidbodyConstraints2D.FreezeAll;
-            Destroy(gameObject, 0.6f    );
+            Destroy(gameObject, 0.6f );
         }
         else if (collision.gameObject.name == "WallCollider")
         {
@@ -124,5 +129,11 @@ public class BombFalling : MonoBehaviour
     {
         if (collision.gameObject == wallCollider.gameObject) { Explode(); }
         else { return; }
+    }
+
+    private void OnParticleCollision(GameObject other)
+    {
+        Debug.Log("Collision Particle");
+        canHurtBoss = true;
     }
 }

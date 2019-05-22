@@ -48,7 +48,6 @@ public class DeathZone : MonoBehaviour
         {
             for (int i = 0; i < 10; i++)
             {
-                Debug.Log("Je rentre");
                 gameObject.transform.localScale -= new Vector3(0.2f, 0.2f, 0);
                 gameObject.transform.Rotate(0f, 0f, 20f);
                 yield return new WaitForSeconds(0.100f);
