@@ -102,10 +102,11 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_GenerateMotionCurves: 0
   m_Events:
-  - time: 0.5
-    functionName: fallingWallSound()
+  - time: 0.125
+    functionName: fallingWallSound
     data: 
-    objectReferenceParameter: {fileID: 0}
+    objectReferenceParameter: {fileID: 9100000, guid: 8e9096dae3fbc234d8fb0d7f84f948d0,
+      type: 2}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
