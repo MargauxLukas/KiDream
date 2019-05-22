@@ -512,6 +512,8 @@ MonoBehaviour:
   isActivated: 0
   activateBehaviour: 0
   disableBehaviour: 0
+  corruptedPosition: {x: 0, y: 0, z: 0}
+  useCorruptedPosition: 0
   corruptedPushRadius: 1
   corruptedPushAffectPlayer: 1
   cPushForceY: 50
