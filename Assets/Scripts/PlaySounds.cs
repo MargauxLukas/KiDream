@@ -7,13 +7,12 @@ public class PlaySounds : MonoBehaviour
 {
     public AudioClip fallingWall;
 
-    public AudioSource audioS;
+    private AudioSource audioS;
 
     public void fallingWallSound()
     {
         audioS = gameObject.GetComponent<AudioSource>();
-        //audioS.PlayOneShot(fallingWall);
-        audioS.clip = fallingWall;
-        audioS.Play();
+        //audioS.clip = fallingWall;
+        audioS.PlayOneShot(fallingWall);
     }
 }
