@@ -49,7 +49,7 @@ public class Boss : MonoBehaviour
     private bool isBombR = true;
     private bool isLastPhase = true;
 
-    private int seconds   = 0;
+    private int seconds   = -3;
     private int lookingAt = 0; // 1 = Droite, 2 = Down, 3 = Left, 4 = Up
     private int direction = 0;
     public  int hp        = 5;

@@ -7,7 +7,6 @@ using UnityEngine.UI;
 
 public class CharacterController : MonoBehaviour
 {
-    //17h-
     Animator    animator  ;
     Rigidbody2D rigidBody ;
     GameMaster  gameMaster;
