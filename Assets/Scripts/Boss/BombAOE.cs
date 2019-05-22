@@ -13,7 +13,7 @@ public class BombAOE : MonoBehaviour
     public GameObject shadowBomb ;
 
     Vector2[,] bombTab = new Vector2[7, 4];  //Tableau des positions des bombes
-    float[,] bombCenterTab = new float[8, 2] { {   0f , 1.5f }, 
+    float[,] bombCenterTab = new float[8, 2] { {   0f , 1.6f }, 
                                                { -0.5f, 1.4f }, 
                                                { -0.7f,   1f }, 
                                                { -0.5f, 0.6f }, 
