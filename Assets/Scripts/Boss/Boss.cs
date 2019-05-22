@@ -18,6 +18,10 @@ public class Boss : MonoBehaviour
     public GameObject areaDetection;
     public GameObject  wallCollider;
 
+    public AudioClip landingSound;
+
+    private AudioSource audioS;
+
     private GameObject  ombreObject;  //GameObject apres l'instantiate de l'ombre
     private GameObject       bombe1;
     private GameObject       bombe2;
@@ -56,6 +60,7 @@ public class Boss : MonoBehaviour
 
     void Start()
     {
+        audioS = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
         bossCollider = GetComponent<BoxCollider2D>();
         cameraAnimator = GameObject.Find("Main Camera").GetComponent<Animator>();
@@ -790,5 +795,10 @@ public class Boss : MonoBehaviour
     {
         isDeadB = true;
         animator.SetTrigger("isDeath");
+    }
+
+    public void PlayLandingSound()
+    {
+        audioS.PlayOneShot(landingSound);
     }
 }
