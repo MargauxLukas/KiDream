@@ -41,4 +41,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/_Scenes/MAL_AnimCinematics.unity
     guid: 02fd7de16ca84f346925a7d005887266
+  - enabled: 0
+    path: Assets/_Scenes/IntroScene.unity
+    guid: 89a5ae8d2c112004c8f346563ecc8e46
   m_configObjects: {}

@@ -8,11 +8,12 @@ public class PostProcessManager : MonoBehaviour
 
     public PostProcessVolume mainCamPP;
     public CharacterController myPlayer;
-    public PostProcessVolume secondPP;
 
     AutoExposure autoExpo;
-
-    PostProcessVolume temp;
+    Vignette vignette;
+    Grain grain;
+    ColorGrading colorGrading; //red 140 contrast 20 vignette 0.21 chromatic abberation active NIGHTMARE  //green 110 red 115 contrast 10
+    ChromaticAberration cA;
 
     public float autoExpoStep;
     public float autoExpoHighAim;
@@ -27,7 +28,10 @@ public class PostProcessManager : MonoBehaviour
 	// Start
 	void Start ()
     {
-
+        vignette = mainCamPP.profile.GetSetting<Vignette>();
+        grain = mainCamPP.profile.GetSetting<Grain>();
+        colorGrading = mainCamPP.profile.GetSetting<ColorGrading>();
+        cA = mainCamPP.profile.GetSetting<ChromaticAberration>();
     }
 	
 	// Update
@@ -63,22 +67,19 @@ public class PostProcessManager : MonoBehaviour
 
             if (i == autoExpoLowAim)
             {
-                temp = secondPP;
-                //Debug.Log(temp.profile.name);
-
-                secondPP.profile = mainCamPP.profile;
-                //Debug.Log(mainCamPP.profile.name);
-                //Debug.Log(temp.profile.name);
-
-                mainCamPP.profile = temp.profile;
-                //Debug.Log(secondPP.profile.name);
-
                 for (float j = autoExpo.maxLuminance.value; j <= autoExpoHighAim; j = autoExpo.maxLuminance.value + autoExpoStep)
                 {
                     autoExpo.maxLuminance.value = autoExpo.maxLuminance.value + autoExpoStep;
                     autoExpo.minLuminance.value = autoExpo.maxLuminance.value;
                     yield return new WaitForSeconds(rate);
                 }
+                colorGrading.mixerRedOutRedIn.value = 140f;
+                colorGrading.mixerGreenOutGreenIn.value = 100f;
+                colorGrading.contrast.value = 20f;
+                colorGrading.lift.overrideState = true;
+                vignette.intensity.value = 0.20f;
+                grain.intensity.value = 0.35f;
+                cA.intensity.value = 0.09f;
                 break;
             }
         }
@@ -95,22 +96,19 @@ public class PostProcessManager : MonoBehaviour
 
             if ( i == autoExpoLowAim)
             {
-                temp = mainCamPP;
-                //Debug.Log(temp.profile.name);
-
-                mainCamPP.profile = secondPP.profile;
-                //Debug.Log(mainCamPP.profile.name);
-
-                secondPP.profile = temp.profile;
-                //Debug.Log(secondPP.profile.name);
-
-
                 for (float j = autoExpo.maxLuminance.value; j <= autoExpoHighAim; j = autoExpo.maxLuminance.value + autoExpoStep)
                 {
                     autoExpo.maxLuminance.value = autoExpo.maxLuminance.value + autoExpoStep;
                     autoExpo.minLuminance.value = autoExpo.maxLuminance.value;
                     yield return new WaitForSeconds(rate);
                 }
+                colorGrading.mixerRedOutRedIn.value = 115f;
+                colorGrading.mixerGreenOutGreenIn.value = 110f;
+                colorGrading.contrast.value = 10f;
+                colorGrading.lift.overrideState = false;
+                vignette.intensity.value = 0f;
+                grain.intensity.value = 0f;
+                cA.intensity.value = 0f;
                 break;
             }
         }

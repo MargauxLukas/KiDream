@@ -41,9 +41,9 @@ public class Bomb : MonoBehaviour
         else         { animator.SetBool("isDream", false);}
 
         timer += Time.deltaTime;
-        if (timer == explosionTime - 4.380f) {animator.SetBool("isTimer", true);}
-        if (timer == explosionTime - 0.583f) {explosionArea.SetActive(true)    ;}
-        if (timer == explosionTime         ) {Explode()                        ;}
+        if (timer >= explosionTime - 4.380f){animator.SetBool("isTimer", true);}
+        if (timer >= explosionTime - 0.583f) {explosionArea.SetActive(true)    ;}
+        if (timer >= explosionTime         ) {Explode()                        ;}
 	}
 
     public void Explode(Collision2D collision)
@@ -68,6 +68,7 @@ public class Bomb : MonoBehaviour
             rb.constraints = RigidbodyConstraints2D.FreezeAll;
             Destroy(gameObject, 0.55f);
         }
+        Debug.Log(collision.gameObject.name);
     }
 
     void Explode()
@@ -92,6 +93,7 @@ public class Bomb : MonoBehaviour
 
     private void OnParticleCollision(GameObject other)
     {
+        transform.Translate(new Vector3(0f,0f,0f));
         canHurtBoss = true;
     }
 }
