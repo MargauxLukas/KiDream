@@ -16,7 +16,8 @@ public class WaveManager : MonoBehaviour
     public int selectionIndex = 0;
 
     [Header("Abilities Cost")]
-    public int regenerationValue;
+    public int dreamRegen;
+    public int nightmareRegen;
     public float regenerationRate;
     [Range(0,100)]
     public float pushCost;
@@ -200,7 +201,14 @@ public class WaveManager : MonoBehaviour
 
     public void ManaRegen()
     {
-        uiManager.manaBar.fillAmount = uiManager.manaBar.fillAmount + regenerationValue / 100f;
+        if(myPlayer.isDream == true)
+        {
+            uiManager.manaBar.fillAmount = uiManager.manaBar.fillAmount + dreamRegen / 100f;
+        }
+        else if(myPlayer.isDream == false)
+        {
+            uiManager.manaBar.fillAmount = uiManager.manaBar.fillAmount + nightmareRegen / 100f;
+        }
     }
 
     IEnumerator ChangingAbilityDisableDelay()
