@@ -157,7 +157,7 @@ public class CharacterController : MonoBehaviour
     /**************************************
      * Permet d'aller en mode Cauchemar   *
      **************************************/
-    IEnumerator GoToNightmare() //On pourrait enlver la première partie si on met tous les objets en enfant d'un "CeQuiApparaitEnReve" ou "CeQuiApparaitEnCauchemar"
+    IEnumerator GoToNightmare() //On pourrait enlever la première partie si on met tous les objets en enfant d'un "CeQuiApparaitEnReve" ou "CeQuiApparaitEnCauchemar"
     {
         yield return new WaitForSeconds(worldTransitionDelay);
 

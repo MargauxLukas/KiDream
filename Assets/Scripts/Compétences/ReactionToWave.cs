@@ -413,6 +413,12 @@ public class ReactionToWave : MonoBehaviour
                         connectedGameObject.GetComponent<ParticleSystem>().Stop();
                     }
                     break;
+                case ActivateBehaviour._Animate:
+                    if (connectedGameObject != null)
+                    {
+                        connectedGameObject.GetComponent<Animator>().SetBool("isActivated", false);
+                    }
+                    break;
             }
 
             isActivated = false;
@@ -454,6 +460,16 @@ public class ReactionToWave : MonoBehaviour
                         connectedGameObject.GetComponent<ParticleSystem>().Play();
                     }
                     break;
+                case ActivateBehaviour._Animate:
+                    if(connectedGameObject != null)
+                    {
+                        connectedGameObject.GetComponent<Animator>().SetBool("isActivated", true);
+                        if(connectedGameObject.GetComponent<BoxCollider2D>() != null)
+                        {
+                            connectedGameObject.GetComponent<BoxCollider2D>().enabled = false;
+                        }
+                    }
+                    break;
             }
 
             isActivated = true;
@@ -480,4 +496,4 @@ public class ReactionToWave : MonoBehaviour
     }*/
 }
 
-public enum ActivateBehaviour {_Debug, _Destroy, _SetActiveTrue, _SetActiveFalse, _Shoot}
+public enum ActivateBehaviour {_Debug, _Destroy, _SetActiveTrue, _SetActiveFalse, _Shoot, _Animate}
