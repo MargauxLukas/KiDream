@@ -14,6 +14,51 @@ MonoBehaviour:
   id: Dialogue_Isil_1
   name: Isil
   speechFR:
-  - GEGE
+  - "Bravo, tu as pass\xE9 ces maudites cloches."
+  - "Tu as le parfait contr\xF4le de ton voyage\nHana, c'est tr\xE8s bien."
+  - "A pr\xE9sent je vais t'apprendre \xE0 envoyer\ndes ondes sonores."
+  - 'Tu peux changer d''onde en appuyant
+
+    sur le bouton Y.
+
+    Il en existe trois types...'
+  - 'L''onde BLEUE permet de pousser les objets
+
+    (si l''objet est poussable)'
+  - 'L''onde ROUGE permet d''attirer les objets
+
+    (si l''objet est attirable)'
+  - 'L''onde JAUNE permet de pousser les objets
+
+    (si l''objet est activable)'
+  - "Des petits ronds apparaissent au\ndessus des objets pour t'indiquer\n\xE0 quelles
+    ondes ils sont r\xE9ceptifs."
   speechGB:
-  - TZZZZ
+  - 'Congratulations, you got through
+
+    those cursed bells !'
+  - 'Henceforth, you have the control
+
+    of your voyage Hana.'
+  - 'Now, I''m going to teach you
+
+    how to emit waves !'
+  - 'You can switch between waves
+
+    pressing the Y button.
+
+    There are 3 types of waves...'
+  - 'BLUE waves can push items
+
+    (if the item is pushable)'
+  - 'RED waves can pull items
+
+    (if the item is pullable)'
+  - 'YELLOW waves can activate items
+
+    (if the item is activable)'
+  - 'Some small circles appear above
+
+    items to show you what waves can
+
+    affect them.'
