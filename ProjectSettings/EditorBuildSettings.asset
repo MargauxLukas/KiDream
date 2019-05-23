@@ -30,6 +30,9 @@ EditorBuildSettings:
     path: Assets/_Scenes/MAL_Proto.unity
     guid: 6052656ea45ba0847bed26d6bd4f2fc8
   - enabled: 1
+    path: Assets/_Scenes/ALC_BossIntro.unity
+    guid: 29d615a30a0596a4694b663b0ef81b0d
+  - enabled: 1
     path: Assets/_Scenes/ALC_Boss.unity
     guid: e95e03786a214314e9424590a18c0fa6
   - enabled: 0
