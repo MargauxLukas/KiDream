@@ -28,7 +28,7 @@ public class DestroyWalls : MonoBehaviour
         if (gameObject.name.Contains("Arrière") || gameObject.name.Contains("Estrade"))
         {
             animator.SetBool("isFalling", true);
-            Destroy(gameObject, 1.625f);
+            Destroy(gameObject, 5f);
         }
         else
         {

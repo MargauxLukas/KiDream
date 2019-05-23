@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 
-public class PlaySounds : MonoBehaviour
+public class PlaySoundsWall : MonoBehaviour
 {
     public AudioClip fallingWall;
 
