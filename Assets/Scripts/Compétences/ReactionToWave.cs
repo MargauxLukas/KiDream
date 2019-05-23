@@ -245,7 +245,6 @@ public class ReactionToWave : MonoBehaviour
                         }
                     }
 
-                    Debug.Log("ahah");
                     ParticleList[indexParticle].remainingLifetime = ParticleList[indexParticle].remainingLifetime + lifeBonus /*+ lifeTimeBonus*/;
 
                     shooter.SetParticles(ParticleList, shooter.particleCount);
