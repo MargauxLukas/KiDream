@@ -16,20 +16,21 @@ public class WaveManager : MonoBehaviour
     public int selectionIndex = 0;
 
     [Header("Abilities Cost")]
-    public int regenerationValue;
+    public int dreamRegen;
+    public int nightmareRegen;
     public float regenerationRate;
     [Range(0,100)]
-    public int pushCost;
+    public float pushCost;
     [Range(0, 100)]
-    public int pullCost;
+    public float pullCost;
     [Range(0, 100)]
-    public int activateCost;
+    public float activateCost;
     [Range(0, 100)]
-    public int corruptedPushCost;
+    public float corruptedPushCost;
     [Range(0, 100)]
-    public int corruptedPullCost;
+    public float corruptedPullCost;
     [Range(0, 100)]
-    public int corruptedActivateCost;
+    public float corruptedActivateCost;
 
     private int enumCount;
 
@@ -41,6 +42,7 @@ public class WaveManager : MonoBehaviour
 
     public bool rightAxisInUse = false;
 
+    public static float manaBarValue = 1f;
 
     // Start
     void Start ()
@@ -51,15 +53,17 @@ public class WaveManager : MonoBehaviour
 	// Update
 	void Update ()
     {
-        if(uiManager.manaBar.value < uiManager.manaBar.maxValue && isRegenerating == false)
+        if(uiManager.manaBar.fillAmount < 1f && isRegenerating == false)
         {
             StartCoroutine("ManaRegenCoroutine");
         }
-        else if(uiManager.manaBar.value >= uiManager.manaBar.maxValue)
+        else if(uiManager.manaBar.fillAmount >= 1f)
         {
             CancelInvoke();
             isRegenerating = false;
-        }      
+        }
+
+        manaBarValue = uiManager.manaBar.fillAmount;
 
         WaveTypeSelector();
 
@@ -128,7 +132,7 @@ public class WaveManager : MonoBehaviour
                 break;
         }
 
-        if (Input.GetAxisRaw("ShootParticles") != 0 && uiManager.manaBar.value != 0 && rightAxisInUse == false)
+        if (Input.GetAxisRaw("ShootParticles") != 0 && uiManager.manaBar.fillAmount != 0 && rightAxisInUse == false)
         {
             StopCoroutine("ChangingAbilityDisableDelay");
             StartCoroutine("ChangingAbilityDisableDelay");
@@ -137,49 +141,49 @@ public class WaveManager : MonoBehaviour
                 {
                     case 0:
                         waveSelection = WaveType.Push;
-                        if (uiManager.manaBar.value >= pushCost)
+                        if (uiManager.manaBar.fillAmount >= pushCost / 100f)
                         {
-                            uiManager.manaBar.value = uiManager.manaBar.value - pushCost;
+                            uiManager.manaBar.fillAmount = uiManager.manaBar.fillAmount - pushCost/100f;
                             myPlayer.UseWave();
                         }
                         break;
                     case 1:
                         waveSelection = WaveType.Pull;
-                        if (uiManager.manaBar.value >= pullCost)
+                        if (uiManager.manaBar.fillAmount >= pullCost / 100f)
                         {
-                            uiManager.manaBar.value = uiManager.manaBar.value - pullCost;
+                            uiManager.manaBar.fillAmount = uiManager.manaBar.fillAmount - pullCost/100f;
                             myPlayer.UseWave();
                         }
                         break;
                     case 2:
                         waveSelection = WaveType.Activate;
-                        if (uiManager.manaBar.value >= activateCost)
+                        if (uiManager.manaBar.fillAmount >= activateCost / 100f)
                         {
-                            uiManager.manaBar.value = uiManager.manaBar.value - activateCost;
+                            uiManager.manaBar.fillAmount = uiManager.manaBar.fillAmount - activateCost/100f;
                             myPlayer.UseWave();
                         }
                         break;
                     case 3:
                         waveSelection = WaveType.PushCorruption;
-                        if (uiManager.manaBar.value >= corruptedPushCost)
+                        if (uiManager.manaBar.fillAmount >= corruptedPushCost / 100f)
                         {
-                            uiManager.manaBar.value = uiManager.manaBar.value - corruptedPushCost;
+                            uiManager.manaBar.fillAmount = uiManager.manaBar.fillAmount - corruptedPushCost/100f;
                             myPlayer.UseWave();
                         }
                         break;
                     case 4:
                         waveSelection = WaveType.PullCorruption;
-                        if (uiManager.manaBar.value >= corruptedPullCost)
+                        if (uiManager.manaBar.fillAmount >= corruptedPullCost / 100f)
                         {
-                            uiManager.manaBar.value = uiManager.manaBar.value - corruptedPullCost;
+                            uiManager.manaBar.fillAmount = uiManager.manaBar.fillAmount - corruptedPullCost/100f;
                             myPlayer.UseWave();
                         }
                         break;
                     case 5:
                         waveSelection = WaveType.ActivateCorruption;
-                        if (uiManager.manaBar.value >= corruptedActivateCost)
+                        if (uiManager.manaBar.fillAmount >= corruptedActivateCost / 100f)
                         {
-                            uiManager.manaBar.value = uiManager.manaBar.value - corruptedActivateCost;
+                            uiManager.manaBar.fillAmount = uiManager.manaBar.fillAmount - corruptedActivateCost/100f;
                             myPlayer.UseWave();
                         }
                         break;
@@ -197,7 +201,14 @@ public class WaveManager : MonoBehaviour
 
     public void ManaRegen()
     {
-        uiManager.manaBar.value = uiManager.manaBar.value + regenerationValue;
+        if(myPlayer.isDream == true)
+        {
+            uiManager.manaBar.fillAmount = uiManager.manaBar.fillAmount + dreamRegen / 100f;
+        }
+        else if(myPlayer.isDream == false)
+        {
+            uiManager.manaBar.fillAmount = uiManager.manaBar.fillAmount + nightmareRegen / 100f;
+        }
     }
 
     IEnumerator ChangingAbilityDisableDelay()
