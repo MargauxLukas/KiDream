@@ -19,17 +19,7 @@ public class EnterOnlyAnimatorTrigger : MonoBehaviour
 
     void Update()
     {
-        if(isilIsDescendu)
-        {
-            isil.transform.position = Vector3.MoveTowards(transform.position, new Vector3(-1.285f, -1.8f), 9f*Time.fixedDeltaTime);
-
-            if (isil.transform.position == new Vector3(-1.285f, -1.8f))
-            {
-                isChecked = true;
-                Destroy(Collider);
-                Destroy(this);
-            }
-        }
+       
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -38,6 +28,22 @@ public class EnterOnlyAnimatorTrigger : MonoBehaviour
         {
             anim.SetBool("isTouched", true);
             isilIsDescendu = true;
+            descendre();
+        }
+    }
+
+    private void descendre()
+    {
+        if (isilIsDescendu)
+        {
+            isil.transform.position = Vector3.MoveTowards(transform.position, new Vector3(-1.285f, -1.8f), 9f * Time.fixedDeltaTime);
+
+            if (isil.transform.position == new Vector3(-1.285f, -1.8f))
+            {
+                isChecked = true;
+                Destroy(Collider);
+                Destroy(this);
+            }
         }
     }
 }
