@@ -254,7 +254,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1206622546093412}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.17888752, y: 11.924891, z: 0}
+  m_LocalPosition: {x: 14.008, y: 0.408, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4300940894389840}
@@ -453,9 +453,22 @@ MonoBehaviour:
   launchAgainToDisable: 0
   isActivated: 0
   activateBehaviour: 2
+  disableBehaviour: 0
+  corruptedPosition: {x: 0, y: 0, z: 0}
+  useCorruptedPosition: 0
   corruptedPushRadius: 0.98
+  corruptedPushAffectPlayer: 1
+  cPushForceY: 0
+  cPushForceX: 0
+  xPushEqualY: 0
   corruptedPullRadius: 0.23
+  corruptedPullAffectPlayer: 1
+  cPullForceY: 0
+  cPullForceX: 0
+  xPullEqualY: 0
   corruptedActivateRadius: 0.23
+  bypassPushRules: 0
+  bypassPullRules: 0
   bypassActivateRules: 1
 --- !u!212 &212108113358002796
 SpriteRenderer:
@@ -722,7 +735,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 9aa91f0ed748d0e498aa5bcad40c0d2c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 79982b65a7c2c404aa819af753703d0f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
