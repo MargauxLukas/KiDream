@@ -34,7 +34,7 @@ public class TriggerByName : MonoBehaviour
                     break;
 
                 case TriggerBehaviour._Portal:
-                    connectedGO.GetComponent<Animator>().SetBool("isOpen", true);
+                    connectedGO.GetComponent<Animator>().SetBool("isActivated", true);
                     connectedGO.GetComponent<BoxCollider2D>().enabled = false;
                     break;
 
@@ -59,7 +59,7 @@ public class TriggerByName : MonoBehaviour
                     break;
 
                 case TriggerBehaviour._Portal:
-                    connectedGO.GetComponent<Animator>().SetBool("isOpen", false);
+                    connectedGO.GetComponent<Animator>().SetBool("isActivated", false);
                     connectedGO.GetComponent<BoxCollider2D>().enabled = false;
                     break;
                 case TriggerBehaviour._Null:

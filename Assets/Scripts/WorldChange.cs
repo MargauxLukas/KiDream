@@ -6,7 +6,9 @@ public class WorldChange : MonoBehaviour
 {
     private GameObject player;
     private Animator animator;
-    private bool isDream;
+    private bool isDream = true;
+
+    private bool locked = false;
 
     private void Start()
     {
@@ -16,13 +18,15 @@ public class WorldChange : MonoBehaviour
 
     private void Update()
     {
-        if(player.GetComponent<CharacterController>().isDream)
+        if(player.GetComponent<CharacterController>().isDream && locked == false)
         {
             animator.SetBool("isDream", true);
+            locked = true;
         }
-        else
+        else if (player.GetComponent<CharacterController>().isDream == false && locked == true)
         {
             animator.SetBool("isDream", false);
+            locked = false;
         }
     }
 }

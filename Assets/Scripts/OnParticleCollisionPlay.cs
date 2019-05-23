@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class OnParticleCollisionPlay : MonoBehaviour
 {
-    public CharacterController myPlayer;
+    CharacterController myPlayer;
 
     [SerializeField]
     private bool playParticleSystem = false;
@@ -22,9 +22,23 @@ public class OnParticleCollisionPlay : MonoBehaviour
     private bool activeObject = false;
     public List<GameObject> ActivableObjects = new List<GameObject>();
 
-    private void Start()
+    [SerializeField]
+    private bool animate = false;
+    public Animator objectToAnimate;
+    public string name;
+
+    [SerializeField]
+    private bool disableCollider;
+    public BoxCollider2D bc;
+
+    void Start()
     {
-        myAudioSource = this.GetComponent<AudioSource>();
+        myPlayer = FindObjectOfType<CharacterController>();
+
+        if(this.GetComponent<AudioSource>() != null)
+        {
+            myAudioSource = this.GetComponent<AudioSource>();
+        }
     }
 
 
@@ -62,6 +76,15 @@ public class OnParticleCollisionPlay : MonoBehaviour
             }
         }
 
+        if(animate == true)
+        {
+            objectToAnimate.SetBool(name, true);
+        }
+
+        if(disableCollider == true)
+        {
+            bc.enabled = false;
+        }
 
     }
 }

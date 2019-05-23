@@ -26,6 +26,9 @@ public class ReactionToWave : MonoBehaviour
     public bool canBePushCorrupted = false;
     public bool canBePullCorrupted = false;
     public bool canBeActivateCorrupted = false;
+    public bool forceBounce;
+    [Range(0,10)]
+    public float lifeBonus;
 
     [Header("Push options")]
     [Range(0, 500), SerializeField]
@@ -60,7 +63,7 @@ public class ReactionToWave : MonoBehaviour
     public bool useCorruptedPosition;
 
     [Header("C-Push")]
-    [Range(0, 3)]
+    [Range(0, 5)]
     public float corruptedPushRadius;
     public bool corruptedPushAffectPlayer = true;
     [Range(0, 1000)]
@@ -70,7 +73,7 @@ public class ReactionToWave : MonoBehaviour
     public bool xPushEqualY;
 
     [Header("C-Pull")]
-    [Range(0, 3)]
+    [Range(0, 5)]
     public float corruptedPullRadius;
     public bool corruptedPullAffectPlayer = true;
     [Range(0, 1000)]
@@ -80,13 +83,13 @@ public class ReactionToWave : MonoBehaviour
     public bool xPullEqualY;
 
     [Header("C-Activate")]
-    [Range(0, 3)]
+    [Range(0, 5)]
     public float corruptedActivateRadius;
 
     [Header("Bypass")]
     public bool bypassPushRules;
     public bool bypassPullRules;
-    public bool bypassActivateRules;
+    public bool bypassActivateRules; 
 
     private bool doubleLock = false;
     private int childNumberTolerance;
@@ -155,13 +158,18 @@ public class ReactionToWave : MonoBehaviour
                     }
                 }
 
-                ParticleList[indexParticle].startLifetime = 0f;
+                if(forceBounce == false)
+                {
+                    ParticleList[indexParticle].startLifetime = 0f;
+                    shooter.SetParticles(ParticleList, shooter.particleCount);
+                }
 
-                shooter.SetParticles(ParticleList, shooter.particleCount);
-
-                BypassPushingRules();
-                BypassPullingRules();
-                BypassActivationRules();
+                if(go.tag != "Player")
+                {
+                    BypassPushingRules();
+                    BypassPullingRules();
+                    BypassActivationRules();
+                }
 
                 switch (waveManager.waveSelection)
                 {
@@ -237,7 +245,7 @@ public class ReactionToWave : MonoBehaviour
                         }
                     }
 
-                    ParticleList[indexParticle].remainingLifetime = ParticleList[indexParticle].remainingLifetime + 1f /*+ lifeTimeBonus*/;
+                    ParticleList[indexParticle].remainingLifetime = ParticleList[indexParticle].remainingLifetime + lifeBonus /*+ lifeTimeBonus*/;
 
                     shooter.SetParticles(ParticleList, shooter.particleCount);
                 }
@@ -334,7 +342,7 @@ public class ReactionToWave : MonoBehaviour
         }
         else
         {
-            Debug.Log(this.gameObject.name + " n'a pas de RigidBody2D attaché");
+            //Debug.Log(this.gameObject.name + " n'a pas de RigidBody2D attaché");
             canBePushed = false;
             canBePulled = false;
         }
@@ -416,7 +424,7 @@ public class ReactionToWave : MonoBehaviour
                 case ActivateBehaviour._Animate:
                     if (connectedGameObject != null)
                     {
-                        connectedGameObject.GetComponent<Animator>().SetBool("isActivated", false);
+                            connectedGameObject.GetComponent<Animator>().SetBool("isActivated", false);
                     }
                     break;
             }
