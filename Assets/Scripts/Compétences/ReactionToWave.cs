@@ -63,7 +63,7 @@ public class ReactionToWave : MonoBehaviour
     public bool useCorruptedPosition;
 
     [Header("C-Push")]
-    [Range(0, 3)]
+    [Range(0, 5)]
     public float corruptedPushRadius;
     public bool corruptedPushAffectPlayer = true;
     [Range(0, 1000)]
@@ -73,7 +73,7 @@ public class ReactionToWave : MonoBehaviour
     public bool xPushEqualY;
 
     [Header("C-Pull")]
-    [Range(0, 3)]
+    [Range(0, 5)]
     public float corruptedPullRadius;
     public bool corruptedPullAffectPlayer = true;
     [Range(0, 1000)]
@@ -83,7 +83,7 @@ public class ReactionToWave : MonoBehaviour
     public bool xPullEqualY;
 
     [Header("C-Activate")]
-    [Range(0, 3)]
+    [Range(0, 5)]
     public float corruptedActivateRadius;
 
     [Header("Bypass")]

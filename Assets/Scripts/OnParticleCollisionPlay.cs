@@ -27,6 +27,10 @@ public class OnParticleCollisionPlay : MonoBehaviour
     public Animator objectToAnimate;
     public string name;
 
+    [SerializeField]
+    private bool disableCollider;
+    public BoxCollider2D bc;
+
     void Start()
     {
         myPlayer = FindObjectOfType<CharacterController>();
@@ -77,6 +81,10 @@ public class OnParticleCollisionPlay : MonoBehaviour
             objectToAnimate.SetBool(name, true);
         }
 
+        if(disableCollider == true)
+        {
+            bc.enabled = false;
+        }
 
     }
 }
