@@ -73,6 +73,7 @@ GameObject:
   - component: {fileID: 61264131668318584}
   - component: {fileID: 114351987063102810}
   - component: {fileID: 50712238410149724}
+  - component: {fileID: 114158238497239414}
   m_Layer: 9
   m_Name: PillarN
   m_TagString: ActionObject
@@ -181,8 +182,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1351208200712880}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.019, y: -0.62481344, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 0.2}
+  m_LocalPosition: {x: 0.019, y: 0.207, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.20000002}
   m_Children:
   - {fileID: 4594077613332372}
   m_Father: {fileID: 0}
@@ -240,7 +241,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1536179409514898}
   m_LocalRotation: {x: -0.000036121382, y: -0.0011514163, z: -0.0043864134, w: 0.99998975}
-  m_LocalPosition: {x: 0.063, y: 0.011, z: 0.02}
+  m_LocalPosition: {x: 0.004, y: -0.657, z: 0.02}
   m_LocalScale: {x: 0.5000027, y: 0.49999988, z: 1}
   m_Children:
   - {fileID: 4415548724691832}
@@ -325,7 +326,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 6
 --- !u!61 &61264131668318584
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -337,19 +338,19 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.055, y: 0.062432766}
+  m_UsedByComposite: 1
+  m_Offset: {x: 0.0042454526, y: -0.6100712}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0.11, y: 0.39}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.2, y: 1.44}
     newSize: {x: 0.11, y: 0.39}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.11, y: 0.12486553}
+  m_Size: {x: 0.2115091, y: 0.23483658}
   m_EdgeRadius: 0
 --- !u!61 &61622092769680204
 BoxCollider2D:
@@ -394,6 +395,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114158238497239414
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1351208200712880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 721e1d5f1223801428c81baf6c158c84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offsetValue: 0
+  runOnlyOnceForStaticObjects: 0
 --- !u!114 &114351987063102810
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -420,7 +434,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myPSList: []
   waveManager: {fileID: 0}
-  linearDrag: 1
+  linearDrag: 10
   whoCanShootMe:
   - {fileID: 0}
   canBePushed: 1
@@ -429,20 +443,35 @@ MonoBehaviour:
   canBePushCorrupted: 0
   canBePullCorrupted: 0
   canBeActivateCorrupted: 0
-  verticalPushForce: 98
-  horizontalPushForce: 97
+  forceBounce: 0
+  lifeBonus: 0
+  verticalPushForce: 1
+  horizontalPushForce: 1
   pushXEqualY: 0
-  verticalPullForce: 105
-  horizontalPullForce: 106
+  verticalPullForce: 1
+  horizontalPullForce: 1
   pullXEqualY: 0
   connectedGameObject: {fileID: 0}
   playAnimation: 0
   launchAgainToDisable: 0
   isActivated: 0
   activateBehaviour: 0
+  disableBehaviour: 0
+  corruptedPosition: {x: 0, y: 0, z: 0}
+  useCorruptedPosition: 0
   corruptedPushRadius: 0
+  corruptedPushAffectPlayer: 1
+  cPushForceY: 0
+  cPushForceX: 0
+  xPushEqualY: 0
   corruptedPullRadius: 0
+  corruptedPullAffectPlayer: 1
+  cPullForceY: 0
+  cPullForceX: 0
+  xPullEqualY: 0
   corruptedActivateRadius: 0
+  bypassPushRules: 0
+  bypassPullRules: 0
   bypassActivateRules: 0
 --- !u!114 &114867303750529800
 MonoBehaviour:
@@ -773,7 +802,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: aff4f91882229374fb88e8c73462d06e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 112524cd784fe8740add1e63d26d09f4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
