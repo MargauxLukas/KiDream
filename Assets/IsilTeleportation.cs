@@ -10,9 +10,7 @@ public class IsilTeleportation : MonoBehaviour
     public List<int> dialogueExecutionStatutNumber = new List<int>();
     public List<GameObject> triggerList = new List<GameObject>();
 
-    public int nb = 0;
-
-    private int n=0;
+    private int n = 0;
 
     private void Start()
     {
@@ -26,7 +24,7 @@ public class IsilTeleportation : MonoBehaviour
 
     void Update ()
     {
-        if(nb == dialogueExecutionStatutNumber[n])
+        if(DialogueManager.dialogueExecutionStatut == dialogueExecutionStatutNumber[n])
         {
             StartCoroutine(TeleportationC(n));
             n++;
