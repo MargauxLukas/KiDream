@@ -10,51 +10,114 @@ public class UIManager : MonoBehaviour
     public CharacterController myPlayer;
     public WaveManager waveManager;
 
-    public Slider manaBar;
+    public Image lifeBar;
+    public Image manaBar;
+
+    public GameObject dreamUIBars;
+    public GameObject nightmareUIBars;
+
+    public bool locked = false;
 
 	// Start
 	void Start ()
     {
-		
-	}
+
+    }
 	
 	// Update
 	void Update ()
     {
-        switch(waveManager.selectionIndex)
+        PlayerStatut();
+
+        switch (waveManager.selectionIndex)
         {
             case 0:
-                ImageSeleciton();
+                ImageSelection();
                 imageList[0].gameObject.SetActive(true);
                 break;
             case 1:
-                ImageSeleciton();
+                ImageSelection();
                 imageList[1].gameObject.SetActive(true);
                 break;
             case 2:
-                ImageSeleciton();
+                ImageSelection();
                 imageList[2].gameObject.SetActive(true);
                 break;
             case 3:
-                ImageSeleciton();
+                ImageSelection();
                 imageList[3].gameObject.SetActive(true);
                 break;
             case 4:
-                ImageSeleciton();
+                ImageSelection();
                 imageList[4].gameObject.SetActive(true);
                 break;
             case 5:
-                ImageSeleciton();
+                ImageSelection();
                 imageList[5].gameObject.SetActive(true);
                 break;
         }
 	}
 
-    public void ImageSeleciton()
+    public void ImageSelection()
     {
         foreach (Image im in imageList)
         {
                 im.gameObject.SetActive(false);
+        }
+    }
+
+    public void PlayerStatut()
+    {
+        switch(myPlayer.isDream)
+        {
+            case true:
+                dreamUIBars.SetActive(true);
+                nightmareUIBars.SetActive(false);
+                lifeBar = dreamUIBars.transform.Find("HP_Fill_Dream").GetComponent<Image>();
+                manaBar = dreamUIBars.transform.Find("Mana_Fill_Dream").GetComponent<Image>();
+
+                if(locked == false)
+                {
+                    manaBar.fillAmount = WaveManager.manaBarValue;
+                    locked = true;
+                }
+
+                UILifeSetter();
+                break;
+
+            case false:
+                nightmareUIBars.SetActive(true);
+                dreamUIBars.SetActive(false);
+                lifeBar = nightmareUIBars.transform.Find("HP_Fill_Nightmare").GetComponent<Image>();
+                manaBar = nightmareUIBars.transform.Find("Mana_Fill_Nightmare").GetComponent<Image>();
+
+                if(locked == true)
+                {
+                    manaBar.fillAmount = WaveManager.manaBarValue;
+                    locked = false;
+                }
+
+                UILifeSetter();
+                break;
+        }
+    }
+
+    public void UILifeSetter()
+    {
+        switch(myPlayer.hp)
+        {
+            case 3:
+                lifeBar.fillAmount = 1f;
+                break;
+            case 2:
+                lifeBar.fillAmount = 0.575f;
+                break;
+            case 1:
+                lifeBar.fillAmount = 0.185f;
+                break;
+            case 0:
+                lifeBar.fillAmount = 0f;
+                break;
         }
     }
 }
