@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnterOnlyAnimatorTrigger : MonoBehaviour
 {
-    public GameObject gameObject;
+    public GameObject isil;
     private Animator anim;
     BoxCollider2D Collider;
     public bool isChecked = false;
@@ -13,7 +13,7 @@ public class EnterOnlyAnimatorTrigger : MonoBehaviour
 
     void Start()
     {
-        anim = gameObject.GetComponent<Animator>();
+        anim = isil.GetComponent<Animator>();
         Collider = GetComponent<BoxCollider2D>();
     }
 
@@ -21,9 +21,9 @@ public class EnterOnlyAnimatorTrigger : MonoBehaviour
     {
         if(isilIsDescendu)
         {
-            gameObject.transform.position = Vector3.MoveTowards(transform.position, new Vector3(-1.285f, -1.8f), 9f*Time.fixedDeltaTime);
+            isil.transform.position = Vector3.MoveTowards(transform.position, new Vector3(-1.285f, -1.8f), 9f*Time.fixedDeltaTime);
 
-            if (gameObject.transform.position == new Vector3(-1.285f, -1.8f))
+            if (isil.transform.position == new Vector3(-1.285f, -1.8f))
             {
                 isChecked = true;
                 Destroy(Collider);

@@ -22,4 +22,15 @@ MonoBehaviour:
   - "Il se peut que des \xE9l\xE9ments ne soient\npr\xE9sents que dans un seul des
     deux mondes."
   speechGB:
-  - SUPER
+  - 'Be careful, the bells emit powerful
+
+    waves that can push you out !'
+  - 'Walls can block waves.
+
+    Use them to protect yourself.'
+  - 'Press the left trigger to switch between
+
+    dream and nightmare.'
+  - 'Some walls may appear in one world
+
+    but not in the other.'
