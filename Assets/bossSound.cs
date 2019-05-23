@@ -12,11 +12,33 @@ public class bossSound : MonoBehaviour
     public AudioClip grelot5Sound;
     public AudioClip grelot6Sound;
     public AudioClip grelot7Sound;
+
+    public GameObject drum;
+    public GameObject trompette;
+    public GameObject piano;
+    public GameObject triangle;
+    public GameObject chant;
+
+    private Animator drumAnim;
+    private Animator trompetteAnim;
+    private Animator pianoAnim;
+    private Animator triangleAnim;
+    private Animator chantAnim;
+
     public AudioClip introHell;
     public AudioClip surpriseS;
 
     public AudioSource audioS;
     public AudioSource surpriseAS;
+
+    private void Start()
+    {
+        drumAnim      = drum.GetComponent     <Animator>();
+        trompetteAnim = trompette.GetComponent<Animator>();
+        pianoAnim     = piano.GetComponent    <Animator>();
+        triangleAnim  = triangle.GetComponent <Animator>();
+        chantAnim     = chant.GetComponent    <Animator>();
+    }
 
     public void Grelot1Sound()
     {
@@ -52,6 +74,11 @@ public class bossSound : MonoBehaviour
     {
         audioS.volume = 0.3f;
         audioS.PlayOneShot(grelot6Sound);
+        drumAnim.enabled = false;
+        trompetteAnim.enabled = false;
+        pianoAnim.enabled = false;
+        triangleAnim.enabled = false;
+        chantAnim.enabled = false;
     }
 
     public void Grelot7Sound()
@@ -63,6 +90,11 @@ public class bossSound : MonoBehaviour
     public void HellSound()
     {
         audioS.volume = 0.3f;
+        drumAnim.enabled = true;
+        trompetteAnim.enabled = true;
+        pianoAnim.enabled = true;
+        triangleAnim.enabled = true;
+        chantAnim.enabled = true;
         audioS.PlayOneShot(introHell);
     }
 }

@@ -6,7 +6,7 @@ public class WorldChange : MonoBehaviour
 {
     private GameObject player;
     private Animator animator;
-    private bool isDream;
+    private bool isDream = true;
 
     private void Start()
     {
