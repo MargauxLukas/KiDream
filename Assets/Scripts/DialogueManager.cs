@@ -23,6 +23,8 @@ public class DialogueManager : MonoBehaviour
     RangeAttribute test;
 
     public static int dialogueExecutionStatut;
+    public int setUpLastDialogueIndex;
+    public static int lastDialogueIndex;
 
     [SerializeField]
     private int showDialogueExecutionStatut;
@@ -30,6 +32,7 @@ public class DialogueManager : MonoBehaviour
     // Start
     void Start()
     {
+        lastDialogueIndex = setUpLastDialogueIndex;
         sentences = new Queue<string>();
         scriptController = monJoueur.GetComponent<CharacterController>();
     }

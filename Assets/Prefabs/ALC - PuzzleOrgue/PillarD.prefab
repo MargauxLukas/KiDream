@@ -148,13 +148,15 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4715499465817764}
+  - component: {fileID: 114195062238577478}
   - component: {fileID: 212405594560195460}
   - component: {fileID: 95933678353663430}
   - component: {fileID: 114910133833255352}
   - component: {fileID: 61881899633118140}
   - component: {fileID: 114539051826627038}
   - component: {fileID: 50016728303447202}
-  - component: {fileID: 114781432476478548}
+  - component: {fileID: 114131194835412036}
+  - component: {fileID: 114291591781386708}
   m_Layer: 9
   m_Name: PillarD
   m_TagString: ActionObject
@@ -201,7 +203,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1344062300910496}
   m_LocalRotation: {x: -0.000036121382, y: -0.0011514163, z: -0.0043864134, w: 0.99998975}
-  m_LocalPosition: {x: -0.001, y: -0.642, z: 0.02}
+  m_LocalPosition: {x: 0.004, y: -0.655, z: 0.02}
   m_LocalScale: {x: 0.5000027, y: 0.49999988, z: 1}
   m_Children:
   - {fileID: 4095535421891990}
@@ -228,8 +230,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1971414904660586}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.475, y: 0.457, z: -499.92358}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.2}
+  m_LocalPosition: {x: 2.85, y: 1.795, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.20000002}
   m_Children:
   - {fileID: 4642936914515408}
   m_Father: {fileID: 0}
@@ -306,7 +308,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 5
 --- !u!50 &50990960040888124
 Rigidbody2D:
   serializedVersion: 4
@@ -364,7 +366,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.00315094, y: -0.6168065}
+  m_Offset: {x: 0.0031849667, y: -0.61117744}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -375,7 +377,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.21369934, y: 0.1767149}
+  m_Size: {x: 0.21363007, y: 0.21369553}
   m_EdgeRadius: 0
 --- !u!95 &95933678353663430
 Animator:
@@ -386,7 +388,7 @@ Animator:
   m_GameObject: {fileID: 1971414904660586}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: cf667b9a3f85aa04dbfc4743f89e2c07, type: 2}
+  m_Controller: {fileID: 9100000, guid: 9b794686809aac44f836c3ee10403657, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -395,6 +397,43 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114131194835412036
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1971414904660586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 721e1d5f1223801428c81baf6c158c84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offsetValue: 0
+  runOnlyOnceForStaticObjects: 0
+--- !u!114 &114195062238577478
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1971414904660586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e38f79023323c84084a9002186be39a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minY: 1.568
+  maxY: 2.407
+--- !u!114 &114291591781386708
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1971414904660586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33dce678f98a3c74f9925095d3273bd7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114539051826627038
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -408,19 +447,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   puzzleCollision: {fileID: 0}
   isActivated: 0
---- !u!114 &114781432476478548
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1971414904660586}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 721e1d5f1223801428c81baf6c158c84, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  offsetValue: 0
-  runOnlyOnceForStaticObjects: 0
 --- !u!114 &114815402420863438
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -458,16 +484,16 @@ MonoBehaviour:
   canBePushed: 1
   canBePulled: 1
   canBeActivated: 0
-  canBePushCorrupted: 0
-  canBePullCorrupted: 0
+  canBePushCorrupted: 1
+  canBePullCorrupted: 1
   canBeActivateCorrupted: 0
   forceBounce: 0
   lifeBonus: 0
-  verticalPushForce: 98
-  horizontalPushForce: 97
+  verticalPushForce: 40
+  horizontalPushForce: 40
   pushXEqualY: 0
-  verticalPullForce: 105
-  horizontalPullForce: 106
+  verticalPullForce: 40
+  horizontalPullForce: 40
   pullXEqualY: 0
   connectedGameObject: {fileID: 0}
   playAnimation: 0
