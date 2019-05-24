@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 468d546fc0c4579409d3116c5db45655, type: 3}
+  m_Name: Dialogue_Isil_6
+  m_EditorClassIdentifier: 
+  id: Dialogue_Isil_6
+  name: Isil
+  speechFR:
+  - "Tu as peut-\xEAtre remarqu\xE9 que\nlancer des ondes te co\xFBte de\nl'\xE9nergie."
+  - "Ton \xE9nergie est repr\xE9sent\xE9e\nen haut \xE0 gauche en dessous\nde ta jauge
+    d'hypnose."
+  - "Lorsque tu seras \xE9puis\xE9e, tu\nne pourras plus lancer d'ondes\net devra
+    te reposer."
+  - "Tu regagnes plus rapidement\nde l'\xE9nergie dans tes r\xEAves\nque dans tes
+    cauchemars."
+  - "Les ondes qui drainent le plus\nd'\xE9nergie sont celles du cauchemar\net l'onde
+    d'activation du r\xEAve."
+  - "A propos ! Ta jauge d'hypnose\nrepr\xE9sente ta vie. Lorsqu'elle\nse vide tu
+    te r\xE9veilles."
+  speechGB:
+  - 'You may have noticed that
+
+    emitting waves drains your
+
+    energy.'
+  - 'Your energy is indicated in
+
+    the top left corner under your
+
+    hypnosis gauge.'
+  - 'When you will feel exhausted,
+
+    you will no longer be able to
+
+    emit waves and need to rest'
+  - 'Your energy regenerates faster
+
+    when you are in your dreams
+
+    than in your nightmares.'
+  - 'The most energy-draining waves
+
+    are the nightmares ones and the
+
+    dream activate one.'
+  - 'Oh, about your hypnosis gauge !
+
+    It represents your life. When
+
+    it gets empty, you wake up.'

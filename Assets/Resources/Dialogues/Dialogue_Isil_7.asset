@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 468d546fc0c4579409d3116c5db45655, type: 3}
+  m_Name: Dialogue_Isil_7
+  m_EditorClassIdentifier: 
+  id: Dialogue_Isil_7
+  name: Isil
+  speechFR:
+  - "Hana ! Tu es venue \xE0 bout\nde toutes \xE9preuves du monde\nde l'ou\xEFe. Je
+    suis tr\xE8s fier !"
+  - "Un dernier pas doit \xEAtre franchi.\nTu dois vaincre le gardien de\nce sens
+    pour le r\xE9cup\xE9rer."
+  - "Grelem est un gros amas de\ngrelots col\xE9rique. Il lance des\ngrelots explosifs."
+  - 'Pour le vaincre, utilise tes ondes
+
+    pour lui renvoyer ses grelots.'
+  - "Courage Hana !\nJe t'attends de l'autre c\xF4t\xE9 dans\nle monde fabuleux de
+    la vue."
+  speechGB:
+  - 'Hana ! You got through all the
+
+    challenges of the hearing world.
+
+    I''m really proud of you !'
+  - 'There''s still one step to go.
+
+    You need to defeat the keeper of
+
+    the hearing sense to get it back.'
+  - 'Grelem is a big and angry heap
+
+    of sleigh bells. He will often throw
+
+    exploding bells at you.'
+  - 'Use your waves to send back
+
+    his bells and defeat him.'
+  - 'Good luck Hana !
+
+    I''ll be waiting for you on the
+
+    other side, in the world of sight.'
