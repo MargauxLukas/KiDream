@@ -20,7 +20,6 @@ public class PauseMenu : MonoBehaviour
 
     public GameObject indicator;
 
-    public GameObject optionsGO;
     public GameObject controlsGO;
 
     [Header("Langues")]
