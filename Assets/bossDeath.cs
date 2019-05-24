@@ -22,8 +22,8 @@ public class bossDeath : MonoBehaviour
 
     IEnumerator waitBeforeInstantiate()
     {
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(2f);
         bossAnim.SetBool("isScenePost", true);
-        Instantiate(brossGrelotin, boss.transform);
+        brossGrelotin.GetComponent<SpriteRenderer>().enabled = true;
     }
 }
