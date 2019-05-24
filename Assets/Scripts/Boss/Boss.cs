@@ -17,6 +17,7 @@ public class Boss : MonoBehaviour
     public GameObject pushCorrupted;
     public GameObject areaDetection;
     public GameObject  wallCollider;
+    public GameObject         panel;
 
     public AudioClip landingSound;
 
@@ -795,6 +796,8 @@ public class Boss : MonoBehaviour
     {
         isDeadB = true;
         animator.SetTrigger("isDeath");
+        panel.GetComponent<bossDeath>().DeathAnim();
+        
     }
 
     public void PlayLandingSound()
