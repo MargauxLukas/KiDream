@@ -5340,6 +5340,8 @@ MonoBehaviour:
   canBePushCorrupted: 0
   canBePullCorrupted: 0
   canBeActivateCorrupted: 0
+  forceBounce: 0
+  lifeBonus: 0
   verticalPushForce: 0.15
   horizontalPushForce: 0.15
   pushXEqualY: 0
@@ -6565,15 +6567,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4763258452055478, guid: 249f9c7c6e957ef4a95e1db700c1a1d4, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 26.9
+      value: 30.27
       objectReference: {fileID: 0}
     - target: {fileID: 4763258452055478, guid: 249f9c7c6e957ef4a95e1db700c1a1d4, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -2.4
+      value: 1.44
       objectReference: {fileID: 0}
     - target: {fileID: 4763258452055478, guid: 249f9c7c6e957ef4a95e1db700c1a1d4, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 0.068713784
+      value: 0.06871378
       objectReference: {fileID: 0}
     - target: {fileID: 4763258452055478, guid: 249f9c7c6e957ef4a95e1db700c1a1d4, type: 2}
       propertyPath: m_LocalRotation.x
@@ -6595,6 +6597,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 16
       objectReference: {fileID: 0}
+    - target: {fileID: 114035462356243002, guid: 249f9c7c6e957ef4a95e1db700c1a1d4,
+        type: 2}
+      propertyPath: parallaxCamera
+      value: 
+      objectReference: {fileID: 1898488084}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 249f9c7c6e957ef4a95e1db700c1a1d4, type: 2}
   m_IsPrefabAsset: 0
@@ -6680,15 +6687,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4690447879586134, guid: d7b67f529a2ce9747b70e0daa3f5a70a, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 26.9
+      value: 30.27
       objectReference: {fileID: 0}
     - target: {fileID: 4690447879586134, guid: d7b67f529a2ce9747b70e0daa3f5a70a, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -2.4
+      value: 1.44
       objectReference: {fileID: 0}
     - target: {fileID: 4690447879586134, guid: d7b67f529a2ce9747b70e0daa3f5a70a, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 0.068713784
+      value: 0.06871378
       objectReference: {fileID: 0}
     - target: {fileID: 4690447879586134, guid: d7b67f529a2ce9747b70e0daa3f5a70a, type: 2}
       propertyPath: m_LocalRotation.x
@@ -6710,6 +6717,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 17
       objectReference: {fileID: 0}
+    - target: {fileID: 114907403012033994, guid: d7b67f529a2ce9747b70e0daa3f5a70a,
+        type: 2}
+      propertyPath: parallaxCamera
+      value: 
+      objectReference: {fileID: 1898488084}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d7b67f529a2ce9747b70e0daa3f5a70a, type: 2}
   m_IsPrefabAsset: 0
@@ -6851,6 +6863,29 @@ ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 198486187911153188, guid: c2182d8e48b654f41baeeb6f7cfdeaf5,
     type: 2}
   m_PrefabInternal: {fileID: 2013120764}
+--- !u!1 &1330248168 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1832549129265220, guid: d7b67f529a2ce9747b70e0daa3f5a70a,
+    type: 2}
+  m_PrefabInternal: {fileID: 1309514123}
+--- !u!95 &1330248171
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1330248168}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6ac5271cc071a334ca572877426de45b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1409884019
 GameObject:
   m_ObjectHideFlags: 0
@@ -7169,7 +7204,8 @@ MonoBehaviour:
   myPlayer: {fileID: 795463521}
   uiManager: {fileID: 2145356567}
   selectionIndex: 0
-  regenerationValue: 2
+  dreamRegen: 0
+  nightmareRegen: 0
   regenerationRate: 1
   pushCost: 3
   pullCost: 0
@@ -7326,6 +7362,29 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!1 &1585423266 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1527701116515314, guid: 249f9c7c6e957ef4a95e1db700c1a1d4,
+    type: 2}
+  m_PrefabInternal: {fileID: 1186307384}
+--- !u!95 &1585423269
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1585423266}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: da2eebc1afe55584fb795adcda13f32f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!4 &1596609572 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4092339049182198, guid: c2182d8e48b654f41baeeb6f7cfdeaf5,
@@ -7476,7 +7535,7 @@ Camera:
   field of view: 27.8
   orthographic: 1
   orthographic size: 2.53
-  m_Depth: 1
+  m_Depth: 5
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -8082,7 +8141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5be0ff84b094e444a79a65b1c8e2e1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myPlayer: {fileID: 0}
+  myPlayer: {fileID: 795463521}
 --- !u!20 &1898488085
 Camera:
   m_ObjectHideFlags: 0
@@ -8590,7 +8649,11 @@ MonoBehaviour:
   - {fileID: 1601509308}
   myPlayer: {fileID: 795463521}
   waveManager: {fileID: 1487536545}
-  manaBar: {fileID: 554261678}
+  lifeBar: {fileID: 0}
+  manaBar: {fileID: 0}
+  dreamUIBars: {fileID: 0}
+  nightmareUIBars: {fileID: 0}
+  locked: 0
 --- !u!224 &2145356568
 RectTransform:
   m_ObjectHideFlags: 0

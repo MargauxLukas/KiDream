@@ -328,7 +328,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -441,6 +441,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   musicianS: {fileID: 8300000, guid: 3505143fba22eab4c8e7fe04cb4503ee, type: 3}
+  wrongKey: {fileID: 8300000, guid: c19dadae2f3a0cc4894f04e861463f1c, type: 3}
 --- !u!1001 &574447742
 Prefab:
   m_ObjectHideFlags: 0
@@ -1018,7 +1019,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &722679214
 MonoBehaviour:
   m_ObjectHideFlags: 0
