@@ -12,33 +12,33 @@ public class DeathZone : MonoBehaviour
             Debug.Log("Player est tombé");
             collision.GetComponent<CharacterController>().isDead();
             StartCoroutine(Falling(collision.gameObject));
+            Destroy(collision.gameObject, 0.4f);
         }
         else if (collision.name.Contains("Chick"))
         {
             Debug.Log("chick est tombé");
             collision.GetComponent<ChickBehaviour>().Dead();
             StartCoroutine(Falling(collision.gameObject));
-            Destroy(collision.gameObject);
-            Destroy(collision.gameObject, 2f);
+            Destroy(collision.gameObject, 0.4f);
         }
         else if (collision.name.Contains("Grelotin"))
         {
             Debug.Log("Grelotin est tombé");
             collision.GetComponent<GrelotinBehaviour>().isDead();
             StartCoroutine(Falling(collision.gameObject));
-            Destroy(collision.gameObject, 2f);
+            Destroy(collision.gameObject, 0.4f);
         }
         else if (collision.name.Contains("Pillar"))
         {
             Debug.Log("Pillier est tombé");
             StartCoroutine(Falling(collision.gameObject));
-            Destroy(collision.gameObject, 2f);
+            Destroy(collision.gameObject, 0.4f);
         }
         else if (collision.name.Contains("Bomb"))
         {
             Debug.Log("Bombe est tombé");
             StartCoroutine(Falling(collision.gameObject));
-            Destroy(collision.gameObject, 2f);
+            Destroy(collision.gameObject, 0.4f);
         }
     }
 
