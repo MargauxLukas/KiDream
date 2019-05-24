@@ -20,17 +20,20 @@ public class DialogueTrigger : MonoBehaviour
 
     private void Update()
     {
-        data = Resources.Load<SpeechData>("Dialogues/" + (id + DialogueManager.dialogueExecutionStatut));
+        data = Resources.Load<SpeechData>("Dialogues/" + (id + (DialogueManager.dialogueExecutionStatut)));
 
-        dialogue.name = data.name + " :";
+        if (DialogueManager.dialogueExecutionStatut <= DialogueManager.lastDialogueIndex)
+        {
+            dialogue.name = data.name + " :";
 
-        if (GameLanguage.lang == Language.french && dialogue.sentences != data.speechFR)
-        {
-            dialogue.sentences = data.speechFR;
-        }
-        else if(GameLanguage.lang == Language.english && dialogue.sentences != data.speechGB)
-        {
-            dialogue.sentences = data.speechGB;
+            if (GameLanguage.lang == Language.french && dialogue.sentences != data.speechFR)
+            {
+                dialogue.sentences = data.speechFR;
+            }
+            else if (GameLanguage.lang == Language.english && dialogue.sentences != data.speechGB)
+            {
+                dialogue.sentences = data.speechGB;
+            }
         }
     }
 

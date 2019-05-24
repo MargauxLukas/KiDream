@@ -14,7 +14,10 @@ public class triggerIsilTeleportation : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("CollisionDetected");
-        animator.SetBool("isMuted", false);
+        if(collision.tag == "Player")
+        {
+            Debug.Log("CollisionDetected");
+            animator.SetBool("isMuted", false);
+        }
     }
 }

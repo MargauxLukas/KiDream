@@ -11,13 +11,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 468d546fc0c4579409d3116c5db45655, type: 3}
   m_Name: Dialogue_Isil_3
   m_EditorClassIdentifier: 
-  id: Dialogue_Isil_1
+  id: Dialogue_Isil_3
   name: Isil
   speechFR:
   - "Tu peux d\xE9sormais \xE9mettre des\nondes sur le microphone en face."
   - "Les microphones ne peuvent pas\n\xEAtre d\xE9plac\xE9s mais peuvent\nservir de
     relais lorsque des..."
-  - "\xE9l\xE9ments ne sont pas \xE0 ta port\xE9e."
+  - "...\xE9l\xE9ments ne sont pas \xE0 ta port\xE9e."
   - 'Voyage dans tes cauchemars pour
 
     obtenir de nouvelles ondes.'
@@ -41,7 +41,7 @@ MonoBehaviour:
   - 'Switch to the world of nightmares
 
     to get new waves.'
-  - 'In your nighrmares, you''ll be able
+  - 'In your nightmares, you''ll be able
 
     to make items emit waves for you.
 

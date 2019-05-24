@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 468d546fc0c4579409d3116c5db45655, type: 3}
+  m_Name: Dialogue_Isil_5
+  m_EditorClassIdentifier: 
+  id: Dialogue_Isil_5
+  name: Isil
+  speechFR:
+  - "C'est bien Hana, tu vas y arriver!\nLa salle de l'orgue s'ouvre \xE0 toi."
+  - 'Ici, tu devras utiliser les
+
+    grands tuyaux d''orgue pour
+
+    alimenter les plus petits.'
+  - Courage, je suis fier de toi !
+  speechGB:
+  - 'Good job Hana, you''re close !
+
+    Organ room is now opened for you.'
+  - 'Here, you''ll need to use the
+
+    big organ pipes to power
+
+    the smaller ones.'
+  - Keep going, I'm proud of you !
