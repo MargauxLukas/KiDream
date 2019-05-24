@@ -55,7 +55,7 @@ public class PauseMenu : MonoBehaviour
     public static float handleReturnedValue;
 
     public GameObject aiguille;
-    public int optionsIndex = 0;
+    public static int optionsIndex = 0;
 
     private void Awake()
     {
