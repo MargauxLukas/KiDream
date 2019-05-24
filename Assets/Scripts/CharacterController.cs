@@ -116,8 +116,11 @@ public class CharacterController : MonoBehaviour
                 return;
             }
 
-            dialogueTrigger.TriggerDialogue();
-            dialogueHasStarted = true;
+            if (DialogueManager.dialogueExecutionStatut <= DialogueManager.lastDialogueIndex)
+            {
+                dialogueTrigger.TriggerDialogue();
+                dialogueHasStarted = true;
+            }
         }
         else if (Input.GetKeyDown(KeyCode.Joystick1Button0) && dialogueHasStarted)
         {

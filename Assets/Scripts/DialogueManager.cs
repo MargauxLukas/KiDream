@@ -11,7 +11,8 @@ public class DialogueManager : MonoBehaviour
     public Image dialogueBoxAspect;
     public Sprite dreamAspect;
     public Sprite nightmareAspect;
-
+    [Range(0, 0.5f)]
+    public float keySpeed;
     public AudioSource audio;
     public AudioClip keySound;
     public Animator animator;
@@ -19,8 +20,11 @@ public class DialogueManager : MonoBehaviour
     CharacterController scriptController;
 
     private Queue<string> sentences;
+    RangeAttribute test;
 
     public static int dialogueExecutionStatut;
+    public int setUpLastDialogueIndex;
+    public static int lastDialogueIndex;
 
     [SerializeField]
     private int showDialogueExecutionStatut;
@@ -28,6 +32,7 @@ public class DialogueManager : MonoBehaviour
     // Start
     void Start()
     {
+        lastDialogueIndex = setUpLastDialogueIndex;
         sentences = new Queue<string>();
         scriptController = monJoueur.GetComponent<CharacterController>();
     }
@@ -101,7 +106,7 @@ public class DialogueManager : MonoBehaviour
             {
                 audio.PlayOneShot(keySound);
             }
-            yield return new WaitForSeconds(0.08f);
+            yield return new WaitForSeconds(keySpeed);
         }
     }
 

@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 468d546fc0c4579409d3116c5db45655, type: 3}
   m_Name: Dialogue_Isil_2
   m_EditorClassIdentifier: 
-  id: Dialogue_Isil_1
+  id: Dialogue_Isil_2
   name: Isil
   speechFR:
   - "Bravo, tu as pass\xE9 ces maudites cloches."
@@ -33,6 +33,8 @@ MonoBehaviour:
     (si l''objet est activable)'
   - "Des petits ronds apparaissent au\ndessus des objets pour t'indiquer\n\xE0 quelles
     ondes ils sont r\xE9ceptifs."
+  - "Essaye de tirer le bloc sur\nl'emplacement \xE0 gauche et\nregarde ce qu'il se
+    passe."
   speechGB:
   - 'Congratulations, you got through
 
@@ -62,3 +64,8 @@ MonoBehaviour:
     items to show you what waves can
 
     affect them.'
+  - 'Try to pull the right side bloc
+
+    to the left mark on the ground
+
+    and watch the result.'

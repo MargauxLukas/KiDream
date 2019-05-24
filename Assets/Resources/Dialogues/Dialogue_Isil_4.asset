@@ -11,9 +11,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 468d546fc0c4579409d3116c5db45655, type: 3}
   m_Name: Dialogue_Isil_4
   m_EditorClassIdentifier: 
-  id: Dialogue_Isil_1
+  id: Dialogue_Isil_4
   name: Isil
   speechFR:
-  - GEGE
+  - "Tu arrives \xE0 pr\xE9sent \xE0 la salle\ndes tambours !"
+  - "Utilises tes comp\xE9tences afin de\nfaire rebondire les ondes sur les\ntambours
+    pour ouvrir les portes"
   speechGB:
-  - EXCELLENT
+  - You're now in the drums room !
+  - 'Use your abilities to make
+
+    waves bounce on drums and
+
+    open the doors.'
