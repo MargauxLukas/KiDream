@@ -20,7 +20,10 @@ public class DeathScreen : MonoBehaviour
 	
 	public void deathScreen()
     {
-        camera.GetComponent<AudioSource>().volume = 0f;
+        if (camera != null)
+        {
+            camera.GetComponent<AudioSource>().volume = 0f;
+        }
         audioS.Play(0);
         animator.SetBool("isDead", true);
         pAnimator.SetBool("isDead", true);

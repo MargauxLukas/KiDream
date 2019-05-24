@@ -53,7 +53,7 @@ public class CharacterController : MonoBehaviour
 
     public int hp = 3;
 
-    private bool isKilled  = false;
+    public bool isKilled  = false;
     //private bool nightmare = false;  //Useless donc je l'ai viré
     public  bool isDream     =  true;
 
@@ -295,12 +295,14 @@ public class CharacterController : MonoBehaviour
 
         if(hp == 0)
         {
+            isKilled = true;
             isDead();
         }
     }
 
     public void isDead()
     {
+        isKilled = true;
         animator.SetBool("isDead", true);
         deathPanel.GetComponent<DeathScreen>().deathScreen();
         GetComponent<CharacterController>().enabled = false;
