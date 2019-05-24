@@ -39,9 +39,6 @@ EditorBuildSettings:
     path: Assets/_Scenes/MAL_NewCopyForLON.unity
     guid: 462f784eafdc96948b73a152a9c64eb8
   - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
-  - enabled: 0
     path: Assets/_Scenes/MAL_AnimCinematics.unity
     guid: 02fd7de16ca84f346925a7d005887266
   - enabled: 0
