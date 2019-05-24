@@ -26,31 +26,37 @@ public class AudioThemeManager : MonoBehaviour
 
     private void ThemeChanger()
     {
-        if(myPlayer.isDream == true && dreamTheme.volume > 0)
+        if (!myPlayer.isKilled)
         {
-            return;
-        }
-        else if(myPlayer.isDream == true && dreamTheme.volume == 0f)
-        {
-            selectedTheme = dreamTheme;
-            otherTheme = nightmareTheme;
-            StartCoroutine("FadeIn");
-            StartCoroutine("FadeOut");
-        }
+            if (myPlayer.isDream == true && dreamTheme.volume > 0)
+            {
+                return;
+            }
+            else if (myPlayer.isDream == true && dreamTheme.volume == 0f)
+            {
+                selectedTheme = dreamTheme;
+                otherTheme = nightmareTheme;
+                StartCoroutine("FadeIn");
+                StartCoroutine("FadeOut");
+            }
 
-        if (myPlayer.isDream == false && nightmareTheme.volume > 0)
-        {
-            return;
+            if (myPlayer.isDream == false && nightmareTheme.volume > 0)
+            {
+                return;
+            }
+            else if (myPlayer.isDream == false && nightmareTheme.volume == 0f)
+            {
+                selectedTheme = nightmareTheme;
+                otherTheme = dreamTheme;
+                StartCoroutine("FadeIn");
+                StartCoroutine("FadeOut");
+            }
         }
-        else if (myPlayer.isDream == false && nightmareTheme.volume == 0f)
+        else
         {
-            selectedTheme = nightmareTheme;
-            otherTheme = dreamTheme;
-            StartCoroutine("FadeIn");
-            StartCoroutine("FadeOut");
+            selectedTheme.volume = 0f;
+            otherTheme.volume = 0f;
         }
-
-
     }
 
     IEnumerator FadeIn()
