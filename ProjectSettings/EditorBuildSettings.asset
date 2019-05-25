@@ -14,6 +14,12 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/_Scenes/MENU/LON_PlayMenu.unity
     guid: 9c60a837681704344a6c6c9c9b3ca86d
+  - enabled: 1
+    path: Assets/_Scenes/IntroScene.unity
+    guid: 89a5ae8d2c112004c8f346563ecc8e46
+  - enabled: 1
+    path: Assets/_Scenes/MAL_Puzzle01.unity
+    guid: a1b59076fc7b6a74f9b54c875c6636be
   - enabled: 0
     path: Assets/_Scenes/LON_Scene1.unity
     guid: 714dda2e6d44ae048a7ac1d3a2d3427d
@@ -32,19 +38,13 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/_Scenes/ALC_BossIntro.unity
     guid: 29d615a30a0596a4694b663b0ef81b0d
-  - enabled: 1
+  - enabled: 0
     path: Assets/_Scenes/ALC_Boss.unity
     guid: e95e03786a214314e9424590a18c0fa6
   - enabled: 0
     path: Assets/_Scenes/MAL_NewCopyForLON.unity
     guid: 462f784eafdc96948b73a152a9c64eb8
   - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
-  - enabled: 0
     path: Assets/_Scenes/MAL_AnimCinematics.unity
     guid: 02fd7de16ca84f346925a7d005887266
-  - enabled: 0
-    path: Assets/_Scenes/IntroScene.unity
-    guid: 89a5ae8d2c112004c8f346563ecc8e46
   m_configObjects: {}
