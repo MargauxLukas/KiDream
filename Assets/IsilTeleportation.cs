@@ -24,11 +24,12 @@ public class IsilTeleportation : MonoBehaviour
 
     void Update ()
     {
-        if(DialogueManager.dialogueExecutionStatut == dialogueExecutionStatutNumber[n])
+        Debug.Log(DialogueManager.dialogueExecutionStatut + " == " + dialogueExecutionStatutNumber[n]);
+        if (DialogueManager.dialogueExecutionStatut == dialogueExecutionStatutNumber[n])
         {
             StartCoroutine(TeleportationC(n));
             n++;
-            triggerList[n - 1].GetComponent<BoxCollider2D>().enabled = true;
+            triggerList[n-1].GetComponent<BoxCollider2D>().enabled = true;
         }
     }
 
@@ -37,7 +38,6 @@ public class IsilTeleportation : MonoBehaviour
         triggerList[n1].GetComponent<BoxCollider2D>().enabled = false;
         animator.SetBool("isMuted", true);
         yield return new WaitForSeconds(1.2f);
-        Debug.Log(gameObject.transform.position + " to " + positionList[n1].position);
         gameObject.transform.position = positionList[n1].position;
     }
 }

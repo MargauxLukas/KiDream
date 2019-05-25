@@ -28,11 +28,11 @@ public class EnterOnlyAnimatorTrigger : MonoBehaviour
         {
             anim.SetBool("isTouched", true);
             isilIsDescendu = true;
-            descendre();
+            //descendre();
         }
     }
 
-    private void descendre()
+    /*private void descendre()
     {
         if (isilIsDescendu)
         {
@@ -45,5 +45,5 @@ public class EnterOnlyAnimatorTrigger : MonoBehaviour
                 Destroy(this);
             }
         }
-    }
+    }*/
 }
