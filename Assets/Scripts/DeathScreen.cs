@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DeathScreen : MonoBehaviour
 {
@@ -17,8 +18,16 @@ public class DeathScreen : MonoBehaviour
         animator = GetComponent<Animator>();
         pAnimator = playerDeath.GetComponent<Animator>();
 	}
-	
-	public void deathScreen()
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Joystick1Button6))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+    }
+
+    public void deathScreen()
     {
         if (camera != null)
         {

@@ -12,7 +12,7 @@ public class musicianSound : MonoBehaviour
     public void PlayMusicianSound()
     {
         audioS = gameObject.GetComponent<AudioSource>();
-        audioS.volume = 0.4f;
+        audioS.volume = 0.5f;
         audioS.PlayOneShot(musicianS);
     }
 
