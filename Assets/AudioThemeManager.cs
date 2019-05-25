@@ -14,8 +14,10 @@ public class AudioThemeManager : MonoBehaviour
     public CharacterController myPlayer;
 
 	// Start
-	void Start () {
-		
+	void Start ()
+    {
+        selectedTheme = dreamTheme;
+        otherTheme = nightmareTheme;
 	}
 	
 	// Update
