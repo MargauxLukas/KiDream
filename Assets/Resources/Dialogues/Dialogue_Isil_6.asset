@@ -14,45 +14,20 @@ MonoBehaviour:
   id: Dialogue_Isil_6
   name: Isil
   speechFR:
-  - "Tu as peut-\xEAtre remarqu\xE9 que\nlancer des ondes te co\xFBte de\nl'\xE9nergie."
-  - "Ton \xE9nergie est repr\xE9sent\xE9e\nen haut \xE0 gauche en dessous\nde ta jauge
-    d'hypnose."
-  - "Lorsque tu seras \xE9puis\xE9e, tu\nne pourras plus lancer d'ondes\net devra
-    te reposer."
-  - "Tu regagnes plus rapidement\nde l'\xE9nergie dans tes r\xEAves\nque dans tes
-    cauchemars."
-  - "Les ondes qui drainent le plus\nd'\xE9nergie sont celles du cauchemar\net l'onde
-    d'activation du r\xEAve."
-  - "A propos ! Ta jauge d'hypnose\nrepr\xE9sente ta vie. Lorsqu'elle\nse vide tu
-    te r\xE9veilles."
+  - "C'est bien Hana, tu vas y arriver!\nLa salle de l'orgue s'ouvre \xE0 toi."
+  - 'Ici, tu devras utiliser les
+
+    grands tuyaux d''orgue pour
+
+    alimenter les plus petits.'
+  - Courage, je suis fier de toi !
   speechGB:
-  - 'You may have noticed that
+  - 'Good job Hana, you''re close !
 
-    emitting waves drains your
+    Organ room is now opened for you.'
+  - 'Here, you''ll need to use the
 
-    energy.'
-  - 'Your energy is indicated in
+    big organ pipes to power
 
-    the top left corner under your
-
-    hypnosis gauge.'
-  - 'When you will feel exhausted,
-
-    you will no longer be able to
-
-    emit waves and need to rest'
-  - 'Your energy regenerates faster
-
-    when you are in your dreams
-
-    than in your nightmares.'
-  - 'The most energy-draining waves
-
-    are the nightmares ones and the
-
-    dream activate one.'
-  - 'Oh, about your hypnosis gauge !
-
-    It represents your life. When
-
-    it gets empty, you wake up.'
+    the smaller ones.'
+  - Keep going, I'm proud of you !

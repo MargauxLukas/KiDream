@@ -20,7 +20,7 @@ public class DialogueTrigger : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(id + (DialogueManager.dialogueExecutionStatut));
+        //Debug.Log(id + (DialogueManager.dialogueExecutionStatut));
         data = Resources.Load<SpeechData>("Dialogues/" + (id + (DialogueManager.dialogueExecutionStatut)));
 
         if (DialogueManager.dialogueExecutionStatut <= DialogueManager.lastDialogueIndex)

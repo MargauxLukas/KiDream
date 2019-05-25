@@ -55,7 +55,7 @@ public class PauseMenu : MonoBehaviour
     public static float handleReturnedValue;
 
     public GameObject aiguille;
-    public int optionsIndex = 0;
+    public static int optionsIndex = 0;
 
     private void Awake()
     {
@@ -188,6 +188,8 @@ public class PauseMenu : MonoBehaviour
         {
             go.SetActive(true);
         }
+
+        myPlayer.DebugWorlds();
 
         //Time.timeScale = 1f;
         gameIsPaused = false;
