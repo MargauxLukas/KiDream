@@ -189,6 +189,8 @@ public class PauseMenu : MonoBehaviour
             go.SetActive(true);
         }
 
+        myPlayer.DebugWorlds();
+
         //Time.timeScale = 1f;
         gameIsPaused = false;
     }
