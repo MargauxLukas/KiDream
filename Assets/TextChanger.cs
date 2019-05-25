@@ -16,7 +16,7 @@ public class TextChanger : MonoBehaviour
 	// Start
 	void Start ()
     {
-        myText= this.GetComponent<Text>();
+        myText = this.GetComponent<Text>();
 	}
 	
 	// Update
@@ -29,15 +29,6 @@ public class TextChanger : MonoBehaviour
         else if (GameLanguage.lang == Language.french)
         {
             myText.text = frenchText;
-        }
-
-        if(aah == true)
-        {
-            GameLanguage.lang = Language.french;
-        }
-        else
-        {
-            GameLanguage.lang = Language.english;
         }
 	}
 }

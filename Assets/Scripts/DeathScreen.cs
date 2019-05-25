@@ -8,6 +8,7 @@ public class DeathScreen : MonoBehaviour
     public GameObject Player;
     public GameObject playerDeath;
     public GameObject camera;
+    public GameObject restartInfos;
     private Animator pAnimator;
     private Animator animator;
     private AudioSource audioS;
@@ -37,6 +38,13 @@ public class DeathScreen : MonoBehaviour
         animator.SetBool("isDead", true);
         pAnimator.SetBool("isDead", true);
         pAnimator.SetBool("isDream", Player.GetComponent<CharacterController>().isDream);
+        StartCoroutine(WaitForFade());
 
+    }
+
+    IEnumerator WaitForFade()
+    {
+        yield return new WaitForSeconds(1);
+        restartInfos.SetActive(true);
     }
 }
