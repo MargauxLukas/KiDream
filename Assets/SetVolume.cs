@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SetVolume : MonoBehaviour {
+public class SetVolume : MonoBehaviour
+{
 
     AudioSource[] myAudios;
 
     private float hasChanged;
     private float initialVolume;
 
-    // Use this for initialization
+    // Start
     void Start ()
     {
         myAudios = this.GetComponents<AudioSource>();
@@ -21,10 +22,15 @@ public class SetVolume : MonoBehaviour {
         }
     }
 	
-	// Update is called once per frame
+	// Update
 	void Update ()
     {
-        if(hasChanged != PauseMenu.handleReturnedValue)
+        SetupVolume();
+	}
+
+    public void SetupVolume()
+    {
+        if (hasChanged != PauseMenu.handleReturnedValue)
         {
             hasChanged = PauseMenu.handleReturnedValue;
 
@@ -33,5 +39,5 @@ public class SetVolume : MonoBehaviour {
                 auSo.volume = initialVolume * PauseMenu.handleReturnedValue;
             }
         }
-	}
+    }
 }
