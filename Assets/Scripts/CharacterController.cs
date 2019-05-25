@@ -58,6 +58,7 @@ public class CharacterController : MonoBehaviour
     public  bool isDream     =  true;
 
     private bool leftAxisInUse;
+    private bool isInvincible = false;
 
     public GameObject deathPanel;
     public GameObject restartText;
@@ -292,14 +293,26 @@ public class CharacterController : MonoBehaviour
 
     public void damage()
     {
-        animator.SetTrigger("isHurt");
-        hp--;
+        if (!isInvincible)
+        {
+            animator.SetTrigger("isHurt");
+            hp--;
+            isInvincible = true;
+            StartCoroutine(WaitDamage());
+        }
+
 
         if(hp == 0)
         {
             isKilled = true;
             isDead();
         }
+    }
+
+    IEnumerator WaitDamage()
+    {
+        yield return new WaitForSeconds(2f);
+        isInvincible = false;
     }
 
     public void isDead()
