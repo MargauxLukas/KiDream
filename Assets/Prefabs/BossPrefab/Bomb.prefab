@@ -141,8 +141,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4773583810060318}
   - component: {fileID: 58280523726408392}
-  - component: {fileID: 114002376018321314}
-  m_Layer: 9
+  - component: {fileID: 114034813637834386}
+  m_Layer: 0
   m_Name: ExplosionArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -220,7 +220,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1756383030712992}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.35094595, y: 0.31643045, z: 0}
+  m_LocalPosition: {x: -2.2142196, y: 0.4716394, z: 0}
   m_LocalScale: {x: 1.75, y: 1.75, z: 0}
   m_Children:
   - {fileID: 4741644589298806}
@@ -369,7 +369,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -518,7 +518,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &114002376018321314
+--- !u!114 &114034813637834386
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -529,7 +529,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ea6e168b8a921c4494ac98685de3be3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boss: {fileID: 0}
 --- !u!114 &114082066352530452
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -610,6 +609,8 @@ MonoBehaviour:
   canBePushCorrupted: 1
   canBePullCorrupted: 1
   canBeActivateCorrupted: 0
+  forceBounce: 0
+  lifeBonus: 0
   verticalPushForce: 50
   horizontalPushForce: 50
   pushXEqualY: 0
