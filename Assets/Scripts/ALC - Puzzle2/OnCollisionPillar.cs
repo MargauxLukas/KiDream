@@ -15,7 +15,7 @@ public class OnCollisionPillar : MonoBehaviour
     {
         animator = GetComponentInParent<Animator>();
 
-        if (isActivated)
+        if (isActivated && animator != null)
         {
             animator.SetBool("isChecked", true);
         }

@@ -18,7 +18,6 @@ public class ActionDetection : MonoBehaviour {
             {
                 indicatorList = collision.GetComponentInChildren<IndicatorList>();
                 rtw = collision.GetComponentInParent<ReactionToWave>();
-                Debug.Log("Heh");
             }
             else
             {
