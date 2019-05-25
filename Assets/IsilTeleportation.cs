@@ -40,4 +40,14 @@ public class IsilTeleportation : MonoBehaviour
         yield return new WaitForSeconds(1.2f);
         gameObject.transform.position = positionList[n1].position;
     }
+
+    void BoxColliderDisable()
+    {
+        GetComponent<BoxCollider2D>().enabled = false;
+    }
+
+    void BoxColliderEnable()
+    {
+        GetComponent<BoxCollider2D>().enabled = true;
+    }
 }
