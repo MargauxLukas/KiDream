@@ -60,6 +60,7 @@ public class CharacterController : MonoBehaviour
     private bool leftAxisInUse;
 
     public GameObject deathPanel;
+    public GameObject restartText;
 
     private void Awake()
     {
@@ -306,6 +307,7 @@ public class CharacterController : MonoBehaviour
         isKilled = true;
         animator.SetBool("isDead", true);
         deathPanel.GetComponent<DeathScreen>().deathScreen();
+        restartText.GetComponent<RestartText>().TextAppear();
         GetComponent<CharacterController>().enabled = false;
     }
 
