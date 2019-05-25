@@ -13,14 +13,13 @@ public class TriggerByName : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.name.Contains("Pillar"))
+        if (collision.gameObject.name.Contains("PlayerCollisionLayer"))
         {
             if(collision.gameObject.GetComponentInParent<OnCollisionPillar>().isActivated == false)
             {
                 return;
             }
         }
-
         if(collision.gameObject.name.Contains(triggerer))
         {
             switch(enterBehaviour)
