@@ -20,7 +20,6 @@ public class DialogueManager : MonoBehaviour
     CharacterController scriptController;
 
     private Queue<string> sentences;
-    RangeAttribute test;
 
     public static int dialogueExecutionStatut;
     public int setUpLastDialogueIndex;

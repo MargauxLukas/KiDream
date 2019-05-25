@@ -24,7 +24,7 @@ public class IsilTeleportation : MonoBehaviour
 
     void Update ()
     {
-        Debug.Log(DialogueManager.dialogueExecutionStatut + " == " + dialogueExecutionStatutNumber[n]);
+        //Debug.Log(DialogueManager.dialogueExecutionStatut + " == " + dialogueExecutionStatutNumber[n]);
         if (DialogueManager.dialogueExecutionStatut == dialogueExecutionStatutNumber[n])
         {
             StartCoroutine(TeleportationC(n));

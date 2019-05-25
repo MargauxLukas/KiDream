@@ -14,50 +14,45 @@ MonoBehaviour:
   id: Dialogue_Isil_3
   name: Isil
   speechFR:
-  - "Tu peux d\xE9sormais \xE9mettre des\nondes sur le microphone en face."
-  - "Les microphones ne peuvent pas\n\xEAtre d\xE9plac\xE9s mais peuvent\nservir de
-    relais lorsque des..."
-  - "...\xE9l\xE9ments ne sont pas \xE0 ta port\xE9e."
-  - 'Voyage dans tes cauchemars pour
-
-    obtenir de nouvelles ondes.'
-  - "Dans tes cauchemars, tu peux\npermettre aux objets d'\xE9mettre des\nondes \xE0
-    ta place: C'est la corruption"
-  - "L'onde BLEUE poussera tous les\nobjets autour de l'objet corrompu.\n(S'ils peuvent
-    \xEAtre pouss\xE9s)"
-  - "L'onde ROUGE attirerera tous les\nobjets autour de l'objet corrompu.\n(S'ils
-    peuvent \xEAtre attir\xE9s)"
-  - "L'onde JAUNE activera tous les\nobjets autour de l'objet corrompu.\n(S'ils peuvent
-    \xEAtre activ\xE9s)"
+  - "Tu as peut-\xEAtre remarqu\xE9 que\nlancer des ondes te co\xFBte de\nl'\xE9nergie."
+  - "Ton \xE9nergie est repr\xE9sent\xE9e\nen haut \xE0 gauche en dessous\nde ta jauge
+    d'hypnose."
+  - "Lorsque tu seras \xE9puis\xE9e, tu\nne pourras plus lancer d'ondes\net devra
+    te reposer."
+  - "Tu regagnes plus rapidement\nde l'\xE9nergie dans tes r\xEAves\nque dans tes
+    cauchemars."
+  - "Les ondes qui drainent le plus\nd'\xE9nergie sont celles du cauchemar\net l'onde
+    d'activation du r\xEAve."
+  - "A propos ! Ta jauge d'hypnose\nrepr\xE9sente ta vie. Lorsqu'elle\nse vide tu
+    te r\xE9veilles."
   speechGB:
-  - 'Now, you can emit waves and
+  - 'You may have noticed that
 
-    reach the microphone above.'
-  - 'Microphones can''t be moved but
+    emitting waves drains your
 
-    are useful as bridges when some
+    energy.'
+  - 'Your energy is indicated in
 
-    elements can''t be reached.'
-  - 'Switch to the world of nightmares
+    the top left corner under your
 
-    to get new waves.'
-  - 'In your nightmares, you''ll be able
+    hypnosis gauge.'
+  - 'When you will feel exhausted,
 
-    to make items emit waves for you.
+    you will no longer be able to
 
-    It''s called "Corruption".'
-  - 'The BLUE wave will push all
+    emit waves and need to rest'
+  - 'Your energy regenerates faster
 
-    items around the corrupted one.
+    when you are in your dreams
 
-    (If they can be pushed)'
-  - 'The RED wave will attract all
+    than in your nightmares.'
+  - 'The most energy-draining waves
 
-    items around the corrupted one.
+    are the nightmares ones and the
 
-    (If they can be pulled)'
-  - 'The YELLOW wave will activate all
+    dream activate one.'
+  - 'Oh, about your hypnosis gauge !
 
-    items around the corrupted one.
+    It represents your life. When
 
-    (If they can be activated)'
+    it gets empty, you wake up.'
