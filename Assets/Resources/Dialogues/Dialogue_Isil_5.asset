@@ -14,20 +14,13 @@ MonoBehaviour:
   id: Dialogue_Isil_5
   name: Isil
   speechFR:
-  - "C'est bien Hana, tu vas y arriver!\nLa salle de l'orgue s'ouvre \xE0 toi."
-  - 'Ici, tu devras utiliser les
-
-    grands tuyaux d''orgue pour
-
-    alimenter les plus petits.'
-  - Courage, je suis fier de toi !
+  - "Tu arrives \xE0 pr\xE9sent \xE0 la salle\ndes tambours !"
+  - "Utilises tes comp\xE9tences afin de\nfaire rebondire les ondes sur les\ntambours
+    pour ouvrir les portes"
   speechGB:
-  - 'Good job Hana, you''re close !
+  - You're now in the drums room !
+  - 'Use your abilities to make
 
-    Organ room is now opened for you.'
-  - 'Here, you''ll need to use the
+    waves bounce on drums and
 
-    big organ pipes to power
-
-    the smaller ones.'
-  - Keep going, I'm proud of you !
+    open the doors.'

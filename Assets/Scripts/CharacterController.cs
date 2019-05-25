@@ -60,6 +60,7 @@ public class CharacterController : MonoBehaviour
     private bool leftAxisInUse;
 
     public GameObject deathPanel;
+    public GameObject restartText;
 
     private void Awake()
     {
@@ -120,7 +121,7 @@ public class CharacterController : MonoBehaviour
             {
                 dialogueTrigger.TriggerDialogue();
                 dialogueHasStarted = true;
-                DialogueManager.lastDialogueIndex++;
+                //DialogueManager.lastDialogueIndex++;
             }
         }
         else if (Input.GetKeyDown(KeyCode.Joystick1Button0) && dialogueHasStarted)
@@ -306,6 +307,7 @@ public class CharacterController : MonoBehaviour
         isKilled = true;
         animator.SetBool("isDead", true);
         deathPanel.GetComponent<DeathScreen>().deathScreen();
+        restartText.GetComponent<RestartText>().TextAppear();
         GetComponent<CharacterController>().enabled = false;
     }
 
@@ -363,4 +365,22 @@ public class CharacterController : MonoBehaviour
             Destroy(gameObject,0.2f); //Enlever le delai lorsque que y'aura l'animation
         }
     }*/
+
+    public void DebugWorlds()
+    {
+        if (isDream == false)
+        {
+            StartCoroutine(GoToNightmare());
+            isDream = false;
+            animator.SetBool("isDream", false);
+            leftAxisInUse = true;
+        }
+        else if (isDream == true)
+        {
+            StartCoroutine(GoToDream());
+            isDream = true;
+            animator.SetBool("isDream", true);
+            leftAxisInUse = true;
+        }
+    }
 }
