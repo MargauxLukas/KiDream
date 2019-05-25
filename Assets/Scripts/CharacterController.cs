@@ -263,7 +263,7 @@ public class CharacterController : MonoBehaviour
             {
                 reveObject.GetComponent<SpriteRenderer>().enabled = true;
             }
-            if (reveObject.GetComponent<BoxCollider2D>() != null )
+            if (reveObject.GetComponent<BoxCollider2D>() != null)
             {
                 reveObject.GetComponent<BoxCollider2D>().enabled = true;
             }
