@@ -13,10 +13,12 @@ public class ActionDetection : MonoBehaviour {
     {
         if (collision.tag == "UIDetectionTag")
         {
+
             if(collision.GetComponentInChildren<IndicatorList>() == true && collision.GetComponentInParent<ReactionToWave>() == true)
             {
                 indicatorList = collision.GetComponentInChildren<IndicatorList>();
                 rtw = collision.GetComponentInParent<ReactionToWave>();
+                Debug.Log("Heh");
             }
             else
             {
