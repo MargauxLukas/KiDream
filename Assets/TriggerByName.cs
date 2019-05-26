@@ -43,6 +43,39 @@ public class TriggerByName : MonoBehaviour
         }
     }
 
+    public void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.name.Contains("PlayerCollisionLayer"))
+        {
+            if (collision.gameObject.GetComponentInParent<OnCollisionPillar>().isActivated == false)
+            {
+                return;
+            }
+        }
+        if (collision.gameObject.name.Contains(triggerer))
+        {
+            switch (enterBehaviour)
+            {
+                case TriggerBehaviour._SetActiveFalse:
+                    connectedGO.SetActive(false);
+                    break;
+
+                case TriggerBehaviour._SetActiveTrue:
+                    connectedGO.SetActive(true);
+                    break;
+
+                case TriggerBehaviour._Portal:
+                    connectedGO.GetComponent<Animator>().SetBool("isActivated", true);
+                    connectedGO.GetComponent<BoxCollider2D>().enabled = false;
+                    break;
+
+                case TriggerBehaviour._Null:
+                    break;
+            }
+        }
+    }
+
+
     public void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.name.Contains(triggerer))
