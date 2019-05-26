@@ -450,7 +450,7 @@ MonoBehaviour:
   progressionBar: {fileID: 0}
   as0: {fileID: 2026491317}
   as1: {fileID: 1066974389}
-  loadingScreenPop: {fileID: 0}
+  loadingScreen: {fileID: 0}
   animator: {fileID: 1731391773}
   menuReaction: 4
 --- !u!61 &184727956
@@ -933,7 +933,7 @@ MonoBehaviour:
   progressionBar: {fileID: 0}
   as0: {fileID: 2026491317}
   as1: {fileID: 1066974389}
-  loadingScreenPop: {fileID: 0}
+  loadingScreen: {fileID: 0}
   animator: {fileID: 1731391773}
   menuReaction: 4
 --- !u!61 &775438463
@@ -2541,8 +2541,8 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "SPECIAL THANKS :  Emmanuel PEREZ - Micka\xEBl MANCINI - Philippe TESSON
-    - Thomas DESAUNAY - Elie SARFATI - Eliot RINGEVAL - Arthur HERBRETEAU - Chlo\xE9
-    PLUMEY - Timoth\xE9 LAFRANCHE - Quentin MILANA"
+    - Thomas DESAUNAY - Th\xE9ophile LOAEC - Elie SARFATI - Eliot RINGEVAL - Arthur
+    HERBRETEAU - Timoth\xE9 LAFRANCHE - Quentin MILANA - Argouse EWAN"
 --- !u!222 &1810082955
 CanvasRenderer:
   m_ObjectHideFlags: 0

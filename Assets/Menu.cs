@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class Menu : MonoBehaviour
 {
-    private bool selectorInUse;
+    private static bool selectorInUse;
 
     public SpriteRenderer indicator;
 
@@ -21,29 +21,33 @@ public class Menu : MonoBehaviour
     public AudioSource as0;
     public AudioSource as1;
 
-    public Animation loadingScreenPop;
+    public Animation loadingScreen;
 
     public Animator animator;
 
     public MenuReaction menuReaction;
 
+    private float selector;
+
     private int levelIndex;
 
-    void Awake()
+    void Start()
     {
-        StartCoroutine(AvoidDoubleClick(0.5f));
+
     }
 
     void OnTriggerStay2D (Collider2D collision)
     {
-        float selector = Input.GetAxisRaw("ShootParticles");
+        selector = Input.GetAxisRaw("ShootParticles");
+        Debug.Log(selectorInUse);
+        Debug.Log(selector);
 
         if(indicator != null)
         {
             indicator.enabled = true;
         }
 
-        if(selector > 0 && selectorInUse == false)
+        if(selector > 0.95f && selectorInUse == false)
         {
             selectorInUse = true;
 
@@ -64,11 +68,11 @@ public class Menu : MonoBehaviour
                     StartCoroutine(LoadAsynchronously(11));
                     break;
                 case MenuReaction.ChapterMenu:
-                    FadeToLevel(4);
+                    Debug.Log("Not Available Yet");
+                    //FadeToLevel(4);
                     break;
                 case MenuReaction.OptionsMenu:
                     FadeToLevel(5);
-                    OnFadeComplete();
                     break;
                 case MenuReaction.Credits:
                     FadeToLevel(6);
@@ -80,7 +84,8 @@ public class Menu : MonoBehaviour
                     break;
             }
         }
-        else if(selector == 0)
+
+        if (selector == 0)
         {
             selectorInUse = false;
         }
@@ -95,7 +100,7 @@ public class Menu : MonoBehaviour
 
     IEnumerator OnFadeComplete()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0);
         SceneManager.LoadScene(levelIndex);
     }
 
@@ -131,9 +136,9 @@ public class Menu : MonoBehaviour
 
     IEnumerator LoadAsynchronously(int index)
     {
-        loadingScreenPop.Play();
-        Debug.Log(loadingScreenPop.clip.length);
-        yield return new WaitForSeconds(loadingScreenPop.clip.length);
+        loadingScreen.Play();
+        Debug.Log(loadingScreen.clip.length);
+        yield return new WaitForSeconds(loadingScreen.clip.length);
         AsyncOperation operation = SceneManager.LoadSceneAsync(index);
 
         while(operation.isDone == false)
