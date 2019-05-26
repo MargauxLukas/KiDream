@@ -5,13 +5,13 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
+  - enabled: 1
     path: Assets/_Scenes/MENU/LON_FirstScreen.unity
     guid: 6e8258096a8d9ee4292bd4df18165f9c
-  - enabled: 0
+  - enabled: 1
     path: Assets/_Scenes/MENU/LON_MainMenu.unity
     guid: d20605c3f5c4a6b4fb0b157622b68ad3
-  - enabled: 0
+  - enabled: 1
     path: Assets/_Scenes/MENU/LON_PlayMenu.unity
     guid: 9c60a837681704344a6c6c9c9b3ca86d
   - enabled: 1
@@ -20,6 +20,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Scenes/MAL_Puzzle01.unity
     guid: a1b59076fc7b6a74f9b54c875c6636be
+  - enabled: 1
+    path: Assets/_Scenes/MENU/LON_Options.unity
+    guid: f4cc964daaae2ab4aa2484a54c7b09d4
+  - enabled: 1
+    path: Assets/_Scenes/MENU/CREDITS.unity
+    guid: 838563adf13442942bf52ef14966b263
   - enabled: 1
     path: Assets/_Scenes/ALC_BossIntro.unity
     guid: 29d615a30a0596a4694b663b0ef81b0d
@@ -32,12 +38,6 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/_Scenes/MENU/LON_ChapterMenu.unity
     guid: 69adac345ddb9b84ea44f6d36e71d92d
-  - enabled: 0
-    path: Assets/_Scenes/MENU/LON_Options.unity
-    guid: f4cc964daaae2ab4aa2484a54c7b09d4
-  - enabled: 0
-    path: Assets/_Scenes/MENU/CREDITS.unity
-    guid: 838563adf13442942bf52ef14966b263
   - enabled: 0
     path: Assets/_Scenes/MAL_Proto.unity
     guid: 6052656ea45ba0847bed26d6bd4f2fc8
