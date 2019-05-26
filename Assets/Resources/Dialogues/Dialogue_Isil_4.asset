@@ -25,8 +25,8 @@ MonoBehaviour:
     ta place: C'est la corruption"
   - "L'onde BLEUE poussera tous les\nobjets autour de l'objet corrompu.\n(S'ils peuvent
     \xEAtre pouss\xE9s)"
-  - "L'onde ROUGE attirerera tous les\nobjets autour de l'objet corrompu.\n(S'ils
-    peuvent \xEAtre attir\xE9s)"
+  - "L'onde ROUGE attirera tous les\nobjets autour de l'objet corrompu.\n(S'ils peuvent
+    \xEAtre attir\xE9s)"
   - "L'onde JAUNE activera tous les\nobjets autour de l'objet corrompu.\n(S'ils peuvent
     \xEAtre activ\xE9s)"
   - 'N''oublie surtout pas que les ondes

@@ -15,6 +15,5 @@ public class TheBestScript : MonoBehaviour
         {
             thisbc.enabled = false;
         }
-
 	}
 }

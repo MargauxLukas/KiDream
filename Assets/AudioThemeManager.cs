@@ -63,30 +63,28 @@ public class AudioThemeManager : MonoBehaviour
 
     IEnumerator FadeIn()
     {
-
-        for(int i = 0; i < 100; i++)
+        for(float i = 0; i < 100 * PauseMenu.handleReturnedValue; i++)
         {
             selectedTheme.volume = selectedTheme.volume + 0.01f;
             yield return new WaitForSeconds(0.05f);
 
-            if (selectedTheme.volume < 1f && selectedTheme.volume > 0.99f)
+            if (selectedTheme.volume < 1f * PauseMenu.handleReturnedValue && selectedTheme.volume > 0.99f * PauseMenu.handleReturnedValue)
             {
-                selectedTheme.volume = Mathf.Round(selectedTheme.volume);
+                selectedTheme.volume = Mathf.Round(selectedTheme.volume)*PauseMenu.handleReturnedValue;
             }
         }
     }
 
     IEnumerator FadeOut()
     {
-
-        for (int i = 100; i > 0; i--)
+        for (float i = 100; i > 0; i--)
         {
             otherTheme.volume = otherTheme.volume - 0.01f;
             yield return new WaitForSeconds(0.05f);
 
-            if(otherTheme.volume > 0f && otherTheme.volume < 0.01f)
+            if(otherTheme.volume > 0f * PauseMenu.handleReturnedValue && otherTheme.volume < 0.01f * PauseMenu.handleReturnedValue)
             {
-                otherTheme.volume = Mathf.Round(otherTheme.volume);
+                otherTheme.volume = Mathf.Round(otherTheme.volume) * PauseMenu.handleReturnedValue;
             }
         }
     }

@@ -18,9 +18,9 @@ MonoBehaviour:
 
     puissantes peuvent te faire tomber.'
   - "Les murs renvoient les ondes sonores.\nUtilise les pour te prot\xE9ger."
-  - "Appuie sur la gachette de gauche pour\nbasculer entre le r\xEAve et le cauchemar."
+  - "Appuie sur la gachette de gauche\npour basculer entre le r\xEAve\net le cauchemar."
   - "Il se peut que des \xE9l\xE9ments ne soient\npr\xE9sents que dans un seul des
-    deux mondes."
+    deux\nmondes."
   speechGB:
   - 'Be careful, the bells emit powerful
 
@@ -28,9 +28,9 @@ MonoBehaviour:
   - 'Walls can block waves.
 
     Use them to protect yourself.'
-  - 'Press the left trigger to switch between
+  - 'Press the left trigger to switch
 
-    dream and nightmare.'
+    between dream and nightmare.'
   - 'Some walls may appear in one world
 
     but not in the other.'

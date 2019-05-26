@@ -263,7 +263,7 @@ public class CharacterController : MonoBehaviour
             {
                 reveObject.GetComponent<SpriteRenderer>().enabled = true;
             }
-            if (reveObject.GetComponent<BoxCollider2D>() != null )
+            if (reveObject.GetComponent<BoxCollider2D>() != null)
             {
                 reveObject.GetComponent<BoxCollider2D>().enabled = true;
             }
@@ -319,9 +319,9 @@ public class CharacterController : MonoBehaviour
     {
         isKilled = true;
         animator.SetBool("isDead", true);
-        deathPanel.GetComponent<DeathScreen>().deathScreen();
+        deathPanel.GetComponent<DeathScreen>().deathScreen();        
         restartText.GetComponent<RestartText>().TextAppear();
-        GetComponent<CharacterController>().enabled = false;
+        //GetComponent<CharacterController>().enabled = false;
     }
 
     void Twist()
