@@ -33,7 +33,7 @@ public class FirstScreen : MonoBehaviour
     {
         float selector = Input.GetAxisRaw("ChangeWorld");
 
-        if (selector > 0 && selectorInUse == false)
+        if (selector > 0.95f && selectorInUse == false)
         {
             if (sr.sortingOrder == 1)
             {
@@ -63,7 +63,7 @@ public class FirstScreen : MonoBehaviour
 
         float pass = Input.GetAxisRaw("ShootParticles");
 
-        if(pass > 0)
+        if(pass > 0.95f)
         {
             SceneManager.LoadScene(1);
         }
