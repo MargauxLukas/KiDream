@@ -16,6 +16,7 @@ public class AudioThemeManager : MonoBehaviour
 	// Start
 	void Start ()
     {
+        PauseMenu.handleReturnedValue = 1f;
         selectedTheme = dreamTheme;
         otherTheme = nightmareTheme;
 	}
@@ -70,7 +71,7 @@ public class AudioThemeManager : MonoBehaviour
 
             if (selectedTheme.volume < 1f * PauseMenu.handleReturnedValue && selectedTheme.volume > 0.99f * PauseMenu.handleReturnedValue)
             {
-                selectedTheme.volume = Mathf.Round(selectedTheme.volume)*PauseMenu.handleReturnedValue;
+                selectedTheme.volume = 1f*PauseMenu.handleReturnedValue;
             }
         }
     }
@@ -84,7 +85,7 @@ public class AudioThemeManager : MonoBehaviour
 
             if(otherTheme.volume > 0f * PauseMenu.handleReturnedValue && otherTheme.volume < 0.01f * PauseMenu.handleReturnedValue)
             {
-                otherTheme.volume = Mathf.Round(otherTheme.volume) * PauseMenu.handleReturnedValue;
+                otherTheme.volume = 0f*PauseMenu.handleReturnedValue;
             }
         }
     }

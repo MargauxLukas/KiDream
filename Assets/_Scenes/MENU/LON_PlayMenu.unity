@@ -188,7 +188,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 526687733
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 074602e1618983c48a07a8b1a781c420, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0.6}
@@ -430,7 +430,7 @@ MonoBehaviour:
   progressionBar: {fileID: 76297725}
   as0: {fileID: 1171807201}
   as1: {fileID: 1770721836}
-  loadingScreenPop: {fileID: 1571411021}
+  loadingScreen: {fileID: 1571411021}
   animator: {fileID: 1957674967}
   menuReaction: 2
 --- !u!61 &566523744
@@ -1299,7 +1299,7 @@ MonoBehaviour:
   progressionBar: {fileID: 0}
   as0: {fileID: 1171807201}
   as1: {fileID: 1770721836}
-  loadingScreenPop: {fileID: 0}
+  loadingScreen: {fileID: 0}
   animator: {fileID: 1957674967}
   menuReaction: 0
 --- !u!61 &1367542982
@@ -1558,7 +1558,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 526687733
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 768c8cd4440c6a741afb1fe03ff6b536, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1680,7 +1680,7 @@ MonoBehaviour:
   progressionBar: {fileID: 0}
   as0: {fileID: 1171807201}
   as1: {fileID: 1770721836}
-  loadingScreenPop: {fileID: 0}
+  loadingScreen: {fileID: 0}
   animator: {fileID: 1957674967}
   menuReaction: 0
 --- !u!61 &1437736296
@@ -1773,7 +1773,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 301472241
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 15
   m_Sprite: {fileID: 21300000, guid: 312d4e87b1ae2ef4bb647eb0cc3dc677, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1849,7 +1849,7 @@ MonoBehaviour:
   progressionBar: {fileID: 0}
   as0: {fileID: 1171807201}
   as1: {fileID: 1770721836}
-  loadingScreenPop: {fileID: 0}
+  loadingScreen: {fileID: 0}
   animator: {fileID: 1957674967}
   menuReaction: 3
 --- !u!61 &1701965553
@@ -2081,7 +2081,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 526687733
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: f261ec2eacaa77540beccac353205fd9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -2429,7 +2429,7 @@ MonoBehaviour:
   progressionBar: {fileID: 0}
   as0: {fileID: 1171807201}
   as1: {fileID: 1770721836}
-  loadingScreenPop: {fileID: 0}
+  loadingScreen: {fileID: 0}
   animator: {fileID: 1957674967}
   menuReaction: 3
 --- !u!61 &1971429501
@@ -2551,7 +2551,7 @@ MonoBehaviour:
   progressionBar: {fileID: 76297725}
   as0: {fileID: 1171807201}
   as1: {fileID: 1770721836}
-  loadingScreenPop: {fileID: 1571411021}
+  loadingScreen: {fileID: 1571411021}
   animator: {fileID: 1957674967}
   menuReaction: 2
 --- !u!61 &2013089547
@@ -2658,7 +2658,7 @@ MonoBehaviour:
   progressionBar: {fileID: 0}
   as0: {fileID: 0}
   as1: {fileID: 0}
-  loadingScreenPop: {fileID: 0}
+  loadingScreen: {fileID: 1571411021}
   animator: {fileID: 1957674967}
   menuReaction: 0
 --- !u!4 &2034377691

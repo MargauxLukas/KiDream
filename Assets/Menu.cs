@@ -65,7 +65,7 @@ public class Menu : MonoBehaviour
                     FadeToLevel(2);
                     break;
                 case MenuReaction.NewGame:
-                    StartCoroutine(LoadAsynchronously(11));
+                    StartCoroutine(LoadAsynchronously(3));
                     break;
                 case MenuReaction.ChapterMenu:
                     Debug.Log("Not Available Yet");
