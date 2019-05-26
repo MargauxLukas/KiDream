@@ -10,6 +10,8 @@ public class SoundPlayer : MonoBehaviour
     public AudioClip dreamSound;
     public AudioClip nightmareSound;
 
+    public bool stopWhenExit;
+
     [Range(0, 3)]
     public float dreamDelay;
     [Range(0,3)]
@@ -31,6 +33,14 @@ public class SoundPlayer : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         StartCoroutine(SoundDelay(collision));
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if(collision.tag == "Player" && stopWhenExit == true)
+        {
+            this.thisAudioSource.Stop();
+        }
     }
 
     IEnumerator SoundDelay(Collider2D c2d)
