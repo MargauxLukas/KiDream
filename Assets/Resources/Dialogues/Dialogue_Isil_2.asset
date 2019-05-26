@@ -14,23 +14,23 @@ MonoBehaviour:
   id: Dialogue_Isil_2
   name: Isil
   speechFR:
-  - "Bravo, tu as pass\xE9 ces maudites cloches."
-  - "Tu as le parfait contr\xF4le de ton voyage\nHana, c'est tr\xE8s bien."
-  - "A pr\xE9sent je vais t'apprendre \xE0 envoyer\ndes ondes sonores."
+  - "Bravo, tu as pass\xE9 ces maudites\ncloches."
+  - "Tu as le parfait contr\xF4le de ton\nvoyage Hana, c'est tr\xE8s bien."
+  - "A pr\xE9sent je vais t'apprendre \xE0\nenvoyer des ondes sonores."
   - 'Tu peux changer d''onde en appuyant
 
     sur le bouton Y.
 
     Il en existe trois types...'
-  - 'L''onde BLEUE permet de pousser les objets
+  - 'L''onde BLEUE permet de pousser les
 
-    (si l''objet est poussable)'
-  - 'L''onde ROUGE permet d''attirer les objets
+    objets (si l''objet est poussable)'
+  - 'L''onde ROUGE permet d''attirer les
 
-    (si l''objet est attirable)'
-  - 'L''onde JAUNE permet de pousser les objets
+    objets (si l''objet est attirable)'
+  - 'L''onde JAUNE permet de pousser les
 
-    (si l''objet est activable)'
+    objets (si l''objet est activable)'
   - "Des petits ronds apparaissent au\ndessus des objets pour t'indiquer\n\xE0 quelles
     ondes ils sont r\xE9ceptifs."
   - "Essaye de tirer le bloc sur\nl'emplacement \xE0 gauche et\nregarde ce qu'il se

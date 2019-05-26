@@ -15,7 +15,7 @@ MonoBehaviour:
   name: Isil
   speechFR:
   - "Tu arrives \xE0 pr\xE9sent \xE0 la salle\ndes tambours !"
-  - "Utilises tes comp\xE9tences afin de\nfaire rebondire les ondes sur les\ntambours
+  - "Utilises tes comp\xE9tences afin de\nfaire rebondir les ondes sur les\ntambours
     pour ouvrir les portes"
   speechGB:
   - You're now in the drums room !
