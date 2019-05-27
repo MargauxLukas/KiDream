@@ -666,6 +666,7 @@ GameObject:
   - component: {fileID: 1093801503}
   - component: {fileID: 1093801505}
   - component: {fileID: 1093801504}
+  - component: {fileID: 1093801506}
   m_Layer: 5
   m_Name: NEW GAME
   m_TagString: Untagged
@@ -688,8 +689,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 599, y: 384}
-  m_SizeDelta: {x: 260.1, y: 74.2}
+  m_AnchoredPosition: {x: 595.07, y: 384}
+  m_SizeDelta: {x: 348.76, y: 74.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1093801504
 MonoBehaviour:
@@ -731,6 +732,20 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1093801502}
   m_CullTransparentMesh: 0
+--- !u!114 &1093801506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1093801502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2606970ecba023b49b5b6e2294ef0cd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  englishText: NEW GAME
+  frenchText: NOUVELLE PARTIE
+  aah: 0
 --- !u!1 &1166460558
 GameObject:
   m_ObjectHideFlags: 0
@@ -741,6 +756,7 @@ GameObject:
   - component: {fileID: 1166460559}
   - component: {fileID: 1166460561}
   - component: {fileID: 1166460560}
+  - component: {fileID: 1166460562}
   m_Layer: 5
   m_Name: BACK
   m_TagString: Untagged
@@ -806,6 +822,20 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1166460558}
   m_CullTransparentMesh: 0
+--- !u!114 &1166460562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1166460558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2606970ecba023b49b5b6e2294ef0cd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  englishText: BACK
+  frenchText: RETOUR
+  aah: 0
 --- !u!1 &1171807199
 GameObject:
   m_ObjectHideFlags: 0
@@ -940,6 +970,7 @@ GameObject:
   - component: {fileID: 1275239338}
   - component: {fileID: 1275239340}
   - component: {fileID: 1275239339}
+  - component: {fileID: 1275239341}
   m_Layer: 5
   m_Name: PUZZLE SELECTION
   m_TagString: Untagged
@@ -1007,6 +1038,20 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1275239337}
   m_CullTransparentMesh: 0
+--- !u!114 &1275239341
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1275239337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2606970ecba023b49b5b6e2294ef0cd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  englishText: CHAPTERS
+  frenchText: CHAPITRES
+  aah: 0
 --- !u!1 &1351697728
 GameObject:
   m_ObjectHideFlags: 0
