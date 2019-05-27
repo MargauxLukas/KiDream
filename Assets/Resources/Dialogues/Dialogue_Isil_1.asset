@@ -17,7 +17,7 @@ MonoBehaviour:
   - 'Attention aux cloches, leurs ondes
 
     puissantes peuvent te faire tomber.'
-  - "Les murs renvoient les ondes sonores.\nUtilise les pour te prot\xE9ger."
+  - "Change d'un monde \xE0 l'autre pour\n\xE9viter les ondes."
   - "Appuie sur la gachette de gauche\npour basculer entre le r\xEAve\net le cauchemar."
   - "Il se peut que des \xE9l\xE9ments ne soient\npr\xE9sents que dans un seul des
     deux\nmondes."
@@ -25,9 +25,9 @@ MonoBehaviour:
   - 'Be careful, the bells emit powerful
 
     waves that can push you out !'
-  - 'Walls can block waves.
+  - 'Change from one world to the other
 
-    Use them to protect yourself.'
+    to avoid waves.'
   - 'Press the left trigger to switch
 
     between dream and nightmare.'
