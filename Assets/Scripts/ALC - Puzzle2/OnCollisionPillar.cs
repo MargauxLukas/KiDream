@@ -24,11 +24,11 @@ public class OnCollisionPillar : MonoBehaviour
 
     private void Update()
     {
-        if(!isActivated)
+        if(!isActivated && soundAttached != null)
         {
             soundAttached.SetActive(false);
         }
-        else
+        else if(soundAttached != null)
         {
             soundAttached.SetActive(true);
         }

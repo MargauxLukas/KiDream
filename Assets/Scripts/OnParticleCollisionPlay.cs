@@ -18,6 +18,9 @@ public class OnParticleCollisionPlay : MonoBehaviour
     public AudioClip acDream;
     public AudioClip acNightmare;
 
+    public List<AudioClip> dreamClips = new List<AudioClip>();
+    public List<AudioClip> nightmareClips = new List<AudioClip>();
+
     [SerializeField]
     private bool activeObject = false;
     public List<GameObject> ActivableObjects = new List<GameObject>();
@@ -45,7 +48,7 @@ public class OnParticleCollisionPlay : MonoBehaviour
     private void OnParticleCollision(GameObject other)
     {
 
-        Debug.Log("HasCollide");
+        //Debug.Log("HasCollide");
         if(playParticleSystem == true)
         {
             myParticleSystem = GetComponent<ParticleSystem>();
@@ -57,15 +60,20 @@ public class OnParticleCollisionPlay : MonoBehaviour
             switch(myPlayer.isDream)
             {
                 case true:
-                    myAudioSource.clip = acDream;
-                    myAudioSource.Play();
+                    if(dreamClips.Count != 0)
+                    {
+                        acDream = dreamClips[Random.Range(0, dreamClips.Count)];
+                    }
+                    myAudioSource.PlayOneShot(acDream);
                     break;
                 case false:
-                    myAudioSource.clip = acNightmare;
-                    myAudioSource.Play();
+                    if(nightmareClips.Count != 0)
+                    {
+                        acNightmare = nightmareClips[Random.Range(0, nightmareClips.Count)];
+                    }
+                    myAudioSource.PlayOneShot(acNightmare);
                     break;
             }
-
         }
 
         if(activeObject == true)

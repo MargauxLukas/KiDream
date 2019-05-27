@@ -11,6 +11,7 @@ public class SoundPlayer : MonoBehaviour
     public AudioClip nightmareSound;
 
     public bool stopWhenExit;
+    public bool replayWhenExit;
 
     [Range(0, 3)]
     public float dreamDelay;
@@ -38,7 +39,10 @@ public class SoundPlayer : MonoBehaviour
 	// Update
 	void Update ()
     {
-		
+		if(stopWhenExit == true)
+        {
+            replayWhenExit = false;
+        }
 	}
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -57,9 +61,26 @@ public class SoundPlayer : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if(collision.tag == "Player" && stopWhenExit == true)
+        myCollider = collision;
+
+        if (collision.tag == "Player" && stopWhenExit == true)
         {
             this.thisAudioSource.Stop();
+        }
+        else if(collision.tag == "Player" && replayWhenExit == true)
+        {
+            switch (myPlayer.isDream)
+            {
+                case true:
+                    //Joue le son rêve définit dans l'éditeur
+                    thisAudioSource.PlayOneShot(dreamSound);
+                    break;
+
+                case false:
+                    //Joue le son cauchemar définit dans l'éditeur
+                    thisAudioSource.PlayOneShot(nightmareSound);
+                    break;
+            }
         }
 
         StopAllCoroutines();
@@ -69,7 +90,7 @@ public class SoundPlayer : MonoBehaviour
     {
         if (c2d.tag == "Player")
         {
-            if(playFromList == false)
+            if (playFromList == false)
             {
                 switch (myPlayer.isDream)
                 {
@@ -88,6 +109,7 @@ public class SoundPlayer : MonoBehaviour
             }
             else if(playFromList == true)
             {
+                Debug.Log("Ooooh yeah");
                 switch (myPlayer.isDream)
                 {
                     case true:
