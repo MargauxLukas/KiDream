@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class OnCollisionPillar : MonoBehaviour
 {
+    public GameObject soundAttached;
     [Header("PuzzleCollision de Main Pillar")]
     public GameObject puzzleCollision;
     [Header("C'est allumé ?")]
@@ -18,6 +19,18 @@ public class OnCollisionPillar : MonoBehaviour
         if (isActivated && animator != null)
         {
             animator.SetBool("isChecked", true);
+        }
+    }
+
+    private void Update()
+    {
+        if(!isActivated)
+        {
+            soundAttached.SetActive(false);
+        }
+        else
+        {
+            soundAttached.SetActive(true);
         }
     }
 
