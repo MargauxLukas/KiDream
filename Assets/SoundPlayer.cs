@@ -74,10 +74,13 @@ public class SoundPlayer : MonoBehaviour
                 switch (myPlayer.isDream)
                 {
                     case true:
+                        //Joue le son rêve définit dans l'éditeur
                         yield return new WaitForSeconds(dreamDelay);
                         thisAudioSource.PlayOneShot(dreamSound);
                         break;
+
                     case false:
+                        //Joue le son cauchemar définit dans l'éditeur
                         yield return new WaitForSeconds(nightmareDelay);
                         thisAudioSource.PlayOneShot(nightmareSound);
                         break;
