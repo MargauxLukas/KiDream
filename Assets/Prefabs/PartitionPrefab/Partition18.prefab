@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 114004747682607520}
   - component: {fileID: 61097578385156386}
   - component: {fileID: 114406280989265892}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Partition18
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1005342778570676}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.84, y: -2.16, z: 0}
+  m_LocalPosition: {x: 1.1229236, y: -0.2995075, z: 5.19}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -78,7 +78,7 @@ Animator:
   m_GameObject: {fileID: 1005342778570676}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 093dfe4255db4934295b435b1af81aef, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

@@ -5,13 +5,13 @@ using UnityEngine;
 public class PortalSound : MonoBehaviour
 {
 
-    public AudioClip portailOpen;
+    public AudioClip saveSound;
 
     private AudioSource audioS;
 
-    public void portalOpenSound()
+    public void PlaySaveSound()
     {
         audioS = gameObject.GetComponent<AudioSource>();
-        audioS.PlayOneShot(portailOpen);
+        audioS.PlayOneShot(saveSound);
     }
 }
