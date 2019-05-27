@@ -73,7 +73,7 @@ public class SoundPlayer : MonoBehaviour
             {
                 case true:
                     //Joue le son rêve définit dans l'éditeur
-                    StartCoroutine(FixedSoundDelay());
+                    thisAudioSource.PlayOneShot(dreamSound);
                     break;
 
                 case false:
@@ -144,17 +144,5 @@ public class SoundPlayer : MonoBehaviour
 
             }
         }
-    }
-
-
-
-
-
-
-
-    IEnumerator FixedSoundDelay()
-    {
-                yield return new WaitForSeconds(dreamDelay);
-                thisAudioSource.PlayOneShot(dreamSound);
     }
 }
