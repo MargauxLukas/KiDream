@@ -9,6 +9,7 @@ public class Boss : MonoBehaviour
     Animator  bombAnimator2;
     Animator  bombAnimator3;
     Animator cameraAnimator; //Pour lancer le screenShake
+    public Animator deadScreen;
 
     [Header("GameObject to attached")]
     public GameObject          bomb;
@@ -797,6 +798,7 @@ public class Boss : MonoBehaviour
         isDeadB = true;
         animator.SetTrigger("isDeath");
         panel.GetComponent<bossDeath>().DeathAnim();
+        deadScreen.SetBool("isDead", true);
         
     }
 
