@@ -12,7 +12,7 @@ public class DeathZone : MonoBehaviour
             Debug.Log("Player est tombé");
             collision.GetComponent<CharacterController>().isDead();
             StartCoroutine(Falling(collision.gameObject));
-            Destroy(collision.gameObject, 0.4f);
+            //Destroy(collision.gameObject, 0.4f);
         }
         else if (collision.name.Contains("Chick"))
         {
