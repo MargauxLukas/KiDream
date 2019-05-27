@@ -2557,7 +2557,7 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: "SPECIAL THANKS :  Emmanuel PEREZ - Micka\xEBl MANCINI - Philippe TESSON
     - Thomas DESAUNAY - Th\xE9ophile LOAEC - Elie SARFATI - Eliot RINGEVAL - Arthur
-    HERBRETEAU - Timoth\xE9 LAFRANCHE - Quentin MILANA - Argouse EWAN"
+    HERBRETEAU - Timoth\xE9 LAFRANCHE - Argouse EWAN"
 --- !u!222 &1810082955
 CanvasRenderer:
   m_ObjectHideFlags: 0
