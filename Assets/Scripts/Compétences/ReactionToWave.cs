@@ -60,7 +60,9 @@ public class ReactionToWave : MonoBehaviour
 
     [Header("Transform")]
     public Vector3 corruptedPosition;
+    public Vector3 corruptedScale;
     public bool useCorruptedPosition;
+    public bool useCorruptedScale;
 
     [Header("C-Push")]
     [Range(0, 5)]
@@ -269,6 +271,7 @@ public class ReactionToWave : MonoBehaviour
                 case 0:
                     corruptedPushRadius = GetComponent<ReactionToWave>().corruptedPushRadius;
                     CorruptedPosition();
+                    CorruptedScale();
                     ps.startSize = 2.76131f * corruptedPushRadius + 0.063143f;
                     ps.GetComponent<PushEffect>();
                     ps.GetComponent<PushEffect>().affectPlayer = corruptedPushAffectPlayer;
@@ -281,6 +284,7 @@ public class ReactionToWave : MonoBehaviour
                 case 1:
                     corruptedPullRadius = GetComponent<ReactionToWave>().corruptedPullRadius;
                     CorruptedPosition();
+                    CorruptedScale();
                     ps.startSize = 2.76131f * corruptedPullRadius + 0.063143f;
                     ps.GetComponent<PullEffect>().affectPlayer = corruptedPullAffectPlayer;
                     ps.GetComponent<PullEffect>().forceX = cPullForceX;
@@ -292,6 +296,7 @@ public class ReactionToWave : MonoBehaviour
                 case 2:
                     corruptedActivateRadius = GetComponent<ReactionToWave>().corruptedActivateRadius;
                     CorruptedPosition();
+                    CorruptedScale();
                     ps.startSize = 2.76131f * corruptedActivateRadius + 0.063143f;
                     ps.GetComponent<CircleCollider2D>().radius = corruptedActivateRadius;
                     break;
@@ -489,6 +494,14 @@ public class ReactionToWave : MonoBehaviour
         if(useCorruptedPosition == true)
         {
             ps.transform.localPosition = corruptedPosition;
+        }
+    }
+
+    public void CorruptedScale()
+    {
+        if (useCorruptedScale == true)
+        {
+            ps.transform.localScale = corruptedScale;
         }
     }
 
