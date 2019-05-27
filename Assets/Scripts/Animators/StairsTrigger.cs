@@ -10,7 +10,7 @@ public class StairsTrigger : MonoBehaviour
     public GameObject stairsEntryCollider;
     public bool hasCollide = false;
 
-    [Range(0, 10f), SerializeField]
+    [Range(0, 100f), SerializeField]
     private float fadingRate;
     [Range(0, 1f), SerializeField]
     private float destroyingRate;
