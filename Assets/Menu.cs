@@ -39,8 +39,6 @@ public class Menu : MonoBehaviour
     void OnTriggerStay2D (Collider2D collision)
     {
         selector = Input.GetAxisRaw("ShootParticles");
-        Debug.Log(selectorInUse);
-        Debug.Log(selector);
 
         if(indicator != null)
         {

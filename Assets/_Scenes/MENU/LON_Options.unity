@@ -448,7 +448,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 526687733
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 768c8cd4440c6a741afb1fe03ff6b536, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -524,7 +524,7 @@ MonoBehaviour:
   progressionBar: {fileID: 0}
   as0: {fileID: 1775095166}
   as1: {fileID: 879543506}
-  loadingScreenPop: {fileID: 0}
+  loadingScreen: {fileID: 0}
   animator: {fileID: 1785127763}
   menuReaction: 0
 --- !u!61 &447654020
@@ -646,7 +646,7 @@ MonoBehaviour:
   progressionBar: {fileID: 0}
   as0: {fileID: 1775095166}
   as1: {fileID: 879543506}
-  loadingScreenPop: {fileID: 0}
+  loadingScreen: {fileID: 0}
   animator: {fileID: 1785127763}
   menuReaction: 7
 --- !u!61 &495919204
@@ -999,7 +999,7 @@ MonoBehaviour:
   progressionBar: {fileID: 0}
   as0: {fileID: 0}
   as1: {fileID: 0}
-  loadingScreenPop: {fileID: 0}
+  loadingScreen: {fileID: 0}
   animator: {fileID: 1785127763}
   menuReaction: 0
 --- !u!4 &740307587
@@ -1337,7 +1337,7 @@ MonoBehaviour:
   progressionBar: {fileID: 0}
   as0: {fileID: 1775095166}
   as1: {fileID: 879543506}
-  loadingScreenPop: {fileID: 0}
+  loadingScreen: {fileID: 0}
   animator: {fileID: 1785127763}
   menuReaction: 0
 --- !u!61 &980822638
@@ -1554,7 +1554,7 @@ MonoBehaviour:
   progressionBar: {fileID: 0}
   as0: {fileID: 1775095166}
   as1: {fileID: 879543506}
-  loadingScreenPop: {fileID: 0}
+  loadingScreen: {fileID: 0}
   animator: {fileID: 1785127763}
   menuReaction: 7
 --- !u!61 &1127120190
@@ -1713,6 +1713,7 @@ GameObject:
   - component: {fileID: 1253688985}
   - component: {fileID: 1253688987}
   - component: {fileID: 1253688986}
+  - component: {fileID: 1253688988}
   m_Layer: 5
   m_Name: BACK
   m_TagString: Untagged
@@ -1778,6 +1779,20 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1253688984}
   m_CullTransparentMesh: 0
+--- !u!114 &1253688988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1253688984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2606970ecba023b49b5b6e2294ef0cd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  englishText: BACK
+  frenchText: RETOUR
+  aah: 0
 --- !u!1 &1333412926
 GameObject:
   m_ObjectHideFlags: 0
@@ -1901,7 +1916,7 @@ MonoBehaviour:
   progressionBar: {fileID: 0}
   as0: {fileID: 1775095166}
   as1: {fileID: 879543506}
-  loadingScreenPop: {fileID: 0}
+  loadingScreen: {fileID: 0}
   animator: {fileID: 1785127763}
   menuReaction: 5
 --- !u!61 &1335305994
@@ -2416,7 +2431,7 @@ MonoBehaviour:
   progressionBar: {fileID: 0}
   as0: {fileID: 1775095166}
   as1: {fileID: 879543506}
-  loadingScreenPop: {fileID: 0}
+  loadingScreen: {fileID: 0}
   animator: {fileID: 1785127763}
   menuReaction: 5
 --- !u!61 &2135692662
