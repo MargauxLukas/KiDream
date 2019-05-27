@@ -57,12 +57,10 @@ public class OnParticleCollisionPlay : MonoBehaviour
             switch(myPlayer.isDream)
             {
                 case true:
-                    myAudioSource.clip = acDream;
-                    myAudioSource.Play();
+                    myAudioSource.PlayOneShot(acDream);
                     break;
                 case false:
-                    myAudioSource.clip = acNightmare;
-                    myAudioSource.Play();
+                    myAudioSource.PlayOneShot(acNightmare);
                     break;
             }
 
