@@ -48,7 +48,7 @@ public class OnParticleCollisionPlay : MonoBehaviour
     private void OnParticleCollision(GameObject other)
     {
 
-        Debug.Log("HasCollide");
+        //Debug.Log("HasCollide");
         if(playParticleSystem == true)
         {
             myParticleSystem = GetComponent<ParticleSystem>();
