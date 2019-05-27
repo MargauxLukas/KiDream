@@ -9961,6 +9961,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7ddc9c9edcf8a242b45e1b433656108, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deadScreen: {fileID: 1764603288}
   bomb: {fileID: 1756383030712992, guid: 2f0d17941f406a44fa7780f8814f8e42, type: 2}
   ombre: {fileID: 1908040382968368, guid: c8744feb0bc6a8d44b0017af0f74614b, type: 2}
   bombLauncher: {fileID: 398608047}
@@ -9972,7 +9973,7 @@ MonoBehaviour:
   speed: 0.2
   isRage: 0
   isDeadB: 0
-  hp: 5
+  hp: 0
 --- !u!95 &587806242
 Animator:
   serializedVersion: 3
